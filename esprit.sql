@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 12 fév. 2023 à 11:10
+-- Généré le : lun. 13 fév. 2023 à 23:12
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -26,22 +26,16 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `personnes`
 --
+-- Erreur de lecture de structure pour la table esprit.personnes : #1932 - Table &#039;esprit.personnes&#039; doesn&#039;t exist in engine
+-- Erreur de lecture des données pour la table esprit.personnes : #1064 - Erreur de syntaxe près de &#039;FROM `esprit`.`personnes`&#039; à la ligne 1
 
-CREATE TABLE `personnes` (
-  `id` int(11) NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `prenom` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- --------------------------------------------------------
 
 --
--- Index pour les tables déchargées
+-- Structure de la table `reclamation`
 --
-
---
--- Index pour la table `personnes`
---
-ALTER TABLE `personnes`
-  ADD PRIMARY KEY (`id`);
+-- Erreur de lecture de structure pour la table esprit.reclamation : #1932 - Table &#039;esprit.reclamation&#039; doesn&#039;t exist in engine
+-- Erreur de lecture des données pour la table esprit.reclamation : #1064 - Erreur de syntaxe près de &#039;FROM `esprit`.`reclamation`&#039; à la ligne 1
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
