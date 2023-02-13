@@ -5,6 +5,12 @@
  */
 package pidevils;
 
+import entities.Reclamation;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import service.ReclamationService;
+
 /**
  *
  * @author walid
@@ -15,7 +21,8 @@ public class PIDEVILS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ReclamationService rs = new ReclamationService();
+        //Reclamation r = new Reclamation("Site trop lent","Closed");
     }
     
 }
