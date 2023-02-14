@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 14 fév. 2023 à 13:11
+-- Généré le : mar. 14 fév. 2023 à 20:48
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -20,6 +20,42 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `esprit`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `colis`
+--
+
+CREATE TABLE `colis` (
+  `id` int(11) NOT NULL,
+  `nb_items` int(11) NOT NULL,
+  `description` varchar(250) NOT NULL,
+  `poids` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `livraisons`
+--
+
+CREATE TABLE `livraisons` (
+  `id` int(11) NOT NULL,
+  `adresse_expedition` varchar(250) NOT NULL,
+  `adresse_destinataire` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `offre_livraison`
+--
+
+CREATE TABLE `offre_livraison` (
+  `id` int(11) NOT NULL,
+  `prix_livraison` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -67,6 +103,24 @@ CREATE TABLE `utilisateur` (
 --
 
 --
+-- Index pour la table `colis`
+--
+ALTER TABLE `colis`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `livraisons`
+--
+ALTER TABLE `livraisons`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `offre_livraison`
+--
+ALTER TABLE `offre_livraison`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `personnes`
 --
 ALTER TABLE `personnes`
@@ -87,6 +141,24 @@ ALTER TABLE `utilisateur`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `colis`
+--
+ALTER TABLE `colis`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `livraisons`
+--
+ALTER TABLE `livraisons`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `offre_livraison`
+--
+ALTER TABLE `offre_livraison`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `personnes`
