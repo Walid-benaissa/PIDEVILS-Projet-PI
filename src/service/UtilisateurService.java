@@ -57,7 +57,7 @@ public class UtilisateurService implements IService<Utilisateur> {
     @Override
     public void ajouter(Utilisateur p) {
         try {
-            String req = "INSERT INTO  `utilisateur`(`cin`, `nom`, `prenom`, `mail`,`mdp`, `num_tel`, `role`,`evaluation`) VALUES (?,?,?,?,?,?,?)";
+            String req = "INSERT INTO  `utilisateur`(`cin`, `nom`, `prenom`, `mail`,`mdp`, `num_tel`, `role`,`evaluation`) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, p.getCin());
             ps.setString(2, p.getNom());
@@ -68,10 +68,10 @@ public class UtilisateurService implements IService<Utilisateur> {
             ps.setString(7, p.getRole());
             ps.setFloat(8, p.getEvaluation());
             ps.executeUpdate();
-
+            
             System.out.println("Utilisateur inséré");
         } catch (SQLException ex) {
-            System.out.println("Utilisateur non inséré");
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -91,7 +91,7 @@ public class UtilisateurService implements IService<Utilisateur> {
     public void modifier(Utilisateur p) {
         try {
 
-            String req = "UPDATE `nom` SET `prenom` = ?, `mail` = ?, `mdp` = ?, `num_tel` = ?, `role` = ?, `evaluation` = ?, WHERE `utilisateur`.`cin` = ?";
+            String req = "UPDATE `utilisateur` SET nom=?, `prenom` = ?, `mail` = ?, `mdp` = ?, `num_tel` = ?, `role` = ?, `evaluation` = ? WHERE `utilisateur`.`cin` = ?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, p.getNom());
             ps.setString(2, p.getPrenom());
