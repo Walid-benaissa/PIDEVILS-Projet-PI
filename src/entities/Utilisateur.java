@@ -7,7 +7,7 @@ package entities;
 
 /**
  *
- * @author USER
+ * @author abir
  */
 public class Utilisateur {
     private String cin;
