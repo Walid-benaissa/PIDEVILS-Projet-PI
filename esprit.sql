@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 14 fév. 2023 à 20:48
+-- Généré le : mar. 14 fév. 2023 à 22:58
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -32,6 +32,18 @@ CREATE TABLE `colis` (
   `nb_items` int(11) NOT NULL,
   `description` varchar(250) NOT NULL,
   `poids` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `conducteur`
+--
+
+CREATE TABLE `conducteur` (
+  `cin` varchar(10) NOT NULL,
+  `permis` mediumblob NOT NULL,
+  `b3` mediumblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -99,6 +111,13 @@ CREATE TABLE `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`cin`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `role`, `evaluation`) VALUES
+('1323566', 'abir', 'kh', 'abir@gmail.com', 'abir', '26578467', 'client', 0.0);
+
+--
 -- Index pour les tables déchargées
 --
 
@@ -107,6 +126,12 @@ CREATE TABLE `utilisateur` (
 --
 ALTER TABLE `colis`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `conducteur`
+--
+ALTER TABLE `conducteur`
+  ADD PRIMARY KEY (`cin`);
 
 --
 -- Index pour la table `livraisons`
@@ -171,6 +196,16 @@ ALTER TABLE `personnes`
 --
 ALTER TABLE `reclamation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `conducteur`
+--
+ALTER TABLE `conducteur`
+  ADD CONSTRAINT `fk_utilisateur_conducteur` FOREIGN KEY (`cin`) REFERENCES `utilisateur` (`cin`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
