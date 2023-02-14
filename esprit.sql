@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 14 fév. 2023 à 23:11
+-- Généré le : mer. 15 fév. 2023 à 00:10
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -122,6 +122,21 @@ CREATE TABLE `utilisateur` (
   `evaluation` float(2,1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `vehicule`
+--
+
+CREATE TABLE `vehicule` (
+  `immatriculation` varchar(30) NOT NULL,
+  `modele` int(30) NOT NULL,
+  `marque` int(30) NOT NULL,
+  `etat` int(20) NOT NULL,
+  `photo` mediumblob NOT NULL,
+  `cin` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Index pour les tables déchargées
 --
@@ -176,6 +191,13 @@ ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`cin`);
 
 --
+-- Index pour la table `vehicule`
+--
+ALTER TABLE `vehicule`
+  ADD PRIMARY KEY (`immatriculation`),
+  ADD KEY `fk_utilisateur_vehicule` (`cin`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -225,6 +247,12 @@ ALTER TABLE `commentaire`
 --
 ALTER TABLE `conducteur`
   ADD CONSTRAINT `fk_utilisateur_conducteur` FOREIGN KEY (`cin`) REFERENCES `utilisateur` (`cin`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `vehicule`
+--
+ALTER TABLE `vehicule`
+  ADD CONSTRAINT `fk_utilisateur_vehicule` FOREIGN KEY (`cin`) REFERENCES `utilisateur` (`cin`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
