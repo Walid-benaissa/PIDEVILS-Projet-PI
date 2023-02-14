@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 14 fév. 2023 à 11:18
+-- Généré le : mar. 14 fév. 2023 à 13:11
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -45,6 +45,23 @@ CREATE TABLE `reclamation` (
   `etat` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilisateur`
+--
+
+CREATE TABLE `utilisateur` (
+  `cin` varchar(10) NOT NULL,
+  `nom` varchar(20) NOT NULL,
+  `prenom` varchar(30) NOT NULL,
+  `mail` varchar(100) NOT NULL,
+  `mdp` varchar(100) NOT NULL,
+  `num_tel` varchar(20) NOT NULL,
+  `role` varchar(30) NOT NULL,
+  `evaluation` float(2,1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Index pour les tables déchargées
 --
@@ -60,6 +77,12 @@ ALTER TABLE `personnes`
 --
 ALTER TABLE `reclamation`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD PRIMARY KEY (`cin`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
