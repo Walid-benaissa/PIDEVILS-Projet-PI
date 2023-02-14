@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 14 fév. 2023 à 22:58
+-- Généré le : mar. 14 fév. 2023 à 23:11
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -32,6 +32,18 @@ CREATE TABLE `colis` (
   `nb_items` int(11) NOT NULL,
   `description` varchar(250) NOT NULL,
   `poids` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `commentaire`
+--
+
+CREATE TABLE `commentaire` (
+  `cin1` varchar(10) NOT NULL,
+  `cin2` varchar(10) NOT NULL,
+  `message` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -111,13 +123,6 @@ CREATE TABLE `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `utilisateur`
---
-
-INSERT INTO `utilisateur` (`cin`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `role`, `evaluation`) VALUES
-('1323566', 'abir', 'kh', 'abir@gmail.com', 'abir', '26578467', 'client', 0.0);
-
---
 -- Index pour les tables déchargées
 --
 
@@ -126,6 +131,13 @@ INSERT INTO `utilisateur` (`cin`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `ro
 --
 ALTER TABLE `colis`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `commentaire`
+--
+ALTER TABLE `commentaire`
+  ADD PRIMARY KEY (`cin1`,`cin2`),
+  ADD KEY `fk_utilisateur_commentaire2` (`cin2`);
 
 --
 -- Index pour la table `conducteur`
@@ -200,6 +212,13 @@ ALTER TABLE `reclamation`
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `commentaire`
+--
+ALTER TABLE `commentaire`
+  ADD CONSTRAINT `fk_utilisateur_commentaire1` FOREIGN KEY (`cin1`) REFERENCES `utilisateur` (`cin`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_utilisateur_commentaire2` FOREIGN KEY (`cin2`) REFERENCES `utilisateur` (`cin`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `conducteur`
