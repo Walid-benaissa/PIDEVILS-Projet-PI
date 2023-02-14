@@ -22,7 +22,7 @@ import utils.MyDB;
 public class ReclamationService implements IService<Reclamation> {
 
     Statement stm;
-   public Connection conn;
+    Connection conn;
 
     public ReclamationService() {
         conn = MyDB.getInstance().getConnexion();

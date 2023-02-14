@@ -22,7 +22,7 @@ import utils.MyDB;
 public class UtilisateurService implements IService<Utilisateur> {
 
     Statement stm;
-   public Connection conn;
+    Connection conn;
 
     public UtilisateurService() {
         conn = MyDB.getInstance().getConnexion();

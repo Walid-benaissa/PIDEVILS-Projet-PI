@@ -25,7 +25,9 @@ public class PIDEVILS {
      */
     public static void main(String[] args) {
         ReclamationService rs = new ReclamationService();
-        //Reclamation r = new Reclamation("Site trop lent","Closed");
+        UtilisateurService us = new UtilisateurService();
+        Utilisateur user1 = new Utilisateur("1323566", "abir", "kh", "abir@gmail.com", "abir", "26578467", "client", 0);
+        us.ajouter(user1);
     }
 
 }
