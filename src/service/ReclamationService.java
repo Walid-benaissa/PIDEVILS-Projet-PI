@@ -22,14 +22,14 @@ import utils.MyDB;
 public class ReclamationService implements IService<Reclamation> {
 
     Statement stm;
-    Connection conn;
+   public Connection conn;
 
     public ReclamationService() {
         conn = MyDB.getInstance().getConnexion();
     }
 
     @Override
-    public List<Reclamation> afficheListe() throws SQLException {
+    public List<Reclamation> afficheListe()   {
         List<Reclamation> list = new ArrayList<>();
         try {
             String req = "Select * from  `reclamation`";
@@ -51,7 +51,7 @@ public class ReclamationService implements IService<Reclamation> {
     }
 
     @Override
-    public void ajouter(Reclamation p) throws SQLException {
+    public void ajouter(Reclamation p)   {
         try {
             String req = "INSERT INTO  `reclamation`(`id`, `message`, `etat`) VALUES (?,?,?)";
 
@@ -68,7 +68,7 @@ public class ReclamationService implements IService<Reclamation> {
     }
 
     @Override
-    public void supprimer(Reclamation p) throws SQLException {
+    public void supprimer(Reclamation p)   {
         try {
             String req = "DELETE FROM `reclamation` WHERE id = " + p.getId();
             Statement st = conn.createStatement();
@@ -80,7 +80,7 @@ public class ReclamationService implements IService<Reclamation> {
     }
 
     @Override
-    public void modifier(Reclamation p) throws SQLException {
+    public void modifier(Reclamation p)   {
         try {
             
             String req = "UPDATE `reclamation` SET `message` = ?, `etat` = ?, WHERE `reclamation`.`id` = ?";

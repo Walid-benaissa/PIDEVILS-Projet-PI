@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface IService<T> {
     
-    List<T> afficheListe() throws SQLException;
-    void ajouter (T p) throws SQLException;
-    void supprimer (T p) throws SQLException;
-    void modifier (T p) throws SQLException;
+    List<T> afficheListe() ;
+    void ajouter (T p);
+    void supprimer (T p);
+    void modifier (T p);
     
 }
