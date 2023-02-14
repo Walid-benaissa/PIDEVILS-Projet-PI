@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 13 fév. 2023 à 23:12
+-- Généré le : mar. 14 fév. 2023 à 11:18
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -26,16 +26,56 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `personnes`
 --
--- Erreur de lecture de structure pour la table esprit.personnes : #1932 - Table &#039;esprit.personnes&#039; doesn&#039;t exist in engine
--- Erreur de lecture des données pour la table esprit.personnes : #1064 - Erreur de syntaxe près de &#039;FROM `esprit`.`personnes`&#039; à la ligne 1
+
+CREATE TABLE `personnes` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `reclamation`
 --
--- Erreur de lecture de structure pour la table esprit.reclamation : #1932 - Table &#039;esprit.reclamation&#039; doesn&#039;t exist in engine
--- Erreur de lecture des données pour la table esprit.reclamation : #1064 - Erreur de syntaxe près de &#039;FROM `esprit`.`reclamation`&#039; à la ligne 1
+
+CREATE TABLE `reclamation` (
+  `id` int(11) NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `etat` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `personnes`
+--
+ALTER TABLE `personnes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `reclamation`
+--
+ALTER TABLE `reclamation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `personnes`
+--
+ALTER TABLE `personnes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `reclamation`
+--
+ALTER TABLE `reclamation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
