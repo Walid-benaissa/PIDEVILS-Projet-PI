@@ -38,8 +38,8 @@ public class LivraisonService implements IService<Livraison> {
             while (RS.next()) {
                 Livraison l = new Livraison();
                 l.setId(RS.getInt("id"));
-                l.setAdresse_expedition(RS.getString("Adresse expedition"));
-                l.setAdresse_destinataire(RS.getString("Adressedestinataire"));
+                l.setAdresse_expedition(RS.getString("Adresse_expedition"));
+                l.setAdresse_destinataire(RS.getString("Adresse_destinataire"));
                 list.add(l);
             }
         } catch (SQLException ex) {
@@ -52,7 +52,7 @@ public class LivraisonService implements IService<Livraison> {
     @Override
     public void ajouter(Livraison l) {
         try {
-            String req = "INSERT INTO `livraisons`(`adresse_expedition`, `adresse_destinataire`) VALUES (?, ?)";
+            String req = "INSERT INTO `livraisons`(`id`,`adresse_expedition`, `adresse_destinataire`) VALUES (?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setInt(1, l.getId());
             ps.setString(2, l.getAdresse_expedition());
@@ -81,10 +81,11 @@ public class LivraisonService implements IService<Livraison> {
     public void modifier(Livraison l) {
         try {
 
-            String req = "UPDATE `livraisons` SET `adresse_expedition` = ?, `adresse_destinataire`= ? , WHERE `livraisons`.`id` = ?";
+            String req = "UPDATE `livraisons` SET `adresse_expedition` = ?, `adresse_destinataire`= ? WHERE `livraisons`.`id` = ? ";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setString(1, l.getAdresse_expedition());
-            ps.setString(2, l.getAdresse_destinataire());
+            ps.setInt(1, l.getId());
+            ps.setString(2, l.getAdresse_expedition());
+            ps.setString(3, l.getAdresse_destinataire());
             ps.executeUpdate();
             System.out.println("Livraison modifiée avec succès");
 
@@ -92,4 +93,6 @@ public class LivraisonService implements IService<Livraison> {
             System.out.println(ex.getMessage());
         }
     }
+    
+    
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 15 fév. 2023 à 16:15
+-- Généré le : jeu. 16 fév. 2023 à 00:05
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -33,6 +33,13 @@ CREATE TABLE `colis` (
   `description` varchar(250) NOT NULL,
   `poids` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `colis`
+--
+
+INSERT INTO `colis` (`id`, `nb_items`, `description`, `poids`) VALUES
+(2, 1, 'pp', 5);
 
 -- --------------------------------------------------------
 
@@ -93,6 +100,14 @@ CREATE TABLE `livraisons` (
   `adresse_destinataire` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `livraisons`
+--
+
+INSERT INTO `livraisons` (`id`, `adresse_expedition`, `adresse_destinataire`) VALUES
+(1, 'Boumhal', 'Ariana'),
+(2, 'ccc', 'xxx');
+
 -- --------------------------------------------------------
 
 --
@@ -125,6 +140,13 @@ CREATE TABLE `offre_livraison` (
   `id` int(11) NOT NULL,
   `prix_livraison` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `offre_livraison`
+--
+
+INSERT INTO `offre_livraison` (`id`, `prix_livraison`) VALUES
+(1, 6.3);
 
 -- --------------------------------------------------------
 
@@ -273,19 +295,19 @@ ALTER TABLE `vehicule`
 -- AUTO_INCREMENT pour la table `colis`
 --
 ALTER TABLE `colis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `livraisons`
 --
 ALTER TABLE `livraisons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `offre_livraison`
 --
 ALTER TABLE `offre_livraison`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `personnes`
