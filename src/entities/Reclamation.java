@@ -11,20 +11,41 @@ package entities;
  */
 public class Reclamation {
     private int id;
+    String cinAdmin,cinUser;
 
     public Reclamation() {
     }
     private String message,etat; 
 
-    public Reclamation(int id, String message, String etat) {
+    public Reclamation(int id, String message, String etat,String cinAdmin,String cinUser) {
         this.id = id;
         this.message = message;
         this.etat = etat;
+        this.cinAdmin = cinAdmin;
+        this.cinUser = cinUser;
     }
 
     public Reclamation(String message, String etat) {
         this.message = message;
         this.etat = etat;
+        this.cinAdmin = cinAdmin;
+        this.cinUser = cinUser;
+    }
+
+    public String getCinAdmin() {
+        return cinAdmin;
+    }
+
+    public void setCinAdmin(String cinAdmin) {
+        this.cinAdmin = cinAdmin;
+    }
+
+    public String getCinUser() {
+        return cinUser;
+    }
+
+    public void setCinUser(String cinUser) {
+        this.cinUser = cinUser;
     }
 
     public int getId() {
@@ -53,7 +74,7 @@ public class Reclamation {
 
     @Override
     public String toString() {
-        return "Reclamation{" + "id=" + id + ", message=" + message + ", etat=" + etat + '}';
+        return "Reclamation{" + "id=" + id + ", cinAdmin=" + cinAdmin + ", cinUser=" + cinUser + ", message=" + message + ", etat=" + etat + '}';
     }
     
 }

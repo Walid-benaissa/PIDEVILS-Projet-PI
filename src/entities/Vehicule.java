@@ -12,6 +12,7 @@ package entities;
 public class Vehicule {
 
     private String immatriculation;
+    private String cin;
     private String modele;
     private String marque;
     private String etat;
@@ -20,12 +21,21 @@ public class Vehicule {
     public Vehicule() {
     }
 
-    public Vehicule(String immatriculation, String modele, String marque, String etat, String photo) {
+    public Vehicule(String immatriculation, String modele, String marque, String etat, String photo,String cin) {
         this.immatriculation = immatriculation;
         this.modele = modele;
         this.marque = marque;
         this.etat = etat;
         this.photo = photo;
+        this.cin = cin;
+    }
+
+    public String getCin() {
+        return cin;
+    }
+
+    public void setCin(String cin) {
+        this.cin = cin;
     }
 
     public String getImmatriculation() {
@@ -70,8 +80,9 @@ public class Vehicule {
 
     @Override
     public String toString() {
-        return "vehicule{" + "immatriculation=" + immatriculation + ", modele=" + modele + ", marque=" + marque + ", etat=" + etat + ", photo=" + photo + '}';
+        return "Vehicule{" + "immatriculation=" + immatriculation + ", cin=" + cin + ", modele=" + modele + ", marque=" + marque + ", etat=" + etat + ", photo=" + photo + '}';
     }
+
 
     
     

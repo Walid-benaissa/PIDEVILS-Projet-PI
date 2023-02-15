@@ -41,6 +41,8 @@ public class ReclamationService implements IService<Reclamation> {
                 p.setId(RS.getInt("id"));
                 p.setMessage(RS.getString("message"));
                 p.setEtat(RS.getString("etat"));
+                p.setCinAdmin(RS.getString("cinAdmin"));
+                p.setCinUser(RS.getString("cinUser"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -53,12 +55,14 @@ public class ReclamationService implements IService<Reclamation> {
     @Override
     public void ajouter(Reclamation p)   {
         try {
-            String req = "INSERT INTO  `reclamation`(`id`, `message`, `etat`) VALUES (?,?,?)";
+            String req = "INSERT INTO  `reclamation`(`id`, `message`, `etat`,`cinAdmin`,`cinUser`) VALUES (?,?,?)";
 
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setInt(1, p.getId());
             ps.setString(2, p.getMessage());
             ps.setString(3, p.getEtat());
+            ps.setString(4, p.getCinAdmin());
+            ps.setString(5, p.getCinUser());
             ps.executeUpdate();
 
             System.out.println("Reclamation inséré");

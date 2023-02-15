@@ -66,7 +66,7 @@ public class CourseService implements ICourse<Course>{
         ResultSet rst = stm.executeQuery(req);
 
         while (rst.next()) {
-            Course c = new Course(rst.getInt("id_course"),//or rst.getInt(1)
+            Course c = new Course(rst.getInt("id_course"),
                     rst.getString("point_depart"),
                     rst.getString("point_destination"),
                     rst.getFloat("distance"),
