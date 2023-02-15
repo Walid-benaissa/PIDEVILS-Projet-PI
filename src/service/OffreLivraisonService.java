@@ -38,7 +38,7 @@ public class OffreLivraisonService implements IService<Offre_livraison> {
             while (RS.next()) {
                 Offre_livraison o = new Offre_livraison();
                 o.setId(RS.getInt("id"));
-                o.setPrix_livraison(RS.getFloat("Prix"));
+                o.setPrix_livraison(RS.getFloat("prix_livraison"));
                 list.add(o);
             }
         } catch (SQLException ex) {

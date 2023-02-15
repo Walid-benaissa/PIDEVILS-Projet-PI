@@ -83,9 +83,10 @@ public class LivraisonService implements IService<Livraison> {
 
             String req = "UPDATE `livraisons` SET `adresse_expedition` = ?, `adresse_destinataire`= ? WHERE `livraisons`.`id` = ? ";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setInt(1, l.getId());
-            ps.setString(2, l.getAdresse_expedition());
-            ps.setString(3, l.getAdresse_destinataire());
+            
+            ps.setString(1, l.getAdresse_expedition());
+            ps.setString(2, l.getAdresse_destinataire());
+            ps.setInt(3, l.getId());
             ps.executeUpdate();
             System.out.println("Livraison modifiée avec succès");
 
