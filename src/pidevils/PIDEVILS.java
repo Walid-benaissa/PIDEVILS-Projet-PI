@@ -5,12 +5,16 @@
  */
 package pidevils;
 
+import entities.Contrat;
+import entities.Location;
 import entities.Reclamation;
 import entities.Utilisateur;
 import entities.Vehicule;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import service.ContratService;
+import service.LocationService;
 import service.ReclamationService;
 import service.UtilisateurService;
 import service.VehiculeService;
@@ -26,6 +30,11 @@ public class PIDEVILS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+//Location m = new Location("kef",3.14f,true);
+//LocationService s =new LocationService();
+//s.ajouter(m);
+//       ContratService sc = new ContratService();
+//     Contrat c = new Contrat(1,1,04,2023,1,04,2023);
 //        ReclamationService rs = new ReclamationService();
 //        UtilisateurService us = new UtilisateurService();
 //        Utilisateur user1 = new Utilisateur("1323566", "abir", "kh", "abir@gmail.com", "abir", "26578467", "client", 0);
