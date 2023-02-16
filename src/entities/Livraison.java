@@ -26,6 +26,11 @@ public class Livraison {
        
     }
 
+    public Livraison(String adresse_expedition, String adresse_destinataire) {
+        this.adresse_expedition = adresse_expedition;
+        this.adresse_destinataire = adresse_destinataire;
+    }
+
     
     public int getId() {
         return id;

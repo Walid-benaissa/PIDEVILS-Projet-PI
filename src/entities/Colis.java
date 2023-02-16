@@ -25,6 +25,8 @@ public class Colis {
         this.poids = poids;
     }
 
+
+
     public int getId() {
         return id;
     }

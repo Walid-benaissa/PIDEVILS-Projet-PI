@@ -39,7 +39,7 @@ public class ColisService implements IService<Colis> {
                 Colis c = new Colis();
                 c.setId(RS.getInt("id"));
                 c.setDescription(RS.getString("Description"));
-                c.setNb_items(RS.getInt("Nombre items"));
+                c.setNb_items(RS.getInt("Nb_items"));
                 c.setPoids(RS.getFloat("Poids"));
                 list.add(c);
             }
@@ -53,11 +53,11 @@ public class ColisService implements IService<Colis> {
     @Override
     public void ajouter(Colis c) {
         try {
-            String req = "INSERT INTO `colis`(`nb_items`, `description`, `poids`) VALUES (?, ?, ?)";
+            String req = "INSERT INTO `colis`(`id`, `nb_items`, `description`, `poids`) VALUES (?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setInt(1, c.getId());
-            ps.setString(2, c.getDescription());
-            ps.setInt(3, c.getNb_items());
+            ps.setInt(2, c.getNb_items());
+            ps.setString(3, c.getDescription());
             ps.setFloat(4, c.getPoids());
             ps.executeUpdate();
 
@@ -83,11 +83,12 @@ public class ColisService implements IService<Colis> {
     public void modifier(Colis c) {
         try {
 
-            String req = "UPDATE `colis` SET `nb_items` = ?, `description`= ?, `poids`= ?, WHERE `colis`.`id` = ?";
+            String req = "UPDATE `colis` SET `nb_items` = ?, `description`= ?, `poids`= ? WHERE `colis`.`id` = ?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setInt(1, c.getNb_items());
             ps.setString(2, c.getDescription());
             ps.setFloat(3, c.getPoids());
+            ps.setInt(4, c.getId());
             ps.executeUpdate();
             System.out.println("Colis modifié avec succès");
 

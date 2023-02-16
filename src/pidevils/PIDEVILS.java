@@ -5,16 +5,28 @@
  */
 package pidevils;
 
+<<<<<<< HEAD
 import entities.Contrat;
 import entities.Location;
+=======
+import entities.Colis;
+import entities.Livraison;
+import entities.Offre_livraison;
+>>>>>>> a3a294128e817c2638970e7ee72022b085bbc22f
 import entities.Reclamation;
 import entities.Utilisateur;
 import entities.Vehicule;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+<<<<<<< HEAD
 import service.ContratService;
 import service.LocationService;
+=======
+import service.ColisService;
+import service.LivraisonService;
+import service.OffreLivraisonService;
+>>>>>>> a3a294128e817c2638970e7ee72022b085bbc22f
 import service.ReclamationService;
 import service.UtilisateurService;
 import service.VehiculeService;
@@ -111,6 +123,42 @@ public class PIDEVILS {
 //        VehiculeService vs = new VehiculeService();
 //        Vehicule v= new Vehicule("46587","R7","Audi","Occasion","C://Users//walid//Downloads//home.png","1323566");
 //        vs.supprimer(v);
+
+//Livraison
+        //  LivraisonService ls = new LivraisonService();
+        // Livraison livraison1 = new Livraison(1,"Boumhal", "Ariana");
+        // Livraison livraison2 = new Livraison(1,"Ezzahra", "Tunis");
+        //Livraison livraison3 = new Livraison(3,"aaa", "bbbb");
+        //ls.ajouter(livraison1);
+        // ls.ajouter(livraison2);
+        // ls.ajouter(livraison3);
+        // ls.supprimer(livraison3);
+        //  Livraison livraison4 = new Livraison(2,"ccc", "xxx");
+        // ls.modifier(livraison4);
+        // System.out.println(ls.afficheListe());
+        
+ //Offre Livraison
+      //  OffreLivraisonService ol = new OffreLivraisonService();
+        //Offre_livraison offre1 = new Offre_livraison(1,6.3f); 
+         //Offre_livraison offre2 = new Offre_livraison(2,4.1f); 
+       //ol.ajouter(offre1);
+       // ol.ajouter(offre2);
+       // ol.supprimer(offre1);
+          //Offre_livraison offre3 = new Offre_livraison(2,7);
+         //ol.modifier(offre3);
+        // System.out.println(ol.afficheListe());
+        
+  //Colis
+        ColisService c = new ColisService();
+       Colis colis1 = new Colis(1, 2, "aa", 2.5f);
+        Colis colis2 = new Colis(2,3,"oo",5.1f);
+        //c.ajouter(colis1);
+        //c.ajouter(colis2);
+      //  c.supprimer(colis1);
+       // Colis colis3 = new Colis(2, 1, "pp", 5);
+       // c.modifier(colis3);
+        System.out.println(c.afficheListe());
+
     }
 
 }

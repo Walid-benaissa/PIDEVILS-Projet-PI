@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import utils.MyDB;
 
 /**
  *
@@ -24,6 +25,7 @@ public class OffreLivraisonService implements IService<Offre_livraison> {
     Statement stm;
 
     public OffreLivraisonService() {
+         conn = MyDB.getInstance().getConnexion();
     }
 
     @Override
@@ -36,7 +38,7 @@ public class OffreLivraisonService implements IService<Offre_livraison> {
             while (RS.next()) {
                 Offre_livraison o = new Offre_livraison();
                 o.setId(RS.getInt("id"));
-                o.setPrix_livraison(RS.getFloat("Prix"));
+                o.setPrix_livraison(RS.getFloat("prix_livraison"));
                 list.add(o);
             }
         } catch (SQLException ex) {
@@ -47,10 +49,11 @@ public class OffreLivraisonService implements IService<Offre_livraison> {
 
     }
 
+    
     @Override
     public void ajouter(Offre_livraison o) {
         try {
-            String req = "INSERT INTO `offre_livraison`(`prix_livraison`) VALUES (?)";
+            String req = "INSERT INTO `offre_livraison`(`id`, `prix_livraison`) VALUES (?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setInt(1, o.getId());
             ps.setFloat(2, o.getPrix_livraison());
@@ -79,9 +82,10 @@ public class OffreLivraisonService implements IService<Offre_livraison> {
 
         try {
 
-            String req = "UPDATE `offre_livraison` SET `prix_livraison` = ? , WHERE `offre_livraison`.`id` = ?";
+            String req = "UPDATE `offre_livraison` SET `prix_livraison` = ? WHERE `offre_livraison`.`id` = ?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setFloat(1, o.getPrix_livraison());
+            ps.setInt(2, o.getId());
             ps.executeUpdate();
             System.out.println("offre de Livraison modifiée avec succès");
 
