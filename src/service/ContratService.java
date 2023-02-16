@@ -5,7 +5,7 @@
  */
 package service;
 
-import entities.Colis;
+import entities.Contrat;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,83 +14,84 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import utils.MyDB;
-
 /**
  *
- * @author user
+ * @author azizi
  */
-public class ColisService implements IService<Colis> {
+public class ContratService implements IService<Contrat>{
 
-    Connection conn;
+        
     Statement stm;
+    Connection conn;
 
-    public ColisService() {
+    public ContratService() {
         conn = MyDB.getInstance().getConnexion();
     }
 
     @Override
-    public List<Colis> afficheListe() {
-        List<Colis> list = new ArrayList<>();
+    public List<Contrat> afficheListe() {
+        List<Contrat> list = new ArrayList<>();
         try {
-            String req = "Select * from  `colis`";
+            String req = "Select * from  `contrat`";
             Statement st = conn.createStatement();
+
             ResultSet RS = st.executeQuery(req);
             while (RS.next()) {
-                Colis c = new Colis();
-                c.setId(RS.getInt("id"));
-                c.setDescription(RS.getString("Description"));
-                c.setNb_items(RS.getInt("Nb_items"));
-                c.setPoids(RS.getFloat("Poids"));
-                list.add(c);
+                Contrat p = new Contrat();
+                p.setId_contrat(RS.getInt("id"));
+                p.setDate_debut(RS.getDate("date_debut"));
+                p.setDate_fin(RS.getDate("date_fin"));
+             
+                list.add(p);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
         return list;
     }
 
     @Override
-    public void ajouter(Colis c) {
+    public void ajouter(Contrat p) {
         try {
-            String req = "INSERT INTO `colis`(`id`, `nb_items`, `description`, `poids`) VALUES (?,?,?,?)";
+            String req = "INSERT INTO  `contrat`(`id`, `date_debut`, `date_fin`) VALUES (?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setInt(1, c.getId());
-            ps.setInt(2, c.getNb_items());
-            ps.setString(3, c.getDescription());
-            ps.setFloat(4, c.getPoids());
+            ps.setInt(1, p.getId_contrat());
+            ps.setDate(2, p.getDate_debut());
+            ps.setDate(3, p.getDate_fin());
+          
             ps.executeUpdate();
-
-            System.out.println("colis ajouté");
+            
+            System.out.println("Contrat inséré");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
     @Override
-    public void supprimer(Colis c) {
+    public void supprimer(Contrat p) {
         try {
-            String req = "DELETE FROM `colis` WHERE id = " + c.getId();
+            String req = "DELETE FROM `contrat` WHERE id = " + p.getId_contrat();
             Statement st = conn.createStatement();
             st.executeUpdate(req);
-            System.out.println("Colis supprimé");
+            System.out.println("Contrat supprimé");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
     @Override
-    public void modifier(Colis c) {
+    public void modifier(Contrat p) {
         try {
 
-            String req = "UPDATE `colis` SET `nb_items` = ?, `description`= ?, `poids`= ? WHERE `colis`.`id` = ?";
+            String req = "UPDATE `contrat` SET  `date_debut` = ?, `date_fin` = ? WHERE `contrat`.`id` = ?";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setInt(1, c.getNb_items());
-            ps.setString(2, c.getDescription());
-            ps.setFloat(3, c.getPoids());
-            ps.setInt(4, c.getId());
+            ps.setDate(1, p.getDate_debut());
+            ps.setDate(2, p.getDate_fin());
+            ps.setInt(3, p.getId_contrat());
+         
+
             ps.executeUpdate();
-            System.out.println("Colis modifié avec succès");
+            System.out.println("Contrat mis a jour");
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -98,3 +99,6 @@ public class ColisService implements IService<Colis> {
     }
 
 }
+
+    
+

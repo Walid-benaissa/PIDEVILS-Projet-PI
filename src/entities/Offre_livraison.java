@@ -21,6 +21,8 @@ public class Offre_livraison {
         this.prix_livraison = prix_livraison;
     }
 
+    
+
     public int getId() {
         return id;
     }
