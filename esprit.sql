@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 16 fév. 2023 à 00:05
+-- Généré le : jeu. 16 fév. 2023 à 02:24
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -34,13 +34,6 @@ CREATE TABLE `colis` (
   `poids` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `colis`
---
-
-INSERT INTO `colis` (`id`, `nb_items`, `description`, `poids`) VALUES
-(2, 1, 'pp', 5);
-
 -- --------------------------------------------------------
 
 --
@@ -63,6 +56,19 @@ CREATE TABLE `conducteur` (
   `cin` varchar(10) NOT NULL,
   `permis` mediumblob NOT NULL,
   `b3` mediumblob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `contrat`
+--
+
+CREATE TABLE `contrat` (
+  `id` int(11) NOT NULL,
+  `immatriculation` varchar(30) NOT NULL,
+  `date_debut` date NOT NULL,
+  `date_fin` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -100,13 +106,24 @@ CREATE TABLE `livraisons` (
   `adresse_destinataire` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Déchargement des données de la table `livraisons`
+-- Structure de la table `location`
 --
 
-INSERT INTO `livraisons` (`id`, `adresse_expedition`, `adresse_destinataire`) VALUES
-(1, 'Boumhal', 'Ariana'),
-(2, 'ccc', 'xxx');
+CREATE TABLE `location` (
+  `ville` varchar(50) NOT NULL,
+  `prix_location` float NOT NULL,
+  `disponibilité` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `location`
+--
+
+INSERT INTO `location` (`ville`, `prix_location`, `disponibilité`) VALUES
+('kef', 3.14, 1);
 
 -- --------------------------------------------------------
 
@@ -140,13 +157,6 @@ CREATE TABLE `offre_livraison` (
   `id` int(11) NOT NULL,
   `prix_livraison` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `offre_livraison`
---
-
-INSERT INTO `offre_livraison` (`id`, `prix_livraison`) VALUES
-(1, 6.3);
 
 -- --------------------------------------------------------
 
@@ -237,6 +247,13 @@ ALTER TABLE `conducteur`
   ADD PRIMARY KEY (`cin`);
 
 --
+-- Index pour la table `contrat`
+--
+ALTER TABLE `contrat`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_vehicule_contrat` (`immatriculation`);
+
+--
 -- Index pour la table `course`
 --
 ALTER TABLE `course`
@@ -295,19 +312,25 @@ ALTER TABLE `vehicule`
 -- AUTO_INCREMENT pour la table `colis`
 --
 ALTER TABLE `colis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `contrat`
+--
+ALTER TABLE `contrat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `livraisons`
 --
 ALTER TABLE `livraisons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `offre_livraison`
 --
 ALTER TABLE `offre_livraison`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `personnes`
@@ -337,6 +360,12 @@ ALTER TABLE `commentaire`
 --
 ALTER TABLE `conducteur`
   ADD CONSTRAINT `fk_utilisateur_conducteur` FOREIGN KEY (`cin`) REFERENCES `utilisateur` (`cin`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `contrat`
+--
+ALTER TABLE `contrat`
+  ADD CONSTRAINT `fk_vehicule_contrat` FOREIGN KEY (`immatriculation`) REFERENCES `vehicule` (`immatriculation`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `reclamation`
