@@ -39,8 +39,8 @@ public class CommentaireService implements IService<Commentaire> {
             ResultSet RS = st.executeQuery(req);
             while (RS.next()) {
                 Commentaire p = new Commentaire();
-                p.setCin1(RS.getString("cin1"));
-                p.setCin2(RS.getString("cin2"));
+                p.setId1(RS.getInt("id1"));
+                p.setId2(RS.getInt("id2"));
                 p.setMessage(RS.getString("message"));
                 list.add(p);
             }
@@ -53,10 +53,10 @@ public class CommentaireService implements IService<Commentaire> {
     @Override
     public void ajouter(Commentaire p) {
         try {
-            String req = "INSERT INTO  `commentaire`(`cin1`, `cin2`, `message`) VALUES (?,?,?)";
+            String req = "INSERT INTO  `commentaire`(`id1`, `id2`, `message`) VALUES (?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setString(1, p.getCin1());
-            ps.setString(2, p.getCin2());
+            ps.setInt(1, p.getId1());
+            ps.setInt(2, p.getId2());
             ps.setString(3, p.getMessage());
             ps.executeUpdate();
         } catch (SQLException ex) {
@@ -68,10 +68,10 @@ public class CommentaireService implements IService<Commentaire> {
     @Override
     public void supprimer(Commentaire p) {
         try {
-            String req = "DELETE FROM `commentaire` WHERE cin1 = ? AND cin2= ?";
+            String req = "DELETE FROM `commentaire` WHERE id1 = ? AND id2= ?";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setString(1, p.getCin1());
-            ps.setString(2, p.getCin2());
+            ps.setInt(1, p.getId1());
+            ps.setInt(2, p.getId2());
             ps.executeUpdate(req);
             System.out.println("Commentaire supprimé");
         } catch (SQLException ex) {
@@ -82,11 +82,11 @@ public class CommentaireService implements IService<Commentaire> {
     @Override
     public void modifier(Commentaire p) {
         try {
-            String req = "UPDATE `commentaire` SET message=?, WHERE cin1 = ? AND cin2= ?";
+            String req = "UPDATE `commentaire` SET message=?, WHERE id1 = ? AND id2= ?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, p.getMessage());
-            ps.setString(2, p.getCin1());
-            ps.setString(3, p.getCin2());
+            ps.setInt(2, p.getId1());
+            ps.setInt(3, p.getId2());
             ps.executeUpdate(req);
         } catch (SQLException ex) {
             Logger.getLogger(CommentaireService.class.getName()).log(Level.SEVERE, null, ex);
