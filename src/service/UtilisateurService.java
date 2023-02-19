@@ -54,6 +54,22 @@ public class UtilisateurService implements IService<Utilisateur> {
         return list;
     }
 
+        public boolean authentification(String mail, String mdp) {
+            ResultSet res;
+            try {
+            String req = "Select count(mail) from  `utilisateur` where mail = ? and mdp = ?";
+            PreparedStatement ps = conn.prepareStatement(req);
+            ps.setString(1, mail);
+            ps.setString(2, mdp);
+            res = ps.executeQuery();
+            System.out.println(res.);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return true;
+    }
+
+    
     @Override
     public void ajouter(Utilisateur p) {
         try {
