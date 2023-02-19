@@ -38,7 +38,7 @@ public class UtilisateurService implements IService<Utilisateur> {
             ResultSet RS = st.executeQuery(req);
             while (RS.next()) {
                 Utilisateur p = new Utilisateur();
-                p.setCin(RS.getString("cin"));
+                p.setId(RS.getInt("id"));
                 p.setNom(RS.getString("nom"));
                 p.setPrenom(RS.getString("prenom"));
                 p.setMail(RS.getString("mail"));
@@ -57,9 +57,9 @@ public class UtilisateurService implements IService<Utilisateur> {
     @Override
     public void ajouter(Utilisateur p) {
         try {
-            String req = "INSERT INTO  `utilisateur`(`cin`, `nom`, `prenom`, `mail`,`mdp`, `num_tel`, `role`,`evaluation`) VALUES (?,?,?,?,?,?,?,?)";
+            String req = "INSERT INTO  `utilisateur`(`id`, `nom`, `prenom`, `mail`,`mdp`, `num_tel`, `role`,`evaluation`) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setString(1, p.getCin());
+            ps.setInt(1, p.getId());
             ps.setString(2, p.getNom());
             ps.setString(3, p.getPrenom());
             ps.setString(4, p.getMail());
@@ -78,7 +78,7 @@ public class UtilisateurService implements IService<Utilisateur> {
     @Override
     public void supprimer(Utilisateur p) {
         try {
-            String req = "DELETE FROM `utilisateur` WHERE cin = " + p.getCin();
+            String req = "DELETE FROM `utilisateur` WHERE id = " + p.getId();
             Statement st = conn.createStatement();
             st.executeUpdate(req);
             System.out.println("Utilisateur supprimé");
@@ -91,7 +91,7 @@ public class UtilisateurService implements IService<Utilisateur> {
     public void modifier(Utilisateur p) {
         try {
 
-            String req = "UPDATE `utilisateur` SET nom=?, `prenom` = ?, `mail` = ?, `mdp` = ?, `num_tel` = ?, `role` = ?, `evaluation` = ? WHERE `utilisateur`.`cin` = ?";
+            String req = "UPDATE `utilisateur` SET nom=?, `prenom` = ?, `mail` = ?, `mdp` = ?, `num_tel` = ?, `role` = ?, `evaluation` = ? WHERE `utilisateur`.`id` = ?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, p.getNom());
             ps.setString(2, p.getPrenom());
@@ -100,7 +100,7 @@ public class UtilisateurService implements IService<Utilisateur> {
             ps.setString(5, p.getNum_tel());
             ps.setString(6, p.getRole());
             ps.setFloat(7, p.getEvaluation());
-            ps.setString(8, p.getCin());
+            ps.setInt(8, p.getId());
 
             ps.executeUpdate();
             System.out.println("Utilisateur mis a jour");
