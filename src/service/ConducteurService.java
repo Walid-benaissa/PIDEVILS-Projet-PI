@@ -37,13 +37,13 @@ public class ConducteurService implements IService<Conducteur> {
     public List<Conducteur> afficheListe() {
         List<Conducteur> list = new ArrayList<>();
         try {
-            String req = "Select * from  `conducteur` c, `utlisateur` u where c.cin=u.cin";
+            String req = "Select * from  `conducteur` c, `utlisateur` u where c.id=u.id";
             Statement st = conn.createStatement();
 
             ResultSet RS = st.executeQuery(req);
             while (RS.next()) {
                 Conducteur p = new Conducteur();
-                p.setCin(RS.getString("cin"));
+                p.setId(RS.getInt("id"));
                 p.setNom(RS.getString("nom"));
                 p.setPrenom(RS.getString("prenom"));
                 p.setMail(RS.getString("mail"));
@@ -64,9 +64,9 @@ public class ConducteurService implements IService<Conducteur> {
     @Override
     public void ajouter(Conducteur p) {
         try {
-            String req = "INSERT INTO  `Conducteur`(`cin`,`permis`, `b3`) VALUES (?,?,?)";
+            String req = "INSERT INTO  `Conducteur`(`id`,`permis`, `b3`) VALUES (?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setString(1, p.getCin());
+            ps.setInt(1, p.getId());
             FileInputStream fin1 = new FileInputStream(p.getPermis());
             ps.setBinaryStream(2, fin1, fin1.available());
             FileInputStream fin2 = new FileInputStream(p.getB3());
@@ -86,7 +86,7 @@ public class ConducteurService implements IService<Conducteur> {
     @Override
     public void supprimer(Conducteur p) {
         try {
-            String req = "DELETE FROM `conducteur` WHERE cin = " + p.getCin();
+            String req = "DELETE FROM `conducteur` WHERE id = " + p.getId();
             Statement st = conn.createStatement();
             st.executeUpdate(req);
             System.out.println("Conducteur supprimé");
@@ -99,7 +99,7 @@ public class ConducteurService implements IService<Conducteur> {
     public void modifier(Conducteur p) {
         try {
 
-            String req = "UPDATE `conducteur` SET permis=?, `b3` = ?  WHERE `cin` = ?";
+            String req = "UPDATE `conducteur` SET permis=?, `b3` = ?  WHERE `id` = ?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, p.getPermis());
             FileInputStream fin1 = new FileInputStream(p.getPermis());
