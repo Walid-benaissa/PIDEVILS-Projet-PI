@@ -48,7 +48,7 @@ public class VehiculeService implements IService<Vehicule> {
                 p.setMarque(RS.getString("marque"));
                 p.setEtat(RS.getString("etat"));
                 p.setPhoto(RS.getString("photo"));
-                p.setCin(RS.getString("cin"));
+                p.setId(RS.getInt("id"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -60,7 +60,7 @@ public class VehiculeService implements IService<Vehicule> {
     @Override
     public void ajouter(Vehicule p) {
         try {
-            String req = "INSERT INTO  `vehicule`(`immatriculation`,`modele`, `marque`,`etat`,`photo`,`cin`) VALUES (?,?,?,?,?,?)";
+            String req = "INSERT INTO  `vehicule`(`immatriculation`,`modele`, `marque`,`etat`,`photo`,`id`) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, p.getImmatriculation());
             ps.setString(2, p.getModele());
@@ -68,7 +68,7 @@ public class VehiculeService implements IService<Vehicule> {
             ps.setString(4, p.getEtat());
             FileInputStream fin1 = new FileInputStream(p.getPhoto());
             ps.setBinaryStream(5, fin1, fin1.available());
-            ps.setString(6, p.getCin());
+            ps.setInt(6, p.getId());
             ps.executeUpdate();
 
             System.out.println("Vehicule inséré");
