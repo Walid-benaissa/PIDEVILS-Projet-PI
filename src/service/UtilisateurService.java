@@ -56,17 +56,19 @@ public class UtilisateurService implements IService<Utilisateur> {
 
         public boolean authentification(String mail, String mdp) {
             ResultSet res;
+            int count=0;
             try {
-            String req = "Select count(mail) from  `utilisateur` where mail = ? and mdp = ?";
-            PreparedStatement ps = conn.prepareStatement(req);
-            ps.setString(1, mail);
-            ps.setString(2, mdp);
-            res = ps.executeQuery();
-            System.out.println(res.);
+            String req = "Select mail from  `utilisateur` where mail ='"+mail+"' AND mdp ='"+mdp+"'";
+                System.out.println(req);
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            while(RS.next())
+                count++;
+            System.out.println(count);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return true;
+        return count==1;
     }
 
     

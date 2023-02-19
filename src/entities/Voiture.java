@@ -9,7 +9,7 @@ package entities;
  *
  * @author USER
  */
-public class Vehicule {
+public class Voiture {
 
     private String immatriculation;
     private int id;
@@ -18,10 +18,10 @@ public class Vehicule {
     private String etat;
     private String photo;
 
-    public Vehicule() {
+    public Voiture() {
     }
 
-    public Vehicule(String immatriculation, String modele, String marque, String etat, String photo,int id) {
+    public Voiture(String immatriculation, String modele, String marque, String etat, String photo,int id) {
         this.immatriculation = immatriculation;
         this.modele = modele;
         this.marque = marque;

@@ -5,7 +5,7 @@
  */
 package service;
 
-import entities.Vehicule;
+import entities.Voiture;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -24,25 +24,25 @@ import utils.MyDB;
  *
  * @author USER
  */
-public class VehiculeService implements IService<Vehicule> {
+public class VoitureService implements IService<Voiture> {
 
     Statement stm;
     Connection conn;
 
-    public VehiculeService() {
+    public VoitureService() {
         conn = MyDB.getInstance().getConnexion();
     }
 
     @Override
-    public List<Vehicule> afficheListe() {
-        List<Vehicule> list = new ArrayList<>();
+    public List<Voiture> afficheListe() {
+        List<Voiture> list = new ArrayList<>();
         try {
             String req = "Select * from  `vehicule`";
             Statement st = conn.createStatement();
 
             ResultSet RS = st.executeQuery(req);
             while (RS.next()) {
-                Vehicule p = new Vehicule();
+                Voiture p = new Voiture();
                 p.setImmatriculation(RS.getString("immatriculation"));
                 p.setModele(RS.getString("modele"));
                 p.setMarque(RS.getString("marque"));
@@ -58,7 +58,7 @@ public class VehiculeService implements IService<Vehicule> {
     }
 
     @Override
-    public void ajouter(Vehicule p) {
+    public void ajouter(Voiture p) {
         try {
             String req = "INSERT INTO  `vehicule`(`immatriculation`,`modele`, `marque`,`etat`,`photo`,`id`) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
@@ -82,7 +82,7 @@ public class VehiculeService implements IService<Vehicule> {
     }
 
     @Override
-    public void supprimer(Vehicule p) {
+    public void supprimer(Voiture p) {
         try {
             String req = "DELETE FROM `vehicule` WHERE immatriculation = " + p.getImmatriculation();
             Statement st = conn.createStatement();
@@ -94,7 +94,7 @@ public class VehiculeService implements IService<Vehicule> {
     }
 
     @Override
-    public void modifier(Vehicule p) {
+    public void modifier(Voiture p) {
         try {
 
             String req = "UPDATE `vehicule` SET modele=?, `marque` = ?, `etat` = ? , `photo` = ?  WHERE `immatriculation` = ?";
