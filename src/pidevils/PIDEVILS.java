@@ -5,32 +5,6 @@
  */
 package pidevils;
 
-<<<<<<< HEAD
-import entities.Contrat;
-import entities.Location;
-=======
-import entities.Colis;
-import entities.Livraison;
-import entities.Offre_livraison;
->>>>>>> a3a294128e817c2638970e7ee72022b085bbc22f
-import entities.Reclamation;
-import entities.Utilisateur;
-import entities.Vehicule;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-<<<<<<< HEAD
-import service.ContratService;
-import service.LocationService;
-=======
-import service.ColisService;
-import service.LivraisonService;
-import service.OffreLivraisonService;
->>>>>>> a3a294128e817c2638970e7ee72022b085bbc22f
-import service.ReclamationService;
-import service.UtilisateurService;
-import service.VehiculeService;
-import utils.MyDB;
 
 /**
  *

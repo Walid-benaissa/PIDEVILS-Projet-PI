@@ -10,43 +10,44 @@ package entities;
  * @author walid
  */
 public class Reclamation {
-    private int id;
-    String cinAdmin,cinUser;
+    private int id,idAdmin,idUser;
+    private String message,etat; 
 
     public Reclamation() {
     }
-    private String message,etat; 
-
-    public Reclamation(int id, String message, String etat,String cinAdmin,String cinUser) {
+    
+    public Reclamation(int id, String message, String etat,int idAdmin,int idUser) {
         this.id = id;
         this.message = message;
         this.etat = etat;
-        this.cinAdmin = cinAdmin;
-        this.cinUser = cinUser;
+        this.idAdmin = idAdmin;
+        this.idUser = idUser;
     }
 
-    public Reclamation(String message, String etat) {
+    public Reclamation(int idAdmin, int idUser, String message, String etat) {
+        this.idAdmin = idAdmin;
+        this.idUser = idUser;
         this.message = message;
         this.etat = etat;
-        this.cinAdmin = cinAdmin;
-        this.cinUser = cinUser;
     }
 
-    public String getCinAdmin() {
-        return cinAdmin;
+    public int getIdAdmin() {
+        return idAdmin;
     }
 
-    public void setCinAdmin(String cinAdmin) {
-        this.cinAdmin = cinAdmin;
+    public void setIdAdmin(int idAdmin) {
+        this.idAdmin = idAdmin;
     }
 
-    public String getCinUser() {
-        return cinUser;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setCinUser(String cinUser) {
-        this.cinUser = cinUser;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
+
+ 
 
     public int getId() {
         return id;
@@ -74,7 +75,9 @@ public class Reclamation {
 
     @Override
     public String toString() {
-        return "Reclamation{" + "id=" + id + ", cinAdmin=" + cinAdmin + ", cinUser=" + cinUser + ", message=" + message + ", etat=" + etat + '}';
+        return "Reclamation{" + "id=" + id + ", idAdmin=" + idAdmin + ", idUser=" + idUser + ", message=" + message + ", etat=" + etat + '}';
     }
+
+  
     
 }

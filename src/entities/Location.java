@@ -14,10 +14,10 @@ import java.sql.Date;
 public class Location { 
     private String ville;
     private float prix_location;
-    private boolean disponibilité ; 
-    private int id_contrat ;
+    //private int id_contrat ;
     private Date date_debut;
     private Date date_fin;
+    
     
     public Location() {
     }

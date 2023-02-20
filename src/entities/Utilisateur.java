@@ -10,7 +10,7 @@ package entities;
  * @author abir
  */
 public class Utilisateur {
-    private String cin;
+    private int id;
     private String nom;
     private String prenom;
     private String mail;
@@ -23,8 +23,8 @@ public class Utilisateur {
     }
 
     
-    public Utilisateur(String cin, String nom, String prenom, String mail, String mdp, String num_tel, String role, float evaluation) {
-        this.cin = cin;
+    public Utilisateur(int id, String nom, String prenom, String mail, String mdp, String num_tel, String role, float evaluation) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
@@ -34,8 +34,18 @@ public class Utilisateur {
         this.evaluation = evaluation;
     }
 
-    public String getCin() {
-        return cin;
+    public Utilisateur(String nom, String prenom, String mail, String mdp, String num_tel, String role, float evaluation) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.mdp = mdp;
+        this.num_tel = num_tel;
+        this.role = role;
+        this.evaluation = evaluation;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNom() {
@@ -66,8 +76,8 @@ public class Utilisateur {
         return evaluation;
     }
 
-    public void setCin(String cin) {
-        this.cin = cin;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setNom(String nom) {
@@ -100,7 +110,7 @@ public class Utilisateur {
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", mdp=" + mdp + ", num_tel=" + num_tel + ", role=" + role + ", evaluation=" + evaluation + '}';
+        return "Utilisateur{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", mdp=" + mdp + ", num_tel=" + num_tel + ", role=" + role + ", evaluation=" + evaluation + '}';
     }
 
 

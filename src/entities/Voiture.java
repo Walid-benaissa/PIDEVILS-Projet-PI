@@ -9,33 +9,33 @@ package entities;
  *
  * @author USER
  */
-public class Vehicule {
+public class Voiture {
 
     private String immatriculation;
-    private String cin;
+    private int id;
     private String modele;
     private String marque;
     private String etat;
     private String photo;
 
-    public Vehicule() {
+    public Voiture() {
     }
 
-    public Vehicule(String immatriculation, String modele, String marque, String etat, String photo,String cin) {
+    public Voiture(String immatriculation, String modele, String marque, String etat, String photo,int id) {
         this.immatriculation = immatriculation;
         this.modele = modele;
         this.marque = marque;
         this.etat = etat;
         this.photo = photo;
-        this.cin = cin;
+        this.id = id;
     }
 
-    public String getCin() {
-        return cin;
+    public int getId() {
+        return id;
     }
 
-    public void setCin(String cin) {
-        this.cin = cin;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getImmatriculation() {
@@ -80,7 +80,7 @@ public class Vehicule {
 
     @Override
     public String toString() {
-        return "Vehicule{" + "immatriculation=" + immatriculation + ", cin=" + cin + ", modele=" + modele + ", marque=" + marque + ", etat=" + etat + ", photo=" + photo + '}';
+        return "Vehicule{" + "immatriculation=" + immatriculation + ", id=" + id + ", modele=" + modele + ", marque=" + marque + ", etat=" + etat + ", photo=" + photo + '}';
     }
 
 
