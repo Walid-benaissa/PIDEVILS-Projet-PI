@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 16 fév. 2023 à 00:05
+-- Généré le : lun. 20 fév. 2023 à 10:09
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -34,13 +34,6 @@ CREATE TABLE `colis` (
   `poids` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `colis`
---
-
-INSERT INTO `colis` (`id`, `nb_items`, `description`, `poids`) VALUES
-(2, 1, 'pp', 5);
-
 -- --------------------------------------------------------
 
 --
@@ -48,8 +41,8 @@ INSERT INTO `colis` (`id`, `nb_items`, `description`, `poids`) VALUES
 --
 
 CREATE TABLE `commentaire` (
-  `cin1` varchar(10) NOT NULL,
-  `cin2` varchar(10) NOT NULL,
+  `id1` int(11) NOT NULL,
+  `id2` int(11) NOT NULL,
   `message` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -60,9 +53,22 @@ CREATE TABLE `commentaire` (
 --
 
 CREATE TABLE `conducteur` (
-  `cin` varchar(10) NOT NULL,
-  `permis` mediumblob NOT NULL,
-  `b3` mediumblob NOT NULL
+  `id` int(11) NOT NULL,
+  `b3` mediumblob NOT NULL,
+  `permis` mediumblob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `contrat`
+--
+
+CREATE TABLE `contrat` (
+  `id` int(11) NOT NULL,
+  `immatriculation` varchar(30) NOT NULL,
+  `date_debut` date NOT NULL,
+  `date_fin` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -100,13 +106,24 @@ CREATE TABLE `livraisons` (
   `adresse_destinataire` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Déchargement des données de la table `livraisons`
+-- Structure de la table `location`
 --
 
-INSERT INTO `livraisons` (`id`, `adresse_expedition`, `adresse_destinataire`) VALUES
-(1, 'Boumhal', 'Ariana'),
-(2, 'ccc', 'xxx');
+CREATE TABLE `location` (
+  `ville` varchar(50) NOT NULL,
+  `prix_location` float NOT NULL,
+  `disponibilité` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `location`
+--
+
+INSERT INTO `location` (`ville`, `prix_location`, `disponibilité`) VALUES
+('kef', 3.14, 1);
 
 -- --------------------------------------------------------
 
@@ -141,13 +158,6 @@ CREATE TABLE `offre_livraison` (
   `prix_livraison` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `offre_livraison`
---
-
-INSERT INTO `offre_livraison` (`id`, `prix_livraison`) VALUES
-(1, 6.3);
-
 -- --------------------------------------------------------
 
 --
@@ -170,8 +180,8 @@ CREATE TABLE `reclamation` (
   `id` int(11) NOT NULL,
   `message` varchar(255) NOT NULL,
   `etat` varchar(255) NOT NULL,
-  `cinAdmin` varchar(10) NOT NULL,
-  `cinUser` varchar(10) NOT NULL
+  `idAdmin` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -181,7 +191,7 @@ CREATE TABLE `reclamation` (
 --
 
 CREATE TABLE `utilisateur` (
-  `cin` varchar(10) NOT NULL,
+  `id` int(11) NOT NULL,
   `nom` varchar(20) NOT NULL,
   `prenom` varchar(30) NOT NULL,
   `mail` varchar(100) NOT NULL,
@@ -195,22 +205,22 @@ CREATE TABLE `utilisateur` (
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`cin`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `role`, `evaluation`) VALUES
-('1323566', 'abir', 'kh', 'abir@gmail.com', 'abir', '26578467', 'client', 0.0);
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `role`, `evaluation`) VALUES
+(1, 'abir', 'kh', 'abir@gmail.com', 'abir', '26578467', 'client', 0.0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `vehicule`
+-- Structure de la table `voiture`
 --
 
-CREATE TABLE `vehicule` (
+CREATE TABLE `voiture` (
+  `id` int(11) NOT NULL,
   `immatriculation` varchar(30) NOT NULL,
   `modele` varchar(30) NOT NULL,
   `marque` varchar(30) NOT NULL,
   `etat` varchar(20) NOT NULL,
-  `photo` mediumblob NOT NULL,
-  `cin` varchar(10) NOT NULL
+  `photo` mediumblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -227,14 +237,21 @@ ALTER TABLE `colis`
 -- Index pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  ADD PRIMARY KEY (`cin1`,`cin2`),
-  ADD KEY `fk_utilisateur_commentaire2` (`cin2`);
+  ADD KEY `fk_utilisateur_commentaire1` (`id1`),
+  ADD KEY `fk_utilisateur_commentaire2` (`id2`);
 
 --
 -- Index pour la table `conducteur`
 --
 ALTER TABLE `conducteur`
-  ADD PRIMARY KEY (`cin`);
+  ADD KEY `fk_utilisateur_conducteur` (`id`);
+
+--
+-- Index pour la table `contrat`
+--
+ALTER TABLE `contrat`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_vehicule_contrat` (`immatriculation`);
 
 --
 -- Index pour la table `course`
@@ -271,21 +288,22 @@ ALTER TABLE `personnes`
 --
 ALTER TABLE `reclamation`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_utilisateur_reclamation1` (`cinAdmin`),
-  ADD KEY `fk_utilisateur_reclamation2` (`cinUser`);
+  ADD KEY `fk_utilisateur_reclamation1` (`idAdmin`),
+  ADD KEY `fk_utilisateur_reclamation2` (`idUser`);
 
 --
 -- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`cin`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `mail` (`mail`);
 
 --
--- Index pour la table `vehicule`
+-- Index pour la table `voiture`
 --
-ALTER TABLE `vehicule`
+ALTER TABLE `voiture`
   ADD PRIMARY KEY (`immatriculation`),
-  ADD KEY `fk_utilisateur_vehicule` (`cin`);
+  ADD KEY `fk_utilisateur_vehicule` (`id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -295,19 +313,25 @@ ALTER TABLE `vehicule`
 -- AUTO_INCREMENT pour la table `colis`
 --
 ALTER TABLE `colis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `contrat`
+--
+ALTER TABLE `contrat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `livraisons`
 --
 ALTER TABLE `livraisons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `offre_livraison`
 --
 ALTER TABLE `offre_livraison`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `personnes`
@@ -322,6 +346,12 @@ ALTER TABLE `reclamation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- Contraintes pour les tables déchargées
 --
 
@@ -329,27 +359,33 @@ ALTER TABLE `reclamation`
 -- Contraintes pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  ADD CONSTRAINT `fk_utilisateur_commentaire1` FOREIGN KEY (`cin1`) REFERENCES `utilisateur` (`cin`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_utilisateur_commentaire2` FOREIGN KEY (`cin2`) REFERENCES `utilisateur` (`cin`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_utilisateur_commentaire1` FOREIGN KEY (`id1`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_utilisateur_commentaire2` FOREIGN KEY (`id2`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `conducteur`
 --
 ALTER TABLE `conducteur`
-  ADD CONSTRAINT `fk_utilisateur_conducteur` FOREIGN KEY (`cin`) REFERENCES `utilisateur` (`cin`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_utilisateur_conducteur` FOREIGN KEY (`id`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `contrat`
+--
+ALTER TABLE `contrat`
+  ADD CONSTRAINT `fk_vehicule_contrat` FOREIGN KEY (`immatriculation`) REFERENCES `voiture` (`immatriculation`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `reclamation`
 --
 ALTER TABLE `reclamation`
-  ADD CONSTRAINT `fk_utilisateur_reclamation1` FOREIGN KEY (`cinAdmin`) REFERENCES `utilisateur` (`cin`),
-  ADD CONSTRAINT `fk_utilisateur_reclamation2` FOREIGN KEY (`cinUser`) REFERENCES `utilisateur` (`cin`);
+  ADD CONSTRAINT `fk_utilisateur_reclamation1` FOREIGN KEY (`idAdmin`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_utilisateur_reclamation2` FOREIGN KEY (`idUser`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `vehicule`
+-- Contraintes pour la table `voiture`
 --
-ALTER TABLE `vehicule`
-  ADD CONSTRAINT `fk_utilisateur_vehicule` FOREIGN KEY (`cin`) REFERENCES `utilisateur` (`cin`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `voiture`
+  ADD CONSTRAINT `fk_utilisateur_vehicule` FOREIGN KEY (`id`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

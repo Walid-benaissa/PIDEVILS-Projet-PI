@@ -10,31 +10,33 @@ package entities;
  * @author walid
  */
 public class Commentaire {
-    private String cin1,cin2,message;
+    
+    private int id1,id2;
+    private String message;
 
     public Commentaire() {
     }
 
-    public Commentaire(String cin1, String cin2, String message) {
-        this.cin1 = cin1;
-        this.cin2 = cin2;
+    public Commentaire(int id1, int id2, String message) {
+        this.id1 = id1;
+        this.id2 = id2;
         this.message = message;
     }
 
-    public String getCin1() {
-        return cin1;
+    public int getId1() {
+        return id1;
     }
 
-    public void setCin1(String cin1) {
-        this.cin1 = cin1;
+    public void setId1(int id1) {
+        this.id1 = id1;
     }
 
-    public String getCin2() {
-        return cin2;
+    public int getId2() {
+        return id2;
     }
 
-    public void setCin2(String cin2) {
-        this.cin2 = cin2;
+    public void setId2(int id2) {
+        this.id2 = id2;
     }
 
     public String getMessage() {
@@ -45,9 +47,11 @@ public class Commentaire {
         this.message = message;
     }
 
+
     @Override
     public String toString() {
-        return "Commentaire{" + "cin1=" + cin1 + ", cin2=" + cin2 + ", message=" + message + '}';
+        return "Commentaire{" + "id1=" + id1 + ", id2=" + id2 + ", message=" + message + '}';
     }
-        
+
+    
 }

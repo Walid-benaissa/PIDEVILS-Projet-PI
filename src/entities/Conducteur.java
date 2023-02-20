@@ -16,11 +16,13 @@ public class Conducteur extends Utilisateur {
     public Conducteur() {
     }
 
-    public Conducteur(String permis, String b3, String cin, String nom, String prenom, String mail, String mdp, String num_tel, String role, float evaluation) {
-        super(cin, nom, prenom, mail, mdp, num_tel, role, evaluation);
+    public Conducteur(String permis, String b3, int id, String nom, String prenom, String mail, String mdp, String num_tel, String role, float evaluation) {
+        super(id, nom, prenom, mail, mdp, num_tel, role, evaluation);
         this.permis = permis;
         this.b3 = b3;
     }
+
+
 
     public String getPermis() {
         return permis;
@@ -37,27 +39,14 @@ public class Conducteur extends Utilisateur {
     public void setB3(String b3) {
         this.b3 = b3;
     }
-
+    
     @Override
     public String toString() {
-        return "Utilisateur{" + "cin=" + getCin() + ", nom=" + getNom() + ", prenom=" + getPrenom() + 
-                ", mail=" + getMail() + ", mdp=" + getMdp() + ", num_tel=" + getNum_tel() + ", role=" + getRole() +
-                ", evaluation=" + getEvaluation() + "Conducteur{" + "permis=" + permis + ", b3=" + b3 + '}';
+        return "Conducteur{" + "permis=" + permis + ", b3=" + b3 + '}';
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
+   
     
     
 }

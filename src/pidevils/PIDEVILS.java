@@ -7,20 +7,9 @@ package pidevils;
 
 import entities.Colis;
 import entities.Livraison;
-import entities.Offre_livraison;
-import entities.Reclamation;
-import entities.Utilisateur;
-import entities.Vehicule;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import service.ColisService;
 import service.LivraisonService;
-import service.OffreLivraisonService;
-import service.ReclamationService;
-import service.UtilisateurService;
-import service.VehiculeService;
-import utils.MyDB;
+
 
 /**
  *
@@ -32,6 +21,11 @@ public class PIDEVILS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+//Location m = new Location("kef",3.14f,true);
+//LocationService s =new LocationService();
+//s.ajouter(m);
+//       ContratService sc = new ContratService();
+//     Contrat c = new Contrat(1,1,04,2023,1,04,2023);
 //        ReclamationService rs = new ReclamationService();
 //        UtilisateurService us = new UtilisateurService();
 //        Utilisateur user1 = new Utilisateur("1323566", "abir", "kh", "abir@gmail.com", "abir", "26578467", "client", 0);
@@ -110,17 +104,17 @@ public class PIDEVILS {
 //        vs.supprimer(v);
 
 //Livraison
-        //  LivraisonService ls = new LivraisonService();
-        // Livraison livraison1 = new Livraison(1,"Boumhal", "Ariana");
-        // Livraison livraison2 = new Livraison(1,"Ezzahra", "Tunis");
-        //Livraison livraison3 = new Livraison(3,"aaa", "bbbb");
-        //ls.ajouter(livraison1);
-        // ls.ajouter(livraison2);
-        // ls.ajouter(livraison3);
-        // ls.supprimer(livraison3);
-        //  Livraison livraison4 = new Livraison(2,"ccc", "xxx");
-        // ls.modifier(livraison4);
-        // System.out.println(ls.afficheListe());
+          LivraisonService ls = new LivraisonService();
+         Livraison livraison1 = new Livraison(1,"Boumhal", "Ariana");
+//         Livraison livraison2 = new Livraison(1,"Ezzahra", "Tunis");
+//        Livraison livraison3 = new Livraison(3,"aaa", "bbbb");
+        ls.ajouter(livraison1);
+//         ls.ajouter(livraison2);
+//         ls.ajouter(livraison3);
+//         ls.supprimer(livraison3);
+//          Livraison livraison4 = new Livraison(2,"ccc", "xxx");
+//         ls.modifier(livraison4);
+         System.out.println(ls.afficheListe());
         
  //Offre Livraison
       //  OffreLivraisonService ol = new OffreLivraisonService();
@@ -134,15 +128,15 @@ public class PIDEVILS {
         // System.out.println(ol.afficheListe());
         
   //Colis
-        ColisService c = new ColisService();
-       Colis colis1 = new Colis(1, 2, "aa", 2.5f);
-        Colis colis2 = new Colis(2,3,"oo",5.1f);
+//        ColisService c = new ColisService();
+//        Colis colis1 = new Colis(1, 2, "aa", 2.5f);
+//        Colis colis2 = new Colis(2,3,"oo",5.1f);
         //c.ajouter(colis1);
         //c.ajouter(colis2);
       //  c.supprimer(colis1);
        // Colis colis3 = new Colis(2, 1, "pp", 5);
        // c.modifier(colis3);
-        System.out.println(c.afficheListe());
+        //System.out.println(c.afficheListe());
 
     }
 

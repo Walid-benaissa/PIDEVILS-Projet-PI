@@ -52,7 +52,13 @@ public class LivraisonService implements IService<Livraison> {
     @Override
     public void ajouter(Livraison l) {
         try {
-            String req = "INSERT INTO `livraisons`(`id`,`adresse_expedition`, `adresse_destinataire`) VALUES (?,?,?)";
+            String req = "Select max(id) as id from  `colis`";
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            RS.next();
+            int id=RS.getInt("id");
+            System.out.println(id);
+            req = "INSERT INTO `livraisons`(`id`,`adresse_expedition`, `adresse_destinataire`) VALUES (?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setInt(1, l.getId());
             ps.setString(2, l.getAdresse_expedition());
