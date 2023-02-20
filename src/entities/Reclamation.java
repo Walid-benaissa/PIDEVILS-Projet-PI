@@ -24,6 +24,13 @@ public class Reclamation {
         this.idUser = idUser;
     }
 
+    public Reclamation(int idAdmin, int idUser, String message, String etat) {
+        this.idAdmin = idAdmin;
+        this.idUser = idUser;
+        this.message = message;
+        this.etat = etat;
+    }
+
     public int getIdAdmin() {
         return idAdmin;
     }
