@@ -38,6 +38,9 @@ import utils.MyDB;
                 p.setVille(RS.getString("ville"));
                 p.setPrix_location(RS.getFloat("prix_location"));
                 p.setDisponibilité(RS.getBoolean("disponibilité"));
+                p.setId_contrat(RS.getInt("id"));
+                p.setDate_debut(RS.getDate("date_debut"));
+                p.setDate_fin(RS.getDate("date_fin"));
               
                 list.add(p);
             }
@@ -50,11 +53,14 @@ import utils.MyDB;
     @Override
     public void ajouter(Location p) {
         try {
-            String req = "INSERT INTO  `location`(`ville`, `prix_location`, `disponibilité`) VALUES (?,?,?)";
+            String req = "INSERT INTO  `location`(`ville`, `prix_location`, `disponibilité`,`id`, `date_debut`, `date_fin`) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, p.getVille());
             ps.setFloat(2, p.getPrix_location());
             ps.setBoolean(3, p.isDisponibilité());
+            ps.setInt(4, p.getId_contrat());
+            ps.setDate(5, p.getDate_debut());
+            ps.setDate(6, p.getDate_fin());
         
             ps.executeUpdate();
             
@@ -67,7 +73,7 @@ import utils.MyDB;
     @Override
     public void supprimer(Location p) {
         try {
-            String req = "DELETE FROM `location` WHERE ville = " + p.getVille();
+            String req = "DELETE FROM `location` WHERE id = " + p.getId_contrat  ();
             Statement st = conn.createStatement();
             st.executeUpdate(req);
             System.out.println("location supprimé");
@@ -80,11 +86,14 @@ import utils.MyDB;
     public void modifier(Location p) {
         try {
 
-            String req = "UPDATE `location` SET ville=?, `prix_location` = ?, disponibilité` = ? WHERE `location`.`ville` = ?";
+            String req = "UPDATE `location` SET  prix_location=?, 'disponibilité` = ?,'ville'=? ,`date_debut` = ?, `date_fin` = ? WHERE `location`.`id` = ? and `location`.`id` = ? ";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setString(1, p.getVille());
-            ps.setFloat(2, p.getPrix_location());
-            ps.setBoolean(3, p.isDisponibilité());
+            ps.setFloat(1, p.getPrix_location());
+            ps.setBoolean(2, p.isDisponibilité());
+            ps.setString(3, p.getVille());
+            ps.setDate(4, p.getDate_debut());
+            ps.setDate(5, p.getDate_fin());
+            ps.setInt(6, p.getId_contrat());
           
 
             ps.executeUpdate();
