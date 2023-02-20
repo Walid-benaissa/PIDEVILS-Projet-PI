@@ -37,7 +37,7 @@ public class VoitureService implements IService<Voiture> {
     public List<Voiture> afficheListe() {
         List<Voiture> list = new ArrayList<>();
         try {
-            String req = "Select * from  `vehicule`";
+            String req = "Select * from  `voiture`";
             Statement st = conn.createStatement();
 
             ResultSet RS = st.executeQuery(req);
@@ -60,7 +60,7 @@ public class VoitureService implements IService<Voiture> {
     @Override
     public void ajouter(Voiture p) {
         try {
-            String req = "INSERT INTO  `vehicule`(`immatriculation`,`modele`, `marque`,`etat`,`photo`,`id`) VALUES (?,?,?,?,?,?)";
+            String req = "INSERT INTO  `voiture`(`immatriculation`,`modele`, `marque`,`etat`,`photo`,`id`) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, p.getImmatriculation());
             ps.setString(2, p.getModele());
@@ -71,7 +71,7 @@ public class VoitureService implements IService<Voiture> {
             ps.setInt(6, p.getId());
             ps.executeUpdate();
 
-            System.out.println("Vehicule inséré");
+            System.out.println("voiture inséré");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } catch (FileNotFoundException ex) {
@@ -84,10 +84,10 @@ public class VoitureService implements IService<Voiture> {
     @Override
     public void supprimer(Voiture p) {
         try {
-            String req = "DELETE FROM `vehicule` WHERE immatriculation = " + p.getImmatriculation();
+            String req = "DELETE FROM `voiture` WHERE immatriculation = " + p.getImmatriculation();
             Statement st = conn.createStatement();
             st.executeUpdate(req);
-            System.out.println("Vehicule supprimé");
+            System.out.println("voiture supprimé");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -97,7 +97,7 @@ public class VoitureService implements IService<Voiture> {
     public void modifier(Voiture p) {
         try {
 
-            String req = "UPDATE `vehicule` SET modele=?, `marque` = ?, `etat` = ? , `photo` = ?  WHERE `immatriculation` = ?";
+            String req = "UPDATE `voiture` SET modele=?, `marque` = ?, `etat` = ? , `photo` = ?  WHERE `immatriculation` = ?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, p.getModele());
             ps.setString(2, p.getMarque());
@@ -107,7 +107,7 @@ public class VoitureService implements IService<Voiture> {
             ps.setString(5, p.getImmatriculation());
 
             ps.executeUpdate();
-            System.out.println("Vehicule mis a jour");
+            System.out.println("voiture mis a jour");
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
