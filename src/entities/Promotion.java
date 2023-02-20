@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class Promotion {
 private int id_promotion;
-private String immatriculation;
+private String id;
 private Date debut_promotion;
 private Date fin_promotion ;
 private String libelle ;
@@ -22,9 +22,9 @@ private float taux ;
     public Promotion() {
     }
 
-    public Promotion(int id_promotion, String immatriculation, Date debut_promotion, Date fin_promotion, String libelle, float taux) {
+    public Promotion(int id_promotion, String id, Date debut_promotion, Date fin_promotion, String libelle, float taux) {
         this.id_promotion = id_promotion;
-        this.immatriculation = immatriculation;
+        this.id = id;
         this.debut_promotion = debut_promotion;
         this.fin_promotion = fin_promotion;
         this.libelle = libelle;
@@ -39,12 +39,12 @@ private float taux ;
         this.id_promotion = id_promotion;
     }
 
-    public String getImmatriculation() {
-        return immatriculation;
+    public String getId() {
+        return id;
     }
 
-    public void setImmatriculation(String immatriculation) {
-        this.immatriculation = immatriculation;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Date getDebut_promotion() {
@@ -81,8 +81,9 @@ private float taux ;
 
     @Override
     public String toString() {
-        return "Promotion{" + "id_promotion=" + id_promotion + ", immatriculation=" + immatriculation + ", debut_promotion=" + debut_promotion + ", fin_promotion=" + fin_promotion + ", libelle=" + libelle + ", taux=" + taux + '}';
+        return "Promotion{" + "id_promotion=" + id_promotion + ", id=" + id + ", debut_promotion=" + debut_promotion + ", fin_promotion=" + fin_promotion + ", libelle=" + libelle + ", taux=" + taux + '}';
     }
 
+    
     
 }
