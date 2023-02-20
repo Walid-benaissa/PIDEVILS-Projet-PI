@@ -5,6 +5,11 @@
  */
 package pidevils;
 
+import entities.Colis;
+import entities.Livraison;
+import service.ColisService;
+import service.LivraisonService;
+
 
 /**
  *
@@ -99,17 +104,17 @@ public class PIDEVILS {
 //        vs.supprimer(v);
 
 //Livraison
-        //  LivraisonService ls = new LivraisonService();
-        // Livraison livraison1 = new Livraison(1,"Boumhal", "Ariana");
-        // Livraison livraison2 = new Livraison(1,"Ezzahra", "Tunis");
-        //Livraison livraison3 = new Livraison(3,"aaa", "bbbb");
-        //ls.ajouter(livraison1);
-        // ls.ajouter(livraison2);
-        // ls.ajouter(livraison3);
-        // ls.supprimer(livraison3);
-        //  Livraison livraison4 = new Livraison(2,"ccc", "xxx");
-        // ls.modifier(livraison4);
-        // System.out.println(ls.afficheListe());
+          LivraisonService ls = new LivraisonService();
+         Livraison livraison1 = new Livraison(1,"Boumhal", "Ariana");
+//         Livraison livraison2 = new Livraison(1,"Ezzahra", "Tunis");
+//        Livraison livraison3 = new Livraison(3,"aaa", "bbbb");
+        ls.ajouter(livraison1);
+//         ls.ajouter(livraison2);
+//         ls.ajouter(livraison3);
+//         ls.supprimer(livraison3);
+//          Livraison livraison4 = new Livraison(2,"ccc", "xxx");
+//         ls.modifier(livraison4);
+         System.out.println(ls.afficheListe());
         
  //Offre Livraison
       //  OffreLivraisonService ol = new OffreLivraisonService();
@@ -123,15 +128,15 @@ public class PIDEVILS {
         // System.out.println(ol.afficheListe());
         
   //Colis
-        ColisService c = new ColisService();
-       Colis colis1 = new Colis(1, 2, "aa", 2.5f);
-        Colis colis2 = new Colis(2,3,"oo",5.1f);
+//        ColisService c = new ColisService();
+//        Colis colis1 = new Colis(1, 2, "aa", 2.5f);
+//        Colis colis2 = new Colis(2,3,"oo",5.1f);
         //c.ajouter(colis1);
         //c.ajouter(colis2);
       //  c.supprimer(colis1);
        // Colis colis3 = new Colis(2, 1, "pp", 5);
        // c.modifier(colis3);
-        System.out.println(c.afficheListe());
+        //System.out.println(c.afficheListe());
 
     }
 
