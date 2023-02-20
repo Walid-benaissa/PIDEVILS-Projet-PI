@@ -32,7 +32,7 @@ public class Main extends Application{
     public void start(Stage primaryStage)  {
         try {
             this.stage = primaryStage;
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLAuthentification.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLCreationCompte.fxml"));
             Scene sc = new Scene(root);
             stage.setScene(sc);
             stage.show();

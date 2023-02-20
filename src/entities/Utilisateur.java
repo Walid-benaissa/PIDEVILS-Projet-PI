@@ -34,6 +34,16 @@ public class Utilisateur {
         this.evaluation = evaluation;
     }
 
+    public Utilisateur(String nom, String prenom, String mail, String mdp, String num_tel, String role, float evaluation) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.mdp = mdp;
+        this.num_tel = num_tel;
+        this.role = role;
+        this.evaluation = evaluation;
+    }
+
     public int getId() {
         return id;
     }
