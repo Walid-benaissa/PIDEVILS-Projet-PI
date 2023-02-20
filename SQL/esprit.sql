@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 19 fév. 2023 à 15:06
+-- Généré le : lun. 20 fév. 2023 à 10:09
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -211,10 +211,10 @@ INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `rol
 -- --------------------------------------------------------
 
 --
--- Structure de la table `vehicule`
+-- Structure de la table `voiture`
 --
 
-CREATE TABLE `vehicule` (
+CREATE TABLE `voiture` (
   `id` int(11) NOT NULL,
   `immatriculation` varchar(30) NOT NULL,
   `modele` varchar(30) NOT NULL,
@@ -299,9 +299,9 @@ ALTER TABLE `utilisateur`
   ADD UNIQUE KEY `mail` (`mail`);
 
 --
--- Index pour la table `vehicule`
+-- Index pour la table `voiture`
 --
-ALTER TABLE `vehicule`
+ALTER TABLE `voiture`
   ADD PRIMARY KEY (`immatriculation`),
   ADD KEY `fk_utilisateur_vehicule` (`id`);
 
@@ -372,7 +372,7 @@ ALTER TABLE `conducteur`
 -- Contraintes pour la table `contrat`
 --
 ALTER TABLE `contrat`
-  ADD CONSTRAINT `fk_vehicule_contrat` FOREIGN KEY (`immatriculation`) REFERENCES `vehicule` (`immatriculation`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_vehicule_contrat` FOREIGN KEY (`immatriculation`) REFERENCES `voiture` (`immatriculation`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `reclamation`
@@ -382,9 +382,9 @@ ALTER TABLE `reclamation`
   ADD CONSTRAINT `fk_utilisateur_reclamation2` FOREIGN KEY (`idUser`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `vehicule`
+-- Contraintes pour la table `voiture`
 --
-ALTER TABLE `vehicule`
+ALTER TABLE `voiture`
   ADD CONSTRAINT `fk_utilisateur_vehicule` FOREIGN KEY (`id`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
