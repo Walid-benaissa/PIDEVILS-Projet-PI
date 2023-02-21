@@ -32,14 +32,17 @@ public class LivraisonService implements IService<Livraison> {
     public List afficheListe() {
         List<Livraison> list = new ArrayList<>();
         try {
-            String req = "Select * from  `livraisons`";
+            String req = "Select * from  `livraison`";
             Statement st = conn.createStatement();
             ResultSet RS = st.executeQuery(req);
             while (RS.next()) {
                 Livraison l = new Livraison();
-                l.setId(RS.getInt("id"));
+                l.setId_livraison(RS.getInt("id_livraison"));
                 l.setAdresse_expedition(RS.getString("Adresse_expedition"));
                 l.setAdresse_destinataire(RS.getString("Adresse_destinataire"));
+                l.setPrix(RS.getFloat("Prix"));
+                l.setEtat(RS.getString("Etat"));
+                l.setId_colis(RS.getInt("id_colis"));
                 list.add(l);
             }
         } catch (SQLException ex) {
@@ -57,12 +60,14 @@ public class LivraisonService implements IService<Livraison> {
             ResultSet RS = st.executeQuery(req);
             RS.next();
             int id=RS.getInt("id");
-            System.out.println(id);
-            req = "INSERT INTO `livraisons`(`id`,`adresse_expedition`, `adresse_destinataire`) VALUES (?,?,?)";
+            req = "INSERT INTO `livraison`(`id_livraison`,`adresse_expedition`, `adresse_destinataire`, `prix`,`etat`, `id_colis`) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setInt(1, l.getId());
+            ps.setInt(1, l.getId_livraison());
             ps.setString(2, l.getAdresse_expedition());
             ps.setString(3, l.getAdresse_destinataire());
+            ps.setFloat(4, l.getPrix());
+            ps.setString(5, l.getEtat());
+            ps.setInt(6, id);
             ps.executeUpdate();
 
             System.out.println("Livraison ajoutée");
@@ -74,7 +79,7 @@ public class LivraisonService implements IService<Livraison> {
     @Override
     public void supprimer(Livraison l) {
         try {
-            String req = "DELETE FROM `livraisons` WHERE id = " + l.getId();
+            String req = "DELETE FROM `livraison` WHERE id_livraison = " + l.getId_livraison();
             Statement st = conn.createStatement();
             st.executeUpdate(req);
             System.out.println("livraison supprimée");
@@ -87,12 +92,14 @@ public class LivraisonService implements IService<Livraison> {
     public void modifier(Livraison l) {
         try {
 
-            String req = "UPDATE `livraisons` SET `adresse_expedition` = ?, `adresse_destinataire`= ? WHERE `livraisons`.`id` = ? ";
+            String req = "UPDATE `livraison` SET `adresse_expedition` = ?, `adresse_destinataire`= ?, `prix`= ?, `etat`= ? WHERE `livraison`.`id_livraison` = ? ";
             PreparedStatement ps = conn.prepareStatement(req);
             
             ps.setString(1, l.getAdresse_expedition());
             ps.setString(2, l.getAdresse_destinataire());
-            ps.setInt(3, l.getId());
+            ps.setFloat(3, l.getPrix());
+            ps.setString(4, l.getEtat());
+            ps.setInt(5, l.getId_livraison());
             ps.executeUpdate();
             System.out.println("Livraison modifiée avec succès");
 

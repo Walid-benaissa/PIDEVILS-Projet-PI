@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 20 fév. 2023 à 10:09
+-- Généré le : lun. 20 fév. 2023 à 22:56
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -33,6 +33,16 @@ CREATE TABLE `colis` (
   `description` varchar(250) NOT NULL,
   `poids` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `colis`
+--
+
+INSERT INTO `colis` (`id`, `nb_items`, `description`, `poids`) VALUES
+(1, 3, 'achats', 2.5),
+(2, 1, 'stylo', 5),
+(16, 2, 'rrrr', 7),
+(17, 3, 'aaaa', 2.1);
 
 -- --------------------------------------------------------
 
@@ -97,14 +107,25 @@ INSERT INTO `course` (`id_course`, `point_depart`, `point_destination`, `distanc
 -- --------------------------------------------------------
 
 --
--- Structure de la table `livraisons`
+-- Structure de la table `livraison`
 --
 
-CREATE TABLE `livraisons` (
-  `id` int(11) NOT NULL,
-  `adresse_expedition` varchar(250) NOT NULL,
-  `adresse_destinataire` varchar(250) NOT NULL
+CREATE TABLE `livraison` (
+  `id_livraison` int(11) NOT NULL,
+  `adresse_expedition` varchar(30) NOT NULL,
+  `adresse_destinataire` varchar(30) NOT NULL,
+  `prix` float NOT NULL,
+  `etat` varchar(30) NOT NULL,
+  `id_colis` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `livraison`
+--
+
+INSERT INTO `livraison` (`id_livraison`, `adresse_expedition`, `adresse_destinataire`, `prix`, `etat`, `id_colis`) VALUES
+(1, 'Djerba', 'Sousse', 3.2, 'livrée', 2),
+(5, 'mmm', 'ooooo', 4, '', 1);
 
 -- --------------------------------------------------------
 
@@ -260,10 +281,11 @@ ALTER TABLE `course`
   ADD PRIMARY KEY (`id_course`);
 
 --
--- Index pour la table `livraisons`
+-- Index pour la table `livraison`
 --
-ALTER TABLE `livraisons`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `livraison`
+  ADD PRIMARY KEY (`id_livraison`),
+  ADD KEY `fk_livraison_colis` (`id_colis`);
 
 --
 -- Index pour la table `offre_course`
@@ -313,7 +335,7 @@ ALTER TABLE `voiture`
 -- AUTO_INCREMENT pour la table `colis`
 --
 ALTER TABLE `colis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `contrat`
@@ -322,10 +344,10 @@ ALTER TABLE `contrat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `livraisons`
+-- AUTO_INCREMENT pour la table `livraison`
 --
-ALTER TABLE `livraisons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `livraison`
+  MODIFY `id_livraison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `offre_livraison`
@@ -373,6 +395,12 @@ ALTER TABLE `conducteur`
 --
 ALTER TABLE `contrat`
   ADD CONSTRAINT `fk_vehicule_contrat` FOREIGN KEY (`immatriculation`) REFERENCES `voiture` (`immatriculation`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `livraison`
+--
+ALTER TABLE `livraison`
+  ADD CONSTRAINT `fk_livraison_colis` FOREIGN KEY (`id_colis`) REFERENCES `colis` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `reclamation`
