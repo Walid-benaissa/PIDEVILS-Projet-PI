@@ -7,8 +7,10 @@ package pidevils;
 
 import entities.Colis;
 import entities.Livraison;
+import entities.Vehicule;
 import service.ColisService;
 import service.LivraisonService;
+import service.VehiculeService;
 
 /**
  *
@@ -20,8 +22,8 @@ public class PIDEVILS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//Location m = new Location("kef",3.14f,true);
-//LocationService s =new LocationService();
+//Vehicule m = new Vehicule("a","1323566","jhglkk","kef",3.14f,4,true,"description","voiture");
+//VehiculeService s =new VehiculeService();
 //s.ajouter(m);
 //       ContratService sc = new ContratService();
 //     Contrat c = new Contrat(1,1,04,2023,1,04,2023);
