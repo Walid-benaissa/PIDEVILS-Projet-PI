@@ -22,6 +22,12 @@ public class Conducteur extends Utilisateur {
         this.b3 = b3;
     }
 
+    public Conducteur(String permis, String b3, String nom, String prenom, String mail, String mdp, String num_tel, String role, float evaluation) {
+        super(nom, prenom, mail, mdp, num_tel, role, evaluation);
+        this.permis = permis;
+        this.b3 = b3;
+    }
+
 
 
     public String getPermis() {

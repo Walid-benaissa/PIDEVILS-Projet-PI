@@ -13,6 +13,10 @@ public class Reclamation {
     private int id,idAdmin,idUser;
     private String message,etat; 
 
+    public Reclamation(int id) {
+        this.id = id;
+    }    
+    
     public Reclamation() {
     }
     
