@@ -12,47 +12,23 @@ import java.sql.Date;
  * @author azizi
  */
 public class Location { 
-    private String ville;
-    private float prix_location;
-    //private int id_contrat ;
+   
+    private int id_contrat;
     private Date date_debut;
     private Date date_fin;
+    private int id;
+    private String id_vehicule; 
     
     
     public Location() {
     }
 
-    public Location(String ville, float prix_location, boolean disponibilité, int id_contrat, Date date_debut, Date date_fin) {
-        this.ville = ville;
-        this.prix_location = prix_location;
-        this.disponibilité = disponibilité;
+    public Location(int id_contrat, Date date_debut, Date date_fin, int id, String id_vehicule) {
         this.id_contrat = id_contrat;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
-    }
-
-    public String getVille() {
-        return ville;
-    }
-
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
-
-    public float getPrix_location() {
-        return prix_location;
-    }
-
-    public void setPrix_location(float prix_location) {
-        this.prix_location = prix_location;
-    }
-
-    public boolean isDisponibilité() {
-        return disponibilité;
-    }
-
-    public void setDisponibilité(boolean disponibilité) {
-        this.disponibilité = disponibilité;
+        this.id = id;
+        this.id_vehicule = id_vehicule;
     }
 
     public int getId_contrat() {
@@ -79,12 +55,27 @@ public class Location {
         this.date_fin = date_fin;
     }
 
-    @Override
-    public String toString() {
-        return "Location{" + "id_contrat=" + id_contrat + ", ville=" + ville + ", prix_location=" + prix_location + ", disponibilit\u00e9=" + disponibilité + ", date_debut=" + date_debut + ", date_fin=" + date_fin + '}';
+    public int getId() {
+        return id;
     }
 
-    
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public String getId_vehicule() {
+        return id_vehicule;
+    }
 
+    public void setId_vehicule(String id_vehicule) {
+        this.id_vehicule = id_vehicule;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" + "id_contrat=" + id_contrat + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", id=" + id + ", id_vehicule=" + id_vehicule + '}';
+    }
+
+   
+  
 }

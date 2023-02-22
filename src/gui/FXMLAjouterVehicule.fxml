@@ -5,91 +5,90 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui.FXMLAjouterVehiculeController">
+<AnchorPane id="AnchorPane" prefHeight="987.0" prefWidth="866.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLAjouterVehiculeController">
    <children>
       <Pane layoutX="177.0" layoutY="29.0" prefHeight="957.0" prefWidth="510.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
          <children>
-            <Label layoutX="131.0" layoutY="14.0" prefHeight="54.0" prefWidth="248.0" text="Créer compte" textFill="WHITE">
+            <Label layoutX="131.0" layoutY="14.0" prefHeight="54.0" prefWidth="266.0" text="Voiture à louer" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
+            <ImageView fitHeight="120.0" fitWidth="172.0" layoutX="158.0" layoutY="608.0" pickOnBounds="true" preserveRatio="true" />
+            <RadioButton fx:id="veloBtn" layoutX="106.0" layoutY="794.0" mnemonicParsing="false" selected="true" text="Vélo" textFill="#fffafa">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="16.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="role" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="trottinetteBtn" layoutX="216.0" layoutY="794.0" mnemonicParsing="false" selected="true" text="trottinette" textFill="#fffafa">
+               <toggleGroup>
+                  <ToggleGroup fx:id="role" />
+               </toggleGroup>
+               <font>
+                  <Font name="Microsoft Sans Serif" size="16.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="voitureBtn" layoutX="357.0" layoutY="794.0" mnemonicParsing="false" selected="true" text="Voiture" textFill="#fffafa">
+               <toggleGroup>
+                  <ToggleGroup fx:id="role" />
+               </toggleGroup>
+               <font>
+                  <Font name="Microsoft Sans Serif" size="16.0" />
+               </font>
+            </RadioButton>
+            <Label layoutX="106.0" layoutY="755.0" text="Type:" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="106.0" layoutY="588.0" text="Photo:" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="24.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <Label layoutX="287.0" layoutY="119.0" text="Nom:" textFill="WHITE">
+      <Label layoutX="287.0" layoutY="119.0" text="Id vehicule:" textFill="WHITE">
          <font>
             <Font name="Microsoft Sans Serif" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="tf_nom" layoutX="286.0" layoutY="164.0" prefHeight="35.0" prefWidth="279.0" />
-      <Label layoutX="287.0" layoutY="221.0" text="Prénom:" textFill="WHITE">
+      <TextField fx:id="tf_id_vehicule" layoutX="286.0" layoutY="164.0" prefHeight="35.0" prefWidth="279.0" />
+      <Label layoutX="287.0" layoutY="221.0" text="Prix:" textFill="WHITE">
          <font>
             <Font name="Microsoft Sans Serif" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="290.0" layoutY="322.0" text="Numéro de téléphone:" textFill="WHITE">
+      <Label layoutX="290.0" layoutY="322.0" text="Ville:" textFill="WHITE">
          <font>
             <Font name="Microsoft Sans Serif" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="287.0" layoutY="436.0" text="E-mail:" textFill="WHITE">
+      <Label layoutX="287.0" layoutY="436.0" text="Description:" textFill="WHITE">
          <font>
             <Font name="Microsoft Sans Serif" size="24.0" />
          </font>
       </Label>
-      <RadioButton fx:id="conducteurBtn" layoutX="288.0" layoutY="812.0" mnemonicParsing="false" selected="true" text="Conducteur" textFill="#fffafa">
-         <font>
-            <Font name="Microsoft Sans Serif" size="16.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="role" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="clientBtn" layoutX="426.0" layoutY="812.0" mnemonicParsing="false" selected="true" text="Client" textFill="#fffafa">
-         <toggleGroup>
-            <ToggleGroup fx:id="role" />
-         </toggleGroup>
-         <font>
-            <Font name="Microsoft Sans Serif" size="16.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="locateurBtn" layoutX="539.0" layoutY="812.0" mnemonicParsing="false" selected="true" text="Locteur" textFill="#fffafa">
-         <toggleGroup>
-            <ToggleGroup fx:id="role" />
-         </toggleGroup>
-         <font>
-            <Font name="Microsoft Sans Serif" size="16.0" />
-         </font>
-      </RadioButton>
-      <Button layoutX="380.0" layoutY="897.0" mnemonicParsing="false" onAction="#creer" prefHeight="46.0" prefWidth="124.0" style="-fx-background-color: FD9800;" text="Valider" textFill="WHITE">
+      <Button layoutX="380.0" layoutY="897.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="46.0" prefWidth="124.0" style="-fx-background-color: FD9800;" text="Ajouter" textFill="WHITE">
          <font>
             <Font name="SansSerif Regular" size="24.0" />
          </font>
       </Button>
-      <Label layoutX="287.0" layoutY="544.0" text="Mot de passe:" textFill="WHITE">
+      <Label layoutX="283.0" layoutY="651.0" textFill="WHITE">
          <font>
             <Font name="Microsoft Sans Serif" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="283.0" layoutY="651.0" text="Confirmer mot de passe:" textFill="WHITE">
-         <font>
-            <Font name="Microsoft Sans Serif" size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="287.0" layoutY="750.0" text="Rôle:" textFill="WHITE">
-         <font>
-            <Font name="Microsoft Sans Serif" size="24.0" />
-         </font>
-      </Label>
-      <TextField fx:id="tf_prenom" layoutX="286.0" layoutY="264.0" prefHeight="35.0" prefWidth="279.0" />
-      <TextField fx:id="tf_numtel" layoutX="286.0" layoutY="373.0" prefHeight="35.0" prefWidth="279.0" />
-      <TextField fx:id="tf_mail" layoutX="286.0" layoutY="477.0" prefHeight="35.0" prefWidth="279.0" />
-      <TextField fx:id="tf_mdp" layoutX="286.0" layoutY="594.0" prefHeight="35.0" prefWidth="279.0" />
-      <TextField fx:id="tf_mdpC" layoutX="286.0" layoutY="692.0" prefHeight="35.0" prefWidth="279.0" />
+      <TextField fx:id="tf_prix" layoutX="286.0" layoutY="264.0" prefHeight="35.0" prefWidth="279.0" />
+      <TextField fx:id="tf_ville" layoutX="286.0" layoutY="373.0" prefHeight="35.0" prefWidth="279.0" />
+      <TextField fx:id="tf_description" layoutX="286.0" layoutY="477.0" prefHeight="120.0" prefWidth="279.0" />
    </children>
 </AnchorPane>
