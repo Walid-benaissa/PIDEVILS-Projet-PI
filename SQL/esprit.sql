@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 20 fév. 2023 à 22:56
+-- Généré le : mer. 22 fév. 2023 à 16:41
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -64,8 +64,8 @@ CREATE TABLE `commentaire` (
 
 CREATE TABLE `conducteur` (
   `id` int(11) NOT NULL,
-  `b3` mediumblob NOT NULL,
-  `permis` mediumblob NOT NULL
+  `b3` varchar(255) NOT NULL,
+  `permis` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
