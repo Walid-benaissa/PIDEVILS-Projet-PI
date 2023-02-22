@@ -35,6 +35,17 @@ public class Vehicule {
         this.type = type;
     }
 
+    public Vehicule(String id_vehicule, String ville, float prix, String description, String type) {
+        this.id_vehicule = id_vehicule;
+        this.ville = ville;
+        this.prix = prix;
+        this.description = description;
+        this.type = type;
+    }
+
+ 
+    
+
     public String getId_vehicule() {
         return id_vehicule;
     }

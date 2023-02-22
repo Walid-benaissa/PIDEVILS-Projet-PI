@@ -2,9 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -20,30 +18,6 @@
                </font>
             </Label>
             <ImageView fitHeight="120.0" fitWidth="172.0" layoutX="158.0" layoutY="608.0" pickOnBounds="true" preserveRatio="true" />
-            <RadioButton fx:id="veloBtn" layoutX="106.0" layoutY="794.0" mnemonicParsing="false" selected="true" text="Vélo" textFill="#fffafa">
-               <font>
-                  <Font name="Microsoft Sans Serif" size="16.0" />
-               </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="role" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="trottinetteBtn" layoutX="216.0" layoutY="794.0" mnemonicParsing="false" selected="true" text="trottinette" textFill="#fffafa">
-               <toggleGroup>
-                  <ToggleGroup fx:id="role" />
-               </toggleGroup>
-               <font>
-                  <Font name="Microsoft Sans Serif" size="16.0" />
-               </font>
-            </RadioButton>
-            <RadioButton fx:id="voitureBtn" layoutX="357.0" layoutY="794.0" mnemonicParsing="false" selected="true" text="Voiture" textFill="#fffafa">
-               <toggleGroup>
-                  <ToggleGroup fx:id="role" />
-               </toggleGroup>
-               <font>
-                  <Font name="Microsoft Sans Serif" size="16.0" />
-               </font>
-            </RadioButton>
             <Label layoutX="106.0" layoutY="755.0" text="Type:" textFill="WHITE">
                <font>
                   <Font name="Microsoft Sans Serif" size="24.0" />
@@ -54,6 +28,7 @@
                   <Font name="Microsoft Sans Serif" size="24.0" />
                </font>
             </Label>
+            <TextField fx:id="tf_type" layoutX="116.0" layoutY="804.0" prefHeight="35.0" prefWidth="279.0" />
          </children>
       </Pane>
       <Label layoutX="287.0" layoutY="119.0" text="Id vehicule:" textFill="WHITE">

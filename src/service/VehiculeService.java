@@ -59,30 +59,14 @@ public class VehiculeService implements IService<Vehicule>{
         return list;
     }
 
-public static boolean estChaineValide(String chaine) {
-    // Vérifier si la chaîne est vide ou nulle
-    if (chaine == null || chaine.trim().isEmpty()) {
-        return false;
-    }
-    
-    // Vérifier si la chaîne ne contient que des lettres
-    if (!chaine.matches("[a-zA-Z]+")) {
-        return false;
-    }
-    
-    // La chaîne est valide si elle passe toutes les vérifications
-    return true;
-}
-public boolean isStringLength(String str) {
-    return str.length() < 30;
-}
+
     
     @Override
     public void ajouter(Vehicule p) {
         try {
             String req = "INSERT INTO  `vehicule`(`id_vehicule`, `cin`,`id_promotion`, `photo`, `ville`,`prix`, `disponibilite`, `description`,`type`) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
-            if (estChaineValide(p.getType())&&isStringLength(p.getType())){
+           
             ps.setString(1, p.getId_vehicule());
             ps.setString(2, p.getCin());
             ps.setInt(3, p.getId_promotion());
@@ -93,10 +77,7 @@ public boolean isStringLength(String str) {
             ps.setString(8, p.getDescription());
             ps.setString(9, p.getType());
             ps.executeUpdate();
-            }else{
-                            System.out.println("erreur");
-
-            }
+         
             System.out.println("Vehicule inséré");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

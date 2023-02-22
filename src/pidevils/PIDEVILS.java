@@ -25,6 +25,7 @@ public class PIDEVILS {
 //Vehicule m = new Vehicule("a","1323566","jhglkk","kef",3.14f,4,true,"description","voiture");
 //VehiculeService s =new VehiculeService();
 //s.ajouter(m);
+//s.modifier(p);
 //       ContratService sc = new ContratService();
 //     Contrat c = new Contrat(1,1,04,2023,1,04,2023);
 //        ReclamationService rs = new ReclamationService();

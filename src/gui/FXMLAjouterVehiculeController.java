@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -24,14 +25,7 @@ import service.VehiculeService;
  */
 public class FXMLAjouterVehiculeController implements Initializable {
 
-    @FXML
-    private ToggleGroup role;
-    @FXML
-    private RadioButton veloBtn;
-    @FXML
-    private RadioButton trottinetteBtn;
-    @FXML
-    private RadioButton voitureBtn;
+
     @FXML
     private TextField tf_id_vehicule;
     @FXML
@@ -40,6 +34,12 @@ public class FXMLAjouterVehiculeController implements Initializable {
     private TextField tf_ville;
     @FXML
     private TextField tf_description;
+    @FXML
+    private TextField tf_type;
+    
+
+    
+    
 
     /**
      * Initializes the controller class.
@@ -51,24 +51,19 @@ public class FXMLAjouterVehiculeController implements Initializable {
 
     @FXML
     private void Ajouter(ActionEvent event) {
-         VehiculeService vs= new VehiculeService();
-        String role="";
-         Vehicule v1 = new Vehicule(tf_id_vehicule.getText(), tf_prix.getText(), tf_ville.getText(), tf_description.getText(), role,0.0F);
-            vs.ajouter(v1);
-             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation");
-            alert.setContentText("ajout avec succés");
-            alert.show();
-        if(veloBtn.isSelected())
-            role="velo";
-        else if (trottinetteBtn.isSelected())
-            role="trottinette";
-        else 
-             role="voiture";
-   
-       
+        VehiculeService sp=new VehiculeService();
 
-
+  
+        String id_vehicule = tf_id_vehicule.getText();
+        float prix = Float.parseFloat(tf_prix.getText());
+        String ville = tf_ville.getText();
+        String description = tf_description.getText();
+        String type = tf_type.getText();
+         
+         
+     
+   Vehicule a = new Vehicule(id_vehicule,ville,prix,description,type);
+   sp.ajouter(a);
     }
     
 }
