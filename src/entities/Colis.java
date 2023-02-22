@@ -25,6 +25,11 @@ public class Colis {
         this.poids = poids;
     }
 
+    public Colis(int nb_items, String description, float poids) {
+        this.nb_items = nb_items;
+        this.description = description;
+        this.poids = poids;
+    }  
 
 
     public int getId() {
