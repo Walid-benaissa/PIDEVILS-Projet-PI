@@ -138,7 +138,6 @@ public class UtilisateurService implements IService<Utilisateur> {
             ps.setString(6, p.getRole());
             ps.setFloat(7, p.getEvaluation());
             ps.setInt(8, p.getId());
-
             ps.executeUpdate();
             System.out.println("Utilisateur mis a jour");
 
@@ -177,6 +176,7 @@ public class UtilisateurService implements IService<Utilisateur> {
             ps.setString(3, p.getMail());
             ps.setString(4, p.getNum_tel());
             ps.setInt(5, p.getId());
+            System.out.println(p);
             ps.executeUpdate();
             System.out.println("Utilisateur mis a jour");
 
