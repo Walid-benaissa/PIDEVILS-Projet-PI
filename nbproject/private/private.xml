@@ -3,16 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/PidevJava/Pidevils/PIDEVILS-Projet-PI/src/gui/FXMLCreationCompteConducteurController.java</file>
-            <file>file:/E:/PidevJava/Pidevils/PIDEVILS-Projet-PI/src/service/LivraisonService.java</file>
-            <file>file:/E:/PidevJava/Pidevils/PIDEVILS-Projet-PI/src/service/ColisService.java</file>
-            <file>file:/E:/PidevJava/Pidevils/PIDEVILS-Projet-PI/src/gui/FXMLAjoutLivraisonController.java</file>
-            <file>file:/E:/PidevJava/Pidevils/PIDEVILS-Projet-PI/src/pidevils/Main.java</file>
-            <file>file:/E:/PidevJava/Pidevils/PIDEVILS-Projet-PI/src/entities/Conducteur.java</file>
-            <file>file:/E:/PidevJava/Pidevils/PIDEVILS-Projet-PI/src/gui/FXMLCreationCompteController.java</file>
-            <file>file:/E:/PidevJava/Pidevils/PIDEVILS-Projet-PI/src/entities/Utilisateur.java</file>
-            <file>file:/E:/PidevJava/Pidevils/PIDEVILS-Projet-PI/src/service/UtilisateurService.java</file>
-            <file>file:/E:/PidevJava/Pidevils/PIDEVILS-Projet-PI/src/service/ConducteurService.java</file>
+            <file>file:/C:/Users/user/Desktop/Pi/PIDEVILS-Projet-PI/src/gui/FXMLAjoutLivraisonController.java</file>
+            <file>file:/C:/Users/user/Desktop/Pi/PIDEVILS-Projet-PI/src/gui/FXMLEffectuerReclamationController.java</file>
+            <file>file:/C:/Users/user/Desktop/Pi/PIDEVILS-Projet-PI/src/pidevils/Main.java</file>
+            <file>file:/C:/Users/user/Desktop/Pi/PIDEVILS-Projet-PI/src/gui/FXMLlouerVehiculeController.java</file>
+            <file>file:/C:/Users/user/Desktop/Pi/PIDEVILS-Projet-PI/src/service/LivraisonService.java</file>
+            <file>file:/C:/Users/user/Desktop/Pi/PIDEVILS-Projet-PI/src/gui/FXMLSuivreLiraisonController.java</file>
+            <file>file:/C:/Users/user/Desktop/Pi/PIDEVILS-Projet-PI/src/entities/Livraison.java</file>
+            <file>file:/C:/Users/user/Desktop/Pi/PIDEVILS-Projet-PI/src/gui/FXMLLivraison.fxml</file>
+            <file>file:/C:/Users/user/Desktop/Pi/PIDEVILS-Projet-PI/src/pidevils/PIDEVILS.java</file>
+            <file>file:/C:/Users/user/Desktop/Pi/PIDEVILS-Projet-PI/src/gui/FXMLLivraisonController.java</file>
+            <file>file:/C:/Users/user/Desktop/Pi/PIDEVILS-Projet-PI/src/entities/Colis.java</file>
+            <file>file:/C:/Users/user/Desktop/Pi/PIDEVILS-Projet-PI/src/gui/FXMLSuivreLiraison.fxml</file>
+            <file>file:/C:/Users/user/Desktop/Pi/PIDEVILS-Projet-PI/src/pidevils/PidevJava.java</file>
+            <file>file:/C:/Users/user/Desktop/Pi/PIDEVILS-Projet-PI/src/gui/FXMLCreationCompteConducteurController.java</file>
         </group>
     </open-files>
 </project-private>

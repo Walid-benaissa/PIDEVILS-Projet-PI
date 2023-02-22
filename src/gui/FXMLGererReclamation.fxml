@@ -24,8 +24,9 @@
               <columns>
                 <TableColumn fx:id="id_reclamationCol" prefWidth="109.5999984741211" text="Id_Reclamation" />
                 <TableColumn fx:id="etatCol" prefWidth="88.79998779296875" text="Etat" />
-                  <TableColumn fx:id="messageCol" prefWidth="393.6000671386719" text="Message" />
-                  <TableColumn fx:id="IdUsrCol" prefWidth="240.00006103515625" text="Id Utilisateur" />
+                  <TableColumn fx:id="messageCol" prefWidth="311.2000427246094" text="Message" />
+                  <TableColumn fx:id="IdUsrCol" prefWidth="138.4000244140625" text="Type" />
+                  <TableColumn fx:id="IdUsrCol1" prefWidth="185.5999755859375" text="Id Utilisateur" />
               </columns>
             </TableView>
             <TextField fx:id="idRec" layoutX="310.0" layoutY="210.0" minHeight="25.0" prefHeight="25.0" prefWidth="82.0" />
