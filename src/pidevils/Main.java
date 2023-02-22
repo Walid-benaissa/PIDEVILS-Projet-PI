@@ -32,11 +32,9 @@ public class Main extends Application{
     public void start(Stage primaryStage)  {
         try {
             this.stage = primaryStage;
-<<<<<<< HEAD
+
             Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLLivraison.fxml"));
-=======
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLGererReclamation.fxml"));
->>>>>>> dd5118d30374590cdf635a363aeef3440e3e3f13
+
             Scene sc = new Scene(root);
             stage.setScene(sc);
             stage.show();

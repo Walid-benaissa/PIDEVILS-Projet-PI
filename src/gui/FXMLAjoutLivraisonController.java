@@ -53,18 +53,34 @@ public class FXMLAjoutLivraisonController implements Initializable {
     private void ajoutL(ActionEvent event) {
         LivraisonService ls = new LivraisonService();
         ColisService cs = new ColisService();
-        String prix=tf_prix.getText();
-        Livraison l = new Livraison(tf_AdresseExp.getText(), tf_adresseDest.getText(),Float.parseFloat(prix),"En attente" );
-        String nb_items=tf_nbrObjets.getText();
-        String poids=tf_poids.getText();
-        Colis c = new Colis(Integer.parseInt(nb_items),tf_description.getText(), Float.parseFloat(poids));
-        cs.ajouter(c);
-        ls.ajouter(l);
-       // System.err.println("Ajout avec succès");
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("sucess");
-        alert.setContentText("Livraison ajoutée avec succès");
-        alert.show();
-    }
+        if (tf_AdresseExp.getText().isEmpty() || tf_adresseDest.getText().isEmpty() || tf_prix.getText().isEmpty() || tf_nbrObjets.getText().isEmpty()) {
 
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur!");
+            alert.setContentText("il y'a des champs vides !");
+            alert.show();
+
+        } else {
+            String prix = tf_prix.getText();
+            Livraison l = new Livraison(tf_AdresseExp.getText(), tf_adresseDest.getText(), Float.parseFloat(prix), "En attente");
+            String nb_items = tf_nbrObjets.getText();
+            String poids = tf_poids.getText();
+            Colis c = new Colis(Integer.parseInt(nb_items), tf_description.getText(), Float.parseFloat(poids));
+
+            cs.ajouter(c);
+            ls.ajouter(l);
+            // System.err.println("Ajout avec succès");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("sucess");
+            alert.setContentText("Livraison ajoutée avec succès");
+            alert.show();
+            tf_AdresseExp.setText("");
+            tf_adresseDest.setText("");
+            tf_description.setText("");
+            tf_nbrObjets.setText("");
+            tf_poids.setText("");
+            tf_prix.setText("");
+
+        }
+    }
 }
