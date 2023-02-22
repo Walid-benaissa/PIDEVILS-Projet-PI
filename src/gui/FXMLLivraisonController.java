@@ -84,7 +84,7 @@ public class FXMLLivraisonController implements Initializable {
         return dataList2;
     }
     @FXML
-    private void Afficher(ActionEvent event) throws SQLException {
+    private void Afficher() throws SQLException {
         LivraisonService ls = new LivraisonService(){};
         ColisService cs = new ColisService(){};
         tfAdresseExp.setCellValueFactory(new PropertyValueFactory<Livraison, String>("adresse_expedition"));
