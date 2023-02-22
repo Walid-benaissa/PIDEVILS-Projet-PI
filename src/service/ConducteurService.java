@@ -64,22 +64,31 @@ public class ConducteurService implements IService<Conducteur> {
     @Override
     public void ajouter(Conducteur p) {
         try {
-            String req = "INSERT INTO  `Conducteur`(`id`,`permis`, `b3`) VALUES (?,?,?)";
-            PreparedStatement ps = conn.prepareStatement(req);
-            ps.setInt(1, p.getId());
-            FileInputStream fin1 = new FileInputStream(p.getPermis());
-            ps.setBinaryStream(2, fin1, fin1.available());
-            FileInputStream fin2 = new FileInputStream(p.getB3());
-            ps.setBinaryStream(3, fin2, fin2.available());
+            String req1 = "INSERT INTO  `utilisateur`( `nom`, `prenom`, `mail`,`mdp`, `num_tel`, `role`,`evaluation`) VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement ps = conn.prepareStatement(req1);
+            ps.setString(1, p.getNom());
+            ps.setString(2, p.getPrenom());
+            ps.setString(3, p.getMail());
+            ps.setString(4, p.getMdp());
+            ps.setString(5, p.getNum_tel());
+            ps.setString(6, p.getRole());
+            ps.setFloat(7, p.getEvaluation());
+            ps.executeUpdate();
+              String req = "Select max(id) as id from  `utilisateur`";
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            RS.next();
+            int id=RS.getInt("id");
+            String req2 = "INSERT INTO  `Conducteur`(`id`,`permis`, `b3`) VALUES (?,?,?)";
+            ps = conn.prepareStatement(req2);
+            ps.setInt(1,id);
+            ps.setString(2, p.getPermis());
+            ps.setString(3, p.getB3());
             ps.executeUpdate();
 
             System.out.println("Conducteur inséré");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ConducteurService.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ConducteurService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
