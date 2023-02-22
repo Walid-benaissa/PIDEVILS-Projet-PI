@@ -85,7 +85,7 @@ private String b3 ;
         }
         if (tf_mdp.getText().equals(tf_mdpC.getText())) {
             if (role.equals("Conducteur")) {
-                Conducteur user = new Conducteur( permis,b3, tf_nom.getText(), tf_prenom.getText(), tf_numtel.getText(), tf_mail.getText(), tf_mdp.getText(), role, 0.0F);
+                Conducteur user = new Conducteur( permis,b3, tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), tf_mdp.getText(), tf_numtel.getText(), role, 0.0F);
                 ConducteurService cs = new ConducteurService();
                 cs.ajouter(user);
             }
