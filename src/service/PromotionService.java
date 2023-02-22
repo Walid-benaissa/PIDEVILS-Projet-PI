@@ -36,7 +36,7 @@ public class PromotionService implements IService<Promotion>{
             while (RS.next()) {
                 Promotion p = new Promotion();
                 p.setId_promotion(RS.getInt("id_promotion"));
-                p.setImmatriculation(RS.getString("immatriculation"));
+                p.setId_vehicule(RS.getString("id_vehicule"));
                 p.setDebut_promotion(RS.getDate("debut_promotion"));
                 p.setFin_promotion(RS.getDate("fin_promotion"));
                 p.setLibelle(RS.getString("libelle"));
@@ -53,10 +53,10 @@ public class PromotionService implements IService<Promotion>{
     @Override
     public void ajouter(Promotion p) {
         try {
-            String req = "INSERT INTO  `promotion`(`id_promotion`, `immatriculation`, `debut_promotion`, `fin_promotion`,`libelle`,`taux`) VALUES (?,?,?,?,?,?)";
+            String req = "INSERT INTO  `promotion`(`id_promotion`, `id_vehicule`, `debut_promotion`, `fin_promotion`,`libelle`,`taux`) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setInt(1, p.getId_promotion());
-            ps.setString(2, p.getImmatriculation());
+            ps.setString(2, p.getId_vehicule());
             ps.setDate(3, p.getDebut_promotion());
             ps.setDate(4, p.getFin_promotion());
             ps.setString(5, p.getLibelle());
@@ -86,10 +86,10 @@ public class PromotionService implements IService<Promotion>{
     public void modifier(Promotion p) {
         try {
 
-            String req = "UPDATE `utilisateur` SET immatriculation=?, `debut_promotion` = ?, `fin_promotion` = ?, `libelle` = ?,`taux` = ? WHERE `promotion`.`id_promotion` = ?";
+            String req = "UPDATE `utilisateur` SET id_vehicule=?, `debut_promotion` = ?, `fin_promotion` = ?, `libelle` = ?,`taux` = ? WHERE `promotion`.`id_promotion` = ?";
             PreparedStatement ps = conn.prepareStatement(req);
            
-            ps.setString(1, p.getImmatriculation());
+            ps.setString(1, p.getId_vehicule());
             ps.setDate(2, p.getDebut_promotion());
             ps.setDate(3, p.getFin_promotion());
             ps.setString(4, p.getLibelle());

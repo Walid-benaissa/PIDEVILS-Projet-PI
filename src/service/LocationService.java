@@ -35,10 +35,9 @@ import utils.MyDB;
             ResultSet RS = st.executeQuery(req);
             while (RS.next()) {
                 Location p = new Location();
-                p.setVille(RS.getString("ville"));
-                p.setPrix_location(RS.getFloat("prix_location"));
-                p.setDisponibilité(RS.getBoolean("disponibilité"));
-                p.setId_contrat(RS.getInt("id"));
+                p.setId_contrat(RS.getInt("id_contrat"));
+                p.setId(RS.getInt("id"));
+                p.setId_vehicule(RS.getString("id_vehicule"));
                 p.setDate_debut(RS.getDate("date_debut"));
                 p.setDate_fin(RS.getDate("date_fin"));
               
@@ -53,14 +52,13 @@ import utils.MyDB;
     @Override
     public void ajouter(Location p) {
         try {
-            String req = "INSERT INTO  `location`(`ville`, `prix_location`, `disponibilité`,`id`, `date_debut`, `date_fin`) VALUES (?,?,?,?,?,?)";
+            String req = "INSERT INTO  `location`(`id_contrat`,`id`, `id_vehicule`,`date_debut`, `date_fin`) VALUES (?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setString(1, p.getVille());
-            ps.setFloat(2, p.getPrix_location());
-            ps.setBoolean(3, p.isDisponibilité());
-            ps.setInt(4, p.getId_contrat());
-            ps.setDate(5, p.getDate_debut());
-            ps.setDate(6, p.getDate_fin());
+            ps.setInt(1, p.getId_contrat());
+            ps.setInt(2, p.getId());
+            ps.setString(3, p.getId_vehicule());
+            ps.setDate(4, p.getDate_debut());
+            ps.setDate(5, p.getDate_fin());
         
             ps.executeUpdate();
             
@@ -86,14 +84,13 @@ import utils.MyDB;
     public void modifier(Location p) {
         try {
 
-            String req = "UPDATE `location` SET  prix_location=?, 'disponibilité` = ?,'ville'=? ,`date_debut` = ?, `date_fin` = ? WHERE `location`.`id` = ? and `location`.`id` = ? ";
+            String req = "UPDATE `location` SET  id=?, `id_vehicule` = ?,`date_debut` = ?, `date_fin` = ? WHERE `location`.`id_contrat` = ? ";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setFloat(1, p.getPrix_location());
-            ps.setBoolean(2, p.isDisponibilité());
-            ps.setString(3, p.getVille());
-            ps.setDate(4, p.getDate_debut());
-            ps.setDate(5, p.getDate_fin());
-            ps.setInt(6, p.getId_contrat());
+            ps.setInt(1, p.getId());
+            ps.setString(2, p.getId_vehicule());
+            ps.setDate(3, p.getDate_debut());
+            ps.setDate(4, p.getDate_fin());
+            ps.setInt(5, p.getId_contrat());
           
 
             ps.executeUpdate();
