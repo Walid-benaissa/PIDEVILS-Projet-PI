@@ -50,7 +50,7 @@ public class FXMLGererReclamationController implements Initializable {
     @FXML
     private ChoiceBox choix_type;
 
-    private String[] etats = {"Ouvert", "En cours", "Traité"};
+    private String[] etats = {"Ouvert", "En cours", "Traite"};
 
     /**
      * Initializes the controller class.
@@ -81,8 +81,9 @@ public class FXMLGererReclamationController implements Initializable {
     @FXML
     private void modifierReclamation(ActionEvent event) {
         Reclamation c = reclamationTable.getSelectionModel().getSelectedItem();
-        c.setEtat(choix_type.getValue());
+        c.setEtat(choix_type.getValue().toString());
         rs.modifier(c);
+        afficherReclamation();
     }
 
     @FXML

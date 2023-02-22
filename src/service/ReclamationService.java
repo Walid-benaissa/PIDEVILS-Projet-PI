@@ -87,7 +87,7 @@ public class ReclamationService implements IService<Reclamation> {
     public void modifier(Reclamation p)   {
         try {
             
-            String req = "UPDATE `reclamation` SET `message` = ?, `etat` = ?, WHERE `reclamation`.`id` = ?";
+            String req = "UPDATE `reclamation` SET `message` = ?, `etat` = ? WHERE `id` = ?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, p.getMessage());
             ps.setString(2, p.getEtat());
