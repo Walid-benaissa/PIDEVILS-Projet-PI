@@ -5,14 +5,17 @@
  */
 package gui;
 
+import entities.Vehicule;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import service.VehiculeService;
 
 /**
  * FXML Controller class
@@ -22,25 +25,21 @@ import javafx.scene.control.ToggleGroup;
 public class FXMLAjouterVehiculeController implements Initializable {
 
     @FXML
-    private TextField tf_nom;
-    @FXML
-    private RadioButton conducteurBtn;
-    @FXML
     private ToggleGroup role;
     @FXML
-    private RadioButton clientBtn;
+    private RadioButton veloBtn;
     @FXML
-    private RadioButton locateurBtn;
+    private RadioButton trottinetteBtn;
     @FXML
-    private TextField tf_prenom;
+    private RadioButton voitureBtn;
     @FXML
-    private TextField tf_numtel;
+    private TextField tf_id_vehicule;
     @FXML
-    private TextField tf_mail;
+    private TextField tf_prix;
     @FXML
-    private TextField tf_mdp;
+    private TextField tf_ville;
     @FXML
-    private TextField tf_mdpC;
+    private TextField tf_description;
 
     /**
      * Initializes the controller class.
@@ -51,7 +50,25 @@ public class FXMLAjouterVehiculeController implements Initializable {
     }    
 
     @FXML
-    private void creer(ActionEvent event) {
+    private void Ajouter(ActionEvent event) {
+         VehiculeService vs= new VehiculeService();
+        String role="";
+         Vehicule v1 = new Vehicule(tf_id_vehicule.getText(), tf_prix.getText(), tf_ville.getText(), tf_description.getText(), role,0.0F);
+            vs.ajouter(v1);
+             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setContentText("ajout avec succés");
+            alert.show();
+        if(veloBtn.isSelected())
+            role="velo";
+        else if (trottinetteBtn.isSelected())
+            role="trottinette";
+        else 
+             role="voiture";
+   
+       
+
+
     }
     
 }
