@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="369.0" prefWidth="978.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLLivraisonController">
+   <children>
+      <TableView fx:id="table2" layoutX="99.0" layoutY="30.0" prefHeight="308.0" prefWidth="420.0">
+        <columns>
+          <TableColumn fx:id="tfAdresseExp" prefWidth="127.0" text="Adresse Expédition" />
+          <TableColumn fx:id="tfAdresseDest" prefWidth="141.0" text="Adresse Destinataire" />
+            <TableColumn fx:id="tfPrix" prefWidth="64.0" text="Prix" />
+            <TableColumn fx:id="TfEtat" prefWidth="90.0" text="Etat" />
+        </columns>
+      </TableView>
+      <Button fx:id="supprimer" layoutX="1.0" layoutY="56.0" mnemonicParsing="false" text="Supprimer" />
+      <Button layoutX="4.0" layoutY="88.0" mnemonicParsing="false" onAction="#Afficher" prefHeight="25.0" prefWidth="63.0" text="Afficher" />
+      <TableView fx:id="table" layoutX="518.0" layoutY="30.0" prefHeight="308.0" prefWidth="432.0">
+        <columns>
+          <TableColumn fx:id="tfNBObj" prefWidth="122.0" text="Nombre d'objets" />
+          <TableColumn fx:id="tfDescription" minWidth="0.0" prefWidth="163.0" text="Description" />
+            <TableColumn fx:id="tfPoids" prefWidth="143.0" text="Poids" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
