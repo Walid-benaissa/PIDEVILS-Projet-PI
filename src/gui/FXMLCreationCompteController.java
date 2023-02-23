@@ -98,7 +98,7 @@ if (!tf_mail.getText().matches(emailRegex)) {
                 cs.ajouter(user);
             }
             else{
-            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_numtel.getText(), tf_mail.getText(), tf_mdp.getText(), role, 0.0F);
+            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), tf_numtel.getText(), tf_mdp.getText(), role, 0.0F);
             us.ajouter(user);}
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
