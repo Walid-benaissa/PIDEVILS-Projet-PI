@@ -22,6 +22,25 @@ public class Utilisateur {
     public Utilisateur() {
     }
 
+    public Utilisateur(int id) {
+        this.id = id;
+    }
+
+    public Utilisateur(String nom, String prenom, String mail, String num_tel) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.num_tel = num_tel;
+    }
+
+    public Utilisateur(String nom, String prenom, String mail, String mdp, String num_tel) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.mdp = mdp;
+        this.num_tel = num_tel;
+    }
+
     
     public Utilisateur(int id, String nom, String prenom, String mail, String mdp, String num_tel, String role, float evaluation) {
         this.id = id;

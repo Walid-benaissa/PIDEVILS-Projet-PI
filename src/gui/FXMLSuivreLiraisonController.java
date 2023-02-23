@@ -8,6 +8,16 @@ package gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import entities.Livraison;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import service.LivraisonService;
+
 
 /**
  * FXML Controller class
@@ -19,9 +29,22 @@ public class FXMLSuivreLiraisonController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    LivraisonService ls = new LivraisonService();
+    @FXML
+    private TableView<Livraison> table;
+    @FXML
+    private TableColumn<?, ?> id;
+    @FXML
+    private TableColumn<?, ?> etat;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        List<Livraison> list = ls.afficheListe();
+        id.setCellValueFactory(new PropertyValueFactory<>("id_livraison"));
+        etat.setCellValueFactory(new PropertyValueFactory<>("etat"));
+        ObservableList<Livraison> L = FXCollections.observableArrayList(list);
+        table.setItems(L);
     }    
+    
+  
     
 }
