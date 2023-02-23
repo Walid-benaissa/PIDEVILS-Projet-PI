@@ -61,8 +61,6 @@ private String b3 ;
     private TextField tf_permis;
     @FXML
     private TextField tf_b3;
-    @FXML
-    private ScrollPane scrollPane;
 
     /**
      * Initializes the controller class.
@@ -74,6 +72,16 @@ private String b3 ;
 
     @FXML
     private void creer(ActionEvent event) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+if (!tf_mail.getText().matches(emailRegex)) {
+    Alert alert = new Alert(Alert.AlertType.WARNING);
+    alert.setTitle("Format email incorrect");
+    alert.setHeaderText(null);
+    alert.setContentText("Veuillez saisir un email valide !");
+    alert.showAndWait();
+    return;
+}
+
         UtilisateurService us = new UtilisateurService();
         String role = "";
         if (locateurBtn.isSelected()) {
