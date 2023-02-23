@@ -7,9 +7,14 @@ package pidevils;
 
 import entities.Colis;
 import entities.Livraison;
+import entities.Location;
+import entities.Promotion;
 import entities.Vehicule;
+import java.sql.Date;
 import service.ColisService;
 import service.LivraisonService;
+import service.LocationService;
+import service.PromotionService;
 import service.VehiculeService;
 
 /**
@@ -22,9 +27,10 @@ public class PIDEVILS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//Vehicule m = new Vehicule("a","1323566","jhglkk","kef",3.14f,4,true,"description","voiture");
-//VehiculeService s =new VehiculeService();
-//s.ajouter(m);
+
+
+
+//s.modifier(p);
 //       ContratService sc = new ContratService();
 //     Contrat c = new Contrat(1,1,04,2023,1,04,2023);
 //        ReclamationService rs = new ReclamationService();
@@ -123,7 +129,26 @@ public class PIDEVILS {
         //Livraison livraison4 = new Livraison(1,"Djerba", "Sousse",3.2f,"livrée");
         //ls.modifier(livraison4);
         //     System.out.println(ls.afficheListe());
+//promotion
+//PromotionService ps = new PromotionService();
+  //     Promotion p = new Promotion(6,"yyy",null,null,"yhy",3.14f);
+//ps.ajouter(p);
+//ps.modifier(p);
+//ps.supprimer(p);
 
+//vehicule
+//Vehicule m = new Vehicule("667","1323566","jhglkk","kef",3.14f,4,true,"desc","voitu");
+//VehiculeService s =new VehiculeService();
+//s.ajouter(m);
+//s.modifier(m);
+//s.supprimer(m);
+
+//location
+//Location z = new Location(1,"1323566","66",null,null);
+//LocationService k =new LocationService();
+//k.ajouter(z);
+//k.modifier(z);
+//k.supprimer(z);
     }
 
 }

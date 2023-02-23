@@ -5,11 +5,15 @@
  */
 package gui;
 
+import entities.Vehicule;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -32,9 +36,9 @@ public class FXMLlouerVehiculeController implements Initializable {
     @FXML
     private TextField tf_lieu_de_depart;
     @FXML
-    private TextField tf_ddepart;
+    private DatePicker tf_dated;
     @FXML
-    private TextField tf_dretour;
+    private DatePicker tf_retourd;
 
     /**
      * Initializes the controller class.
@@ -50,6 +54,8 @@ public class FXMLlouerVehiculeController implements Initializable {
 
     @FXML
     private void rechercher(ActionEvent event) {
-    }
+      
     
+    
+}
 }
