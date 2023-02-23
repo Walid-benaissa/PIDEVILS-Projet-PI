@@ -57,12 +57,14 @@ public class FXMLGererProfilController implements Initializable {
 
     @FXML
     private void ModifierInfo(ActionEvent event) {
-        if  (changermdp.isSelected() & tf_mdp.getText().equals(tf_mdpC.getText()) & us.authentification(tf_mail.getText(), tf_mdpAc.getText())) {
-        Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_numtel.getText(), tf_mail.getText(),tf_mdp.getText());
-        us.modifierWithmdp(user); }
-        else{
-        Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_numtel.getText(), tf_mail.getText());
-        us.modifierSansmdp(user);
+        if (changermdp.isSelected() & tf_mdp.getText().equals(tf_mdpC.getText()) & us.authentification(tf_mail.getText(), tf_mdpAc.getText())) {
+            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_numtel.getText(), tf_mail.getText(), tf_mdp.getText());
+            user.setId(2);
+            us.modifierWithmdp(user);
+        } else {
+            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_numtel.getText(), tf_mail.getText());
+            user.setId(2);
+            us.modifierSansmdp(user);
         }
     }
 

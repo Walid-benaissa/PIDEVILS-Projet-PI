@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -12,7 +13,11 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Slider layoutX="117.0" layoutY="184.0" opacity="0.74" prefHeight="14.0" prefWidth="276.0" />
-      <Label fx:id="etatL" layoutX="156.0" layoutY="130.0" prefHeight="17.0" prefWidth="171.0" text="Label" />
+      <TableView fx:id="table" layoutX="108.0" layoutY="111.0" prefHeight="141.0" prefWidth="283.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="141.0" text="ID_Livraison" />
+          <TableColumn fx:id="etat" prefWidth="135.0" text="Etat" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

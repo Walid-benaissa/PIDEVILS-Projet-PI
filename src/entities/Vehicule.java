@@ -35,6 +35,42 @@ public class Vehicule {
         this.type = type;
     }
 
+    public Vehicule(String id_vehicule, String cin, String photo, String ville, float prix, int id_promotion, String description, String type) {
+        this.id_vehicule = id_vehicule;
+        this.cin = cin;
+        this.photo = photo;
+        this.ville = ville;
+        this.prix = prix;
+        this.id_promotion = id_promotion;
+        this.description = description;
+        this.type = type;
+    }
+    
+
+    public Vehicule(String id_vehicule, String ville, float prix, String description, String type) {
+        this.id_vehicule = id_vehicule;
+        this.ville = ville;
+        this.prix = prix;
+        this.description = description;
+        this.type = type;
+    }
+
+    public Vehicule(String id_vehicule, String photo, String ville, float prix, String description, String type) {
+        this.id_vehicule = id_vehicule;
+        this.photo = photo;
+        this.ville = ville;
+        this.prix = prix;
+        this.description = description;
+        this.type = type;
+    }
+
+    public Vehicule(String id_vehicule) {
+        this.id_vehicule = id_vehicule;
+    }
+
+ 
+    
+
     public String getId_vehicule() {
         return id_vehicule;
     }

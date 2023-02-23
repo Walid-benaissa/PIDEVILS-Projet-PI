@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="492.0" prefWidth="1225.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLLivraisonController">
+<AnchorPane id="AnchorPane" prefHeight="539.0" prefWidth="1329.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLLivraisonController">
    <children>
-      <TableView fx:id="table2" layoutX="132.0" layoutY="197.0" onMouseClicked="#getSelected" prefHeight="242.0" prefWidth="518.0">
+      <TableView fx:id="table2" layoutX="194.0" layoutY="254.0" onMouseClicked="#getSelected" prefHeight="242.0" prefWidth="518.0">
         <columns>
           <TableColumn fx:id="tfidLivraison" prefWidth="86.0" text="Id_Livraison" />
           <TableColumn fx:id="tfAdresseExp" prefWidth="121.0" text="Adresse Expédition" />
@@ -19,7 +19,7 @@
             <TableColumn fx:id="TfEtat" prefWidth="90.0" text="Etat" />
         </columns>
       </TableView>
-      <TableView fx:id="table" layoutX="650.0" layoutY="197.0" onMouseClicked="#getSelected" prefHeight="242.0" prefWidth="562.0">
+      <TableView fx:id="table" layoutX="713.0" layoutY="254.0" onMouseClicked="#getSelected" prefHeight="242.0" prefWidth="562.0">
         <columns>
           <TableColumn fx:id="tfidColis" prefWidth="122.0" text="Id_Colis" />
           <TableColumn fx:id="tfNBObj" minWidth="0.0" prefWidth="163.0" text="Nombre d'objets" />
@@ -27,74 +27,79 @@
             <TableColumn fx:id="tfDescription" prefWidth="122.0" text="Description" />
         </columns>
       </TableView>
-      <Button layoutX="19.0" layoutY="231.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #FD9800;" text="Ajouter">
+      <Button layoutX="17.0" layoutY="397.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #FD9800;" text="Supprimer">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="20.0" layoutY="345.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #FD9800;" text="Supprimer">
+      <Button layoutX="18.0" layoutY="307.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #FD9800;" text="Modifier Livraison">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="19.0" layoutY="293.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #FD9800;" text="Modifier">
+      <TextField fx:id="AdExp" layoutX="162.0" layoutY="127.0" prefHeight="25.0" prefWidth="180.0" />
+      <Label layoutX="29.0" layoutY="128.0" prefHeight="18.0" prefWidth="119.0" text="Adresse Expédition" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="AdDest" layoutX="162.0" layoutY="181.0" prefHeight="25.0" prefWidth="180.0" />
+      <TextField fx:id="Prix" layoutX="529.0" layoutY="68.0" prefHeight="25.0" prefWidth="180.0" />
+      <TextField fx:id="etat" layoutX="530.0" layoutY="124.0" prefHeight="25.0" prefWidth="180.0" />
+      <TextField fx:id="NbObj" layoutX="982.0" layoutY="71.0" prefHeight="25.0" prefWidth="180.0" />
+      <TextField fx:id="poids" layoutX="981.0" layoutY="120.0" prefHeight="25.0" prefWidth="180.0" />
+      <Label layoutX="28.0" layoutY="179.0" prefHeight="18.0" prefWidth="119.0" text="Adresse Destinataire" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="469.0" layoutY="72.0" prefHeight="18.0" prefWidth="119.0" text="Prix" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="470.0" layoutY="128.0" prefHeight="18.0" prefWidth="119.0" text="Etat" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="852.0" layoutY="74.0" prefHeight="18.0" prefWidth="119.0" text="Nombre d'objets" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="849.0" layoutY="128.0" prefHeight="18.0" prefWidth="119.0" text="Poids" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tf_description" layoutX="980.0" layoutY="163.0" prefHeight="55.0" prefWidth="179.0" />
+      <Label layoutX="849.0" layoutY="168.0" prefHeight="18.0" prefWidth="119.0" text="Description" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="30.0" layoutY="74.0" prefHeight="18.0" prefWidth="119.0" text="Id_Livraison" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="idLiv" layoutX="162.0" layoutY="74.0" prefHeight="25.0" prefWidth="180.0" />
+      <TextField fx:id="idColis" layoutX="531.0" layoutY="177.0" prefHeight="25.0" prefWidth="180.0" />
+      <Label layoutX="468.0" layoutY="181.0" prefHeight="18.0" prefWidth="119.0" text="Id_Colis" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="383.0" layoutY="1.0" prefHeight="54.0" prefWidth="507.0" text="Gestion des livraisons et des colis" textFill="#fd9800">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Button layoutX="18.0" layoutY="353.0" mnemonicParsing="false" onAction="#ModifierColis" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #FD9800;" text="Modifier Colis">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <TextField fx:id="AdExp" layoutX="162.0" layoutY="72.0" prefHeight="25.0" prefWidth="180.0" />
-      <Label layoutX="29.0" layoutY="71.0" prefHeight="18.0" prefWidth="119.0" text="Adresse Expédition" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <TextField fx:id="AdDest" layoutX="162.0" layoutY="117.0" prefHeight="25.0" prefWidth="180.0" />
-      <TextField fx:id="Prix" layoutX="527.0" layoutY="33.0" prefHeight="25.0" prefWidth="180.0" />
-      <TextField fx:id="etat" layoutX="527.0" layoutY="73.0" prefHeight="25.0" prefWidth="180.0" />
-      <TextField fx:id="NbObj" layoutX="939.0" layoutY="24.0" prefHeight="25.0" prefWidth="180.0" />
-      <TextField fx:id="poids" layoutX="939.0" layoutY="70.0" prefHeight="25.0" prefWidth="180.0" />
-      <Label layoutX="28.0" layoutY="119.0" prefHeight="18.0" prefWidth="119.0" text="Adresse Destinataire" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="469.0" layoutY="36.0" prefHeight="18.0" prefWidth="119.0" text="Prix" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="469.0" layoutY="75.0" prefHeight="18.0" prefWidth="119.0" text="Etat" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="813.0" layoutY="28.0" prefHeight="18.0" prefWidth="119.0" text="Nombre d'objets" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="813.0" layoutY="71.0" prefHeight="18.0" prefWidth="119.0" text="Poids" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <TextField fx:id="tf_description" layoutX="940.0" layoutY="115.0" prefHeight="55.0" prefWidth="179.0" />
-      <Label layoutX="815.0" layoutY="122.0" prefHeight="18.0" prefWidth="119.0" text="Description" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="30.0" layoutY="36.0" prefHeight="18.0" prefWidth="119.0" text="Id_Livraison" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <TextField fx:id="idLiv" layoutX="162.0" layoutY="34.0" prefHeight="25.0" prefWidth="180.0" />
-      <TextField fx:id="idColis" layoutX="527.0" layoutY="117.0" prefHeight="25.0" prefWidth="180.0" />
-      <Label layoutX="467.0" layoutY="122.0" prefHeight="18.0" prefWidth="119.0" text="Id_Colis" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>
