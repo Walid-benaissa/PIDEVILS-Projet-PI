@@ -7,6 +7,7 @@ package service;
 
 import entities.Promotion;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -53,14 +54,14 @@ public class PromotionService implements IService<Promotion>{
     @Override
     public void ajouter(Promotion p) {
         try {
-            String req = "INSERT INTO  `promotion`(`id_promotion`, `id_vehicule`, `debut_promotion`, `fin_promotion`,`libelle`,`taux`) VALUES (?,?,?,?,?,?)";
+            String req = "INSERT INTO  `promotion`( `id_vehicule`, `debut_promotion`, `fin_promotion`,`libelle`,`taux`) VALUES (?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setInt(1, p.getId_promotion());
-            ps.setString(2, p.getId_vehicule());
-            ps.setDate(3, p.getDebut_promotion());
-            ps.setDate(4, p.getFin_promotion());
-            ps.setString(5, p.getLibelle());
-            ps.setFloat(6,p.getTaux());
+        
+            ps.setString(1, p.getId_vehicule());
+            ps.setDate(2, (Date) p.getDebut_promotion());
+            ps.setDate(3, (Date) p.getFin_promotion());
+            ps.setString(4, p.getLibelle());
+            ps.setFloat(5,p.getTaux());
     
             ps.executeUpdate();
             
@@ -73,7 +74,7 @@ public class PromotionService implements IService<Promotion>{
     @Override
     public void supprimer(Promotion p) {
         try {
-            String req = "DELETE FROM `promotion` WHERE id_promotion = " + p.getId_promotion();
+            String req = "DELETE FROM `promotion` WHERE id_promotion="+ p.getId_promotion();
             Statement st = conn.createStatement();
             st.executeUpdate(req);
             System.out.println("Promotion supprimé");
@@ -86,7 +87,7 @@ public class PromotionService implements IService<Promotion>{
     public void modifier(Promotion p) {
         try {
 
-            String req = "UPDATE `utilisateur` SET id_vehicule=?, `debut_promotion` = ?, `fin_promotion` = ?, `libelle` = ?,`taux` = ? WHERE `promotion`.`id_promotion` = ?";
+            String req = "UPDATE `promotion` SET id_vehicule=?, `debut_promotion` = ?, `fin_promotion` = ?, `libelle` = ?,`taux` = ? WHERE id_promotion=?";
             PreparedStatement ps = conn.prepareStatement(req);
            
             ps.setString(1, p.getId_vehicule());

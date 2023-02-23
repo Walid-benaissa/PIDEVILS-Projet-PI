@@ -6,6 +6,7 @@
 package service;
 import entities.Location;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,7 +37,7 @@ import utils.MyDB;
             while (RS.next()) {
                 Location p = new Location();
                 p.setId_contrat(RS.getInt("id_contrat"));
-                p.setId(RS.getInt("id"));
+                p.setId(RS.getString("id"));
                 p.setId_vehicule(RS.getString("id_vehicule"));
                 p.setDate_debut(RS.getDate("date_debut"));
                 p.setDate_fin(RS.getDate("date_fin"));
@@ -55,10 +56,10 @@ import utils.MyDB;
             String req = "INSERT INTO  `location`(`id_contrat`,`id`, `id_vehicule`,`date_debut`, `date_fin`) VALUES (?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setInt(1, p.getId_contrat());
-            ps.setInt(2, p.getId());
+            ps.setString(2, p.getId());
             ps.setString(3, p.getId_vehicule());
-            ps.setDate(4, p.getDate_debut());
-            ps.setDate(5, p.getDate_fin());
+            ps.setDate(4, new java.sql.Date(p.getDate_debut().getTime()));
+            ps.setDate(5, new java.sql.Date(p.getDate_fin().getTime()));
         
             ps.executeUpdate();
             
@@ -86,10 +87,10 @@ import utils.MyDB;
 
             String req = "UPDATE `location` SET  id=?, `id_vehicule` = ?,`date_debut` = ?, `date_fin` = ? WHERE `location`.`id_contrat` = ? ";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setInt(1, p.getId());
+            ps.setString(1, p.getId());
             ps.setString(2, p.getId_vehicule());
-            ps.setDate(3, p.getDate_debut());
-            ps.setDate(4, p.getDate_fin());
+            ps.setDate(3,new java.sql.Date(p.getDate_debut().getTime()));
+            ps.setDate(4, new java.sql.Date(p.getDate_fin().getTime()));
             ps.setInt(5, p.getId_contrat());
           
 

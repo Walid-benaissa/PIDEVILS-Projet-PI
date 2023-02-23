@@ -5,7 +5,7 @@
  */
 package entities;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -21,6 +21,15 @@ private float taux ;
 
     public Promotion() {
     }
+
+    public Promotion(String id_vehicule, Date debut_promotion, Date fin_promotion, String libelle, float taux) {
+        this.id_vehicule = id_vehicule;
+        this.debut_promotion = debut_promotion;
+        this.fin_promotion = fin_promotion;
+        this.libelle = libelle;
+        this.taux = taux;
+    }
+    
 
     public Promotion(int id_promotion, String id_vehicule, Date debut_promotion, Date fin_promotion, String libelle, float taux) {
         this.id_promotion = id_promotion;

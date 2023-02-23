@@ -55,7 +55,7 @@ public class ReclamationService implements IService<Reclamation> {
     @Override
     public void ajouter(Reclamation p)   {
         try {
-            String req = "INSERT INTO  `reclamation`(`id`, `message`, `etat`,`idAdmin`,`idUser`) VALUES (?,?,?)";
+            String req = "INSERT INTO  `reclamation`(`id`, `message`, `etat`,`idAdmin`,`idUser`) VALUES (?,?,?,?,?)";
 
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setInt(1, p.getId());
@@ -67,7 +67,7 @@ public class ReclamationService implements IService<Reclamation> {
 
             System.out.println("Reclamation inséré");
         } catch (SQLException ex) {
-            System.out.println("Reclamation non inséré");
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -87,7 +87,7 @@ public class ReclamationService implements IService<Reclamation> {
     public void modifier(Reclamation p)   {
         try {
             
-            String req = "UPDATE `reclamation` SET `message` = ?, `etat` = ?, WHERE `reclamation`.`id` = ?";
+            String req = "UPDATE `reclamation` SET `message` = ?, `etat` = ? WHERE `id` = ?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, p.getMessage());
             ps.setString(2, p.getEtat());

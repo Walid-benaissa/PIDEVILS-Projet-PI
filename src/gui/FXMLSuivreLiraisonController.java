@@ -5,26 +5,16 @@
  */
 package gui;
 
-import entities.Vehicule;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
  *
- * @author azizi
+ * @author user
  */
-public class FXMLVehiculeController implements Initializable {
-
-    private TextArea prix;
-    @FXML
-    private TextArea tf_desc;
+public class FXMLSuivreLiraisonController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -33,16 +23,5 @@ public class FXMLVehiculeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
-    private void Selectionner(ActionEvent event) {
-    }
-
     
-    
-  
-     
-  
-        
-    }
-
+}

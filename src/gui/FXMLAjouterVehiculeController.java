@@ -36,6 +36,8 @@ public class FXMLAjouterVehiculeController implements Initializable {
     private TextField tf_description;
     @FXML
     private TextField tf_type;
+    @FXML
+    private TextField tf_photo;
     
 
     
@@ -58,11 +60,12 @@ public class FXMLAjouterVehiculeController implements Initializable {
         float prix = Float.parseFloat(tf_prix.getText());
         String ville = tf_ville.getText();
         String description = tf_description.getText();
+        String photo = tf_photo.getText();
         String type = tf_type.getText();
          
          
      
-   Vehicule a = new Vehicule(id_vehicule,ville,prix,description,type);
+   Vehicule a = new Vehicule( id_vehicule,  photo,  ville,  prix,  description,  type);
    sp.ajouter(a);
     }
     
