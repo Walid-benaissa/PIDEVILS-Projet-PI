@@ -84,7 +84,6 @@ public class UtilisateurService implements IService<Utilisateur> {
             while (RS.next()) {
                 count++;
             }
-            System.out.println(count);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
