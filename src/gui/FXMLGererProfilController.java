@@ -42,6 +42,7 @@ public class FXMLGererProfilController implements Initializable {
     UtilisateurService us = new UtilisateurService();
     @FXML
     private Pane paneMDP;
+    String motdepasse;
 
     /**
      * Initializes the controller class.
@@ -53,6 +54,7 @@ public class FXMLGererProfilController implements Initializable {
         tf_prenom.setText(u.getPrenom());
         tf_numtel.setText(u.getNum_tel());
         tf_mail.setText(u.getMail());
+        motdepasse = u.getMdp();
     }
 
     @FXML
@@ -62,7 +64,7 @@ public class FXMLGererProfilController implements Initializable {
             user.setId(2);
             us.modifierWithmdp(user);
         } else {
-            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_numtel.getText(), tf_mail.getText());
+            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(),motdepasse, tf_numtel.getText());
             user.setId(2);
             us.modifierSansmdp(user);
         }
