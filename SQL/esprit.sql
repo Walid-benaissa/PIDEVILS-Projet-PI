@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 25 fév. 2023 à 22:37
+-- Généré le : sam. 25 fév. 2023 à 23:23
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -142,17 +142,12 @@ INSERT INTO `livraison` (`id_livraison`, `adresse_expedition`, `adresse_destinat
 --
 
 CREATE TABLE `location` (
-  `ville` varchar(50) NOT NULL,
-  `prix_location` float NOT NULL,
-  `disponibilité` tinyint(1) NOT NULL
+  `id_contrat` int(255) NOT NULL,
+  `id` varchar(255) NOT NULL,
+  `id_vehicule` varchar(255) NOT NULL,
+  `date_debut` date DEFAULT NULL,
+  `date_fin` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `location`
---
-
-INSERT INTO `location` (`ville`, `prix_location`, `disponibilité`) VALUES
-('kef', 3.14, 1);
 
 -- --------------------------------------------------------
 
@@ -202,6 +197,28 @@ CREATE TABLE `personnes` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `promotion`
+--
+
+CREATE TABLE `promotion` (
+  `id_promotion` int(11) NOT NULL,
+  `id_vehicule` varchar(255) NOT NULL,
+  `debut_promotion` date DEFAULT NULL,
+  `fin_promotion` date DEFAULT NULL,
+  `libelle` varchar(255) NOT NULL,
+  `taux` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `promotion`
+--
+
+INSERT INTO `promotion` (`id_promotion`, `id_vehicule`, `debut_promotion`, `fin_promotion`, `libelle`, `taux`) VALUES
+(4, 'a', '2023-02-07', '2023-02-20', 'aa', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `reclamation`
 --
 
@@ -237,6 +254,33 @@ CREATE TABLE `utilisateur` (
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `role`, `evaluation`) VALUES
 (2, 'walid', 'ben aissa', 'walid@gmail.com', '12345', '12345', 'Conducteur', 0.0),
 (3, 'ben ghorbel', 'nour', 'nour@gmail.com', '123', '12345', 'Client', 0.0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `vehicule`
+--
+
+CREATE TABLE `vehicule` (
+  `id_vehicule` varchar(255) NOT NULL,
+  `id` int(11) DEFAULT NULL,
+  `id_promotion` int(255) DEFAULT NULL,
+  `photo` varchar(255) NOT NULL,
+  `ville` varchar(255) NOT NULL,
+  `prix` float NOT NULL,
+  `disponibilite` tinyint(1) DEFAULT NULL,
+  `description` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `vehicule`
+--
+
+INSERT INTO `vehicule` (`id_vehicule`, `id`, `id_promotion`, `photo`, `ville`, `prix`, `disponibilite`, `description`, `type`) VALUES
+('44', 1323566, 4, 'AA', 'AA', 44, 0, 'Charge complète incluse\n\nAutonomie moyenne : 320km\n\nProtection basic incluse\n\nAnnulation gratuite jusqu\'à 48 heures avant le départ', 'velo'),
+('55', NULL, 0, 'UU', 'TUNIS', 7, 0, 'YY', 'VOITURE'),
+('77', 1323566, 4, 'ttt', 'ttt', 66, 0, 'jjh', 'voiture');
 
 -- --------------------------------------------------------
 
@@ -305,6 +349,14 @@ ALTER TABLE `livraison`
   ADD KEY `fk_livraison_colis` (`id_colis`);
 
 --
+-- Index pour la table `location`
+--
+ALTER TABLE `location`
+  ADD PRIMARY KEY (`id_contrat`),
+  ADD KEY `fk_utilisateur_location` (`id`),
+  ADD KEY `fk_vehicule_location` (`id_vehicule`);
+
+--
 -- Index pour la table `offre_course`
 --
 ALTER TABLE `offre_course`
@@ -323,6 +375,12 @@ ALTER TABLE `personnes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `promotion`
+--
+ALTER TABLE `promotion`
+  ADD PRIMARY KEY (`id_promotion`);
+
+--
 -- Index pour la table `reclamation`
 --
 ALTER TABLE `reclamation`
@@ -336,6 +394,13 @@ ALTER TABLE `reclamation`
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `mail` (`mail`);
+
+--
+-- Index pour la table `vehicule`
+--
+ALTER TABLE `vehicule`
+  ADD PRIMARY KEY (`id_vehicule`),
+  ADD KEY `fk_promotion_vehicule` (`id_promotion`);
 
 --
 -- Index pour la table `voiture`
@@ -367,6 +432,12 @@ ALTER TABLE `livraison`
   MODIFY `id_livraison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT pour la table `location`
+--
+ALTER TABLE `location`
+  MODIFY `id_contrat` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT pour la table `offre_livraison`
 --
 ALTER TABLE `offre_livraison`
@@ -377,6 +448,12 @@ ALTER TABLE `offre_livraison`
 --
 ALTER TABLE `personnes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `promotion`
+--
+ALTER TABLE `promotion`
+  MODIFY `id_promotion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `reclamation`

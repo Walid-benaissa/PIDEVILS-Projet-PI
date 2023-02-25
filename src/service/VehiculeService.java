@@ -106,7 +106,7 @@ public static boolean estChaineValide(String chaine) {
     @Override
         public void supprimer(Vehicule p) {
         try {
-           String req = "DELETE FROM `vehicule` WHERE id_vehicule = " + p.getId_vehicule();
+           String req = "DELETE FROM `vehicule` WHERE `id_vehicule` = " + p.getId_vehicule();
             Statement st = conn.createStatement();
             st.executeUpdate(req);
             System.out.println("Vehicule supprimé");
