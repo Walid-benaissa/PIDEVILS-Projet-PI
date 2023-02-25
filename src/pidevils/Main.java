@@ -33,8 +33,7 @@ public class Main extends Application{
         try {
             this.stage = primaryStage;
 
-              //Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLEffectuerReclamation.fxml"));
-              Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLGererReclamation.fxml"));
+              Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLGererVoiture.fxml"));
 
             Scene sc = new Scene(root);
             stage.setScene(sc);
