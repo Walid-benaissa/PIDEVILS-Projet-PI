@@ -84,17 +84,32 @@ public class UtilisateurService implements IService<Utilisateur> {
             while (RS.next()) {
                 count++;
             }
-            System.out.println(count);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return count == 1;
     }
+public static boolean estChaineValide(String chaine) {
+    // Vérifier si la chaîne est vide ou nulle
+   
+    // Vérifier si la chaîne ne contient que des lettres
+    if (!chaine.matches("[a-zA-Z ]+") || chaine.trim().isEmpty()) {
+        return false;
+    }
+    
+    // La chaîne est valide si elle passe toutes les vérifications
+    return true;
+}
+  public boolean isStringLength(String str) {
+    return str.length() < 8;
+}
 
     @Override
     public void ajouter(Utilisateur p) {
         try {
             String req = "INSERT INTO  `utilisateur`(`id`, `nom`, `prenom`, `mail`,`mdp`, `num_tel`, `role`,`evaluation`) VALUES (?,?,?,?,?,?,?,?)";
+                     if (estChaineValide(p.getNom())&&estChaineValide(p.getPrenom())&&isStringLength(p.getNum_tel())) {
+
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setInt(1, p.getId());
             ps.setString(2, p.getNom());
@@ -105,6 +120,10 @@ public class UtilisateurService implements IService<Utilisateur> {
             ps.setString(7, p.getRole());
             ps.setFloat(8, p.getEvaluation());
             ps.executeUpdate();
+                     }else{
+                         System.out.println("erreur");
+                                 
+                     }
 
             System.out.println("Utilisateur inséré");
         } catch (SQLException ex) {

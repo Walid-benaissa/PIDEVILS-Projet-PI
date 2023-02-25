@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 22 fév. 2023 à 16:41
+-- Généré le : sam. 25 fév. 2023 à 22:37
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -67,6 +67,14 @@ CREATE TABLE `conducteur` (
   `b3` varchar(255) NOT NULL,
   `permis` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `conducteur`
+--
+
+INSERT INTO `conducteur` (`id`, `b3`, `permis`) VALUES
+(2, 'E:\\Téléchargement\\Diagrammes PIDEV-Copie de Diagramme de classes.drawio.png', 'E:\\Téléchargement\\Diagrammes PIDEV-Copie de Diagramme de classes.drawio.png'),
+(3, 'E:\\Téléchargement\\Diagrammes PIDEV-Copie de Diagramme de classes.drawio.png', 'E:\\Téléchargement\\Diagrammes PIDEV-Copie de Diagramme de classes.drawio.png');
 
 -- --------------------------------------------------------
 
@@ -227,7 +235,8 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `role`, `evaluation`) VALUES
-(1, 'abir', 'kh', 'abir@gmail.com', 'abir', '26578467', 'client', 0.0);
+(2, 'walid', 'ben aissa', 'walid@gmail.com', '12345', '12345', 'Conducteur', 0.0),
+(3, 'ben ghorbel', 'nour', 'nour@gmail.com', '123', '12345', 'Client', 0.0);
 
 -- --------------------------------------------------------
 
@@ -241,8 +250,16 @@ CREATE TABLE `voiture` (
   `modele` varchar(30) NOT NULL,
   `marque` varchar(30) NOT NULL,
   `etat` varchar(20) NOT NULL,
-  `photo` mediumblob NOT NULL
+  `photo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `voiture`
+--
+
+INSERT INTO `voiture` (`id`, `immatriculation`, `modele`, `marque`, `etat`, `photo`) VALUES
+(3, '123TUNIS1235', 'IBIZAaaa', '123TUNIS1235', '123TUNIS1235', 'C:\\Users\\USER\\Pictures\\20191121_103303.jpg'),
+(2, '226TUNIS124567', 'x6', 'bmw', 'neuf', 'HHHH');
 
 --
 -- Index pour les tables déchargées
@@ -365,13 +382,13 @@ ALTER TABLE `personnes`
 -- AUTO_INCREMENT pour la table `reclamation`
 --
 ALTER TABLE `reclamation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Contraintes pour les tables déchargées

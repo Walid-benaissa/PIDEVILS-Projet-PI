@@ -6,15 +6,22 @@
 package gui;
 
 import entities.Utilisateur;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import service.UtilisateurService;
 
 /**
@@ -35,23 +42,35 @@ public class FXMLAuthentificationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void authentification(ActionEvent event) {
-        UtilisateurService us= new UtilisateurService();
-            boolean res=us.authentification(tf_mail.getText(), tf_mdp.getText());
-            if(res){
+        UtilisateurService us = new UtilisateurService();
+        boolean res = us.authentification(tf_mail.getText(), tf_mdp.getText());
+        if (res) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Success");
             alert.setContentText("Authentification avec succés");
             alert.show();
-            }
-            else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Echec");
             alert.setContentText("Authentification échoué");
-            alert.show();}
+            alert.show();
         }
     }
-    
+
+    @FXML
+    private void inscrire(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLCreationCompte.fxml"));
+            Scene sc = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(sc);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
