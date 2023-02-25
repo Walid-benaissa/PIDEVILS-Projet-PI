@@ -6,47 +6,104 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="677.0" prefWidth="909.0" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui.FXMLGererReclamationController">
-   <children>
-      <Pane layoutX="21.0" layoutY="37.0" prefHeight="628.0" prefWidth="862.0" style="-fx-background-radius: 20px; -fx-background-color: #212529;">
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLGererReclamationController">
+   <center>
+      <AnchorPane id="AnchorPane" prefHeight="677.0" prefWidth="909.0" style="-fx-background-color: black;">
          <children>
-            <Label layoutX="269.0" layoutY="26.0" prefHeight="54.0" prefWidth="322.0" text="Gerer Reclamation" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="36.0" />
-               </font>
-            </Label>
-            <TableView fx:id="reclamationTable" layoutX="12.0" layoutY="264.0" onMouseClicked="#handleMouseAction" prefHeight="344.0" prefWidth="836.0">
-              <columns>
-                <TableColumn fx:id="id_reclamationCol" prefWidth="109.5999984741211" text="Id_Reclamation" />
-                <TableColumn fx:id="etatCol" prefWidth="88.79998779296875" text="Etat" />
-                  <TableColumn fx:id="messageCol" prefWidth="311.2000427246094" text="Message" />
-                  <TableColumn fx:id="IdUsrCol" prefWidth="138.4000244140625" text="Type" />
-                  <TableColumn fx:id="IdUsrCol1" prefWidth="185.5999755859375" text="Id Utilisateur" />
-              </columns>
-            </TableView>
-            <TextField fx:id="idRec" layoutX="310.0" layoutY="210.0" minHeight="25.0" prefHeight="25.0" prefWidth="82.0" />
-            <Button fx:id="btnSupprimer" layoutX="503.0" layoutY="210.0" minHeight="25.0" minWidth="82.0" mnemonicParsing="false" onAction="#supprimerReclamation" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #FD9800;" text="Supprimer">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnModifier" layoutX="407.0" layoutY="210.0" minHeight="25.0" minWidth="82.0" mnemonicParsing="false" onAction="#modifierReclamation" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #FD9800;" text="Modifier">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Label layoutX="207.0" layoutY="158.0" text="Etat de reclamation" textFill="WHITE">
-               <font>
-                  <Font name="Microsoft Sans Serif" size="24.0" />
-               </font>
-            </Label>
-            <ChoiceBox fx:id="choix_type" layoutX="432.0" layoutY="159.0" prefHeight="26.0" prefWidth="224.0" />
+            <Pane layoutX="21.0" layoutY="37.0" prefHeight="628.0" prefWidth="862.0" style="-fx-background-radius: 20px; -fx-background-color: #212529;">
+               <children>
+                  <Label layoutX="269.0" layoutY="26.0" prefHeight="54.0" prefWidth="322.0" text="Gerer Reclamation" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="reclamationTable" layoutX="12.0" layoutY="264.0" onMouseClicked="#handleMouseAction" prefHeight="344.0" prefWidth="836.0">
+                    <columns>
+                      <TableColumn fx:id="id_reclamationCol" prefWidth="109.5999984741211" text="Id_Reclamation" />
+                      <TableColumn fx:id="etatCol" prefWidth="88.79998779296875" text="Etat" />
+                        <TableColumn fx:id="messageCol" prefWidth="311.2000427246094" text="Message" />
+                        <TableColumn fx:id="IdUsrCol" prefWidth="138.4000244140625" text="Type" />
+                        <TableColumn fx:id="IdUsrCol1" prefWidth="185.5999755859375" text="Id Utilisateur" />
+                    </columns>
+                  </TableView>
+                  <TextField fx:id="idRec" layoutX="310.0" layoutY="210.0" minHeight="25.0" prefHeight="25.0" prefWidth="82.0" />
+                  <Button fx:id="btnSupprimer" layoutX="503.0" layoutY="210.0" minHeight="25.0" minWidth="82.0" mnemonicParsing="false" onAction="#supprimerReclamation" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #FD9800;" text="Supprimer">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnModifier" layoutX="407.0" layoutY="210.0" minHeight="25.0" minWidth="82.0" mnemonicParsing="false" onAction="#modifierReclamation" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #FD9800;" text="Modifier">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="207.0" layoutY="158.0" text="Etat de reclamation" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="24.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="choix_type" layoutX="432.0" layoutY="159.0" prefHeight="26.0" prefWidth="224.0" />
+               </children>
+            </Pane>
          </children>
-      </Pane>
-   </children>
-</AnchorPane>
+      </AnchorPane>
+   </center>
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutY="152.0" prefHeight="527.0" prefWidth="43.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="48.0" fitWidth="42.0" onMouseClicked="#routeGererUser" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/group.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="42.0" onMouseClicked="#routeGererReclamation" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/email.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="42.0" onMouseClicked="#routeGererLivraisions" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/package.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox layoutX="43.0" layoutY="152.0" prefHeight="526.0" prefWidth="158.0" style="-fx-background-color: white;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#routeGererUser" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Gérer Utilisateur">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#routeGererReclamation" prefHeight="45.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Gérer Réclamation">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#routeGererLivraisions" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Consulter Livraisons">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <ImageView fitHeight="151.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Artboard%201%20copy%203-100.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

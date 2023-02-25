@@ -6,6 +6,8 @@
 package pidevils;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -32,14 +34,14 @@ public class Main extends Application{
     public void start(Stage primaryStage)  {
         try {
             this.stage = primaryStage;
-
-              Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLGererVoiture.fxml"));
-
+            
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLGererReclamation.fxml"));
+            
             Scene sc = new Scene(root);
             stage.setScene(sc);
             stage.show();
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
