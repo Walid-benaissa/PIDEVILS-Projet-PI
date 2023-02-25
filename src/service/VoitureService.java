@@ -57,6 +57,24 @@ public class VoitureService implements IService<Voiture> {
         return list;
     }
 
+    public Voiture afficheVoiture(int id) {
+        Voiture p = new Voiture();
+        try {
+            String req = "Select * from  `voiture` where id=" + id;
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            RS.next();
+            p.setImmatriculation(RS.getString("immatriculation"));
+            p.setModele(RS.getString("modele"));
+            p.setMarque(RS.getString("marque"));
+            p.setEtat(RS.getString("etat"));
+            p.setPhoto(RS.getString("photo"));
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return p;
+    }
+
     @Override
     public void ajouter(Voiture p) {
         try {
