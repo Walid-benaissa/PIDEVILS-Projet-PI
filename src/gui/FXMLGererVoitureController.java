@@ -6,15 +6,23 @@
 package gui;
 
 import entities.Voiture;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import service.VoitureService;
 
 /**
@@ -35,30 +43,54 @@ public class FXMLGererVoitureController implements Initializable {
     @FXML
     private Label affichage;
     VoitureService vs = new VoitureService();
+    Voiture v = vs.afficheVoiture(3);
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Voiture v = vs.afficheVoiture(2);
-        affichage.setText("Immatriculation :  " + v.getImmatriculation() + "\n"
-                + "Modele :  " + v.getModele() + "\n" + "Marque :  " + v.getMarque() + "\n"
-                + "Etat :  " + v.getEtat() + "\n");
-
+        if (v != null) {
+            affichage.setText("Immatriculation :  " + v.getImmatriculation() + "\n"
+                    + "Modele :  " + v.getModele() + "\n" + "Marque :  " + v.getMarque() + "\n"
+                    + "Etat :  " + v.getEtat() + "\n");
+        } else {
+            affichage.setText("Aucune voiture");
+        }
 
     }
 
     @FXML
     private void Ajouter(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLAjouterVoiture.fxml"));
+            Scene sc = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(sc);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
     private void Supprimer(ActionEvent event) {
+        vs.supprimer(v);
+        affichage.setText("Aucune voiture");
+
     }
 
     @FXML
     private void Metrreajour(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLModifierVoiture.fxml"));
+            Scene sc = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(sc);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

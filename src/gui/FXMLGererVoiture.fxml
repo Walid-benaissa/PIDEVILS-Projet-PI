@@ -20,7 +20,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="btnMettreajour" layoutX="549.0" layoutY="120.0" mnemonicParsing="false" onAction="#Metrreajour" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #FD9800;" text="Mettre à jour">
+      <Button fx:id="btnMettreajour" layoutX="549.0" layoutY="120.0" mnemonicParsing="false" onAction="#Metrreajour" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #FD9800;" text="Modifier">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
