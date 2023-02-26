@@ -35,7 +35,7 @@ public class Main extends Application{
         try {
             this.stage = primaryStage;
             
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLAfficherVoitureAdmin.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLGererVoiture.fxml"));
             
             Scene sc = new Scene(root);
             stage.setScene(sc);

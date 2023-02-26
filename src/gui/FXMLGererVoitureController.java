@@ -80,6 +80,9 @@ public class FXMLGererVoitureController implements Initializable {
     private void Supprimer(ActionEvent event) {
         vs.supprimer(v);
         affichage.setText("Aucune voiture");
+        btnAjouter.setDisable(false);
+        btnSupprimer.setDisable(true);
+        btnMettreajour.setDisable(true);
 
     }
 
