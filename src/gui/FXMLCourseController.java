@@ -8,6 +8,7 @@ package gui;
 import entities.Course;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -29,6 +30,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import static utils.CommonController.setSceneContent;
 import utils.MyDB;
 
 
@@ -250,4 +252,12 @@ public class FXMLCourseController implements Initializable {
         txtPrix.setText(""+c.getPrix());
         StatutChoice.setValue(c.getStatut_course());   
     }
+
+
+    
+
+   
+   
+
+    
 }

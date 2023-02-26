@@ -51,8 +51,8 @@ public class FXMLModifierVoitureController implements Initializable {
         Voiture v = vs.afficheVoiture(3);
         tf_immatriculation.setText(v.getImmatriculation());
         tf_modele.setText(v.getModele());
-        tf_marque.setText(v.getImmatriculation());
-        tf_etat.setText(v.getMarque());
+        tf_marque.setText(v.getMarque());
+        tf_etat.setText(v.getEtat());
         photo.setText(v.getPhoto());
 
     }

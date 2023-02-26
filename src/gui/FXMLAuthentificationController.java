@@ -23,13 +23,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import service.UtilisateurService;
+import utils.CommonController;
+import utils.Context;
 
 /**
  * FXML Controller class
  *
  * @author walid
  */
-public class FXMLAuthentificationController implements Initializable {
+public class FXMLAuthentificationController extends CommonController implements Initializable {
 
     @FXML
     private TextField tf_mail;
@@ -47,12 +49,30 @@ public class FXMLAuthentificationController implements Initializable {
     @FXML
     private void authentification(ActionEvent event) {
         UtilisateurService us = new UtilisateurService();
-        boolean res = us.authentification(tf_mail.getText(), tf_mdp.getText());
-        if (res) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Success");
-            alert.setContentText("Authentification avec succés");
-            alert.show();
+        Utilisateur user = us.authentification(tf_mail.getText(), tf_mdp.getText());
+        if (user.getId() != 0) {
+            try {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Success");
+                alert.setContentText("Authentification avec succés");
+                alert.show();
+                Context.getInstance().addContextObject("UtilisateurCourant", user);
+                Context.getInstance().addContextObject("Role", user.getRole());
+                switch(user.getRole()){
+                    case "Admin":
+                    setSceneContent("FXMLGererUtilisateurs");
+                    break;
+                    case "Client":
+                    setSceneContent("FXMLGererProfil");
+                    break;
+                    case "Conducteur":
+                    setSceneContent("FXMLGererProfil");
+                    break;
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Echec");
@@ -64,13 +84,9 @@ public class FXMLAuthentificationController implements Initializable {
     @FXML
     private void inscrire(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLCreationCompte.fxml"));
-            Scene sc = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(sc);
-            stage.show();
+            setSceneContent("FXMLCreationCompte");
         } catch (IOException ex) {
-            Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

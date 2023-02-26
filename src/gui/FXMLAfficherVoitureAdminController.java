@@ -6,112 +6,77 @@
 package gui;
 
 import entities.Utilisateur;
+import entities.Voiture;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
+import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import service.UtilisateurService;
-import utils.CommonController;
+import service.VoitureService;
+import static utils.CommonController.setSceneContent;
 
 /**
  * FXML Controller class
  *
  * @author USER
  */
-public class FXMLGererUtilisateursController extends CommonController implements Initializable {
+public class FXMLAfficherVoitureAdminController implements Initializable {
 
     @FXML
-    private TableView<Utilisateur> TableUsers;
+    private TableView TableVoitures;
     @FXML
-    private TableColumn<?, ?> idCol;
+    private TableColumn<?, ?> immatriculationCol;
     @FXML
     private TableColumn<?, ?> nomCol;
     @FXML
     private TableColumn<?, ?> prenomCol;
     @FXML
-    private TableColumn<?, ?> mailCol;
+    private TableColumn<?, ?> etatCol;
     @FXML
-    private TableColumn<?, ?> numtelCol;
+    private TableColumn<?, ?> modeleCol;
     @FXML
-    private TableColumn<?, ?> roleCol;
-    @FXML
-    private TableColumn<?, ?> evaluationCol;
-    @FXML
-    private TextField txtID;
-    @FXML
-    private Button btnSupprimer;
+    private TableColumn<?, ?> marqueCol;
+    VoitureService vs = new VoitureService();
     UtilisateurService us = new UtilisateurService();
-    private String[] roles = {"Client", "Conducteur", "Locateur"};
     @FXML
-    private ChoiceBox choix_type;
-    @FXML
-    private Button btnModifier;
+    private TableView TableUsers;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        afficherUsers();
-        choix_type.getItems().addAll(roles);
-
-    }
-
-    public void afficherUsers() {
-        List<Utilisateur> list = us.afficheListe();
-        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        List<Voiture> v = vs.afficheListe();
+         List<Utilisateur> u = us.afficheListe();
+         nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        immatriculationCol.setCellValueFactory(new PropertyValueFactory<>("immatriculation"));
         nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        mailCol.setCellValueFactory(new PropertyValueFactory<>("mail"));
-        numtelCol.setCellValueFactory(new PropertyValueFactory<>("num_tel"));
-        roleCol.setCellValueFactory(new PropertyValueFactory<>("role"));
-        evaluationCol.setCellValueFactory(new PropertyValueFactory<>("evaluation"));
-        ObservableList<Utilisateur> L = FXCollections.observableArrayList(list);
-        TableUsers.setItems(L);
-
-    }
-
-    @FXML
-    private void handleMouseAction(MouseEvent event) {
-        Utilisateur u = TableUsers.getSelectionModel().getSelectedItem();
-        txtID.setText("Id: " + u.getId());
-        choix_type.setValue(u.getRole());
-    }
-
-    @FXML
-    private void Supprimer(ActionEvent event) {
-        Utilisateur u = new Utilisateur(TableUsers.getSelectionModel().getSelectedItem().getId());
-        us.supprimer(u);
-        afficherUsers();
-    }
-
-    @FXML
-    private void modifierReclamation(ActionEvent event) {
-        Utilisateur u = TableUsers.getSelectionModel().getSelectedItem();
-        u.setRole(choix_type.getValue().toString());
-        us.modifier(u);
-        afficherUsers();
-
+        etatCol.setCellValueFactory(new PropertyValueFactory<>("etat"));
+        modeleCol.setCellValueFactory(new PropertyValueFactory<>("modele"));
+        marqueCol.setCellValueFactory(new PropertyValueFactory<>("marque"));
+        ObservableList<Utilisateur> Lu = FXCollections.observableArrayList(u);
+        TableUsers.setItems(Lu);
+       ObservableList<Voiture> L = FXCollections.observableArrayList(v);
+        TableVoitures.setItems(L);
     }
 
     @FXML
