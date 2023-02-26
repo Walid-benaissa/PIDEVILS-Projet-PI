@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="711.0" prefWidth="475.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLAjoutLivraisonController">
+   <children>
+      <Pane layoutX="27.0" layoutY="10.0" prefHeight="686.0" prefWidth="416.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
+         <children>
+            <Label layoutX="95.0" layoutY="10.0" prefHeight="54.0" prefWidth="248.0" text="Ajouter Livraison" textFill="#fd9800">
 
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLAjoutLivraisonController">
    <center>
@@ -22,6 +32,7 @@
                </children>
             </Pane>
             <Label layoutX="148.0" layoutY="101.0" text="Adresse d'expédition:" textFill="WHITE">
+
                <font>
                   <Font name="Microsoft Sans Serif" size="24.0" />
                </font>
@@ -63,9 +74,47 @@
             <TextField fx:id="tf_description" layoutX="147.0" layoutY="467.0" prefHeight="65.0" prefWidth="279.0" />
             <TextField fx:id="tf_poids" layoutX="147.0" layoutY="588.0" prefHeight="35.0" prefWidth="279.0" />
          </children>
-      </AnchorPane>
-   </center>
-   <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </left>
-</BorderPane>
+      </Pane>
+      <Label layoutX="118.0" layoutY="88.0" prefHeight="17.0" prefWidth="240.0" text="Adresse d'expédition:" textFill="WHITE">
+         <font>
+            <Font name="Microsoft Sans Serif" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tf_AdresseExp" layoutX="117.0" layoutY="123.0" prefHeight="27.0" prefWidth="279.0" />
+      <Label layoutX="118.0" layoutY="169.0" prefHeight="18.0" prefWidth="233.0" text="Adresse destinataire:" textFill="WHITE">
+         <font>
+            <Font name="Microsoft Sans Serif" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="122.0" layoutY="247.0" prefHeight="18.0" prefWidth="53.0" text="Prix:" textFill="WHITE">
+         <font>
+            <Font name="Microsoft Sans Serif" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="118.0" layoutY="326.0" prefHeight="20.0" prefWidth="182.0" text="Nombre d'objets:" textFill="WHITE">
+         <font>
+            <Font name="Microsoft Sans Serif" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="191.0" layoutY="628.0" mnemonicParsing="false" onAction="#ajoutL" prefHeight="45.0" prefWidth="116.0" style="-fx-background-color: FD9800;" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Regular" size="24.0" />
+         </font>
+      </Button>
+      <Label layoutX="118.0" layoutY="406.0" text="Description:" textFill="WHITE">
+         <font>
+            <Font name="Microsoft Sans Serif" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="114.0" layoutY="529.0" text="Poids:" textFill="WHITE">
+         <font>
+            <Font name="Microsoft Sans Serif" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tf_adresseDest" layoutX="117.0" layoutY="204.0" prefHeight="27.0" prefWidth="279.0" />
+      <TextField fx:id="tf_prix" layoutX="117.0" layoutY="279.0" prefHeight="27.0" prefWidth="279.0" />
+      <TextField fx:id="tf_nbrObjets" layoutX="117.0" layoutY="368.0" prefHeight="27.0" prefWidth="279.0" />
+      <TextField fx:id="tf_description" layoutX="117.0" layoutY="455.0" prefHeight="54.0" prefWidth="279.0" />
+      <TextField fx:id="tf_poids" layoutX="117.0" layoutY="573.0" prefHeight="27.0" prefWidth="279.0" />
+   </children>
+</AnchorPane>

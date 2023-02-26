@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLGererProfilController">
    <center>
       <AnchorPane id="AnchorPane" prefHeight="585.0" prefWidth="847.0" style="-fx-background-color: black;">
