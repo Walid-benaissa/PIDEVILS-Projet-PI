@@ -6,45 +6,35 @@
 package pidevils;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import utils.CommonController;
 
 /**
  *
  * @author walid
  */
-public class Main extends Application {
-
-    Parent parent;
-    Stage stage;
+public class Main extends Application{
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        launch(args);
-    }
+    public static void main(String[] args) {  
+     Application.launch(args);  
+   } 
 
     @Override
-    public void start(Stage primaryStage) {
-        try {
-            this.stage = primaryStage;
-
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLSuivreLiraison.fxml"));
-            //Livraison
-            //SuivreLiraison
-            //AjoutLivraison
-
-            Scene sc = new Scene(root);
-            stage.setScene(sc);
-            stage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
+    public void start(Stage stage)  {
+        try {  
+            CommonController.setSceneContentStartup(stage);  
+     } catch (IOException ex) {  
+            System.out.println(ex.getMessage());  
+     }      }
+    
 }

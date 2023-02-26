@@ -6,8 +6,11 @@
 package gui;
 
 import entities.Utilisateur;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,13 +18,16 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import service.UtilisateurService;
+import utils.CommonController;
+import static utils.CommonController.setSceneContent;
+import utils.Context;
 
 /**
  * FXML Controller class
  *
  * @author USER
  */
-public class FXMLGererProfilController implements Initializable {
+public class FXMLGererProfilController extends CommonController implements Initializable {
 
     @FXML
     private TextField tf_nom;
@@ -42,27 +48,31 @@ public class FXMLGererProfilController implements Initializable {
     UtilisateurService us = new UtilisateurService();
     @FXML
     private Pane paneMDP;
+    String motdepasse;
+    Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Utilisateur u = us.afficheUser(2);
         tf_nom.setText(u.getNom());
         tf_prenom.setText(u.getPrenom());
         tf_numtel.setText(u.getNum_tel());
         tf_mail.setText(u.getMail());
+        motdepasse = u.getMdp();
     }
 
     @FXML
     private void ModifierInfo(ActionEvent event) {
-        if  (changermdp.isSelected() & tf_mdp.getText().equals(tf_mdpC.getText()) & us.authentification(tf_mail.getText(), tf_mdpAc.getText())) {
-        Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_numtel.getText(), tf_mail.getText(),tf_mdp.getText());
-        us.modifierWithmdp(user); }
-        else{
-        Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_numtel.getText(), tf_mail.getText());
-        us.modifierSansmdp(user);
+        if (changermdp.isSelected() & tf_mdp.getText().equals(tf_mdpC.getText())) {
+            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), tf_mdp.getText(), tf_numtel.getText());
+            user.setId(u.getId());
+            us.modifierWithmdp(user);
+        } else {
+            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), motdepasse, tf_numtel.getText());
+            user.setId(u.getId());
+            us.modifierSansmdp(user);
         }
     }
 
@@ -75,5 +85,51 @@ public class FXMLGererProfilController implements Initializable {
         }
 
     }
+
+    @FXML
+    private void routeGererProfil(ActionEvent event) {
+        try {  
+            setSceneContent("FXMLGererProfil");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererReclamation(ActionEvent event) {
+        try {  
+            setSceneContent("FXMLEffectuerReclamation");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererLivraisions(ActionEvent event) {
+         try {  
+            setSceneContent("FXMLAjoutLivraison");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererCourse(ActionEvent event) {
+          try {  
+            setSceneContent("FXMLCourse");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererLocation(ActionEvent event) {
+      try {  
+            setSceneContent("FXMLlouerVehicule");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+            }
 
 }

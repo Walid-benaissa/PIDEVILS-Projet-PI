@@ -21,6 +21,15 @@ public class Voiture {
     public Voiture() {
     }
 
+    public Voiture(String immatriculation, String modele, String marque, String etat, String photo) {
+        this.immatriculation = immatriculation;
+        this.modele = modele;
+        this.marque = marque;
+        this.etat = etat;
+        this.photo = photo;
+    }
+
+    
     public Voiture(String immatriculation, String modele, String marque, String etat, String photo,int id) {
         this.immatriculation = immatriculation;
         this.modele = modele;
@@ -81,6 +90,10 @@ public class Voiture {
     @Override
     public String toString() {
         return "Vehicule{" + "immatriculation=" + immatriculation + ", id=" + id + ", modele=" + modele + ", marque=" + marque + ", etat=" + etat + ", photo=" + photo + '}';
+    }
+
+    public void ajouter(Voiture v) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

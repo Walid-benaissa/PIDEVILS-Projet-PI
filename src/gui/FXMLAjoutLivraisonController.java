@@ -7,6 +7,7 @@ package gui;
 
 import entities.Colis;
 import entities.Livraison;
+import java.io.IOException;
 import java.net.URL;
 import javafx.scene.control.TextField;
 import service.LivraisonService;
@@ -20,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import service.ColisService;
+import static utils.CommonController.setSceneContent;
 
 /**
  * FXML Controller class
@@ -81,6 +83,51 @@ public class FXMLAjoutLivraisonController implements Initializable {
             tf_poids.setText("");
             tf_prix.setText("");
 
+        }
+    }
+
+    @FXML
+    private void routeGererProfil(ActionEvent event) {
+         try {  
+            setSceneContent("FXMLGererProfil");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererReclamation(ActionEvent event) {
+         try {  
+            setSceneContent("FXMLEffectuerReclamation");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererLivraisions(ActionEvent event) {
+          try {  
+            setSceneContent("FXMLAjoutLivraison");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererCourse(ActionEvent event) {
+         try {  
+            setSceneContent("FXMLCourse");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererLocation(ActionEvent event) {
+         try {  
+            setSceneContent("FXMLlouerVehicule");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

@@ -61,8 +61,6 @@ private String b3 ;
     private TextField tf_permis;
     @FXML
     private TextField tf_b3;
-    @FXML
-    private ScrollPane scrollPane;
 
     /**
      * Initializes the controller class.
@@ -74,6 +72,16 @@ private String b3 ;
 
     @FXML
     private void creer(ActionEvent event) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+if (!tf_mail.getText().matches(emailRegex)) {
+    Alert alert = new Alert(Alert.AlertType.WARNING);
+    alert.setTitle("Format email incorrect");
+    alert.setHeaderText(null);
+    alert.setContentText("Veuillez saisir un email valide !");
+    alert.showAndWait();
+    return;
+}
+
         UtilisateurService us = new UtilisateurService();
         String role = "";
         if (locateurBtn.isSelected()) {
@@ -90,7 +98,7 @@ private String b3 ;
                 cs.ajouter(user);
             }
             else{
-            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_numtel.getText(), tf_mail.getText(), tf_mdp.getText(), role, 0.0F);
+            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), tf_mdp.getText(), tf_numtel.getText(), role, 0.0F);
             us.ajouter(user);}
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
