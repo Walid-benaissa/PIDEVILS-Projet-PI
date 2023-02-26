@@ -30,13 +30,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import service.ReclamationService;
+import utils.CommonController;
 
 /**
  * FXML Controller class
  *
  * @author walid
  */
-public class FXMLGererReclamationController implements Initializable {
+public class FXMLGererReclamationController extends CommonController implements Initializable {
 
     @FXML
     private TableView<Reclamation> reclamationTable;
@@ -103,43 +104,33 @@ public class FXMLGererReclamationController implements Initializable {
         choix_type.setValue(c.getEtat());
     }
 
-    @FXML
     private void routeGererUser(MouseEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLGererUtilisateurs.fxml"));
-            Scene sc = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(sc);
-            stage.show();
+        try {  
+            setSceneContent("FXMLGererUtilisateurs");
         } catch (IOException ex) {
-            Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    @FXML
-    private void routeGererLivraisions(MouseEvent event) {
-    }
 
     @FXML
     private void routeGererUser(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLGererUtilisateurs.fxml"));
-            Scene sc = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(sc);
-            stage.show();
+        try {  
+            setSceneContent("FXMLGererUtilisateurs");
         } catch (IOException ex) {
-            Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
     private void routeGererLivraisions(ActionEvent event) {
+        try {  
+            setSceneContent("#");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    @FXML
-    private void routeGererReclamation(MouseEvent event) {
-    }
 
     @FXML
     private void routeGererReclamation(ActionEvent event) {

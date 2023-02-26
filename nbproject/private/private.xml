@@ -5,8 +5,11 @@
         <group>
             <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/service/VehiculeService.java</file>
             <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/pidevils/Main.java</file>
+            <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/utils/Context.java</file>
             <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/entities/Utilisateur.java</file>
+            <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/gui/FXMLGererReclamation.fxml</file>
             <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/gui/FXMLGererUtilisateursController.java</file>
+            <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/utils/CommonController.java</file>
             <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/gui/FXMLGererReclamationController.java</file>
         </group>
     </open-files>

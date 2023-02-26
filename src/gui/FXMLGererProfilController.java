@@ -15,13 +15,15 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import service.UtilisateurService;
+import utils.CommonController;
+import utils.Context;
 
 /**
  * FXML Controller class
  *
  * @author USER
  */
-public class FXMLGererProfilController implements Initializable {
+public class FXMLGererProfilController extends CommonController implements Initializable {
 
     @FXML
     private TextField tf_nom;
@@ -49,7 +51,7 @@ public class FXMLGererProfilController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Utilisateur u = us.afficheUser(2);
+        Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("loggedInUser");
         tf_nom.setText(u.getNom());
         tf_prenom.setText(u.getPrenom());
         tf_numtel.setText(u.getNum_tel());
@@ -59,7 +61,7 @@ public class FXMLGererProfilController implements Initializable {
 
     @FXML
     private void ModifierInfo(ActionEvent event) {
-        if (changermdp.isSelected() & tf_mdp.getText().equals(tf_mdpC.getText()) & us.authentification(tf_mail.getText(), tf_mdpAc.getText())) {
+        if (changermdp.isSelected() & tf_mdp.getText().equals(tf_mdpC.getText())) {
             Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_numtel.getText(), tf_mail.getText(), tf_mdp.getText());
             user.setId(2);
             us.modifierWithmdp(user);

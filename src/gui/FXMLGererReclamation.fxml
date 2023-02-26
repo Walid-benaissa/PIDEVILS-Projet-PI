@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLGererReclamationController">
    <center>
       <AnchorPane id="AnchorPane" prefHeight="677.0" prefWidth="909.0" style="-fx-background-color: black;">
@@ -62,17 +61,17 @@
          <children>
             <VBox layoutY="152.0" prefHeight="527.0" prefWidth="43.0" style="-fx-background-color: white;">
                <children>
-                  <ImageView fitHeight="48.0" fitWidth="42.0" onMouseClicked="#routeGererUser" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="48.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/group.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="48.0" fitWidth="42.0" onMouseClicked="#routeGererReclamation" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="48.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/email.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="48.0" fitWidth="42.0" onMouseClicked="#routeGererLivraisions" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="48.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/package.png" />
                      </image>
