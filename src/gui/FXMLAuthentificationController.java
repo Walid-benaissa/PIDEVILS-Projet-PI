@@ -57,7 +57,18 @@ public class FXMLAuthentificationController extends CommonController implements 
                 alert.setContentText("Authentification avec succés");
                 alert.show();
                 Context.getInstance().addContextObject("UtilisateurCourant", user);
-                setSceneContent("FXMLGererProfil");
+                Context.getInstance().addContextObject("Role", user.getRole());
+                switch(user.getRole()){
+                    case "Admin":
+                    setSceneContent("FXMLGererUtilisateurs");
+                    break;
+                    case "Client":
+                    setSceneContent("FXMLGererProfil");
+                    break;
+                    case "Conducteur":
+                    setSceneContent("FXMLGererProfil");
+                    break;
+                }
             } catch (IOException ex) {
                 Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
             }
