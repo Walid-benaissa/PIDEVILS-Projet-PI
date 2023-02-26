@@ -4,15 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/pi/PIDEVILS-Projet-PI/src/service/VehiculeService.java</file>
-            <file>file:/C:/pi/PIDEVILS-Projet-PI/src/utils/MyDB.java</file>
-            <file>file:/C:/pi/PIDEVILS-Projet-PI/src/entities/Location.java</file>
             <file>file:/C:/pi/PIDEVILS-Projet-PI/src/pidevils/Main.java</file>
-            <file>file:/C:/pi/PIDEVILS-Projet-PI/src/pidevils/PIDEVILS.java</file>
-            <file>file:/C:/pi/PIDEVILS-Projet-PI/src/service/UtilisateurService.java</file>
-            <file>file:/C:/pi/PIDEVILS-Projet-PI/src/entities/Vehicule.java</file>
-            <file>file:/C:/pi/PIDEVILS-Projet-PI/src/gui/FXMLlouerVehicule.fxml</file>
+            <file>file:/C:/pi/PIDEVILS-Projet-PI/src/gui/FXMLModifierVehiculeController.java</file>
+            <file>file:/C:/pi/PIDEVILS-Projet-PI/src/gui/FXMLAjouterVehiculeController.java</file>
+            <file>file:/C:/pi/PIDEVILS-Projet-PI/src/service/PromotionService.java</file>
+            <file>file:/C:/pi/PIDEVILS-Projet-PI/src/gui/FXMLGererVehiculeController.java</file>
             <file>file:/C:/pi/PIDEVILS-Projet-PI/src/gui/FXMLlouerVehiculeController.java</file>
-            <file>file:/C:/pi/PIDEVILS-Projet-PI/src/service/VoitureService.java</file>
+            <file>file:/C:/pi/PIDEVILS-Projet-PI/src/gui/FXMLGererVehicule.fxml</file>
         </group>
     </open-files>
 </project-private>

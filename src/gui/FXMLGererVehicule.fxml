@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="711.0" prefWidth="1125.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLGererVehiculeController">
+   <children>
+      <Button fx:id="btnAjouter" layoutX="181.0" layoutY="153.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #FD9800;" text="Ajouter">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnSupprimer" layoutX="385.0" layoutY="153.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #FD9800;" text="Supprimer">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnMettreajour" layoutX="608.0" layoutY="153.0" mnemonicParsing="false" onAction="#Metrreajour" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #FD9800;" text="Mettre à jour">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <TableView fx:id="TableVehicule" layoutX="28.0" layoutY="296.0" onMouseClicked="#handleMouseAction" prefHeight="350.0" prefWidth="1055.0">
+         <columns>
+            <TableColumn fx:id="colonneidvehicule" prefWidth="96.80001544952393" text="id_vehicule" />
+            <TableColumn fx:id="colonneid" prefWidth="110.39996337890625" text="id" />
+            <TableColumn fx:id="colonnephoto" prefWidth="86.4000244140625" text="photo" />
+            <TableColumn fx:id="colonneville" prefWidth="99.20001220703125" text="ville" />
+            <TableColumn fx:id="PrixColone" minWidth="0.0" prefWidth="100.79998779296875" text="prix" />
+            <TableColumn fx:id="colonneidPROMOTION" minWidth="0.0" prefWidth="136.800048828125" text="id_promotion" />
+            <TableColumn fx:id="colonnedescription" prefWidth="161.5999755859375" text="description" />
+            <TableColumn fx:id="colonnetype" prefWidth="95.9998779296875" text="type" />
+            <TableColumn fx:id="colonnenom_v" prefWidth="161.5999755859375" text="nom_v" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

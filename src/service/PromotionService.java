@@ -37,9 +37,7 @@ public class PromotionService implements IService<Promotion>{
             while (RS.next()) {
                 Promotion p = new Promotion();
                 p.setId_promotion(RS.getInt("id_promotion"));
-                p.setId_vehicule(RS.getString("id_vehicule"));
-                p.setDebut_promotion(RS.getDate("debut_promotion"));
-                p.setFin_promotion(RS.getDate("fin_promotion"));
+                p.setId_vehicule(RS.getInt("id_vehicule"));
                 p.setLibelle(RS.getString("libelle"));
                 p.setTaux(RS.getFloat("taux"));
                 list.add(p);
@@ -54,14 +52,12 @@ public class PromotionService implements IService<Promotion>{
     @Override
     public void ajouter(Promotion p) {
         try {
-            String req = "INSERT INTO  `promotion`( `id_vehicule`, `debut_promotion`, `fin_promotion`,`libelle`,`taux`) VALUES (?,?,?,?,?)";
+            String req = "INSERT INTO  `promotion`( `id_vehicule`,`libelle`,`taux`) VALUES (?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
         
-            ps.setString(1, p.getId_vehicule());
-            ps.setDate(2, (Date) p.getDebut_promotion());
-            ps.setDate(3, (Date) p.getFin_promotion());
-            ps.setString(4, p.getLibelle());
-            ps.setFloat(5,p.getTaux());
+            ps.setInt(1, p.getId_vehicule());
+            ps.setString(2, p.getLibelle());
+            ps.setFloat(3,p.getTaux());
     
             ps.executeUpdate();
             
@@ -87,15 +83,13 @@ public class PromotionService implements IService<Promotion>{
     public void modifier(Promotion p) {
         try {
 
-            String req = "UPDATE `promotion` SET id_vehicule=?, `debut_promotion` = ?, `fin_promotion` = ?, `libelle` = ?,`taux` = ? WHERE id_promotion=?";
+            String req = "UPDATE `promotion` SET id_vehicule=?,  `libelle` = ?,`taux` = ? WHERE id_promotion=?";
             PreparedStatement ps = conn.prepareStatement(req);
            
-            ps.setString(1, p.getId_vehicule());
-            ps.setDate(2, p.getDebut_promotion());
-            ps.setDate(3, p.getFin_promotion());
-            ps.setString(4, p.getLibelle());
-            ps.setFloat(5,p.getTaux());
-            ps.setInt(6, p.getId_promotion());
+            ps.setInt(1, p.getId_vehicule());
+            ps.setString(2, p.getLibelle());
+            ps.setFloat(3,p.getTaux());
+            ps.setInt(4, p.getId_promotion());
 
             ps.executeUpdate();
             System.out.println("Promotion mis a jour");

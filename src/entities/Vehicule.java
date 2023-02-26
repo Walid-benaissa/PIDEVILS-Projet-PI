@@ -10,8 +10,9 @@ package entities;
  * @author azizi
  */
 public class Vehicule {
-    private String id_vehicule;
-    private String cin;
+    private int id_vehicule;
+    private String nom_v;
+    private int id;
     private String photo;
     private String ville;
     private float prix;
@@ -23,9 +24,10 @@ public class Vehicule {
     public Vehicule() {
     }
 
-    public Vehicule(String id_vehicule, String cin, String photo, String ville, float prix, int id_promotion, boolean disponibilite, String description, String type) {
+    public Vehicule(int id_vehicule,String nom_v, int id, String photo, String ville, float prix, int id_promotion, boolean disponibilite, String description, String type) {
         this.id_vehicule = id_vehicule;
-        this.cin = cin;
+        this.nom_v=nom_v;
+        this.id = id;
         this.photo = photo;
         this.ville = ville;
         this.prix = prix;
@@ -35,9 +37,10 @@ public class Vehicule {
         this.type = type;
     }
 
-    public Vehicule(String id_vehicule, String cin, String photo, String ville, float prix, int id_promotion, String description, String type) {
+    public Vehicule(int id_vehicule,String nom_v, int id, String photo, String ville, float prix, int id_promotion, String description, String type) {
         this.id_vehicule = id_vehicule;
-        this.cin = cin;
+        this.nom_v=nom_v;
+        this.id = id;
         this.photo = photo;
         this.ville = ville;
         this.prix = prix;
@@ -47,16 +50,18 @@ public class Vehicule {
     }
     
 
-    public Vehicule(String id_vehicule, String ville, float prix, String description, String type) {
+    public Vehicule(int id_vehicule,String nom_v, String ville, float prix, String description, String type) {
         this.id_vehicule = id_vehicule;
+        this.nom_v=nom_v;
         this.ville = ville;
         this.prix = prix;
         this.description = description;
         this.type = type;
     }
 
-    public Vehicule(String id_vehicule, String photo, String ville, float prix, String description, String type) {
+    public Vehicule(int id_vehicule,String nom_v, String photo, String ville, float prix, String description, String type) {
         this.id_vehicule = id_vehicule;
+        this.nom_v=nom_v;
         this.photo = photo;
         this.ville = ville;
         this.prix = prix;
@@ -64,27 +69,62 @@ public class Vehicule {
         this.type = type;
     }
 
-    public Vehicule(String id_vehicule) {
+    public Vehicule(String nom_v, String photo, String ville, float prix, String description, String type) {
+        this.nom_v = nom_v;
+        this.photo = photo;
+        this.ville = ville;
+        this.prix = prix;
+        this.description = description;
+        this.type = type;
+    }
+
+    public Vehicule(int id_vehicule, String nom_v, String photo, String ville, float prix, int id_promotion, String description, String type) {
+        this.id_vehicule = id_vehicule;
+        this.nom_v = nom_v;
+        this.photo = photo;
+        this.ville = ville;
+        this.prix = prix;
+        this.id_promotion = id_promotion;
+        this.description = description;
+        this.type = type;
+    }
+    
+
+    public Vehicule(int id_vehicule) {
         this.id_vehicule = id_vehicule;
     }
+
+    public Vehicule(int id_vehicule, String nom_v) {
+        this.id_vehicule = id_vehicule;
+        this.nom_v = nom_v;
+    }
+
+    public String getNom_v() {
+        return nom_v;
+    }
+
+    public void setNom_v(String nom_v) {
+        this.nom_v = nom_v;
+    }
+    
 
  
     
 
-    public String getId_vehicule() {
+    public int getId_vehicule() {
         return id_vehicule;
     }
 
-    public void setId_vehicule(String id_vehicule) {
+    public void setId_vehicule(int id_vehicule) {
         this.id_vehicule = id_vehicule;
     }
 
-    public String getCin() {
-        return cin;
+    public int getId() {
+        return id;
     }
 
-    public void setCin(String id) {
-        this.cin = cin;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPhoto() {
@@ -145,8 +185,10 @@ public class Vehicule {
 
     @Override
     public String toString() {
-        return "Vehicule{" + "id_vehicule=" + id_vehicule + ", cin=" + cin + ", photo=" + photo + ", ville=" + ville + ", prix=" + prix + ", id_promotion=" + id_promotion + ", disponibilite=" + disponibilite + ", description=" + description + ", type=" + type + '}';
+        return "Vehicule{" + "id_vehicule=" + id_vehicule + ", nom_v=" + nom_v + ", id=" + id + ", photo=" + photo + ", ville=" + ville + ", prix=" + prix + ", id_promotion=" + id_promotion + ", disponibilite=" + disponibilite + ", description=" + description + ", type=" + type + '}';
     }
+
+    
 
     
 }

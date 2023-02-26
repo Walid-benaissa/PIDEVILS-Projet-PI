@@ -5,9 +5,11 @@
  */
 package gui;
 
+import entities.Location;
 import entities.Vehicule;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +25,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import service.LocationService;
 
 /**
  * FXML Controller class
@@ -45,6 +48,7 @@ public class FXMLlouerVehiculeController implements Initializable {
     private DatePicker tf_dated;
     @FXML
     private DatePicker tf_retourd;
+           private LocationService LocationService = new LocationService();
 
     /**
      * Initializes the controller class.
@@ -60,6 +64,17 @@ public class FXMLlouerVehiculeController implements Initializable {
 
     @FXML
     private void rechercher(ActionEvent event) {
+        
+                LocationService sp=new LocationService();
+          String lieu =tf_lieu_de_depart.getText();
+          
+              Date date_debut = java.sql.Date.valueOf(tf_dated.getValue());
+     Date date_fin = java.sql.Date.valueOf(tf_retourd.getValue());
+     
+         
+ 
+   Location a = new Location( date_debut, date_fin,  lieu);
+   sp.ajouter(a);
       
     
         try {
