@@ -6,13 +6,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLCourseController">
    <center>
@@ -82,67 +78,4 @@
          </children>
       </AnchorPane>
    </center>
-   <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <VBox layoutY="152.0" prefHeight="527.0" prefWidth="43.0" style="-fx-background-color: white;">
-                     <children>
-                        <ImageView fitHeight="48.0" fitWidth="42.0" onMouseClicked="#routeGererUser" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/group.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="48.0" fitWidth="42.0" onMouseClicked="#routeGererReclamation" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/email.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="48.0" fitWidth="42.0" onMouseClicked="#routeGererLivraisions" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/package.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </VBox>
-                  <VBox layoutX="43.0" layoutY="152.0" prefHeight="526.0" prefWidth="158.0" style="-fx-background-color: white;">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#routeGererUser" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Gérer Profil">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#routeGererReclamation" prefHeight="45.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Passer Livraison">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#routeGererLivraisions" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Choisir Course">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#routeGererLivraisions" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Effectuer Reclamation">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#routeGererLivraisions" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Choisir Course">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <ImageView fitHeight="151.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Artboard%201%20copy%203-100.jpg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
-   </left>
 </BorderPane>
