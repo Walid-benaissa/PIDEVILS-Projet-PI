@@ -12,6 +12,7 @@ import entities.Livraison;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -44,6 +45,26 @@ public class FXMLSuivreLiraisonController implements Initializable {
         ObservableList<Livraison> L = FXCollections.observableArrayList(list);
         table.setItems(L);
     }    
+
+    @FXML
+    private void routeGererProfil(ActionEvent event) {
+    }
+
+    @FXML
+    private void routeGererReclamation(ActionEvent event) {
+    }
+
+    @FXML
+    private void routeGererLivraisions(ActionEvent event) {
+    }
+
+    @FXML
+    private void routeGererCourse(ActionEvent event) {
+    }
+
+    @FXML
+    private void routeGererLocation(ActionEvent event) {
+    }
     
   
     

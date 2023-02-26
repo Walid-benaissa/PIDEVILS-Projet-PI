@@ -13,29 +13,24 @@ import java.sql.Date;
  */
 public class Promotion {
 private int id_promotion;
-private String id_vehicule;
-private Date debut_promotion;
-private Date fin_promotion ;
+private int id_vehicule;
 private String libelle ;
 private float taux ;
 
     public Promotion() {
     }
 
-    public Promotion(String id_vehicule, Date debut_promotion, Date fin_promotion, String libelle, float taux) {
+    public Promotion(int id_vehicule, String libelle, float taux) {
         this.id_vehicule = id_vehicule;
-        this.debut_promotion = debut_promotion;
-        this.fin_promotion = fin_promotion;
         this.libelle = libelle;
         this.taux = taux;
     }
     
 
-    public Promotion(int id_promotion, String id_vehicule, Date debut_promotion, Date fin_promotion, String libelle, float taux) {
+    public Promotion(int id_promotion, int id_vehicule, String libelle, float taux) {
         this.id_promotion = id_promotion;
         this.id_vehicule = id_vehicule;
-        this.debut_promotion = debut_promotion;
-        this.fin_promotion = fin_promotion;
+
         this.libelle = libelle;
         this.taux = taux;
     }
@@ -48,29 +43,15 @@ private float taux ;
         this.id_promotion = id_promotion;
     }
 
-    public String getId_vehicule() {
+    public int getId_vehicule() {
         return id_vehicule;
     }
 
-    public void setId_vehicule(String id_vehicule) {
+    public void setId_vehicule(int id_vehicule) {
         this.id_vehicule = id_vehicule;
     }
 
-    public Date getDebut_promotion() {
-        return debut_promotion;
-    }
-
-    public void setDebut_promotion(Date debut_promotion) {
-        this.debut_promotion = debut_promotion;
-    }
-
-    public Date getFin_promotion() {
-        return fin_promotion;
-    }
-
-    public void setFin_promotion(Date fin_promotion) {
-        this.fin_promotion = fin_promotion;
-    }
+   
 
     public String getLibelle() {
         return libelle;
@@ -90,8 +71,10 @@ private float taux ;
 
     @Override
     public String toString() {
-        return "Promotion{" + "id_promotion=" + id_promotion + ", id_vehicule=" + id_vehicule + ", debut_promotion=" + debut_promotion + ", fin_promotion=" + fin_promotion + ", libelle=" + libelle + ", taux=" + taux + '}';
+        return "Promotion{" + "id_promotion=" + id_promotion + ", id_vehicule=" + id_vehicule + ", libelle=" + libelle + ", taux=" + taux + '}';
     }
+
+  
 
      
 }

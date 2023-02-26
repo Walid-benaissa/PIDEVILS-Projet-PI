@@ -33,7 +33,6 @@ import javafx.stage.Stage;
 import service.UtilisateurService;
 import utils.CommonController;
 
-
 /**
  * FXML Controller class
  *
@@ -117,7 +116,7 @@ public class FXMLGererUtilisateursController extends CommonController implements
 
     @FXML
     private void routeGererUser(ActionEvent event) {
-        try {  
+        try {
             setSceneContent("FXMLGererUtilisateurs");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,7 +125,7 @@ public class FXMLGererUtilisateursController extends CommonController implements
 
     @FXML
     private void routeGererLivraisions(ActionEvent event) {
-        try {  
+        try {
             setSceneContent("#");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
@@ -135,11 +134,20 @@ public class FXMLGererUtilisateursController extends CommonController implements
 
     @FXML
     private void routeGererReclamation(ActionEvent event) {
-        try {  
+        try {
             setSceneContent("FXMLGererReclamation");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    @FXML
+    private void routeGererVoitures(ActionEvent event) {
+        try {
+            setSceneContent("FXMLAfficherVoitureAdmin");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

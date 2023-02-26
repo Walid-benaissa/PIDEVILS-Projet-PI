@@ -11,11 +11,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.control.Alert;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import service.VehiculeService;
 
 /**
@@ -25,23 +22,21 @@ import service.VehiculeService;
  */
 public class FXMLAjouterVehiculeController implements Initializable {
 
-
     @FXML
-    private TextField tf_id_vehicule;
+    private TextField txtdesc;
     @FXML
-    private TextField tf_prix;
+    private TextField txtnomv;
     @FXML
-    private TextField tf_ville;
+    private TextField txtville;
     @FXML
-    private TextField tf_description;
+    private TextField txtprix;
     @FXML
-    private TextField tf_type;
+    private TextField txtphoto;
     @FXML
-    private TextField tf_photo;
-    
-
-    
-    
+    private TextField txttype;
+        @FXML
+    private Button btnAjouter;
+        private VehiculeService VehiculeService = new VehiculeService();
 
     /**
      * Initializes the controller class.
@@ -52,20 +47,18 @@ public class FXMLAjouterVehiculeController implements Initializable {
     }    
 
     @FXML
-    private void Ajouter(ActionEvent event) {
-        VehiculeService sp=new VehiculeService();
-
-  
-        String id_vehicule = tf_id_vehicule.getText();
-        float prix = Float.parseFloat(tf_prix.getText());
-        String ville = tf_ville.getText();
-        String description = tf_description.getText();
-        String photo = tf_photo.getText();
-        String type = tf_type.getText();
-         
-         
+    private void AjouterV(ActionEvent event) {
+          VehiculeService sp=new VehiculeService();
+          String nom_v =txtnomv.getText();
+          String ville = txtville.getText();
+          String photo = txtphoto.getText();
+          float prix = Float.parseFloat(txtprix.getText());
+          String type = txttype.getText();
+          String description = txtdesc.getText();
      
-   Vehicule a = new Vehicule( id_vehicule,  photo,  ville,  prix,  description,  type);
+         
+ 
+   Vehicule a = new Vehicule(nom_v,  photo,  ville,  prix,  description,  type);
    sp.ajouter(a);
     }
     

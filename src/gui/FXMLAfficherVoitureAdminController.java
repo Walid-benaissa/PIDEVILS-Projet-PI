@@ -7,6 +7,7 @@ package gui;
 
 import entities.Utilisateur;
 import entities.Voiture;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import static java.util.Collections.list;
@@ -14,10 +15,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.collections.ObservableSet;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -26,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import service.UtilisateurService;
 import service.VoitureService;
+import static utils.CommonController.setSceneContent;
 
 /**
  * FXML Controller class
@@ -75,8 +80,39 @@ public class FXMLAfficherVoitureAdminController implements Initializable {
     }
 
     @FXML
-    private void handleMouseAction(MouseEvent event) {
-
+    private void routeGererUser(ActionEvent event) {
+        try {
+            setSceneContent("FXMLGererUtilisateurs");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
+    @FXML
+    private void routeGererLivraisions(ActionEvent event) {
+        try {
+            setSceneContent("#");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererReclamation(ActionEvent event) {
+        try {
+            setSceneContent("FXMLGererReclamation");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererVoitures(ActionEvent event) {
+        try {
+            setSceneContent("FXMLAfficherVoitureAdmin");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }
