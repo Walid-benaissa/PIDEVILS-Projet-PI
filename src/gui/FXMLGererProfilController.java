@@ -49,13 +49,13 @@ public class FXMLGererProfilController extends CommonController implements Initi
     @FXML
     private Pane paneMDP;
     String motdepasse;
+    Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("loggedInUser");
         tf_nom.setText(u.getNom());
         tf_prenom.setText(u.getPrenom());
         tf_numtel.setText(u.getNum_tel());
@@ -66,12 +66,12 @@ public class FXMLGererProfilController extends CommonController implements Initi
     @FXML
     private void ModifierInfo(ActionEvent event) {
         if (changermdp.isSelected() & tf_mdp.getText().equals(tf_mdpC.getText())) {
-            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_numtel.getText(), tf_mail.getText(), tf_mdp.getText());
-            user.setId(2);
+            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), tf_mdp.getText(), tf_numtel.getText());
+            user.setId(u.getId());
             us.modifierWithmdp(user);
         } else {
-            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(),motdepasse, tf_numtel.getText());
-            user.setId(2);
+            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), motdepasse, tf_numtel.getText());
+            user.setId(u.getId());
             us.modifierSansmdp(user);
         }
     }
