@@ -18,6 +18,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import service.LivraisonService;
+import entities.Utilisateur;
+import utils.Context;
 
 
 /**
@@ -37,6 +39,7 @@ public class FXMLSuivreLiraisonController implements Initializable {
     private TableColumn<?, ?> id;
     @FXML
     private TableColumn<?, ?> etat;
+    Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         List<Livraison> list = ls.afficheListe();

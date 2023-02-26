@@ -31,10 +31,12 @@ public class Main extends Application{
 
     @Override
     public void start(Stage stage)  {
+      
         try {  
-            CommonController.setSceneContentStartup(stage);  
-     } catch (IOException ex) {  
-            System.out.println(ex.getMessage());  
-     }      }
+            CommonController.setSceneContentStartup(stage);
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
     
 }

@@ -21,7 +21,7 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <TableView fx:id="table" layoutX="108.0" layoutY="111.0" prefHeight="141.0" prefWidth="283.0">
+            <TableView fx:id="table" layoutX="50.0" layoutY="122.0" prefHeight="141.0" prefWidth="404.0">
                <columns>
                   <TableColumn fx:id="id" prefWidth="141.0" text="ID_Livraison" />
                   <TableColumn fx:id="etat" prefWidth="135.0" text="Etat" />

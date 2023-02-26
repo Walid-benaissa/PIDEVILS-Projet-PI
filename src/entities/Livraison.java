@@ -17,7 +17,6 @@ public class Livraison {
     private float prix;
     private String etat ;
     private int id_colis;
-    
 
     public Livraison() {
     }

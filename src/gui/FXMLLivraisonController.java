@@ -81,13 +81,9 @@ public class FXMLLivraisonController implements Initializable {
     private TextField NbObj;
     @FXML
     private TextField poids;
-    @FXML
     private TableColumn<?, ?> tfidLivraison;
-    @FXML
     private TableColumn<?, ?> tfidColis;
-    @FXML
     private TextField idLiv;
-    @FXML
     private TextField idColis;
     LivraisonService ls = new LivraisonService();
     ColisService cs = new ColisService();
@@ -126,12 +122,12 @@ public class FXMLLivraisonController implements Initializable {
 
     public void afficher() throws SQLException {
 
-        tfidLivraison.setCellValueFactory(new PropertyValueFactory<>("id_livraison"));
+       // tfidLivraison.setCellValueFactory(new PropertyValueFactory<>("id_livraison"));
         tfAdresseExp.setCellValueFactory(new PropertyValueFactory<>("adresse_expedition"));
         tfAdresseDest.setCellValueFactory(new PropertyValueFactory<>("adresse_destinataire"));
         tfPrix.setCellValueFactory(new PropertyValueFactory<>("prix"));
         TfEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
-        tfidColis.setCellValueFactory(new PropertyValueFactory<>("id"));
+       // tfidColis.setCellValueFactory(new PropertyValueFactory<>("id"));
         tfNBObj.setCellValueFactory(new PropertyValueFactory<>("nb_items"));
         tfDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         tfPoids.setCellValueFactory(new PropertyValueFactory<>("poids"));
@@ -156,12 +152,12 @@ public class FXMLLivraisonController implements Initializable {
         alert.setTitle("sucess");
         alert.setContentText("Livraison Modifiée avec succès");
         alert.show();
-        idLiv.setText("");
+      //  idLiv.setText("");
         AdExp.setText("");
         AdDest.setText("");
         Prix.setText("");
         etat.setText("");
-        idColis.setText("");
+      //  idColis.setText("");
         NbObj.setText("");
         poids.setText("");
         tf_description.setText("");
@@ -179,12 +175,12 @@ public class FXMLLivraisonController implements Initializable {
         alert.setTitle("succes!");
         alert.setContentText("Modification effectuée avec succès!");
         alert.show();
-        idLiv.setText("");
+       // idLiv.setText("");
         AdExp.setText("");
         AdDest.setText("");
         Prix.setText("");
         etat.setText("");
-        idColis.setText("");
+      //  idColis.setText("");
         NbObj.setText("");
         poids.setText("");
         tf_description.setText("");
@@ -209,12 +205,12 @@ public class FXMLLivraisonController implements Initializable {
         if (index <= -1) {
             return;
         }
-        idLiv.setText(tfidLivraison.getCellData(index).toString());
+       // idLiv.setText(tfidLivraison.getCellData(index).toString());
         AdExp.setText(tfAdresseExp.getCellData(index).toString());
         AdDest.setText(tfAdresseDest.getCellData(index).toString());
         Prix.setText(tfPrix.getCellData(index).toString());
         etat.setText(TfEtat.getCellData(index).toString());
-        idColis.setText(tfidColis.getCellData(index).toString());
+      //  idColis.setText(tfidColis.getCellData(index).toString());
         NbObj.setText(tfNBObj.getCellData(index).toString());
         tf_description.setText(tfDescription.getCellData(index).toString());
         poids.setText(tfPoids.getCellData(index).toString());
@@ -230,12 +226,12 @@ public class FXMLLivraisonController implements Initializable {
         alert.setTitle("sucess");
         alert.setContentText("Livraison Supprimée avec succès");
         alert.show();
-        idLiv.setText("");
+      //  idLiv.setText("");
         AdExp.setText("");
         AdDest.setText("");
         Prix.setText("");
         etat.setText("");
-        idColis.setText("");
+      //  idColis.setText("");
         NbObj.setText("");
         poids.setText("");
         tf_description.setText("");
