@@ -32,7 +32,7 @@ public class UtilisateurService implements IService<Utilisateur> {
     public List<Utilisateur> afficheListe() {
         List<Utilisateur> list = new ArrayList<>();
         try {
-            String req = "Select * from  `utilisateur`";
+            String req = "Select * from  `utilisateur` order by id";
             Statement st = conn.createStatement();
 
             ResultSet RS = st.executeQuery(req);
@@ -75,36 +75,64 @@ public class UtilisateurService implements IService<Utilisateur> {
         return p;
     }
 
-    public boolean authentification(String mail, String mdp) {
-        int count = 0;
+    public Utilisateur authentification(String mail, String mdp) {
+            Utilisateur p = new Utilisateur();
         try {
-            String req = "Select mail from  `utilisateur` where mail ='" + mail + "' AND mdp ='" + mdp + "'";
+            String req = "Select * from  `utilisateur` where mail ='" + mail + "' AND mdp ='" + mdp + "'";
             Statement st = conn.createStatement();
+            System.out.println(req);
             ResultSet RS = st.executeQuery(req);
-            while (RS.next()) {
-                count++;
-            }
-            System.out.println(count);
+            RS.next();
+            p.setId(RS.getInt("id"));
+            p.setNom(RS.getString("nom"));
+            p.setPrenom(RS.getString("prenom"));
+            p.setMail(RS.getString("mail"));
+            p.setMdp(RS.getString("mdp"));
+            p.setNum_tel(RS.getString("num_tel"));
+            p.setRole(RS.getString("role"));
+            p.setEvaluation(RS.getFloat("evaluation"));
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return count == 1;
+        return p;
+    }
+
+    public static boolean estChaineValide(String chaine) {
+        // Vérifier si la chaîne est vide ou nulle
+
+        // Vérifier si la chaîne ne contient que des lettres
+        if (!chaine.matches("[a-zA-Z ]+") || chaine.trim().isEmpty()) {
+            return false;
+        }
+
+        // La chaîne est valide si elle passe toutes les vérifications
+        return true;
+    }
+
+    public boolean isStringLength(String str) {
+        return str.length() < 8;
     }
 
     @Override
     public void ajouter(Utilisateur p) {
         try {
             String req = "INSERT INTO  `utilisateur`(`id`, `nom`, `prenom`, `mail`,`mdp`, `num_tel`, `role`,`evaluation`) VALUES (?,?,?,?,?,?,?,?)";
-            PreparedStatement ps = conn.prepareStatement(req);
-            ps.setInt(1, p.getId());
-            ps.setString(2, p.getNom());
-            ps.setString(3, p.getPrenom());
-            ps.setString(4, p.getMail());
-            ps.setString(5, p.getMdp());
-            ps.setString(6, p.getNum_tel());
-            ps.setString(7, p.getRole());
-            ps.setFloat(8, p.getEvaluation());
-            ps.executeUpdate();
+            if (estChaineValide(p.getNom()) && estChaineValide(p.getPrenom()) && isStringLength(p.getNum_tel())) {
+
+                PreparedStatement ps = conn.prepareStatement(req);
+                ps.setInt(1, p.getId());
+                ps.setString(2, p.getNom());
+                ps.setString(3, p.getPrenom());
+                ps.setString(4, p.getMail());
+                ps.setString(5, p.getMdp());
+                ps.setString(6, p.getNum_tel());
+                ps.setString(7, p.getRole());
+                ps.setFloat(8, p.getEvaluation());
+                ps.executeUpdate();
+            } else {
+                System.out.println("erreur");
+
+            }
 
             System.out.println("Utilisateur inséré");
         } catch (SQLException ex) {
@@ -138,7 +166,6 @@ public class UtilisateurService implements IService<Utilisateur> {
             ps.setString(6, p.getRole());
             ps.setFloat(7, p.getEvaluation());
             ps.setInt(8, p.getId());
-
             ps.executeUpdate();
             System.out.println("Utilisateur mis a jour");
 
@@ -146,8 +173,7 @@ public class UtilisateurService implements IService<Utilisateur> {
             System.out.println(ex.getMessage());
         }
     }
-    
-    
+
     public void modifierWithmdp(Utilisateur p) {
         try {
 
@@ -166,7 +192,7 @@ public class UtilisateurService implements IService<Utilisateur> {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     public void modifierSansmdp(Utilisateur p) {
         try {
 
@@ -177,6 +203,7 @@ public class UtilisateurService implements IService<Utilisateur> {
             ps.setString(3, p.getMail());
             ps.setString(4, p.getNum_tel());
             ps.setInt(5, p.getId());
+            System.out.println(p);
             ps.executeUpdate();
             System.out.println("Utilisateur mis a jour");
 
@@ -184,6 +211,5 @@ public class UtilisateurService implements IService<Utilisateur> {
             System.out.println(ex.getMessage());
         }
     }
-    
 
 }

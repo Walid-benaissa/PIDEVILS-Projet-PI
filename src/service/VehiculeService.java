@@ -61,28 +61,28 @@ public class VehiculeService implements IService<Vehicule>{
 
 public static boolean estChaineValide(String chaine) {
     // Vérifier si la chaîne est vide ou nulle
-    if (chaine == null || chaine.trim().isEmpty()) {
-        return false;
-    }
-    
+   
     // Vérifier si la chaîne ne contient que des lettres
-    if (!chaine.matches("[a-zA-Z]+")) {
+    if (!chaine.matches("[a-zA-Z ]+") || chaine.trim().isEmpty()) {
         return false;
     }
     
     // La chaîne est valide si elle passe toutes les vérifications
     return true;
 }
-public boolean isStringLength(String str) {
+  public boolean isStringLength(String str) {
     return str.length() < 30;
 }
+
     
     @Override
     public void ajouter(Vehicule p) {
         try {
             String req = "INSERT INTO  `vehicule`(`id_vehicule`, `cin`,`id_promotion`, `photo`, `ville`,`prix`, `disponibilite`, `description`,`type`) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
-            if (estChaineValide(p.getType())&&isStringLength(p.getType())){
+           p.setVille(p.getVille().trim());
+            p.setType(p.getType().trim());
+         if (estChaineValide(p.getVille())&&estChaineValide(p.getType())&&isStringLength(p.getType())) {
             ps.setString(1, p.getId_vehicule());
             ps.setString(2, p.getCin());
             ps.setInt(3, p.getId_promotion());
@@ -92,11 +92,11 @@ public boolean isStringLength(String str) {
             ps.setBoolean(7, p.isDisponibilite());
             ps.setString(8, p.getDescription());
             ps.setString(9, p.getType());
-            ps.executeUpdate();
-            }else{
-                            System.out.println("erreur");
-
-            }
+            ps.executeUpdate();}
+         else{
+             System.out.println("erreur");
+         }
+         
             System.out.println("Vehicule inséré");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -104,9 +104,9 @@ public boolean isStringLength(String str) {
     }
 
     @Override
-    public void supprimer(Vehicule p) {
+        public void supprimer(Vehicule p) {
         try {
-            String req = "DELETE FROM `vehicule` WHERE id = " + p.getId_vehicule();
+           String req = "DELETE FROM `vehicule` WHERE `id_vehicule` = " + p.getId_vehicule();
             Statement st = conn.createStatement();
             st.executeUpdate(req);
             System.out.println("Vehicule supprimé");
@@ -119,9 +119,11 @@ public boolean isStringLength(String str) {
     public void modifier(Vehicule p) {
         try {
 
-            String req = "UPDATE `vehicule` SET cin=?, `photo` = ?,``id_promotion`=? ` ,`ville` = ?, `prix` = ?, `disponibilite` = ?, `description` = ?, `type` = ? WHERE `vehicule`.`id_vehicule` = ?";
+            String req = "UPDATE `vehicule` SET cin=?, `photo` = ?,`id_promotion`=?,`ville` = ?, `prix` = ?, `disponibilite` = ?, `description` = ?, `type` = ? WHERE id_vehicule= ?";
             PreparedStatement ps = conn.prepareStatement(req);
-            
+             p.setVille(p.getVille().trim());
+            p.setType(p.getType().trim());
+         if (estChaineValide(p.getVille())&&estChaineValide(p.getType())&&isStringLength(p.getType())) {
             ps.setString(1, p.getCin());
             ps.setString(2, p.getPhoto());
             ps.setInt(3, p.getId_promotion());
@@ -132,7 +134,10 @@ public boolean isStringLength(String str) {
             ps.setString(8, p.getType());
             ps.setString(9, p.getId_vehicule());
 
-            ps.executeUpdate();
+            ps.executeUpdate();}
+            else{
+             System.out.println("erreur");
+         }
             System.out.println("Vehicule mis a jour");
 
         } catch (SQLException ex) {

@@ -6,6 +6,7 @@
 package gui;
 
 import entities.Utilisateur;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -16,7 +17,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
@@ -24,14 +29,17 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import service.UtilisateurService;
+import utils.CommonController;
+
 
 /**
  * FXML Controller class
  *
  * @author USER
  */
-public class FXMLGererUtilisateursController implements Initializable {
+public class FXMLGererUtilisateursController extends CommonController implements Initializable {
 
     @FXML
     private TableView<Utilisateur> TableUsers;
@@ -89,7 +97,6 @@ public class FXMLGererUtilisateursController implements Initializable {
         Utilisateur u = TableUsers.getSelectionModel().getSelectedItem();
         txtID.setText("Id: " + u.getId());
         choix_type.setValue(u.getRole());
-
     }
 
     @FXML
@@ -106,6 +113,33 @@ public class FXMLGererUtilisateursController implements Initializable {
         us.modifier(u);
         afficherUsers();
 
+    }
+
+    @FXML
+    private void routeGererUser(ActionEvent event) {
+        try {  
+            setSceneContent("FXMLGererUtilisateurs");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererLivraisions(ActionEvent event) {
+        try {  
+            setSceneContent("#");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererReclamation(ActionEvent event) {
+        try {  
+            setSceneContent("FXMLGererReclamation");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

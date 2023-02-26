@@ -37,7 +37,7 @@ public class VoitureService implements IService<Voiture> {
     public List<Voiture> afficheListe() {
         List<Voiture> list = new ArrayList<>();
         try {
-            String req = "Select * from  `voiture`";
+            String req = "Select * from  `voiture` order by id ";
             Statement st = conn.createStatement();
 
             ResultSet RS = st.executeQuery(req);
@@ -56,6 +56,25 @@ public class VoitureService implements IService<Voiture> {
         }
         return list;
     }
+ 
+    
+    public Voiture afficheVoiture(int id) {
+        Voiture p = new Voiture();
+        try {
+            String req = "Select * from  `voiture` where id=" + id;
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            RS.next();
+            p.setImmatriculation(RS.getString("immatriculation"));
+            p.setModele(RS.getString("modele"));
+            p.setMarque(RS.getString("marque"));
+            p.setEtat(RS.getString("etat"));
+            p.setPhoto(RS.getString("photo"));
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return p;
+    }
 
     @Override
     public void ajouter(Voiture p) {
@@ -66,30 +85,26 @@ public class VoitureService implements IService<Voiture> {
             ps.setString(2, p.getModele());
             ps.setString(3, p.getMarque());
             ps.setString(4, p.getEtat());
-            FileInputStream fin1 = new FileInputStream(p.getPhoto());
-            ps.setBinaryStream(5, fin1, fin1.available());
+            ps.setString(5, p.getPhoto());
             ps.setInt(6, p.getId());
             ps.executeUpdate();
 
             System.out.println("voiture inséré");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ConducteurService.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ConducteurService.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }
 
     @Override
     public void supprimer(Voiture p) {
         try {
-            String req = "DELETE FROM `voiture` WHERE immatriculation = " + p.getImmatriculation();
+            String req = "DELETE FROM `voiture` WHERE immatriculation = '" + p.getImmatriculation() + "'";
+            System.out.println(req);
             Statement st = conn.createStatement();
             st.executeUpdate(req);
             System.out.println("voiture supprimé");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println(ex);
         }
     }
 
@@ -102,8 +117,7 @@ public class VoitureService implements IService<Voiture> {
             ps.setString(1, p.getModele());
             ps.setString(2, p.getMarque());
             ps.setString(3, p.getEtat());
-            FileInputStream fin1 = new FileInputStream(p.getPhoto());
-            ps.setBinaryStream(4, fin1, fin1.available());
+            ps.setString(4, p.getPhoto());
             ps.setString(5, p.getImmatriculation());
 
             ps.executeUpdate();
@@ -111,11 +125,7 @@ public class VoitureService implements IService<Voiture> {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ConducteurService.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ConducteurService.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
 
+    }
 }
