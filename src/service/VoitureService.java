@@ -37,7 +37,7 @@ public class VoitureService implements IService<Voiture> {
     public List<Voiture> afficheListe() {
         List<Voiture> list = new ArrayList<>();
         try {
-            String req = "Select * from  `voiture`";
+            String req = "Select * from  `voiture` order by id ";
             Statement st = conn.createStatement();
 
             ResultSet RS = st.executeQuery(req);
@@ -56,7 +56,8 @@ public class VoitureService implements IService<Voiture> {
         }
         return list;
     }
-
+ 
+    
     public Voiture afficheVoiture(int id) {
         Voiture p = new Voiture();
         try {
@@ -85,7 +86,7 @@ public class VoitureService implements IService<Voiture> {
             ps.setString(3, p.getMarque());
             ps.setString(4, p.getEtat());
             ps.setString(5, p.getPhoto());
-           ps.setInt(6, p.getId());
+            ps.setInt(6, p.getId());
             ps.executeUpdate();
 
             System.out.println("voiture inséré");
@@ -97,12 +98,13 @@ public class VoitureService implements IService<Voiture> {
     @Override
     public void supprimer(Voiture p) {
         try {
-            String req = "DELETE FROM `voiture` WHERE immatriculation = " + p.getImmatriculation();
+            String req = "DELETE FROM `voiture` WHERE immatriculation = '" + p.getImmatriculation() + "'";
+            System.out.println(req);
             Statement st = conn.createStatement();
             st.executeUpdate(req);
             System.out.println("voiture supprimé");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println(ex);
         }
     }
 
@@ -115,7 +117,7 @@ public class VoitureService implements IService<Voiture> {
             ps.setString(1, p.getModele());
             ps.setString(2, p.getMarque());
             ps.setString(3, p.getEtat());
-            ps.setString(4,p.getPhoto());
+            ps.setString(4, p.getPhoto());
             ps.setString(5, p.getImmatriculation());
 
             ps.executeUpdate();
@@ -123,6 +125,7 @@ public class VoitureService implements IService<Voiture> {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-    }
+        }
 
-}}
+    }
+}

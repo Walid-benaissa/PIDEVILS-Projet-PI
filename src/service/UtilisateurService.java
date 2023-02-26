@@ -32,7 +32,7 @@ public class UtilisateurService implements IService<Utilisateur> {
     public List<Utilisateur> afficheListe() {
         List<Utilisateur> list = new ArrayList<>();
         try {
-            String req = "Select * from  `utilisateur`";
+            String req = "Select * from  `utilisateur` order by id";
             Statement st = conn.createStatement();
 
             ResultSet RS = st.executeQuery(req);

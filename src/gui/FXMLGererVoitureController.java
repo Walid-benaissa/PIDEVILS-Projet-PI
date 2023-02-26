@@ -50,11 +50,14 @@ public class FXMLGererVoitureController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (v != null) {
+        if (v.getImmatriculation() != null) {
+            btnAjouter.setDisable(true);
             affichage.setText("Immatriculation :  " + v.getImmatriculation() + "\n"
                     + "Modele :  " + v.getModele() + "\n" + "Marque :  " + v.getMarque() + "\n"
                     + "Etat :  " + v.getEtat() + "\n");
         } else {
+            btnSupprimer.setDisable(true);
+            btnMettreajour.setDisable(true);
             affichage.setText("Aucune voiture");
         }
 
