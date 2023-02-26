@@ -77,7 +77,6 @@ public class FXMLVehiculeAdmineController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
                 
         colonneidvehicule.setCellValueFactory(new PropertyValueFactory<>("id_vehicule"));
         colonnecin.setCellValueFactory(new PropertyValueFactory<>("cin"));
@@ -143,7 +142,7 @@ public class FXMLVehiculeAdmineController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-           
+            System.out.println(selectedVehicule);
             VehiculeService.supprimer(selectedVehicule);
              List<Vehicule> vvlist = VehiculeService.afficheListe();
         
