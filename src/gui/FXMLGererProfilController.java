@@ -6,8 +6,11 @@
 package gui;
 
 import entities.Utilisateur;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import service.UtilisateurService;
 import utils.CommonController;
+import static utils.CommonController.setSceneContent;
 import utils.Context;
 
 /**
@@ -81,5 +85,51 @@ public class FXMLGererProfilController extends CommonController implements Initi
         }
 
     }
+
+    @FXML
+    private void routeGererProfil(ActionEvent event) {
+        try {  
+            setSceneContent("FXMLGererProfil");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererReclamation(ActionEvent event) {
+        try {  
+            setSceneContent("FXMLEffectuerReclamation");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererLivraisions(ActionEvent event) {
+         try {  
+            setSceneContent("FXMLAjoutLivraison");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererCourse(ActionEvent event) {
+          try {  
+            setSceneContent("FXMLCourse");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererLocation(ActionEvent event) {
+      try {  
+            setSceneContent("FXMLlouerVehicule");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+            }
 
 }
