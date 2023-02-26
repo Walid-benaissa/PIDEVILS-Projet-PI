@@ -17,7 +17,8 @@ import javafx.stage.Stage;
  *
  * @author walid
  */
-public class Main extends Application{
+public class Main extends Application {
+
     Parent parent;
     Stage stage;
 
@@ -29,11 +30,14 @@ public class Main extends Application{
     }
 
     @Override
-    public void start(Stage primaryStage)  {
+    public void start(Stage primaryStage) {
         try {
             this.stage = primaryStage;
 
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLLivraison.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLSuivreLiraison.fxml"));
+            //Livraison
+            //SuivreLiraison
+            //AjoutLivraison
 
             Scene sc = new Scene(root);
             stage.setScene(sc);
@@ -42,5 +46,5 @@ public class Main extends Application{
             System.out.println(ex.getMessage());
         }
     }
-    
+
 }
