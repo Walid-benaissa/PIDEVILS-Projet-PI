@@ -40,8 +40,9 @@ import utils.MyDB;
  * @author user
  */
 public class FXMLLivraisonController implements Initializable {
-    Connection connexion ;
-     Statement stm;
+
+    Connection connexion;
+    Statement stm;
 
     @FXML
     private TableColumn<Livraison, String> tfAdresseExp;
@@ -94,9 +95,8 @@ public class FXMLLivraisonController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
     public FXMLLivraisonController() {
-         connexion = MyDB.getInstance().getConnexion();
+        connexion = MyDB.getInstance().getConnexion();
     }
 
     @Override
@@ -142,9 +142,9 @@ public class FXMLLivraisonController implements Initializable {
 
     @FXML
     private void Modifier(ActionEvent event) throws SQLException {
-       
+
         Livraison l = table2.getSelectionModel().getSelectedItem();
-             
+
         l.setAdresse_expedition(AdExp.getText());
         l.setAdresse_destinataire(AdDest.getText());
         String prix2 = Prix.getText();
@@ -156,7 +156,7 @@ public class FXMLLivraisonController implements Initializable {
         alert.setTitle("sucess");
         alert.setContentText("Livraison Modifiée avec succès");
         alert.show();
-         idLiv.setText("");
+        idLiv.setText("");
         AdExp.setText("");
         AdDest.setText("");
         Prix.setText("");
@@ -165,21 +165,21 @@ public class FXMLLivraisonController implements Initializable {
         NbObj.setText("");
         poids.setText("");
         tf_description.setText("");
-  
+
     }
-    
-  @FXML
+
+    @FXML
     private void ModifierColis(ActionEvent event) throws SQLException {
         String req2 = "UPDATE `colis` SET `nb_items`='" + NbObj.getText() + "',`description`='" + tf_description.getText() + "',`poids`='" + poids.getText() + "' WHERE id= " + idColis.getText() + " ";
-       
-           stm = connexion.createStatement();
-           stm.executeUpdate(req2);
-         
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("succes!");
-            alert.setContentText("Modification effectuée avec succès!");
-            alert.show();
-              idLiv.setText("");
+
+        stm = connexion.createStatement();
+        stm.executeUpdate(req2);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("succes!");
+        alert.setContentText("Modification effectuée avec succès!");
+        alert.show();
+        idLiv.setText("");
         AdExp.setText("");
         AdDest.setText("");
         Prix.setText("");
@@ -191,9 +191,9 @@ public class FXMLLivraisonController implements Initializable {
 
         afficher();
 
-        }
-      
-        /*String nb_items = NbObj.getText();
+    }
+
+    /*String nb_items = NbObj.getText();
         String poids2 = poids.getText();
         Colis c = new Colis(Integer.parseInt(nb_items), tf_description.getText(), Float.parseFloat(poids2));
         String Nb_items = NbObj.getText();
@@ -202,9 +202,7 @@ public class FXMLLivraisonController implements Initializable {
         c.setPoids(Float.parseFloat(poids2));
         c.setDescription(tf_description.getText()); 
         cs.modifier(c);
-        afficher();  */  
-    
-
+        afficher();  */
     @FXML
     private void getSelected(javafx.scene.input.MouseEvent event) {
         index = table2.getSelectionModel().getSelectedIndex();
@@ -243,10 +241,5 @@ public class FXMLLivraisonController implements Initializable {
         tf_description.setText("");
 
     }
-
-  
-  
-
-   
 
 }
