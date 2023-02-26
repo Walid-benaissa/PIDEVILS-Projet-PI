@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 25 fév. 2023 à 23:23
+-- Généré le : dim. 26 fév. 2023 à 21:18
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -79,19 +79,6 @@ INSERT INTO `conducteur` (`id`, `b3`, `permis`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `contrat`
---
-
-CREATE TABLE `contrat` (
-  `id` int(11) NOT NULL,
-  `immatriculation` varchar(30) NOT NULL,
-  `date_debut` date NOT NULL,
-  `date_fin` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `course`
 --
 
@@ -143,11 +130,20 @@ INSERT INTO `livraison` (`id_livraison`, `adresse_expedition`, `adresse_destinat
 
 CREATE TABLE `location` (
   `id_contrat` int(255) NOT NULL,
-  `id` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL,
   `id_vehicule` varchar(255) NOT NULL,
   `date_debut` date DEFAULT NULL,
-  `date_fin` date DEFAULT NULL
+  `date_fin` date DEFAULT NULL,
+  `lieu` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `location`
+--
+
+INSERT INTO `location` (`id_contrat`, `id`, `id_vehicule`, `date_debut`, `date_fin`, `lieu`) VALUES
+(3, 0, '0', '2023-02-01', '2023-02-07', 'kef'),
+(4, 0, '0', '2023-02-22', '2023-02-28', 'tunis');
 
 -- --------------------------------------------------------
 
@@ -202,9 +198,7 @@ CREATE TABLE `personnes` (
 
 CREATE TABLE `promotion` (
   `id_promotion` int(11) NOT NULL,
-  `id_vehicule` varchar(255) NOT NULL,
-  `debut_promotion` date DEFAULT NULL,
-  `fin_promotion` date DEFAULT NULL,
+  `id_vehicule` int(255) NOT NULL,
   `libelle` varchar(255) NOT NULL,
   `taux` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -213,8 +207,9 @@ CREATE TABLE `promotion` (
 -- Déchargement des données de la table `promotion`
 --
 
-INSERT INTO `promotion` (`id_promotion`, `id_vehicule`, `debut_promotion`, `fin_promotion`, `libelle`, `taux`) VALUES
-(4, 'a', '2023-02-07', '2023-02-20', 'aa', 0);
+INSERT INTO `promotion` (`id_promotion`, `id_vehicule`, `libelle`, `taux`) VALUES
+(4, 0, 'aa', 0),
+(7, 66, 'HELLO', 17);
 
 -- --------------------------------------------------------
 
@@ -262,7 +257,8 @@ INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `rol
 --
 
 CREATE TABLE `vehicule` (
-  `id_vehicule` varchar(255) NOT NULL,
+  `id_vehicule` int(255) NOT NULL,
+  `nom_v` varchar(255) NOT NULL,
   `id` int(11) DEFAULT NULL,
   `id_promotion` int(255) DEFAULT NULL,
   `photo` varchar(255) NOT NULL,
@@ -277,10 +273,8 @@ CREATE TABLE `vehicule` (
 -- Déchargement des données de la table `vehicule`
 --
 
-INSERT INTO `vehicule` (`id_vehicule`, `id`, `id_promotion`, `photo`, `ville`, `prix`, `disponibilite`, `description`, `type`) VALUES
-('44', 1323566, 4, 'AA', 'AA', 44, 0, 'Charge complète incluse\n\nAutonomie moyenne : 320km\n\nProtection basic incluse\n\nAnnulation gratuite jusqu\'à 48 heures avant le départ', 'velo'),
-('55', NULL, 0, 'UU', 'TUNIS', 7, 0, 'YY', 'VOITURE'),
-('77', 1323566, 4, 'ttt', 'ttt', 66, 0, 'jjh', 'voiture');
+INSERT INTO `vehicule` (`id_vehicule`, `nom_v`, `id`, `id_promotion`, `photo`, `ville`, `prix`, `disponibilite`, `description`, `type`) VALUES
+(6, 'DJ', 0, 0, 'JH', 'DD', 55, 0, 'JH', 'NG');
 
 -- --------------------------------------------------------
 
@@ -329,13 +323,6 @@ ALTER TABLE `conducteur`
   ADD KEY `fk_utilisateur_conducteur` (`id`);
 
 --
--- Index pour la table `contrat`
---
-ALTER TABLE `contrat`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_vehicule_contrat` (`immatriculation`);
-
---
 -- Index pour la table `course`
 --
 ALTER TABLE `course`
@@ -353,8 +340,8 @@ ALTER TABLE `livraison`
 --
 ALTER TABLE `location`
   ADD PRIMARY KEY (`id_contrat`),
-  ADD KEY `fk_utilisateur_location` (`id`),
-  ADD KEY `fk_vehicule_location` (`id_vehicule`);
+  ADD KEY `fk_vehicule_location` (`id_vehicule`),
+  ADD KEY `fk_utilisateur_location` (`id`);
 
 --
 -- Index pour la table `offre_course`
@@ -400,14 +387,15 @@ ALTER TABLE `utilisateur`
 --
 ALTER TABLE `vehicule`
   ADD PRIMARY KEY (`id_vehicule`),
-  ADD KEY `fk_promotion_vehicule` (`id_promotion`);
+  ADD KEY `fk_promotion_vehicule` (`id_promotion`),
+  ADD KEY `fk_u_v` (`id`);
 
 --
 -- Index pour la table `voiture`
 --
 ALTER TABLE `voiture`
   ADD PRIMARY KEY (`immatriculation`),
-  ADD KEY `fk_utilisateur_vehicule` (`id`);
+  ADD KEY `fk_utilisateur_voiture` (`id`) USING BTREE;
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -420,12 +408,6 @@ ALTER TABLE `colis`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT pour la table `contrat`
---
-ALTER TABLE `contrat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT pour la table `livraison`
 --
 ALTER TABLE `livraison`
@@ -435,7 +417,7 @@ ALTER TABLE `livraison`
 -- AUTO_INCREMENT pour la table `location`
 --
 ALTER TABLE `location`
-  MODIFY `id_contrat` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_contrat` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `offre_livraison`
@@ -453,7 +435,7 @@ ALTER TABLE `personnes`
 -- AUTO_INCREMENT pour la table `promotion`
 --
 ALTER TABLE `promotion`
-  MODIFY `id_promotion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_promotion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `reclamation`
@@ -466,6 +448,12 @@ ALTER TABLE `reclamation`
 --
 ALTER TABLE `utilisateur`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT pour la table `vehicule`
+--
+ALTER TABLE `vehicule`
+  MODIFY `id_vehicule` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Contraintes pour les tables déchargées
@@ -483,12 +471,6 @@ ALTER TABLE `commentaire`
 --
 ALTER TABLE `conducteur`
   ADD CONSTRAINT `fk_utilisateur_conducteur` FOREIGN KEY (`id`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `contrat`
---
-ALTER TABLE `contrat`
-  ADD CONSTRAINT `fk_vehicule_contrat` FOREIGN KEY (`immatriculation`) REFERENCES `voiture` (`immatriculation`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `livraison`
