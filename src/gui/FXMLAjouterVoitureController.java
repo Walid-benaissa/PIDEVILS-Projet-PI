@@ -45,7 +45,7 @@ public class FXMLAjouterVoitureController implements Initializable {
     @FXML
     private TextField photo;
     @FXML
-    private Button btnModifier;
+    private Button btnAjouter;
 
     /**
      * Initializes the controller class.
@@ -55,6 +55,7 @@ public class FXMLAjouterVoitureController implements Initializable {
         // TODO
     }
 
+    @FXML
     private void Ajouter(ActionEvent event) {
         VoitureService vs = new VoitureService();
         Voiture v = new Voiture(tf_immatriculation.getText(), tf_modele.getText(), tf_marque.getText(), tf_etat.getText(), photo.getText(), 3);
@@ -82,9 +83,4 @@ public class FXMLAjouterVoitureController implements Initializable {
 
         }
     }
-
-    @FXML
-    private void ModifierV(ActionEvent event) {
-    }
-
 }
