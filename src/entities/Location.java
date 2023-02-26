@@ -5,8 +5,7 @@
  */
 package entities;
 
-import java.sql.Date;
-
+import java.util.Date;
 /**
  *
  * @author azizi
@@ -14,26 +13,50 @@ import java.sql.Date;
 public class Location { 
    
     private int id_contrat;
-    private String cin;
-    private String id_vehicule; 
+    private int id;
+    private int id_vehicule; 
     private Date date_debut;
     private Date date_fin;
- 
-    
+    private String lieu;
+
+    public Location(int id_contrat, int id, int id_vehicule, Date date_debut, Date date_fin, String lieu) {
+        this.id_contrat = id_contrat;
+        this.id = id;
+        this.id_vehicule = id_vehicule;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.lieu = lieu;
+    }
+
+    public Location(int id, int id_vehicule, Date date_debut, Date date_fin, String lieu) {
+        this.id = id;
+        this.id_vehicule = id_vehicule;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.lieu = lieu;
+    }
+
+    public Location(Date date_debut, Date date_fin, String lieu) {
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.lieu = lieu;
+    }
+
+  
     
     public Location() {
     }
 
-    public Location(int id_contrat, String cin, String id_vehicule, Date date_debut, Date date_fin) {
+    public Location(int id_contrat, int id, int id_vehicule, Date date_debut, Date date_fin) {
         this.id_contrat = id_contrat;
-        this.cin = cin;
+        this.id = id;
         this.id_vehicule = id_vehicule;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
     }
 
-    public Location(String cin, String id_vehicule, Date date_debut, Date date_fin) {
-        this.cin = cin;
+    public Location(int id, int id_vehicule, Date date_debut, Date date_fin) {
+        this.id = id;
         this.id_vehicule = id_vehicule;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
@@ -47,19 +70,19 @@ public class Location {
         this.id_contrat = id_contrat;
     }
 
-    public String getCin() {
-        return cin;
+    public int getId() {
+        return id;
     }
 
-    public void setCin(String cin) {
-        this.cin = cin;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getId_vehicule() {
+    public int getId_vehicule() {
         return id_vehicule;
     }
 
-    public void setId_vehicule(String id_vehicule) {
+    public void setId_vehicule(int id_vehicule) {
         this.id_vehicule = id_vehicule;
     }
 
@@ -78,12 +101,23 @@ public class Location {
     public void setDate_fin(Date date_fin) {
         this.date_fin = date_fin;
     }
-    
+      public String getLieu() {
+        return lieu;
+    }
+
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
+    }
 
     @Override
     public String toString() {
-        return "Location{" + "id_contrat=" + id_contrat + ", cin=" + cin + ", id_vehicule=" + id_vehicule + ", date_debut=" + date_debut + ", date_fin=" + date_fin + '}';
+        return "Location{" + "id_contrat=" + id_contrat + ", id=" + id + ", id_vehicule=" + id_vehicule + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", lieu=" + lieu + '}';
     }
+ 
+    
+    
+
+    
 
    
   

@@ -30,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import service.ReclamationService;
+import service.UtilisateurService;
 import utils.CommonController;
 
 /**
@@ -58,6 +59,8 @@ public class FXMLGererReclamationController extends CommonController implements 
     private TextField idRec;
     @FXML
     private ChoiceBox choix_type;
+    
+    UtilisateurService us=new UtilisateurService();
 
     private String[] etats = {"Ouvert", "En cours", "Traite"};
     @FXML

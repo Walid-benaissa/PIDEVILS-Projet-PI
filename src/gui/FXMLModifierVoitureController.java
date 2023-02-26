@@ -48,7 +48,7 @@ public class FXMLModifierVoitureController implements Initializable {
     private TextField photo;
     VoitureService vs = new VoitureService();
 
-    /**
+ /**
      * Initializes the controller class.
      */
     @Override

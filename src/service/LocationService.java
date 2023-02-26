@@ -37,10 +37,12 @@ import utils.MyDB;
             while (RS.next()) {
                 Location p = new Location();
                 p.setId_contrat(RS.getInt("id_contrat"));
-                p.setCin(RS.getString("cin"));
-                p.setId_vehicule(RS.getString("id_vehicule"));
+                p.setId(RS.getInt("id"));
+                p.setId_vehicule(RS.getInt("id_vehicule"));
                 p.setDate_debut(RS.getDate("date_debut"));
                 p.setDate_fin(RS.getDate("date_fin"));
+                p.setLieu(RS.getString("lieu"));
+               
               
                 list.add(p);
             }
@@ -53,15 +55,16 @@ import utils.MyDB;
     @Override
     public void ajouter(Location p) {
         try {
-            String req = "INSERT INTO  `location`(`cin`, `id_vehicule`,`date_debut`, `date_fin`) VALUES (?,?,?,?)";
+            String req = "INSERT INTO  `location`(`id`, `id_vehicule`,`date_debut`, `date_fin`,`lieu`) VALUES (?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
        
-            ps.setString(1, p.getCin());
-            ps.setString(2, p.getId_vehicule());
-           // ps.setDate(3, new java.sql.Date(p.getDate_debut().getTime()));
-            //ps.setDate(4, new java.sql.Date(p.getDate_fin().getTime()));
-            ps.setDate(3, (Date)p.getDate_debut());
-            ps.setDate(4, (Date)p.getDate_fin());
+            ps.setInt(1, p.getId());
+            ps.setInt(2, p.getId_vehicule());
+            ps.setDate(3, new java.sql.Date(p.getDate_debut().getTime()));
+            ps.setDate(4, new java.sql.Date(p.getDate_fin().getTime()));
+            //ps.setDate(3, (Date)p.getDate_debut());
+            //ps.setDate(4, (Date)p.getDate_fin());
+            ps.setString(5,p.getLieu());
             ps.executeUpdate();
             
             System.out.println("Location inséré");
@@ -86,13 +89,14 @@ import utils.MyDB;
     public void modifier(Location p) {
         try {
 
-            String req = "UPDATE `location` SET  cin=?, `id_vehicule` = ?,`date_debut` = ?, `date_fin` = ? WHERE `location`.`id_contrat` = ? ";
+            String req = "UPDATE `location` SET  id=?, `id_vehicule` = ?,`date_debut` = ?, `date_fin` = ?, `lieu` = ? WHERE `location`.`id_contrat` = ? ";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setString(1, p.getCin());
-            ps.setString(2, p.getId_vehicule());
+            ps.setInt(1, p.getId());
+            ps.setInt(2, p.getId_vehicule());
             ps.setDate(3,new java.sql.Date(p.getDate_debut().getTime()));
             ps.setDate(4, new java.sql.Date(p.getDate_fin().getTime()));
-            ps.setInt(5, p.getId_contrat());
+            ps.setString(5, p.getLieu());
+            ps.setInt(6, p.getId_contrat());
           
 
             ps.executeUpdate();

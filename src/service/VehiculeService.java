@@ -39,8 +39,9 @@ public class VehiculeService implements IService<Vehicule>{
             ResultSet RS = st.executeQuery(req);
             while (RS.next()) {
                 Vehicule p = new Vehicule();
-                p.setId_vehicule(RS.getString("id_vehicule"));
-                p.setCin(RS.getString("cin"));
+                p.setId_vehicule(RS.getInt("id_vehicule"));
+                p.setNom_v(RS.getString("nom_v"));
+                p.setId(RS.getInt("id"));
                 p.setId_promotion(RS.getInt("id_promotion"));
                 p.setPhoto(RS.getString("photo"));
                 p.setVille(RS.getString("ville"));
@@ -78,13 +79,13 @@ public static boolean estChaineValide(String chaine) {
     @Override
     public void ajouter(Vehicule p) {
         try {
-            String req = "INSERT INTO  `vehicule`(`id_vehicule`, `cin`,`id_promotion`, `photo`, `ville`,`prix`, `disponibilite`, `description`,`type`) VALUES (?,?,?,?,?,?,?,?,?)";
+            String req = "INSERT INTO  `vehicule`(`nom_v`,`id`,`id_promotion`, `photo`, `ville`,`prix`, `disponibilite`, `description`,`type`) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
            p.setVille(p.getVille().trim());
             p.setType(p.getType().trim());
          if (estChaineValide(p.getVille())&&estChaineValide(p.getType())&&isStringLength(p.getType())) {
-            ps.setString(1, p.getId_vehicule());
-            ps.setString(2, p.getCin());
+            ps.setString(1, p.getNom_v());
+            ps.setInt(2, p.getId());
             ps.setInt(3, p.getId_promotion());
             ps.setString(4, p.getPhoto());
             ps.setString(5, p.getVille());
@@ -119,20 +120,21 @@ public static boolean estChaineValide(String chaine) {
     public void modifier(Vehicule p) {
         try {
 
-            String req = "UPDATE `vehicule` SET cin=?, `photo` = ?,`id_promotion`=?,`ville` = ?, `prix` = ?, `disponibilite` = ?, `description` = ?, `type` = ? WHERE id_vehicule= ?";
+            String req = "UPDATE `vehicule` SET `nom_v`= ? ,`id`=?, `photo` = ?,`id_promotion`=?,`ville` = ?, `prix` = ?, `disponibilite` = ?, `description` = ?, `type` = ? WHERE id_vehicule= ?";
             PreparedStatement ps = conn.prepareStatement(req);
              p.setVille(p.getVille().trim());
             p.setType(p.getType().trim());
          if (estChaineValide(p.getVille())&&estChaineValide(p.getType())&&isStringLength(p.getType())) {
-            ps.setString(1, p.getCin());
-            ps.setString(2, p.getPhoto());
-            ps.setInt(3, p.getId_promotion());
-            ps.setString(4, p.getVille());
-            ps.setFloat(5, p.getPrix());
-            ps.setBoolean(6, p.isDisponibilite());
-            ps.setString(7, p.getDescription());
-            ps.setString(8, p.getType());
-            ps.setString(9, p.getId_vehicule());
+            ps.setString(1, p.getNom_v());
+            ps.setInt(2, p.getId());
+            ps.setString(3, p.getPhoto());
+            ps.setInt(4, p.getId_promotion());
+            ps.setString(5, p.getVille());
+            ps.setFloat(6, p.getPrix());
+            ps.setBoolean(7, p.isDisponibilite());
+            ps.setString(8, p.getDescription());
+            ps.setString(9, p.getType());
+            ps.setInt(10, p.getId_vehicule());
 
             ps.executeUpdate();}
             else{
