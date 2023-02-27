@@ -27,7 +27,6 @@ public class Main extends Application{
 
     @Override
     public void start(Stage stage)  {
-      
         try {  
             CommonController.setSceneContentStartup(stage);
         } catch (IOException ex) {

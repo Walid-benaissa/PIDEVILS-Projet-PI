@@ -13,9 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import service.UtilisateurService;
 import utils.CommonController;
@@ -50,6 +52,8 @@ public class FXMLGererProfilController extends CommonController implements Initi
     private Pane paneMDP;
     String motdepasse;
     Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
+    @FXML
+    private AnchorPane sidepane;
 
     /**
      * Initializes the controller class.
@@ -61,6 +65,21 @@ public class FXMLGererProfilController extends CommonController implements Initi
         tf_numtel.setText(u.getNum_tel());
         tf_mail.setText(u.getMail());
         motdepasse = u.getMdp();
+        try {
+            switch (u.getRole()) {
+                case "Client":
+                    sidepane.getChildren().add(FXMLLoader.load(getClass().getResource("FXMLSideBarClient.fxml")));
+                    break;
+                case "Conducteur":
+                    sidepane.getChildren().add(FXMLLoader.load(getClass().getResource("FXMLSideBarConducteur.fxml")));
+                    break;
+                default:
+                    sidepane.getChildren().add(FXMLLoader.load(getClass().getResource("FXMLSideBarAdmin.fxml")));
+                    break;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererProfilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -86,7 +105,6 @@ public class FXMLGererProfilController extends CommonController implements Initi
 
     }
 
-    @FXML
     private void routeGererProfil(ActionEvent event) {
         try {  
             setSceneContent("FXMLGererProfil");
@@ -95,7 +113,6 @@ public class FXMLGererProfilController extends CommonController implements Initi
         }
     }
 
-    @FXML
     private void routeGererReclamation(ActionEvent event) {
         try {  
             setSceneContent("FXMLEffectuerReclamation");
@@ -104,7 +121,6 @@ public class FXMLGererProfilController extends CommonController implements Initi
         }
     }
 
-    @FXML
     private void routeGererLivraisions(ActionEvent event) {
          try {  
             setSceneContent("FXMLAjoutLivraison");
@@ -113,7 +129,6 @@ public class FXMLGererProfilController extends CommonController implements Initi
         }
     }
 
-    @FXML
     private void routeGererCourse(ActionEvent event) {
           try {  
             setSceneContent("FXMLCourse");
@@ -122,7 +137,6 @@ public class FXMLGererProfilController extends CommonController implements Initi
         }
     }
 
-    @FXML
     private void routeGererLocation(ActionEvent event) {
       try {  
             setSceneContent("FXMLlouerVehicule");

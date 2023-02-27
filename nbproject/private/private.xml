@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/PidevJava/Pidevils/PIDEVILS-Projet-PI/src/utils/CommonController.java</file>
-            <file>file:/E:/PidevJava/Pidevils/PIDEVILS-Projet-PI/src/gui/FXMLGererUtilisateurs.fxml</file>
-            <file>file:/E:/PidevJava/Pidevils/PIDEVILS-Projet-PI/src/pidevils/Main.java</file>
+            <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/gui/FXMLVehicule.fxml</file>
+            <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/pidevils/Main.java</file>
+            <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/gui/FXMLGererVoitureController.java</file>
+            <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/gui/FXMLSideBarConducteur.fxml</file>
+            <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/utils/CommonController.java</file>
+            <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/gui/FXMLAfficherVoitureAdminController.java</file>
+            <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/gui/FXMLSideBarClient.fxml</file>
+            <file>file:/C:/Esprit/Projet%20PIDEV/PIDEVILS-Projet-PI/src/gui/FXMLModifierPromotion.fxml</file>
         </group>
     </open-files>
 </project-private>

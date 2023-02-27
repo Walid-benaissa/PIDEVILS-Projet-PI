@@ -91,7 +91,6 @@ public class FXMLModifierVoitureController implements Initializable {
         }
     }
 
-    @FXML
     private void routeGererProfil(ActionEvent event) {
         try {
             setSceneContent("FXMLGererProfil");
@@ -100,7 +99,6 @@ public class FXMLModifierVoitureController implements Initializable {
         }
     }
 
-    @FXML
     private void routeGererReclamation(ActionEvent event) {
         try {
             setSceneContent("FXMLGererReclamation");
@@ -109,11 +107,7 @@ public class FXMLModifierVoitureController implements Initializable {
         }
     }
 
-    @FXML
-    private void routeGererLivraisions(ActionEvent event) {
-    }
 
-    @FXML
     private void routeOffreCourse(ActionEvent event) {
          try {
             setSceneContent("FXMLOffreCourse");
@@ -122,7 +116,6 @@ public class FXMLModifierVoitureController implements Initializable {
         }
     }
 
-    @FXML
     private void routeGererVoiture(ActionEvent event) {
          try {
             setSceneContent("FXMLGererVoiture");
