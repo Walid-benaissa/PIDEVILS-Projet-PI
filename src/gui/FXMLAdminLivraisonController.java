@@ -114,21 +114,9 @@ public class FXMLAdminLivraisonController extends CommonController  implements I
 
     }
 
+    
+        
 
-    @FXML
-    private void routeGererReclamation(ActionEvent event) {
-    }
-
-    @FXML
-    private void routeGererLivraisions(ActionEvent event) {
-    }
-
-    @FXML
-    private void routeGererUser(ActionEvent event) {
-    }
-
-    @FXML
-    private void routeGererVoitures(ActionEvent event) {
-    }
+ 
     
 }

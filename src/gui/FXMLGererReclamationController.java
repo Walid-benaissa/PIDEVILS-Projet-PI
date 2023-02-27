@@ -108,39 +108,5 @@ public class FXMLGererReclamationController extends CommonController implements 
     }
 
 
-    @FXML
-    private void routeGererUser(ActionEvent event) {
-        try {
-            setSceneContent("FXMLGererUtilisateurs");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
-    @FXML
-    private void routeGererLivraisions(ActionEvent event) {
-        try {
-            setSceneContent("#");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void routeGererReclamation(ActionEvent event) {
-        try {
-            setSceneContent("FXMLGererReclamation");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void routeGererVoitures(ActionEvent event) {
-        try {
-            setSceneContent("FXMLAfficherVoitureAdmin");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 }
