@@ -1,105 +1,179 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="539.0" prefWidth="1329.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLLivraisonController">
-   <children>
-      <TableView fx:id="table2" layoutX="194.0" layoutY="254.0" onMouseClicked="#getSelected" prefHeight="242.0" prefWidth="518.0">
-        <columns>
-          <TableColumn fx:id="tfidLivraison" prefWidth="86.0" text="Id_Livraison" />
-          <TableColumn fx:id="tfAdresseExp" prefWidth="121.0" text="Adresse Expédition" />
-            <TableColumn fx:id="tfAdresseDest" prefWidth="125.0" text="Adresse Destinataire" />
-            <TableColumn fx:id="tfPrix" prefWidth="90.0" text="Prix" />
-            <TableColumn fx:id="TfEtat" prefWidth="90.0" text="Etat" />
-        </columns>
-      </TableView>
-      <TableView fx:id="table" layoutX="713.0" layoutY="254.0" onMouseClicked="#getSelected" prefHeight="242.0" prefWidth="562.0">
-        <columns>
-          <TableColumn fx:id="tfidColis" prefWidth="122.0" text="Id_Colis" />
-          <TableColumn fx:id="tfNBObj" minWidth="0.0" prefWidth="163.0" text="Nombre d'objets" />
-            <TableColumn fx:id="tfPoids" prefWidth="143.0" text="Poids" />
-            <TableColumn fx:id="tfDescription" prefWidth="122.0" text="Description" />
-        </columns>
-      </TableView>
-      <Button layoutX="17.0" layoutY="397.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #FD9800;" text="Supprimer">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <Button layoutX="18.0" layoutY="307.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #FD9800;" text="Modifier Livraison">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <TextField fx:id="AdExp" layoutX="162.0" layoutY="127.0" prefHeight="25.0" prefWidth="180.0" />
-      <Label layoutX="29.0" layoutY="128.0" prefHeight="18.0" prefWidth="119.0" text="Adresse Expédition" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <TextField fx:id="AdDest" layoutX="162.0" layoutY="181.0" prefHeight="25.0" prefWidth="180.0" />
-      <TextField fx:id="Prix" layoutX="529.0" layoutY="68.0" prefHeight="25.0" prefWidth="180.0" />
-      <TextField fx:id="etat" layoutX="530.0" layoutY="124.0" prefHeight="25.0" prefWidth="180.0" />
-      <TextField fx:id="NbObj" layoutX="982.0" layoutY="71.0" prefHeight="25.0" prefWidth="180.0" />
-      <TextField fx:id="poids" layoutX="981.0" layoutY="120.0" prefHeight="25.0" prefWidth="180.0" />
-      <Label layoutX="28.0" layoutY="179.0" prefHeight="18.0" prefWidth="119.0" text="Adresse Destinataire" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="469.0" layoutY="72.0" prefHeight="18.0" prefWidth="119.0" text="Prix" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="470.0" layoutY="128.0" prefHeight="18.0" prefWidth="119.0" text="Etat" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="852.0" layoutY="74.0" prefHeight="18.0" prefWidth="119.0" text="Nombre d'objets" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="849.0" layoutY="128.0" prefHeight="18.0" prefWidth="119.0" text="Poids" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <TextField fx:id="tf_description" layoutX="980.0" layoutY="163.0" prefHeight="55.0" prefWidth="179.0" />
-      <Label layoutX="849.0" layoutY="168.0" prefHeight="18.0" prefWidth="119.0" text="Description" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="30.0" layoutY="74.0" prefHeight="18.0" prefWidth="119.0" text="Id_Livraison" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <TextField fx:id="idLiv" layoutX="162.0" layoutY="74.0" prefHeight="25.0" prefWidth="180.0" />
-      <TextField fx:id="idColis" layoutX="531.0" layoutY="177.0" prefHeight="25.0" prefWidth="180.0" />
-      <Label layoutX="468.0" layoutY="181.0" prefHeight="18.0" prefWidth="119.0" text="Id_Colis" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="383.0" layoutY="1.0" prefHeight="54.0" prefWidth="507.0" text="Gestion des livraisons et des colis" textFill="#fd9800">
-         <font>
-            <Font name="System Bold" size="30.0" />
-         </font>
-      </Label>
-      <Button layoutX="18.0" layoutY="353.0" mnemonicParsing="false" onAction="#ModifierColis" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #FD9800;" text="Modifier Colis">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-   </children>
-</AnchorPane>
+
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLLivraisonController">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox layoutY="152.0" prefHeight="420.0" prefWidth="43.0" spacing="7.0" style="-fx-background-color: white;">
+                                       <children>
+                                          <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/user.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/email.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/package.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/location.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/car-key.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                       <padding>
+                                          <Insets left="4.0" top="4.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox layoutX="43.0" layoutY="152.0" prefHeight="422.0" prefWidth="158.0" style="-fx-background-color: white;">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#routeGererProfil" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Profil">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#routeGererReclamation" prefHeight="45.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text=" Réclamation">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#routeGererLivraisions" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text=" Livraisons">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#routeGererCourse" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Course">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#routeGererLocation" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Location">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                    <ImageView fitHeight="151.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/Artboard%201%20copy%203-100.jpg" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane id="AnchorPane" prefHeight="574.0" prefWidth="960.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="table2" layoutX="154.0" layoutY="240.0" onMouseClicked="#getSelected" prefHeight="269.0" prefWidth="785.0">
+              <columns>
+                <TableColumn fx:id="tfAdresseExp" prefWidth="132.0" text="Adresse Expédition" />
+                  <TableColumn fx:id="tfAdresseDest" prefWidth="132.0" text="Adresse Destinataire" />
+                  <TableColumn fx:id="tfPrix" prefWidth="88.0" text="Prix" />
+                  <TableColumn fx:id="TfEtat" prefWidth="86.0" text="Etat" />
+                  <TableColumn fx:id="tfNBObj" prefWidth="125.0" text="Nombre d'objets" />
+                  <TableColumn fx:id="tfPoids" text="Poids" />
+                  <TableColumn fx:id="tfDescription" prefWidth="128.0" text="Description" />
+              </columns>
+            </TableView>
+            <Button layoutX="25.0" layoutY="402.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #FD9800;" text="Supprimer">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="25.0" layoutY="343.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #FD9800;" text="Modifier">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <TextField fx:id="AdExp" layoutX="162.0" layoutY="71.0" prefHeight="25.0" prefWidth="180.0" />
+            <Label layoutX="28.0" layoutY="74.0" prefHeight="18.0" prefWidth="119.0" text="Adresse Expédition" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="AdDest" layoutX="162.0" layoutY="120.0" prefHeight="25.0" prefWidth="180.0" />
+            <TextField fx:id="Prix" layoutX="162.0" layoutY="174.0" prefHeight="25.0" prefWidth="180.0" />
+            <TextField fx:id="NbObj" layoutX="661.0" layoutY="70.0" prefHeight="25.0" prefWidth="180.0" />
+            <TextField fx:id="poids" layoutX="658.0" layoutY="119.0" prefHeight="25.0" prefWidth="180.0" />
+            <Label layoutX="28.0" layoutY="119.0" prefHeight="18.0" prefWidth="119.0" text="Adresse Destinataire" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="28.0" layoutY="182.0" prefHeight="18.0" prefWidth="119.0" text="Prix" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="544.0" layoutY="73.0" prefHeight="18.0" prefWidth="119.0" text="Nombre d'objets" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="546.0" layoutY="118.0" prefHeight="18.0" prefWidth="119.0" text="Poids" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_description" layoutX="657.0" layoutY="165.0" prefHeight="44.0" prefWidth="183.0" />
+            <Label layoutX="548.0" layoutY="176.0" prefHeight="18.0" prefWidth="119.0" text="Description" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="359.0" layoutY="1.0" prefHeight="54.0" prefWidth="507.0" text="Gérer Livraisons" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Button layoutX="25.0" layoutY="289.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #FD9800;" text="Ajouter">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

@@ -5,7 +5,10 @@
  */
 package service;
 
+import entities.Colis;
 import entities.Livraison;
+import entities.LivraisonColis;
+import entities.LivraisonLivreur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,6 +55,36 @@ public class LivraisonService implements IService<Livraison> {
         return list;
     }
 
+    public List afficher() {
+        List<LivraisonColis> list = new ArrayList<>();
+        try {
+            String req = "Select * from  `livraison`,`colis` WHERE `livraison`.`id_colis` =`colis`.`id` ";
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            while (RS.next()) {
+                LivraisonColis l = new LivraisonColis();
+
+                l.setId_livraison(RS.getInt("id_livraison"));
+                l.setAdresse_expedition(RS.getString("Adresse_expedition"));
+                l.setAdresse_destinataire(RS.getString("Adresse_destinataire"));
+                l.setPrix(RS.getFloat("Prix"));
+                l.setEtat(RS.getString("Etat"));
+                l.setId(RS.getInt("id"));
+                l.setDescription(RS.getString("Description"));
+                l.setNb_items(RS.getInt("Nb_items"));
+                l.setPoids(RS.getFloat("Poids"));
+                list.add(l);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return list;
+    }
+
+
+    
     @Override
     public void ajouter(Livraison l) {
         try {
@@ -59,7 +92,7 @@ public class LivraisonService implements IService<Livraison> {
             Statement st = conn.createStatement();
             ResultSet RS = st.executeQuery(req);
             RS.next();
-            int id=RS.getInt("id");
+            int id = RS.getInt("id");
             req = "INSERT INTO `livraison`(`id_livraison`,`adresse_expedition`, `adresse_destinataire`, `prix`,`etat`, `id_colis`) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setInt(1, l.getId_livraison());
@@ -94,7 +127,7 @@ public class LivraisonService implements IService<Livraison> {
 
             String req = "UPDATE `livraison` SET `adresse_expedition` = ?, `adresse_destinataire`= ?, `prix`= ?, `etat`= ? WHERE `livraison`.`id_livraison` = ? ";
             PreparedStatement ps = conn.prepareStatement(req);
-            
+
             ps.setString(1, l.getAdresse_expedition());
             ps.setString(2, l.getAdresse_destinataire());
             ps.setFloat(3, l.getPrix());
@@ -107,6 +140,30 @@ public class LivraisonService implements IService<Livraison> {
             System.out.println(ex.getMessage());
         }
     }
-    
-    
+
+    public void modif(LivraisonColis l) {
+
+        try {
+
+                String req = "UPDATE `colis` Join `livraison` ON `colis`.`id`= `livraison`.`id_colis` SET `adresse_expedition` = ?, `adresse_destinataire`= ?, `prix`= ?, `etat`= ?,`colis`.`nb_items` = ?, `colis`.`description`= ?, `colis`.`poids`= ? WHERE `colis`.`id` = ? ";
+            PreparedStatement ps = conn.prepareStatement(req);
+
+            ps.setString(1, l.getAdresse_expedition());
+            ps.setString(2, l.getAdresse_destinataire());
+            ps.setFloat(3, l.getPrix());
+            ps.setString(4, l.getEtat());
+            ps.setInt(5, l.getNb_items());
+            ps.setString(6, l.getDescription());
+            ps.setFloat(7, l.getPoids());
+            ps.setInt(8, l.getId());
+          //  ps.setInt(9, l.getId_livraison());
+            ps.executeUpdate();
+            System.out.println("LivraisonCOlis modifiée avec succès");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
 }

@@ -36,10 +36,15 @@ public class FXMLModifierVoitureController implements Initializable {
 
     @FXML
     private Button btnModifier;
+    @FXML
     private TextField tf_immatriculation;
+    @FXML
     private TextField tf_modele;
+    @FXML
     private TextField tf_marque;
+    @FXML
     private TextField tf_etat;
+    @FXML
     private TextField photo;
     VoitureService vs = new VoitureService();
 
@@ -72,6 +77,7 @@ public class FXMLModifierVoitureController implements Initializable {
         }
     }
 
+    @FXML
     private void importerVoiture(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open My File");
