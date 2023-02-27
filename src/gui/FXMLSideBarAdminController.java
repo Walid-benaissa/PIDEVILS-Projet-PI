@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import utils.CommonController;
 import static utils.CommonController.setSceneContent;
+import utils.Context;
 
 /**
  * FXML Controller class
@@ -73,6 +74,13 @@ public class FXMLSideBarAdminController extends CommonController implements Init
 
     @FXML
     private void deconnexion(ActionEvent event) {
+        try {
+             Context.getInstance().removeContextObject("UtilisateurCourant");
+             Context.getInstance().removeContextObject("Role");
+            setSceneContent("FXMLAuthentification");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
