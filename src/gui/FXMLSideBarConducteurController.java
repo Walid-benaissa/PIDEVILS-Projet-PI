@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import utils.CommonController;
 import static utils.CommonController.setSceneContent;
+import utils.Context;
 
 /**
  * FXML Controller class
@@ -71,6 +72,17 @@ public class FXMLSideBarConducteurController extends CommonController implements
     private void routeGererVoiture(ActionEvent event) { 
         try {
             setSceneContent("FXMLGererVoiture");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void deconnexion(ActionEvent event) {
+         try {
+             Context.getInstance().removeContextObject("UtilisateurCourant");
+             Context.getInstance().removeContextObject("Role");
+            setSceneContent("FXMLAuthentification");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }

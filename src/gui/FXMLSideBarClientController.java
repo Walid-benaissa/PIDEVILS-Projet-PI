@@ -75,5 +75,9 @@ public class FXMLSideBarClientController extends CommonController implements Ini
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    private void deconnexion(ActionEvent event) {
+    }
     
 }

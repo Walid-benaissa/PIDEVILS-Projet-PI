@@ -65,5 +65,9 @@ public class FXMLSideBarAdminController extends CommonController implements Init
     @FXML
     private void routeConsulterLocation(ActionEvent event) {
     }
+
+    @FXML
+    private void deconnexion(ActionEvent event) {
+    }
     
 }
