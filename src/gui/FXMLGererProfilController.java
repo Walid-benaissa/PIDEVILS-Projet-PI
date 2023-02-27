@@ -105,45 +105,6 @@ public class FXMLGererProfilController extends CommonController implements Initi
 
     }
 
-    private void routeGererProfil(ActionEvent event) {
-        try {  
-            setSceneContent("FXMLGererProfil");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void routeGererReclamation(ActionEvent event) {
-        try {  
-            setSceneContent("FXMLEffectuerReclamation");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void routeGererLivraisions(ActionEvent event) {
-         try {  
-            setSceneContent("FXMLLivraison");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void routeGererCourse(ActionEvent event) {
-          try {  
-            setSceneContent("FXMLCourse");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void routeGererLocation(ActionEvent event) {
-      try {  
-            setSceneContent("FXMLlouerVehicule");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-            }
+ 
 
 }
