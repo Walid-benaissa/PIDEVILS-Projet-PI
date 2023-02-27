@@ -23,7 +23,8 @@ public final Logger LOGGER = Logger.getLogger(this.getClass().getName());
    private static final String FXML_PREFIX = ".fxml";  
    public static void setSceneContentStartup(Stage stage) throws IOException{  
      Context.getInstance().setCurrentStage(stage);  
-     setSceneContent("FXMLAjoutLivraison");  
+     setSceneContent("FXMLAuthentification"
+             + "");  
    }  
    public static Parent setSceneContent(String pageName) throws IOException {  
      Stage currentStage = Context.getInstance().getCurrentStage();  
