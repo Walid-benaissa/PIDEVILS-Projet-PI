@@ -24,58 +24,83 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                 <children>
-                                    <VBox layoutY="152.0" prefHeight="420.0" prefWidth="43.0" spacing="7.0" style="-fx-background-color: white;">
-                                       <children>
-                                          <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/user.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/email.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/package.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                       <padding>
-                                          <Insets left="4.0" top="4.0" />
-                                       </padding>
-                                    </VBox>
-                                    <VBox layoutX="43.0" layoutY="152.0" prefHeight="442.0" prefWidth="158.0" style="-fx-background-color: white;">
-                                       <children>
-                                          <Button mnemonicParsing="false" onAction="#routeGererProfil" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Profil">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Button>
-                                          <Button mnemonicParsing="false" onAction="#routeGererReclamation" prefHeight="45.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text=" Réclamation">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Button>
-                                          <Button mnemonicParsing="false" onAction="#routeGererLivraisions" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text=" Livraisons">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Button>
-                                       </children>
-                                    </VBox>
-                                    <ImageView fitHeight="151.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/Artboard%201%20copy%203-100.jpg" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                            </children>
                         </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutY="152.0" prefHeight="399.0" prefWidth="43.0" spacing="7.0" style="-fx-background-color: white;">
+                           <children>
+                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/user.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/email.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/package.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/location.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/car-key.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <padding>
+                              <Insets left="4.0" top="4.0" />
+                           </padding>
+                        </VBox>
+                        <VBox layoutX="43.0" layoutY="152.0" prefHeight="402.0" prefWidth="158.0" style="-fx-background-color: white;">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#routeGererProfil" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Profil">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#routeGererReclamation" prefHeight="45.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text=" Réclamation">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#routeGererLivraisions" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text=" Livraisons">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#routeGererCourse" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Course">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#routeGererLocation" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Location">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <ImageView fitHeight="151.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Artboard%201%20copy%203-100.jpg" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </children>
@@ -84,16 +109,16 @@
       </AnchorPane>
    </left>
    <right>
-      <AnchorPane id="AnchorPane" prefHeight="571.0" prefWidth="767.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+      <AnchorPane id="AnchorPane" prefHeight="554.0" prefWidth="729.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <Pane layoutX="10.0" layoutY="9.0" prefHeight="578.0" prefWidth="742.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
+            <Pane layoutX="22.0" layoutY="21.0" prefHeight="523.0" prefWidth="684.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
                <children>
-                  <Label layoutX="237.0" layoutY="14.0" prefHeight="54.0" prefWidth="289.0" text="Consulter Livraisons" textFill="WHITE">
+                  <Label layoutX="217.0" layoutY="14.0" prefHeight="54.0" prefWidth="289.0" text="Consulter Livraisons" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="table2" layoutX="95.0" layoutY="241.0" prefHeight="223.0" prefWidth="597.0">
+                  <TableView fx:id="table2" layoutX="61.0" layoutY="235.0" prefHeight="248.0" prefWidth="597.0">
                     <columns>
                         <TableColumn fx:id="tfAdresseExp" prefWidth="143.0" text="Adresse Expédition" />
                         <TableColumn fx:id="tfAdresseDest" prefWidth="187.33331298828125" text="Adresse Destinataire" />

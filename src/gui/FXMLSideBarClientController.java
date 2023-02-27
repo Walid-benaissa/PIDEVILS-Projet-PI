@@ -52,7 +52,7 @@ public class FXMLSideBarClientController extends CommonController implements Ini
     @FXML
     private void routeGererLivraisions(ActionEvent event) {
          try {  
-            setSceneContent("FXMLAjoutLivraison");
+            setSceneContent("FXMLLivraison");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
