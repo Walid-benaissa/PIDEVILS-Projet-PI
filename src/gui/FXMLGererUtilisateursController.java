@@ -126,7 +126,7 @@ public class FXMLGererUtilisateursController extends CommonController implements
     @FXML
     private void routeGererLivraisions(ActionEvent event) {
         try {
-            setSceneContent("#");
+            setSceneContent("FXMLAdminLivraison");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }

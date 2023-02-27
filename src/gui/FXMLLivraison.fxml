@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLLivraisonController">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -114,7 +113,7 @@
                   <TableColumn fx:id="TfEtat" prefWidth="86.0" text="Etat" />
                   <TableColumn fx:id="tfNBObj" prefWidth="125.0" text="Nombre d'objets" />
                   <TableColumn fx:id="tfPoids" text="Poids" />
-                  <TableColumn fx:id="tfDescription" prefWidth="128.0" text="Description" />
+                  <TableColumn fx:id="tfDescription" prefWidth="137.0" text="Description" />
               </columns>
             </TableView>
             <Button layoutX="25.0" layoutY="402.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #FD9800;" text="Supprimer">

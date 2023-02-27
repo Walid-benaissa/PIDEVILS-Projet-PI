@@ -1,4 +1,3 @@
-
 package gui;
 
 import entities.Colis;
@@ -48,54 +47,56 @@ public class FXMLAjoutLivraisonController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-            private boolean adresse_expvalide(){
-      Pattern p = Pattern.compile("[a-zA-Z ]+");
+
+    private boolean adresse_expvalide() {
+        Pattern p = Pattern.compile("[a-zA-Z ]+");
         Matcher m = p.matcher(tf_AdresseExp.getText());
-        if(m.find() && m.group().equals(tf_AdresseExp.getText())){
+        if (m.find() && m.group().equals(tf_AdresseExp.getText())) {
             return true;
-        }else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Type Adresse Expédition invalide !");
-                alert.setHeaderText(null);
-                alert.setContentText("Veuillez entrer un type valide !");
-                alert.showAndWait();
-           
-            return false;            
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Type Adresse Expédition invalide !");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez entrer un type valide !");
+            alert.showAndWait();
+
+            return false;
         }
-     }
-            
-     private boolean adresse_desvalide(){
-      Pattern p = Pattern.compile("[a-zA-Z ]+");
+    }
+
+    private boolean adresse_desvalide() {
+        Pattern p = Pattern.compile("[a-zA-Z ]+");
         Matcher m = p.matcher(tf_adresseDest.getText());
-        if(m.find() && m.group().equals(tf_adresseDest.getText())){
+        if (m.find() && m.group().equals(tf_adresseDest.getText())) {
             return true;
-        }else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Type Adresse Destination invalide !");
-                alert.setHeaderText(null);
-                alert.setContentText("Veuillez entrer un type valide !");
-                alert.showAndWait();
-           
-            return false;            
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Type Adresse Destination invalide !");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez entrer un type valide !");
+            alert.showAndWait();
+
+            return false;
         }
-     }
-     
-             private boolean nb_itemsvalide(){
+    }
+
+    private boolean nb_itemsvalide() {
         Pattern p = Pattern.compile("[0-9]+");
         Matcher m = p.matcher(tf_nbrObjets.getText());
-        if(m.find() && m.group().equals(tf_nbrObjets.getText())){
+        if (m.find() && m.group().equals(tf_nbrObjets.getText())) {
             return true;
-        }else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Type nombre d'objets invalide !");
-                alert.setHeaderText(null);
-                alert.setContentText("Veuillez entrer un type valide !");
-                alert.showAndWait();
-           
-            return false;            
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Type nombre d'objets invalide !");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez entrer un type valide !");
+            alert.showAndWait();
+
+            return false;
         }
-         
+
     }
+
     @FXML
     private void ajoutL(ActionEvent event) {
         LivraisonService ls = new LivraisonService();
@@ -107,7 +108,7 @@ public class FXMLAjoutLivraisonController implements Initializable {
             alert.setContentText("il y'a des champs vides !");
             alert.show();
 
-        } else if (adresse_desvalide()&&nb_itemsvalide()&&adresse_expvalide()) {
+        } else if (adresse_desvalide() && nb_itemsvalide() && adresse_expvalide()) {
             String prix = tf_prix.getText();
             Livraison l = new Livraison(tf_AdresseExp.getText(), tf_adresseDest.getText(), Float.parseFloat(prix), "En attente");
             String nb_items = tf_nbrObjets.getText();
@@ -133,7 +134,7 @@ public class FXMLAjoutLivraisonController implements Initializable {
 
     @FXML
     private void routeGererProfil(ActionEvent event) {
-         try {  
+        try {
             setSceneContent("FXMLGererProfil");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
@@ -142,7 +143,7 @@ public class FXMLAjoutLivraisonController implements Initializable {
 
     @FXML
     private void routeGererReclamation(ActionEvent event) {
-         try {  
+        try {
             setSceneContent("FXMLEffectuerReclamation");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
@@ -151,8 +152,8 @@ public class FXMLAjoutLivraisonController implements Initializable {
 
     @FXML
     private void routeGererLivraisions(ActionEvent event) {
-          try {  
-            setSceneContent("FXMLAjoutLivraison");
+        try {
+            setSceneContent("FXMLLivraison");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -160,7 +161,7 @@ public class FXMLAjoutLivraisonController implements Initializable {
 
     @FXML
     private void routeGererCourse(ActionEvent event) {
-         try {  
+        try {
             setSceneContent("FXMLCourse");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
@@ -169,8 +170,17 @@ public class FXMLAjoutLivraisonController implements Initializable {
 
     @FXML
     private void routeGererLocation(ActionEvent event) {
-         try {  
+        try {
             setSceneContent("FXMLlouerVehicule");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+        try {
+            setSceneContent("FXMLLivraison");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -31,6 +31,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -76,7 +78,6 @@ public class FXMLLivraisonController extends CommonController implements Initial
     private TextField tf_description;
     int index = -1;
 
-    @FXML
     private TextField etat;
     @FXML
     private TextField NbObj;
@@ -133,12 +134,20 @@ public class FXMLLivraisonController extends CommonController implements Initial
     private void Modifier(ActionEvent event) throws SQLException {
 
         LivraisonColis l = table2.getSelectionModel().getSelectedItem();
+ if (AdExp.getText().isEmpty() || AdDest.getText().isEmpty() || Prix.getText().isEmpty() || NbObj.getText().isEmpty()) {
 
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur!");
+            alert.setContentText("il y'a des champs vides !");
+            alert.show();
+
+        }
+ else if (adresse_desvalide() && nb_itemsvalide() && adresse_expvalide()) {
         l.setAdresse_expedition(AdExp.getText());
         l.setAdresse_destinataire(AdDest.getText());
         String prix2 = Prix.getText();
         l.setPrix(Float.parseFloat(prix2));
-        l.setEtat(etat.getText());
+//        l.setEtat(etat.getText());
          String Nb_items = NbObj.getText();
         l.setNb_items(Integer.parseInt(Nb_items));
         String poids2 = poids.getText();
@@ -154,11 +163,62 @@ public class FXMLLivraisonController extends CommonController implements Initial
         AdExp.setText("");
         AdDest.setText("");
         Prix.setText("");
-        etat.setText("");
+      //  etat.setText("");
   
         NbObj.setText("");
         poids.setText("");
         tf_description.setText("");
+ }
+
+    }
+    
+    
+    private boolean adresse_expvalide() {
+        Pattern p = Pattern.compile("[a-zA-Z ]+");
+        Matcher m = p.matcher(AdExp.getText());
+        if (m.find() && m.group().equals(AdExp.getText())) {
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Type Adresse Expédition invalide !");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez entrer un type valide !");
+            alert.showAndWait();
+
+            return false;
+        }
+    }
+
+    private boolean adresse_desvalide() {
+        Pattern p = Pattern.compile("[a-zA-Z ]+");
+        Matcher m = p.matcher(AdDest.getText());
+        if (m.find() && m.group().equals(AdDest.getText())) {
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Type Adresse Destination invalide !");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez entrer un type valide !");
+            alert.showAndWait();
+
+            return false;
+        }
+    }
+
+    private boolean nb_itemsvalide() {
+        Pattern p = Pattern.compile("[0-9]+");
+        Matcher m = p.matcher(NbObj.getText());
+        if (m.find() && m.group().equals(NbObj.getText())) {
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Type nombre d'objets invalide !");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez entrer un type valide !");
+            alert.showAndWait();
+
+            return false;
+        }
 
     }
 
@@ -172,7 +232,7 @@ public class FXMLLivraisonController extends CommonController implements Initial
         AdExp.setText(tfAdresseExp.getCellData(index).toString());
         AdDest.setText(tfAdresseDest.getCellData(index).toString());
         Prix.setText(tfPrix.getCellData(index).toString());
-        etat.setText(TfEtat.getCellData(index).toString());
+   //     etat.setText(TfEtat.getCellData(index).toString());
       //  idColis.setText(tfidColis.getCellData(index).toString());
         NbObj.setText(tfNBObj.getCellData(index).toString());
         tf_description.setText(tfDescription.getCellData(index).toString());

@@ -51,6 +51,11 @@ public class FXMLSideBarAdminController extends CommonController implements Init
 
     @FXML
     private void routeGererLivraisions(ActionEvent event) {
+            try {
+            setSceneContent("FXMLAdminLivraison");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
