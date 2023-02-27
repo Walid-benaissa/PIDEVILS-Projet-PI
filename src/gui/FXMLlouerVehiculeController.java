@@ -91,48 +91,4 @@ public class FXMLlouerVehiculeController implements Initializable {
     
 }
 
-    @FXML
-    private void routeGererProfil(ActionEvent event) {
-         try {  
-            setSceneContent("FXMLGererProfil");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void routeGererReclamation(ActionEvent event) {
-         try {  
-            setSceneContent("FXMLEffectuerReclamation");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void routeGererLivraisions(ActionEvent event) {
-         try {  
-            setSceneContent("FXMLAjoutLivraison");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void routeGererCourse(ActionEvent event) {
-         try {  
-            setSceneContent("FXMLCourse");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void routeGererLocation(ActionEvent event) {
-        try {  
-            setSceneContent("FXMLlouerVehicule");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 }

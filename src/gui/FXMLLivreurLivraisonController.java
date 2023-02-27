@@ -83,17 +83,6 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
 
     }
 
-    @FXML
-    private void routeGererProfil(ActionEvent event) {
-    }
-
-    @FXML
-    private void routeGererReclamation(ActionEvent event) {
-    }
-
-    @FXML
-    private void routeGererLivraisions(ActionEvent event) {
-    }
 
    /* @FXML
     private void Supprimer(ActionEvent event) throws SQLException {
@@ -132,11 +121,4 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
         etat.setText(TfEtat.getCellData(index).toString());
     }
 
-    @FXML
-    private void routeGererCourse(ActionEvent event) {
-    }
-
-    @FXML
-    private void routeGererLocation(ActionEvent event) {
-    }
 }

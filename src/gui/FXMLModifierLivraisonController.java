@@ -45,25 +45,7 @@ public class FXMLModifierLivraisonController extends CommonController  implement
         // TODO
     }    
 
-    @FXML
-    private void routeGererProfil(ActionEvent event) {
-    }
-
-    @FXML
-    private void routeGererReclamation(ActionEvent event) {
-    }
-
-    @FXML
-    private void routeGererLivraisions(ActionEvent event) {
-    }
-
-    @FXML
-    private void routeGererCourse(ActionEvent event) {
-    }
-
-    @FXML
-    private void routeGererLocation(ActionEvent event) {
-    }
+    
 
    /* @FXML
     private void Modifier(ActionEvent event) {
@@ -96,5 +78,9 @@ public class FXMLModifierLivraisonController extends CommonController  implement
         poids.setText("");
         tf_description.setText("");
     }*/
+
+    @FXML
+    private void Modifier(ActionEvent event) {
+    }
     
 }

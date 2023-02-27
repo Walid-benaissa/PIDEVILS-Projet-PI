@@ -16,99 +16,9 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLLivreurLivraisonController">
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <VBox layoutY="152.0" prefHeight="399.0" prefWidth="43.0" spacing="7.0" style="-fx-background-color: white;">
-                           <children>
-                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/user.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/email.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/package.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/location.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/car-key.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                           <padding>
-                              <Insets left="4.0" top="4.0" />
-                           </padding>
-                        </VBox>
-                        <VBox layoutX="43.0" layoutY="152.0" prefHeight="402.0" prefWidth="158.0" style="-fx-background-color: white;">
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#routeGererProfil" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Profil">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#routeGererReclamation" prefHeight="45.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text=" Réclamation">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#routeGererLivraisions" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text=" Livraisons">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#routeGererCourse" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Course">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#routeGererLocation" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Location">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </VBox>
-                        <ImageView fitHeight="151.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/Artboard%201%20copy%203-100.jpg" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
-   </left>
-   <right>
+        <fx:include fx:id="Sidebar" source="FXMLSideBarClient.fxml"/>
+    </left>
+   <center>
       <AnchorPane id="AnchorPane" prefHeight="554.0" prefWidth="729.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
             <Pane layoutX="22.0" layoutY="21.0" prefHeight="523.0" prefWidth="684.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
@@ -141,5 +51,5 @@
             </Pane>
          </children>
       </AnchorPane>
-   </right>
+   </center>
 </BorderPane>
