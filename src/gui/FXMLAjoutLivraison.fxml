@@ -13,150 +13,63 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="648.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLAjoutLivraisonController">
-   <center>
-      <AnchorPane id="AnchorPane" prefHeight="569.0" prefWidth="332.0" style="-fx-background-color: black;">
-         <children>
-            <Pane layoutX="67.0" layoutY="26.0" prefHeight="584.0" prefWidth="397.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
-               <children>
-                  <Label layoutX="101.0" layoutY="-5.0" prefHeight="54.0" prefWidth="248.0" text="Ajouter Livraison" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="142.0" layoutY="524.0" mnemonicParsing="false" onAction="#ajoutL" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: FD9800;" text="Ajouter" textFill="WHITE">
-                     <font>
-                        <Font name="SansSerif Regular" size="24.0" />
-                     </font>
-                  </Button>
-                  <Label layoutX="72.0" layoutY="440.0" text="Poids:" textFill="WHITE">
-                     <font>
+    <center>
+        <AnchorPane id="AnchorPane" prefHeight="569.0" prefWidth="332.0" style="-fx-background-color: black;">
+            <children>
+                <Pane layoutX="52.0" layoutY="26.0" prefHeight="584.0" prefWidth="397.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
+                    <children>
+                        <Label layoutX="101.0" layoutY="-5.0" prefHeight="54.0" prefWidth="248.0" text="Ajouter Livraison" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="22.0" />
+                            </font>
+                        </Label>
+                        <Button layoutX="142.0" layoutY="524.0" mnemonicParsing="false" onAction="#ajoutL" prefHeight="27.0" prefWidth="112.0" style="-fx-background-color: FD9800;" text="Ajouter" textFill="WHITE">
+                            <font>
+                                <Font name="SansSerif Regular" size="24.0" />
+                            </font>
+                        </Button>
+                        <Label layoutX="72.0" layoutY="440.0" text="Poids:" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <Label layoutX="117.0" layoutY="77.0" text="Adresse d'expédition:" textFill="WHITE">
+                    <font>
                         <Font name="Microsoft Sans Serif" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Label layoutX="130.0" layoutY="77.0" text="Adresse d'expédition:" textFill="WHITE">
-               <font>
-                  <Font name="Microsoft Sans Serif" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="tf_AdresseExp" layoutX="126.0" layoutY="105.0" prefHeight="34.0" prefWidth="279.0" />
-            <Label layoutX="130.0" layoutY="152.0" text="Adresse destinataire:" textFill="WHITE">
-               <font>
-                  <Font name="Microsoft Sans Serif" size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="134.0" layoutY="221.0" text="Prix:" textFill="WHITE">
-               <font>
-                  <Font name="Microsoft Sans Serif" size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="130.0" layoutY="296.0" text="Nombre d'objets:" textFill="WHITE">
-               <font>
-                  <Font name="Microsoft Sans Serif" size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="130.0" layoutY="371.0" text="Description:" textFill="WHITE">
-               <font>
-                  <Font name="Microsoft Sans Serif" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="tf_adresseDest" layoutX="127.0" layoutY="180.0" prefHeight="35.0" prefWidth="279.0" />
-            <TextField fx:id="tf_prix" layoutX="127.0" layoutY="246.0" prefHeight="35.0" prefWidth="279.0" />
-            <TextField fx:id="tf_nbrObjets" layoutX="128.0" layoutY="327.0" prefHeight="35.0" prefWidth="279.0" />
-            <TextField fx:id="tf_description" layoutX="129.0" layoutY="401.0" prefHeight="54.0" prefWidth="279.0" />
-            <TextField fx:id="tf_poids" layoutX="129.0" layoutY="494.0" prefHeight="35.0" prefWidth="279.0" />
-            <Button layoutX="18.0" layoutY="13.0" mnemonicParsing="false" onAction="#retour" prefHeight="27.0" prefWidth="37.0" style="-fx-background-color: FD9800;">
-               <font>
-                  <Font name="System Bold" size="10.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="21.0" fitWidth="18.0" layoutX="28.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/arrow.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-   </center>
-   <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <VBox layoutY="152.0" prefHeight="423.0" prefWidth="43.0" spacing="7.0" style="-fx-background-color: white;">
-                           <children>
-                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/user.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/email.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/package.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/location.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/car-key.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                           <padding>
-                              <Insets left="4.0" top="4.0" />
-                           </padding>
-                        </VBox>
-                        <VBox layoutX="43.0" layoutY="152.0" prefHeight="421.0" prefWidth="158.0" style="-fx-background-color: white;">
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#routeGererProfil" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Profil">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#routeGererReclamation" prefHeight="45.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text=" Réclamation">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#routeGererLivraisions" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text=" Livraisons">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#routeGererCourse" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Course">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#routeGererLocation" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Location">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </VBox>
-                        <ImageView fitHeight="151.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/Artboard%201%20copy%203-100.jpg" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
-   </left>
+                    </font>
+                </Label>
+                <TextField fx:id="tf_AdresseExp" layoutX="113.0" layoutY="105.0" prefHeight="34.0" prefWidth="279.0" />
+                <Label layoutX="117.0" layoutY="152.0" text="Adresse destinataire:" textFill="WHITE">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="16.0" />
+                    </font>
+                </Label>
+                <Label layoutX="121.0" layoutY="221.0" text="Prix:" textFill="WHITE">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="16.0" />
+                    </font>
+                </Label>
+                <Label layoutX="117.0" layoutY="296.0" text="Nombre d'objets:" textFill="WHITE">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="16.0" />
+                    </font>
+                </Label>
+                <Label layoutX="117.0" layoutY="371.0" text="Description:" textFill="WHITE">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="16.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="tf_adresseDest" layoutX="114.0" layoutY="180.0" prefHeight="35.0" prefWidth="279.0" />
+                <TextField fx:id="tf_prix" layoutX="114.0" layoutY="246.0" prefHeight="35.0" prefWidth="279.0" />
+                <TextField fx:id="tf_nbrObjets" layoutX="115.0" layoutY="327.0" prefHeight="35.0" prefWidth="279.0" />
+                <TextField fx:id="tf_description" layoutX="116.0" layoutY="401.0" prefHeight="54.0" prefWidth="279.0" />
+                <TextField fx:id="tf_poids" layoutX="116.0" layoutY="494.0" prefHeight="35.0" prefWidth="279.0" />
+            </children>
+        </AnchorPane>
+    </center>
+    <left>
+        <fx:include fx:id="Sidebar" source="FXMLSideBarClient.fxml"/>
+    </left>
 </BorderPane>
