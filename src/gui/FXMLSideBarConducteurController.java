@@ -5,18 +5,23 @@
  */
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import utils.CommonController;
+import static utils.CommonController.setSceneContent;
 
 /**
  * FXML Controller class
  *
  * @author USER
  */
-public class FXMLSideBarConducteurController implements Initializable {
+public class FXMLSideBarConducteurController extends CommonController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -28,22 +33,48 @@ public class FXMLSideBarConducteurController implements Initializable {
 
     @FXML
     private void routeGererProfil(ActionEvent event) {
+        try {  
+            setSceneContent("FXMLGererProfil");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
-    private void routeGererReclamation(ActionEvent event) {
+    private void routeGererReclamation(ActionEvent event) { 
+        try {  
+            setSceneContent("FXMLEffectuerReclamation");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
     private void routeGererLivraisions(ActionEvent event) {
+         try {  
+            setSceneContent(" ");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
     private void routeOffreCourse(ActionEvent event) {
+          try {  
+            setSceneContent("FXMLOffreCourse");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
-    private void routeGererVoiture(ActionEvent event) {
+    private void routeGererVoiture(ActionEvent event) { 
+        try {
+            setSceneContent("FXMLGererVoiture");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    
     
 }

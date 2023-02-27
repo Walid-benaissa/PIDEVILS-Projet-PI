@@ -5,18 +5,23 @@
  */
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import utils.CommonController;
+import static utils.CommonController.setSceneContent;
 
 /**
  * FXML Controller class
  *
  * @author USER
  */
-public class FXMLSideBarAdminController implements Initializable {
+public class FXMLSideBarAdminController extends CommonController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -28,10 +33,20 @@ public class FXMLSideBarAdminController implements Initializable {
 
     @FXML
     private void routeGererUser(ActionEvent event) {
+         try {
+            setSceneContent("FXMLGererUtilisateurs");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
     private void routeGererReclamation(ActionEvent event) {
+         try {
+            setSceneContent("FXMLGererReclamation");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -40,6 +55,11 @@ public class FXMLSideBarAdminController implements Initializable {
 
     @FXML
     private void routeGererVoitures(ActionEvent event) {
+         try {
+            setSceneContent("FXMLAfficherVoitureAdmin");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
