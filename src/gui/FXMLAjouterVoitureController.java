@@ -24,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.VoitureService;
+import static utils.CommonController.setSceneContent;
 
 /**
  * FXML Controller class
@@ -81,6 +82,56 @@ public class FXMLAjouterVoitureController implements Initializable {
             phtotoV = selectedFile.getPath();
             photo.setText(phtotoV);
 
+        }
+    }
+
+    @FXML
+    private void routeGererProfil(ActionEvent event) {
+         try {
+            setSceneContent("FXMLGererProfil");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererReclamation(ActionEvent event) {
+        try {
+            setSceneContent("FXMLGererReclamation");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererLivraisions(ActionEvent event) {
+    }
+
+    @FXML
+    private void routeOffreCourse(ActionEvent event) {
+        try {
+            setSceneContent("FXMLOffreCourse");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void routeGererVoiture(ActionEvent event) {
+        try {
+            setSceneContent("FXMLGererVoiture");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+        try {
+            setSceneContent("FXMLGererVoiture");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

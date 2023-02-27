@@ -150,4 +150,8 @@ public class FXMLGererUtilisateursController extends CommonController implements
         }
 
     }
+
+    @FXML
+    private void routeConsulterLocation(ActionEvent event) {
+    }
 }

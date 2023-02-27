@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLAfficherVoitureAdminController">
    <center>
       <AnchorPane id="AnchorPane" prefHeight="544.0" prefWidth="820.0" style="-fx-background-color: black;">
@@ -46,31 +45,36 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <VBox layoutY="152.0" prefHeight="527.0" prefWidth="43.0" style="-fx-background-color: white;">
+                        <VBox layoutY="152.0" prefHeight="527.0" prefWidth="43.0" spacing="7.0" style="-fx-background-color: white;">
                            <children>
-                              <ImageView fitHeight="48.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/group.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="48.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/email.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="48.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/package.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="48.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/car.png" />
                                  </image>
                               </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/car-key.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                            <padding>
-                              <Insets top="5.0" />
+                              <Insets left="4.0" top="4.0" />
                            </padding>
                         </VBox>
                         <VBox layoutX="43.0" layoutY="152.0" prefHeight="526.0" prefWidth="158.0" style="-fx-background-color: white;">
@@ -91,6 +95,11 @@
                                  </font>
                               </Button>
                               <Button mnemonicParsing="false" onAction="#routeGererVoitures" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Voitures">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#routeConsulterLocation" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Location">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
