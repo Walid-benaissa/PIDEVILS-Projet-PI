@@ -9,41 +9,32 @@ package entities;
  *
  * @author user
  */
+public class LivraisonLivreur {
 
-public class LivraisonColis {
-     private int id_livraison;
+    private int id_livraison;
     private String adresse_expedition;
     private String adresse_destinataire;
     private float prix;
-    private String etat ;
+    private String etat;
     private int id;
-    private int nb_items;
-    private String description;
-    private float poids;
-   
+    private String nom;
+    private String prenom;
+    private String num_tel;
 
-    public LivraisonColis(Livraison l, Colis c) {
-        this.id_livraison=l.getId_livraison();
-        this.adresse_destinataire=l.getAdresse_destinataire();
-        this.adresse_expedition=l.getAdresse_expedition();
-        this.prix=l.getPrix();
-        this.etat=l.getEtat();
-        this.id=c.getId();
-        this.nb_items=c.getNb_items();
-        this.description=c.getDescription();
-        this.poids=c.getPoids();
-        
-        
-        
+    public LivraisonLivreur(Livraison l, Utilisateur u) {
+        this.id_livraison = l.getId_livraison();
+        this.adresse_destinataire = l.getAdresse_destinataire();
+        this.adresse_expedition = l.getAdresse_expedition();
+        this.prix = l.getPrix();
+        this.etat = l.getEtat();
+        this.id = u.getId();
+        this.nom = u.getNom();
+        this.prenom = u.getPrenom();
+        this.num_tel = u.getNum_tel();
     }
 
-    public LivraisonColis() {
+    public LivraisonLivreur() {
     }
-
-    public LivraisonColis(int id) {
-        this.id = id;
-    }
-    
 
     public int getId_livraison() {
         return id_livraison;
@@ -93,30 +84,29 @@ public class LivraisonColis {
         this.id = id;
     }
 
-    public int getNb_items() {
-        return nb_items;
+    public String getNom() {
+        return nom;
     }
 
-    public void setNb_items(int nb_items) {
-        this.nb_items = nb_items;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public String getDescription() {
-        return description;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
-    public float getPoids() {
-        return poids;
+    public String getNum_tel() {
+        return num_tel;
     }
 
-    public void setPoids(float poids) {
-        this.poids = poids;
+    public void setNum_tel(String num_tel) {
+        this.num_tel = num_tel;
     }
     
-    
-    
+
 }

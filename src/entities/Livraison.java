@@ -45,6 +45,11 @@ public class Livraison {
         this.etat = etat;
     }
 
+    public Livraison(int id_livraison) {
+        this.id_livraison = id_livraison;
+    }
+    
+
     public Livraison(String adresse_expedition, String adresse_destinataire, float prix, String etat, int id_colis) {
         this.adresse_expedition = adresse_expedition;
         this.adresse_destinataire = adresse_destinataire;

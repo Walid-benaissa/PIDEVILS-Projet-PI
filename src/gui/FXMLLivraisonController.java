@@ -25,13 +25,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import service.ColisService;
 import entities.Livraison;
 import entities.Colis;
+import entities.LivraisonColis;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
+import utils.CommonController;
 import utils.MyDB;
 
 /**
@@ -39,32 +42,30 @@ import utils.MyDB;
  *
  * @author user
  */
-public class FXMLLivraisonController implements Initializable {
+public class FXMLLivraisonController extends CommonController implements Initializable {
 
-    Connection connexion;
-    Statement stm;
 
-    @FXML
-    private TableColumn<Livraison, String> tfAdresseExp;
-    @FXML
-    private TableColumn<Livraison, String> tfAdresseDest;
-    @FXML
-    private TableColumn<Livraison, Float> tfPrix;
-    @FXML
-    private TableColumn<Livraison, String> TfEtat;
-    @FXML
-    private TableColumn<Colis, Integer> tfNBObj;
-    @FXML
-    private TableColumn<Colis, String> tfDescription;
-    @FXML
-    private TableColumn<Colis, Float> tfPoids;
-    private ObservableList<Livraison> dataList = FXCollections.observableArrayList();
-    private ObservableList<Colis> dataList2 = FXCollections.observableArrayList();
 
     @FXML
-    private TableView<Colis> table;
+    private TableColumn<?, ?> tfAdresseExp;
     @FXML
-    private TableView<Livraison> table2;
+    private TableColumn<?, ?> tfAdresseDest;
+    @FXML
+    private TableColumn<?, ?> tfPrix;
+    @FXML
+    private TableColumn<?, ?> TfEtat;
+    @FXML
+    private TableColumn<?, ?> tfNBObj;
+    @FXML
+    private TableColumn<?, ?> tfDescription;
+    @FXML
+    private TableColumn<?, ?> tfPoids;
+    private ObservableList<LivraisonColis> dataList = FXCollections.observableArrayList();
+  //  private ObservableList<Colis> dataList2 = FXCollections.observableArrayList();
+
+  //  private TableView<Colis> table;
+    @FXML
+    private TableView<LivraisonColis> table2;
     @FXML
     private TextField AdExp;
     @FXML
@@ -91,9 +92,7 @@ public class FXMLLivraisonController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    public FXMLLivraisonController() {
-        connexion = MyDB.getInstance().getConnexion();
-    }
+  
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -104,20 +103,14 @@ public class FXMLLivraisonController implements Initializable {
         }
     }
 
-    public ObservableList<Livraison> getLivraison(List<Livraison> l) {
-        ObservableList<Livraison> dataList = FXCollections.observableArrayList();
+
+    
+        public ObservableList<LivraisonColis> getLivraisonColis (List<LivraisonColis> l) {
+        ObservableList<LivraisonColis> dataList = FXCollections.observableArrayList();
         for (int i = 0; i <= l.size() - 1; i++) {
             dataList.add(l.get(i));
         }
         return dataList;
-    }
-
-    public ObservableList<Colis> getColis(List<Colis> c) {
-        ObservableList<Colis> dataList2 = FXCollections.observableArrayList();
-        for (int i = 0; i <= c.size() - 1; i++) {
-            dataList2.add(c.get(i));
-        }
-        return dataList2;
     }
 
     public void afficher() throws SQLException {
@@ -131,74 +124,44 @@ public class FXMLLivraisonController implements Initializable {
         tfNBObj.setCellValueFactory(new PropertyValueFactory<>("nb_items"));
         tfDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         tfPoids.setCellValueFactory(new PropertyValueFactory<>("poids"));
-        table2.setItems(getLivraison(ls.afficheListe()));
-        table.setItems(getColis(cs.afficheListe()));
+        table2.setItems(getLivraisonColis(ls.afficher()));
+
 
     }
 
     @FXML
     private void Modifier(ActionEvent event) throws SQLException {
 
-        Livraison l = table2.getSelectionModel().getSelectedItem();
+        LivraisonColis l = table2.getSelectionModel().getSelectedItem();
 
         l.setAdresse_expedition(AdExp.getText());
         l.setAdresse_destinataire(AdDest.getText());
         String prix2 = Prix.getText();
         l.setPrix(Float.parseFloat(prix2));
         l.setEtat(etat.getText());
-        ls.modifier(l);
+         String Nb_items = NbObj.getText();
+        l.setNb_items(Integer.parseInt(Nb_items));
+        String poids2 = poids.getText();
+        l.setPoids(Float.parseFloat(poids2));
+        l.setDescription(tf_description.getText()); 
+        ls.modif(l);
         afficher();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("sucess");
         alert.setContentText("Livraison Modifiée avec succès");
         alert.show();
-      //  idLiv.setText("");
+
         AdExp.setText("");
         AdDest.setText("");
         Prix.setText("");
         etat.setText("");
-      //  idColis.setText("");
+  
         NbObj.setText("");
         poids.setText("");
         tf_description.setText("");
 
     }
 
-    @FXML
-    private void ModifierColis(ActionEvent event) throws SQLException {
-        String req2 = "UPDATE `colis` SET `nb_items`='" + NbObj.getText() + "',`description`='" + tf_description.getText() + "',`poids`='" + poids.getText() + "' WHERE id= " + idColis.getText() + " ";
-
-        stm = connexion.createStatement();
-        stm.executeUpdate(req2);
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("succes!");
-        alert.setContentText("Modification effectuée avec succès!");
-        alert.show();
-       // idLiv.setText("");
-        AdExp.setText("");
-        AdDest.setText("");
-        Prix.setText("");
-        etat.setText("");
-      //  idColis.setText("");
-        NbObj.setText("");
-        poids.setText("");
-        tf_description.setText("");
-
-        afficher();
-
-    }
-
-    /*String nb_items = NbObj.getText();
-        String poids2 = poids.getText();
-        Colis c = new Colis(Integer.parseInt(nb_items), tf_description.getText(), Float.parseFloat(poids2));
-        String Nb_items = NbObj.getText();
-        c.setNb_items(Integer.parseInt(Nb_items));
-        String poids3 = poids.getText();
-        c.setPoids(Float.parseFloat(poids2));
-        c.setDescription(tf_description.getText()); 
-        cs.modifier(c);
-        afficher();  */
     @FXML
     private void getSelected(javafx.scene.input.MouseEvent event) {
         index = table2.getSelectionModel().getSelectedIndex();
@@ -219,8 +182,8 @@ public class FXMLLivraisonController implements Initializable {
     @FXML
     private void Supprimer(javafx.event.ActionEvent event) throws SQLException {
 
-        Colis c = new Colis(table.getSelectionModel().getSelectedItem().getId());
-        cs.supprimer(c);
+        Colis c = new Colis(table2.getSelectionModel().getSelectedItem().getId());
+       cs.supprimer(c);
         afficher();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("sucess");
@@ -236,6 +199,35 @@ public class FXMLLivraisonController implements Initializable {
         poids.setText("");
         tf_description.setText("");
 
+    }
+
+    @FXML
+    private void routeGererProfil(ActionEvent event) {
+    }
+
+    @FXML
+    private void routeGererReclamation(ActionEvent event) {
+    }
+
+    @FXML
+    private void routeGererLivraisions(ActionEvent event) {
+    }
+
+    @FXML
+    private void routeGererCourse(ActionEvent event) {
+    }
+
+    @FXML
+    private void routeGererLocation(ActionEvent event) {
+    }
+
+    @FXML
+    private void Ajouter(ActionEvent event) {
+           try {
+            setSceneContent("FXMLAjoutLivraison");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

@@ -32,6 +32,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import entities.LivraisonColis;
+import utils.CommonController;
 
 
 
@@ -40,7 +41,7 @@ import entities.LivraisonColis;
  *
  * @author user
  */
-public class FXMLAdminLivraisonController implements Initializable {
+public class FXMLAdminLivraisonController extends CommonController  implements Initializable {
 
     @FXML
     private TableView<LivraisonColis> table2;
@@ -113,9 +114,6 @@ public class FXMLAdminLivraisonController implements Initializable {
 
     }
 
-    @FXML
-    private void routeGererProfil(ActionEvent event) {
-    }
 
     @FXML
     private void routeGererReclamation(ActionEvent event) {
@@ -126,11 +124,11 @@ public class FXMLAdminLivraisonController implements Initializable {
     }
 
     @FXML
-    private void routeGererCourse(ActionEvent event) {
+    private void routeGererUser(ActionEvent event) {
     }
 
     @FXML
-    private void routeGererLocation(ActionEvent event) {
+    private void routeGererVoitures(ActionEvent event) {
     }
     
 }

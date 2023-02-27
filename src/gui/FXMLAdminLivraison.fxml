@@ -12,12 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLAdminLivraisonController">
    <center>
       <AnchorPane id="AnchorPane" prefHeight="414.0" prefWidth="1086.0">
          <children>
-            <AnchorPane id="AnchorPane" prefHeight="610.0" prefWidth="1086.0" style="-fx-background-color: black;">
+            <AnchorPane id="AnchorPane" prefHeight="492.0" prefWidth="1086.0" style="-fx-background-color: black;">
                <children>
                   <TableView fx:id="table2" layoutX="23.0" layoutY="135.0" onMouseClicked="#getSelected" prefHeight="242.0" prefWidth="1042.0">
                      <columns>
@@ -47,76 +46,62 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <VBox layoutY="152.0" prefHeight="333.0" prefWidth="43.0" style="-fx-background-color: white;">
                      <children>
-                        <VBox layoutY="152.0" prefHeight="458.0" prefWidth="43.0" spacing="7.0" style="-fx-background-color: white;">
-                           <children>
-                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/user.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/email.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/package.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/location.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/car-key.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                           <padding>
-                              <Insets left="4.0" top="4.0" />
-                           </padding>
-                        </VBox>
-                        <VBox layoutX="43.0" layoutY="152.0" prefHeight="457.0" prefWidth="158.0" style="-fx-background-color: white;">
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#routeGererProfil" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Profil">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#routeGererReclamation" prefHeight="45.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text=" Réclamation">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#routeGererLivraisions" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text=" Livraisons">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#routeGererCourse" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Course">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#routeGererLocation" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Location">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </VBox>
-                        <ImageView fitHeight="151.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="48.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/Artboard%201%20copy%203-100.jpg" />
+                              <Image url="@../images/group.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="48.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/email.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="48.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/package.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="48.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/car.png" />
                            </image>
                         </ImageView>
                      </children>
-                  </AnchorPane>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox layoutX="43.0" layoutY="152.0" prefHeight="338.0" prefWidth="158.0" style="-fx-background-color: white;">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#routeGererUser" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Utilisateurs">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#routeGererReclamation" prefHeight="45.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Reclamations">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#routeGererLivraisions" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Livraisons">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#routeGererVoitures" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Voitures">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <ImageView fitHeight="151.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Artboard%201%20copy%203-100.jpg" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>
