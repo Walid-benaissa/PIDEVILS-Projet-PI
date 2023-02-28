@@ -112,7 +112,9 @@ public class Utilisateur {
     }
 
     public void setMdp(String mdp) {
-        this.mdp = mdp;
+        String hashedMdp;
+        hashedMdp = Crypt.hash(mdp);
+        this.mdp = hashedMdp;
     }
 
     public void setNum_tel(String num_tel) {
