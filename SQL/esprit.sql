@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 26 fév. 2023 à 21:18
+-- Généré le : mer. 01 mars 2023 à 00:44
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -68,14 +68,6 @@ CREATE TABLE `conducteur` (
   `permis` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `conducteur`
---
-
-INSERT INTO `conducteur` (`id`, `b3`, `permis`) VALUES
-(2, 'E:\\Téléchargement\\Diagrammes PIDEV-Copie de Diagramme de classes.drawio.png', 'E:\\Téléchargement\\Diagrammes PIDEV-Copie de Diagramme de classes.drawio.png'),
-(3, 'E:\\Téléchargement\\Diagrammes PIDEV-Copie de Diagramme de classes.drawio.png', 'E:\\Téléchargement\\Diagrammes PIDEV-Copie de Diagramme de classes.drawio.png');
-
 -- --------------------------------------------------------
 
 --
@@ -106,6 +98,8 @@ INSERT INTO `course` (`id_course`, `point_depart`, `point_destination`, `distanc
 --
 
 CREATE TABLE `livraison` (
+  `id_client` int(11) NOT NULL,
+  `id_livreur` int(11) NOT NULL,
   `id_livraison` int(11) NOT NULL,
   `adresse_expedition` varchar(30) NOT NULL,
   `adresse_destinataire` varchar(30) NOT NULL,
@@ -113,14 +107,6 @@ CREATE TABLE `livraison` (
   `etat` varchar(30) NOT NULL,
   `id_colis` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `livraison`
---
-
-INSERT INTO `livraison` (`id_livraison`, `adresse_expedition`, `adresse_destinataire`, `prix`, `etat`, `id_colis`) VALUES
-(1, 'Djerba', 'Sousse', 3.2, 'livrée', 2),
-(5, 'mmm', 'ooooo', 4, '', 1);
 
 -- --------------------------------------------------------
 
@@ -247,8 +233,10 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `role`, `evaluation`) VALUES
-(2, 'walid', 'ben aissa', 'walid@gmail.com', '12345', '12345', 'Conducteur', 0.0),
-(3, 'ben ghorbel', 'nour', 'nour@gmail.com', '123', '12345', 'Client', 0.0);
+(11, 'ben aissa', 'walid', 'walid@gmail.com', 'b6750d994f8db7990a509ed7854e26121d589147f0fd619c2601d508b5c7cc90', '23567897', 'Conducteur', 0.0),
+(12, 'khaled', 'khaled', 'khaled@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '56765345', 'Client', 0.0),
+(13, 'kharmachi', 'abir', 'abir@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '256789467', 'Admin', 0.0),
+(16, 'benghorbel', 'nour', 'nour@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '23456789', 'Conducteur', 0.0);
 
 -- --------------------------------------------------------
 
@@ -292,14 +280,6 @@ CREATE TABLE `voiture` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `voiture`
---
-
-INSERT INTO `voiture` (`id`, `immatriculation`, `modele`, `marque`, `etat`, `photo`) VALUES
-(3, '123TUNIS1235', 'IBIZAaaa', '123TUNIS1235', '123TUNIS1235', 'C:\\Users\\USER\\Pictures\\20191121_103303.jpg'),
-(2, '226TUNIS124567', 'x6', 'bmw', 'neuf', 'HHHH');
-
---
 -- Index pour les tables déchargées
 --
 
@@ -333,7 +313,9 @@ ALTER TABLE `course`
 --
 ALTER TABLE `livraison`
   ADD PRIMARY KEY (`id_livraison`),
-  ADD KEY `fk_livraison_colis` (`id_colis`);
+  ADD KEY `fk_livraison_colis` (`id_colis`),
+  ADD KEY `fk_livraison_client` (`id_client`),
+  ADD KEY `fk_livraison_conducteur` (`id_livreur`);
 
 --
 -- Index pour la table `location`
@@ -447,7 +429,7 @@ ALTER TABLE `reclamation`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `vehicule`
@@ -476,7 +458,9 @@ ALTER TABLE `conducteur`
 -- Contraintes pour la table `livraison`
 --
 ALTER TABLE `livraison`
-  ADD CONSTRAINT `fk_livraison_colis` FOREIGN KEY (`id_colis`) REFERENCES `colis` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_livraison_client` FOREIGN KEY (`id_client`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_livraison_colis` FOREIGN KEY (`id_colis`) REFERENCES `colis` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_livraison_conducteur` FOREIGN KEY (`id_livreur`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `reclamation`

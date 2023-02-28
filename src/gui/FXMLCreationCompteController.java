@@ -10,6 +10,8 @@ import entities.Utilisateur;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -128,12 +130,14 @@ public class FXMLCreationCompteController extends CommonController implements In
             role = "Conducteur";
         }
         if (tf_mdp.getText().equals(tf_mdpC.getText())) {
+             String mdpH=tf_mdp.getText();
+             mdpH=us.HashagePassword(mdpH);
             if (role.equals("Conducteur")) {
-                Conducteur user = new Conducteur(permis, b3, tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), tf_mdp.getText(), tf_numtel.getText(), role, 0.0F);
+                Conducteur user = new Conducteur(permis, b3, tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText(), role, 0.0F);
                 ConducteurService cs = new ConducteurService();
                 cs.ajouter(user);
             } else {
-                Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), tf_mdp.getText(), tf_numtel.getText(), role, 0.0F);
+                Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText(), role, 0.0F);
                 us.ajouter(user);
             }
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -191,5 +195,6 @@ public class FXMLCreationCompteController extends CommonController implements In
             Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 
 }

@@ -84,8 +84,11 @@ public class FXMLGererProfilController extends CommonController implements Initi
 
     @FXML
     private void ModifierInfo(ActionEvent event) {
-        if (changermdp.isSelected() & tf_mdp.getText().equals(tf_mdpC.getText())) {
-            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), tf_mdp.getText(), tf_numtel.getText());
+        
+        if (changermdp.isSelected() & tf_mdp.getText().equals(tf_mdpC.getText())& us.authentification(tf_mail.getText(),tf_mdpAc.getText()).getId()!=0) {
+             String mdpH=tf_mdp.getText();
+             mdpH=us.HashagePassword(mdpH);
+            Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText());
             user.setId(u.getId());
             us.modifierWithmdp(user);
         } else {

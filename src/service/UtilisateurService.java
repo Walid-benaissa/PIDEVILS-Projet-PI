@@ -6,6 +6,8 @@
 package service;
 
 import entities.Utilisateur;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -208,6 +210,20 @@ public class UtilisateurService implements IService<Utilisateur> {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+    public String HashagePassword(String password) {
+    try {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte[] hash = md.digest(password.getBytes());
+        StringBuilder sb = new StringBuilder();
+        for (byte b : hash) {
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
+    } catch (NoSuchAlgorithmException ex) {
+        System.out.println(ex.getMessage());
+        return null;
+    }
     }
 
 }
