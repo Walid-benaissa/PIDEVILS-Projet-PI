@@ -99,13 +99,17 @@ public class FXMLVehiculeController extends CommonController implements Initiali
         Date datef=(Date) Context.getInstance().getContextObject("DateF"); 
         Date dateD=(Date) Context.getInstance().getContextObject("DateD"); 
         String lieu=(String) Context.getInstance().getContextObject("lieu"); 
-        TableVehicule.setItems(FXCollections.observableList(vs.afficherVehiculesDisponibles(lieu, dateD, datef)));
+        List<Vehicule> l=vs.afficherVehiculesDisponibles(lieu, dateD, datef);
+        if (l!=null){
+        TableVehicule.setItems(FXCollections.observableList(l));
         colonnenom_v.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colonnetype.setCellValueFactory(new PropertyValueFactory<>("type"));
         colonneville.setCellValueFactory(new PropertyValueFactory<>("ville"));
         PrixColone.setCellValueFactory(new PropertyValueFactory<>("prix"));
         colonneidPROMOTION.setCellValueFactory(new PropertyValueFactory<>("idPromotion"));
         colonnedescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+                }
+
 
   }
 
