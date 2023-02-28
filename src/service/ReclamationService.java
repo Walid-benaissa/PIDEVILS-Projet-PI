@@ -29,7 +29,7 @@ public class ReclamationService implements IService<Reclamation> {
     }
 
     @Override
-    public List<Reclamation> afficheListe()   {
+    public List<Reclamation> afficheListe() {
         List<Reclamation> list = new ArrayList<>();
         try {
             String req = "Select * from  `reclamation`";
@@ -53,7 +53,7 @@ public class ReclamationService implements IService<Reclamation> {
     }
 
     @Override
-    public void ajouter(Reclamation p)   {
+    public void ajouter(Reclamation p) {
         try {
             String req = "INSERT INTO  `reclamation`(`id`, `message`, `etat`,`idAdmin`,`idUser`) VALUES (?,?,?,?,?)";
 
@@ -72,7 +72,7 @@ public class ReclamationService implements IService<Reclamation> {
     }
 
     @Override
-    public void supprimer(Reclamation p)   {
+    public void supprimer(Reclamation p) {
         try {
             String req = "DELETE FROM `reclamation` WHERE id = " + p.getId();
             Statement st = conn.createStatement();
@@ -84,9 +84,9 @@ public class ReclamationService implements IService<Reclamation> {
     }
 
     @Override
-    public void modifier(Reclamation p)   {
+    public void modifier(Reclamation p) {
         try {
-            
+
             String req = "UPDATE `reclamation` SET `message` = ?, `etat` = ? WHERE `id` = ?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, p.getMessage());
@@ -98,6 +98,28 @@ public class ReclamationService implements IService<Reclamation> {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    public List<Reclamation> rechercher(String msg) {
+        List<Reclamation> list = new ArrayList<>();
+        try {
+            String req = "Select * from  `reclamation` where message like '%"+msg+"%'";
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            while (RS.next()) {
+                Reclamation p = new Reclamation();
+                p.setId(RS.getInt("id"));
+                p.setMessage(RS.getString("message"));
+                p.setEtat(RS.getString("etat"));
+                p.setIdAdmin(RS.getInt("idAdmin"));
+                p.setIdUser(RS.getInt("idUser"));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return list;
     }
 
 }
