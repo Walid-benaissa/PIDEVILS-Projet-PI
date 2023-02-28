@@ -79,24 +79,8 @@ public class FXMLCreationCompteController extends CommonController implements In
     private void creer(ActionEvent event) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         String numtelRegex = "^[0-9+]+$";
-        String nomprenomRegex = "^[A-Za-z0-9_.-]+$";
         String mdpRegex = "^[A-Za-z0-9_.-#@]+$";
-        if (!tf_nom.getText().matches(nomprenomRegex)) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Format nom incorrect");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez saisir votre nom!");
-            alert.showAndWait();
-            return;
-        }
-        if (!tf_prenom.getText().matches(nomprenomRegex)) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Format prénom incorrect");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez saisir votre prénom!");
-            alert.showAndWait();
-            return;
-        }
+        
         if (!tf_numtel.getText().matches(numtelRegex)) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Format numero de téléphone incorrect");
