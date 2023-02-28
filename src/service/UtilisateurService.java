@@ -109,15 +109,13 @@ public class UtilisateurService implements IService<Utilisateur> {
         return true;
     }
 
-    public boolean isStringLength(String str) {
-        return str.length() < 8;
-    }
+
 
     @Override
     public void ajouter(Utilisateur p) {
         try {
             String req = "INSERT INTO  `utilisateur`(`id`, `nom`, `prenom`, `mail`,`mdp`, `num_tel`, `role`,`evaluation`) VALUES (?,?,?,?,?,?,?,?)";
-            if (estChaineValide(p.getNom()) && estChaineValide(p.getPrenom()) && isStringLength(p.getNum_tel())) {
+            if (estChaineValide(p.getNom()) && estChaineValide(p.getPrenom())) {
 
                 PreparedStatement ps = conn.prepareStatement(req);
                 ps.setInt(1, p.getId());
@@ -130,7 +128,7 @@ public class UtilisateurService implements IService<Utilisateur> {
                 ps.setFloat(8, p.getEvaluation());
                 ps.executeUpdate();
             } else {
-                System.out.println("erreur");
+                System.out.println(estChaineValide(p.getNom())+" et "+estChaineValide(p.getPrenom()));
 
             }
 

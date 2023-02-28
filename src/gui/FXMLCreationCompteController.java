@@ -18,16 +18,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.ConducteurService;
 import service.UtilisateurService;
-import javafx.scene.input.MouseEvent;
 import utils.CommonController;
 import static utils.CommonController.setSceneContent;
 
@@ -80,7 +77,7 @@ public class FXMLCreationCompteController extends CommonController implements In
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         String numtelRegex = "^[0-9+]+$";
         String nomprenomRegex = "^[A-Za-z0-9_.-]+$";
-        String mdpRegex = "^[A-Za-z0-9_.-#@]+$";
+        String mdpRegex = "^[A-Za-z0-9_.-@]+$";
         if (!tf_nom.getText().matches(nomprenomRegex)) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Format nom incorrect");
