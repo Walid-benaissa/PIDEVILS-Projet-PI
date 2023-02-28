@@ -24,13 +24,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import service.VoitureService;
+import utils.CommonController;
+import static utils.CommonController.setSceneContent;
 
 /**
  * FXML Controller class
  *
  * @author USER
  */
-public class FXMLGererVoitureController implements Initializable {
+public class FXMLGererVoitureController extends CommonController implements Initializable {
 
     @FXML
     private Button btnAjouter;
@@ -66,11 +68,7 @@ public class FXMLGererVoitureController implements Initializable {
     @FXML
     private void Ajouter(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLAjouterVoiture.fxml"));
-            Scene sc = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(sc);
-            stage.show();
+            setSceneContent("FXMLAjouterVoiture");
         } catch (IOException ex) {
             Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -88,15 +86,12 @@ public class FXMLGererVoitureController implements Initializable {
 
     @FXML
     private void Metrreajour(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLModifierVoiture.fxml"));
-            Scene sc = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(sc);
-            stage.show();
+       try {
+            setSceneContent("FXMLModifierVoiture");
         } catch (IOException ex) {
             Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+  
 }

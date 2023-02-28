@@ -1,54 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="772.0" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui.FXMLAjouterVoitureController">
-   <children>
-      <Label layoutX="231.0" layoutY="31.0" prefHeight="54.0" prefWidth="274.0" text="Ajouter voiture" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnAjouter" layoutX="492.0" layoutY="376.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="27.0" prefWidth="103.0" style="-fx-background-color: #FD9800;" text="Ajouter">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <Label layoutX="62.0" layoutY="124.0" text="Immatriculation : " textFill="WHITE">
-         <font>
-            <Font name="Microsoft Sans Serif" size="20.0" />
-         </font>
-      </Label>
-      <TextField fx:id="tf_immatriculation" layoutX="61.0" layoutY="169.0" prefHeight="27.0" prefWidth="248.0" />
-      <Label layoutX="62.0" layoutY="228.0" text="Modèle :" textFill="WHITE">
-         <font>
-            <Font name="Microsoft Sans Serif" size="20.0" />
-         </font>
-      </Label>
-      <TextField fx:id="tf_modele" layoutX="61.0" layoutY="273.0" prefHeight="27.0" prefWidth="248.0" />
-      <Label layoutX="63.0" layoutY="329.0" text="Marque :" textFill="WHITE">
-         <font>
-            <Font name="Microsoft Sans Serif" size="20.0" />
-         </font>
-      </Label>
-      <TextField fx:id="tf_marque" layoutX="62.0" layoutY="374.0" prefHeight="27.0" prefWidth="248.0" />
-      <Label layoutX="416.0" layoutY="133.0" text="Etat :" textFill="WHITE">
-         <font>
-            <Font name="Microsoft Sans Serif" size="20.0" />
-         </font>
-      </Label>
-      <TextField fx:id="tf_etat" layoutX="415.0" layoutY="178.0" prefHeight="27.0" prefWidth="248.0" />
-      <Button layoutX="409.0" layoutY="273.0" mnemonicParsing="false" onAction="#importerVoiture" prefHeight="26.0" prefWidth="60.0" text="Button" />
-      <TextField fx:id="photo" layoutX="467.0" layoutY="273.0" prefHeight="26.0" prefWidth="202.0" />
-      <Label layoutX="416.0" layoutY="228.0" text="Photo voiture  :" textFill="WHITE">
-         <font>
-            <Font name="Microsoft Sans Serif" size="20.0" />
-         </font>
-      </Label>
-   </children>
-</AnchorPane>
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLAjouterVoitureController">
+    <center>
+        <AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="772.0" style="-fx-background-color: black;">
+            <children>
+                <Label layoutX="231.0" layoutY="31.0" prefHeight="54.0" prefWidth="274.0" text="Ajouter voiture" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="36.0" />
+                    </font>
+                </Label>
+                <Button fx:id="btnAjouter" layoutX="492.0" layoutY="376.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="27.0" prefWidth="103.0" style="-fx-background-color: #FD9800;" text="Ajouter">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Button>
+                <Label layoutX="62.0" layoutY="124.0" text="Immatriculation : " textFill="WHITE">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="tf_immatriculation" layoutX="61.0" layoutY="169.0" prefHeight="27.0" prefWidth="248.0" />
+                <Label layoutX="62.0" layoutY="228.0" text="Modèle :" textFill="WHITE">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="tf_modele" layoutX="61.0" layoutY="273.0" prefHeight="27.0" prefWidth="248.0" />
+                <Label layoutX="63.0" layoutY="329.0" text="Marque :" textFill="WHITE">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="tf_marque" layoutX="62.0" layoutY="374.0" prefHeight="27.0" prefWidth="248.0" />
+                <Label layoutX="416.0" layoutY="133.0" text="Etat :" textFill="WHITE">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="tf_etat" layoutX="415.0" layoutY="178.0" prefHeight="27.0" prefWidth="248.0" />
+                <Button layoutX="409.0" layoutY="273.0" mnemonicParsing="false" onAction="#importerVoiture" prefHeight="26.0" prefWidth="60.0" text="Button" />
+                <TextField fx:id="photo" layoutX="467.0" layoutY="273.0" prefHeight="26.0" prefWidth="202.0" />
+                <Label layoutX="416.0" layoutY="228.0" text="Photo voiture  :" textFill="WHITE">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                    </font>
+                </Label>
+                <Button layoutX="68.0" layoutY="39.0" mnemonicParsing="false" onAction="#retour" prefHeight="27.0" prefWidth="37.0" style="-fx-background-color: FD9800;">
+                    <font>
+                        <Font name="System Bold" size="10.0" />
+                    </font>
+                </Button>
+                <ImageView fitHeight="21.0" fitWidth="18.0" layoutX="78.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/arrow.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </center>
+    <left>
+        <fx:include fx:id="Sidebar" source="FXMLSideBarConducteur.fxml"/>
+    </left>
+</BorderPane>

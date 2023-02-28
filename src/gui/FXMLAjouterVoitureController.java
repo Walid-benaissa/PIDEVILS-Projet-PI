@@ -24,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.VoitureService;
+import static utils.CommonController.setSceneContent;
 
 /**
  * FXML Controller class
@@ -81,6 +82,17 @@ public class FXMLAjouterVoitureController implements Initializable {
             phtotoV = selectedFile.getPath();
             photo.setText(phtotoV);
 
+        }
+    }
+
+    
+
+    @FXML
+    private void retour(ActionEvent event) {
+        try {
+            setSceneContent("FXMLGererVoiture");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

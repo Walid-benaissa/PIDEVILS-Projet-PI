@@ -17,7 +17,6 @@ public class Livraison {
     private float prix;
     private String etat ;
     private int id_colis;
-    
 
     public Livraison() {
     }
@@ -45,6 +44,11 @@ public class Livraison {
         this.prix = prix;
         this.etat = etat;
     }
+
+    public Livraison(int id_livraison) {
+        this.id_livraison = id_livraison;
+    }
+    
 
     public Livraison(String adresse_expedition, String adresse_destinataire, float prix, String etat, int id_colis) {
         this.adresse_expedition = adresse_expedition;

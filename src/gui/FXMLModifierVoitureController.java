@@ -24,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.VoitureService;
+import static utils.CommonController.setSceneContent;
 
 /**
  * FXML Controller class
@@ -36,10 +37,15 @@ public class FXMLModifierVoitureController implements Initializable {
 
     @FXML
     private Button btnModifier;
+    @FXML
     private TextField tf_immatriculation;
+    @FXML
     private TextField tf_modele;
+    @FXML
     private TextField tf_marque;
+    @FXML
     private TextField tf_etat;
+    @FXML
     private TextField photo;
     VoitureService vs = new VoitureService();
 
@@ -72,6 +78,7 @@ public class FXMLModifierVoitureController implements Initializable {
         }
     }
 
+    @FXML
     private void importerVoiture(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open My File");
@@ -83,5 +90,12 @@ public class FXMLModifierVoitureController implements Initializable {
 
         }
     }
-
+    @FXML
+    private void retour(ActionEvent event) {
+         try {
+            setSceneContent("FXMLGererVoiture");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
