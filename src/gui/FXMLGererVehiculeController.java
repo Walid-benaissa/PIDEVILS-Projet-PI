@@ -46,10 +46,9 @@ public class FXMLGererVehiculeController implements Initializable {
     @FXML
     private Button btnMettreajour;
     @FXML
-    private TableColumn colonneidvehicule;
+   
     private TableColumn colonnecin;
-    @FXML
-    private TableColumn colonnephoto;
+  
     @FXML
     private TableColumn colonneville;
     @FXML
@@ -63,8 +62,7 @@ public class FXMLGererVehiculeController implements Initializable {
     @FXML
     private TableView<Vehicule> TableVehicule;
     private VehiculeService VehiculeService = new VehiculeService();
-    @FXML
-    private TableColumn colonneid;
+ 
     @FXML
     private TableColumn colonnenom_v;
 
@@ -74,10 +72,9 @@ public class FXMLGererVehiculeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
                 
-        colonneidvehicule.setCellValueFactory(new PropertyValueFactory<>("id_vehicule"));
         
-        colonneid.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colonnephoto.setCellValueFactory(new PropertyValueFactory<>("photo"));
+     
+     
         colonneville.setCellValueFactory(new PropertyValueFactory<>("ville"));
         PrixColone.setCellValueFactory(new PropertyValueFactory<>("prix"));
         colonneidPROMOTION.setCellValueFactory(new PropertyValueFactory<>("id_promotion"));

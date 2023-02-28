@@ -4,72 +4,32 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="1004.0" prefWidth="824.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLVehiculeController">
    <children>
-      <Pane layoutX="55.0" layoutY="46.0" prefHeight="958.0" prefWidth="716.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
-         <children>
-            <ImageView fitHeight="120.0" fitWidth="172.0" layoutX="158.0" layoutY="608.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="36.0" layoutY="32.0" text="vehicule:" textFill="WHITE">
-               <font>
-                  <Font name="Microsoft Sans Serif" size="32.0" />
-               </font>
-            </Label>
-            <Pane layoutX="18.0" layoutY="91.0" prefHeight="246.0" prefWidth="666.0" style="-fx-background-color: dfdfdf;">
-               <children>
-                  <ImageView fitHeight="246.0" fitWidth="242.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button layoutX="501.0" layoutY="139.0" mnemonicParsing="false" onAction="#Selectionner" prefHeight="46.0" prefWidth="165.0" style="-fx-background-color: FD9800;" text="Selectionner" textFill="WHITE">
-                     <font>
-                        <Font name="SansSerif Regular" size="24.0" />
-                     </font>
-                  </Button>
-                  <ImageView fitHeight="246.0" fitWidth="242.0" layoutX="10.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-                  <TableView fx:id="pprix" layoutX="474.0" layoutY="55.0" prefHeight="68.0" prefWidth="178.0">
-                    <columns>
-                      <TableColumn fx:id="prix" prefWidth="199.20001220703125" text="prix par jour" />
-                    </columns>
-                  </TableView>
-                  <Text fx:id="txtout" layoutX="344.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                  <TableView fx:id="tab" layoutX="274.0" layoutY="29.0" prefHeight="182.0" prefWidth="200.0">
-                    <columns>
-                      <TableColumn fx:id="v1" prefWidth="199.20001220703125" text="voiture1" />
-                    </columns>
-                  </TableView>
-               </children>
-            </Pane>
-            <Pane layoutX="18.0" layoutY="356.0" prefHeight="246.0" prefWidth="666.0" style="-fx-background-color: dfdfdf;">
-               <children>
-                  <ImageView fitHeight="246.0" fitWidth="242.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" />
-                  <TextArea layoutX="242.0" prefHeight="246.0" prefWidth="259.0" />
-                  <TextArea layoutX="519.0" layoutY="51.0" prefHeight="68.0" prefWidth="127.0" />
-                  <Button layoutX="501.0" layoutY="139.0" mnemonicParsing="false" onAction="#Selectionner" prefHeight="46.0" prefWidth="165.0" style="-fx-background-color: FD9800;" text="Selectionner" textFill="WHITE">
-                     <font>
-                        <Font name="SansSerif Regular" size="24.0" />
-                     </font>
-                  </Button>
-                  <ImageView fitHeight="246.0" fitWidth="242.0" layoutX="10.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </Pane>
-            <Pane layoutX="18.0" layoutY="634.0" prefHeight="246.0" prefWidth="666.0" style="-fx-background-color: dfdfdf;">
-               <children>
-                  <ImageView fitHeight="246.0" fitWidth="242.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" />
-                  <TextArea layoutX="242.0" prefHeight="246.0" prefWidth="259.0" />
-                  <TextArea layoutX="519.0" layoutY="51.0" prefHeight="68.0" prefWidth="127.0" />
-                  <Button layoutX="501.0" layoutY="139.0" mnemonicParsing="false" onAction="#Selectionner" prefHeight="46.0" prefWidth="165.0" style="-fx-background-color: FD9800;" text="Selectionner" textFill="WHITE">
-                     <font>
-                        <Font name="SansSerif Regular" size="24.0" />
-                     </font>
-                  </Button>
-                  <ImageView fitHeight="246.0" fitWidth="242.0" layoutX="10.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </Pane>
-         </children>
-      </Pane>
+      <Button fx:id="btnBack" layoutX="9.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" prefHeight="13.0" prefWidth="105.0" style="-fx-background-color: #FD9800;" text="&lt;--Back">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Text layoutX="62.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <TableView fx:id="TableVehicule" layoutX="38.0" layoutY="306.0" onMouseClicked="#handleMouseAction" prefHeight="350.0" prefWidth="778.0">
+         <columns>
+            <TableColumn fx:id="colonnenom_v" prefWidth="150.40008544921875" text="nom_v" />
+            <TableColumn fx:id="colonnetype" prefWidth="107.199951171875" text="type" />
+            <TableColumn fx:id="colonneville" prefWidth="99.20001220703125" text="ville" />
+            <TableColumn fx:id="PrixColone" minWidth="0.0" prefWidth="100.79998779296875" text="prix" />
+            <TableColumn fx:id="colonneidPROMOTION" minWidth="0.0" prefWidth="136.800048828125" text="taux" />
+            <TableColumn fx:id="colonnedescription" prefWidth="181.60001220703123" text="description" />
+         </columns>
+      </TableView>
+      <Label layoutX="381.0" layoutY="36.0" prefHeight="54.0" prefWidth="322.0" text="Vehicule" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

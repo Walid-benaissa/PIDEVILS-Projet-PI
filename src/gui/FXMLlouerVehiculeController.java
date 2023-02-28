@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -36,20 +37,14 @@ import static utils.CommonController.setSceneContent;
 public class FXMLlouerVehiculeController implements Initializable {
 
     @FXML
-    private RadioButton voitureBtn;
-    @FXML
-    private ToggleGroup role;
-    @FXML
-    private RadioButton trottinetteBtn;
-    @FXML
-    private RadioButton veloBtn;
-    @FXML
     private TextField tf_lieu_de_depart;
     @FXML
     private DatePicker tf_dated;
     @FXML
     private DatePicker tf_retourd;
            private LocationService LocationService = new LocationService();
+    @FXML
+    private ChoiceBox<?> choix_type;
 
     /**
      * Initializes the controller class.

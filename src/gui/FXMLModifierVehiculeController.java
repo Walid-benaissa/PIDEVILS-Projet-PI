@@ -20,9 +20,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import service.VehiculeService;
+import static utils.CommonController.setSceneContent;
 
 /**
  * FXML Controller class
@@ -41,18 +43,23 @@ public class FXMLModifierVehiculeController implements Initializable {
     private TextField txtville;
     @FXML
     private TextField txtprix;
-    @FXML
     private TextField txtidp;
     @FXML
     private TextField txtphoto;
-    @FXML
     private TextField txttype;
-    @FXML
     private TextField txtidv;
-    @FXML
-    private Button btnpromo;
-    @FXML
     private VehiculeService VehiculeService = new VehiculeService();
+    @FXML
+    private ChoiceBox choix_id;
+      private String[] id = {"0","5", "10", "15","20", "25", "30","35", "40", "45","50", "55", "60","65", "70", "85","90"};
+    @FXML
+    private ChoiceBox choix_taux;
+       private String[] taux = {"0","5", "10", "15","20", "25", "30","35", "40", "45","50", "55", "60","65", "70", "85","90"};
+    @FXML
+    private ChoiceBox choix_type;
+       private String[] type = {"voiture", "velo", "trottinette"};
+    @FXML
+    private Button btnBack;
 
     /**
      * Initializes the controller class.
@@ -60,26 +67,31 @@ public class FXMLModifierVehiculeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+           choix_id.getItems().addAll(id);
+            choix_type.getItems().addAll(type);
+            choix_type.setValue("voiture");
+
+            choix_taux.getItems().addAll(taux);
     }    
 
     @FXML
     private void ModifierV(ActionEvent event) {
-        int id_vehicule = Integer.parseInt(txtidv.getText());
+        int id_vehicule = Integer.parseInt((String) choix_id.getValue());
+        String type = (String) choix_type.getValue();
         String nom_v = txtnomv.getText();
         String photo = txtphoto.getText();
         String ville = txtville.getText();
         float prix = Float.parseFloat(txtprix.getText());
-        int id_promotion = Integer.parseInt(txtidp.getText());
+        int taux = Integer.parseInt((String) choix_taux.getValue());
         String description = txtdesc.getText();
-        String type = txttype.getText();
+ 
   
            VehiculeService sp=new VehiculeService();
-  Vehicule a = new Vehicule(id_vehicule, nom_v, photo, ville, prix,  id_promotion,description,type);
+  Vehicule a = new Vehicule(id_vehicule, nom_v, photo, ville, prix,taux,description,type);
    sp.modifier(a);
     List<Vehicule> vList = VehiculeService.afficheListe();
     }
 
-    @FXML
     private void promotion(ActionEvent event) {
          try {
             Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLCreePromotion.fxml"));
@@ -90,6 +102,15 @@ public class FXMLModifierVehiculeController implements Initializable {
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(FXMLModifierVehiculeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void back(ActionEvent event) {
+          try {  
+            setSceneContent("FXMLGererVehicule");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
