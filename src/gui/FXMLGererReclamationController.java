@@ -6,29 +6,23 @@
 package gui;
 
 import entities.Reclamation;
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import service.ReclamationService;
 import service.UtilisateurService;
 import utils.CommonController;
@@ -65,23 +59,24 @@ public class FXMLGererReclamationController extends CommonController implements 
     private String[] etats = {"Ouvert", "En cours", "Traite"};
     @FXML
     private TableColumn<?, ?> IdUsrCol1;
+    @FXML
+    private TextField recherche;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        afficherReclamation();
+        afficherReclamation(rs.afficheListe());
         choix_type.getItems().addAll(etats);
     }
 
-    public void afficherReclamation() {
-        List<Reclamation> list = rs.afficheListe();
+    public void afficherReclamation(List<Reclamation> l) {
         id_reclamationCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         etatCol.setCellValueFactory(new PropertyValueFactory<>("etat"));
         messageCol.setCellValueFactory(new PropertyValueFactory<>("message"));
         IdUsrCol.setCellValueFactory(new PropertyValueFactory<>("idUser"));
-        ObservableList<Reclamation> L = FXCollections.observableArrayList(list);
+        ObservableList<Reclamation> L = FXCollections.observableArrayList(l);
         reclamationTable.setItems(L);
     }
 
@@ -89,7 +84,7 @@ public class FXMLGererReclamationController extends CommonController implements 
     private void supprimerReclamation(ActionEvent event) {
         Reclamation r = new Reclamation(reclamationTable.getSelectionModel().getSelectedItem().getId());
         rs.supprimer(r);
-        afficherReclamation();
+        afficherReclamation(rs.afficheListe());
     }
 
     @FXML
@@ -97,7 +92,7 @@ public class FXMLGererReclamationController extends CommonController implements 
         Reclamation c = reclamationTable.getSelectionModel().getSelectedItem();
         c.setEtat(choix_type.getValue().toString());
         rs.modifier(c);
-        afficherReclamation();
+        afficherReclamation(rs.afficheListe());
     }
 
     @FXML
@@ -105,6 +100,13 @@ public class FXMLGererReclamationController extends CommonController implements 
         Reclamation c = reclamationTable.getSelectionModel().getSelectedItem();
         idRec.setText("Id: " + c.getId());
         choix_type.setValue(c.getEtat());
+    }
+
+    @FXML
+    private void rechercherMessage(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            afficherReclamation(rs.rechercher(recherche.getText()));
+        }
     }
 
 

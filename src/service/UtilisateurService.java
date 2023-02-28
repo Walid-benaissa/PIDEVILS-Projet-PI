@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utils.MyDB;
 
 /**
@@ -78,11 +80,10 @@ public class UtilisateurService implements IService<Utilisateur> {
     }
 
     public Utilisateur authentification(String mail, String mdp) {
-            Utilisateur p = new Utilisateur();
+        Utilisateur p = new Utilisateur();
         try {
             String req = "Select * from  `utilisateur` where mail ='" + mail + "' AND mdp ='" + mdp + "'";
             Statement st = conn.createStatement();
-            System.out.println(req);
             ResultSet RS = st.executeQuery(req);
             RS.next();
             p.setId(RS.getInt("id"));
@@ -99,6 +100,24 @@ public class UtilisateurService implements IService<Utilisateur> {
         return p;
     }
 
+    public void evaluer(int id_c, float evaluation) {
+        try {
+            String req = "Select evaluation from  `utilisateur` where id=" + id_c;
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            RS.next();
+            float eval = RS.getInt("evaluation");
+            eval = (eval + evaluation) / (float) 2;
+            req = "Update utilisateur set evaluation=? where id=" + id_c;
+            PreparedStatement ps = conn.prepareStatement(req);
+            ps.setFloat(1, eval);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     public static boolean estChaineValide(String chaine) {
         // Vérifier si la chaîne est vide ou nulle
 
@@ -110,8 +129,6 @@ public class UtilisateurService implements IService<Utilisateur> {
         // La chaîne est valide si elle passe toutes les vérifications
         return true;
     }
-
-
 
     @Override
     public void ajouter(Utilisateur p) {
@@ -130,7 +147,7 @@ public class UtilisateurService implements IService<Utilisateur> {
                 ps.setFloat(8, p.getEvaluation());
                 ps.executeUpdate();
             } else {
-                System.out.println(estChaineValide(p.getNom())+" et "+estChaineValide(p.getPrenom()));
+                System.out.println(estChaineValide(p.getNom()) + " et " + estChaineValide(p.getPrenom()));
 
             }
 
