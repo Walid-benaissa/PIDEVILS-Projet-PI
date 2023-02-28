@@ -6,14 +6,19 @@
 package gui;
 
 import entities.Vehicule;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import service.VehiculeService;
+import static utils.CommonController.setSceneContent;
 
 /**
  * FXML Controller class
@@ -32,11 +37,15 @@ public class FXMLAjouterVehiculeController implements Initializable {
     private TextField txtprix;
     @FXML
     private TextField txtphoto;
-    @FXML
     private TextField txttype;
         @FXML
     private Button btnAjouter;
         private VehiculeService VehiculeService = new VehiculeService();
+    @FXML
+   private ChoiceBox choix_type;
+       private String[] type = {"voiture", "velo", "trottinette"};
+    @FXML
+    private Button btnBack;
 
     /**
      * Initializes the controller class.
@@ -44,6 +53,9 @@ public class FXMLAjouterVehiculeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+                    choix_type.getItems().addAll(type);
+            choix_type.setValue("voiture");
+
     }    
 
     @FXML
@@ -53,7 +65,7 @@ public class FXMLAjouterVehiculeController implements Initializable {
           String ville = txtville.getText();
           String photo = txtphoto.getText();
           float prix = Float.parseFloat(txtprix.getText());
-          String type = txttype.getText();
+          String type = (String) choix_type.getValue();
           String description = txtdesc.getText();
      
          
@@ -61,5 +73,16 @@ public class FXMLAjouterVehiculeController implements Initializable {
    Vehicule a = new Vehicule(nom_v,  photo,  ville,  prix,  description,  type);
    sp.ajouter(a);
     }
+
+    @FXML
+    private void back(ActionEvent event) {
+        
+        try {  
+            setSceneContent("FXMLGererVehicule");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    }
     
-}
+

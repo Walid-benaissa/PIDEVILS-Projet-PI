@@ -12,12 +12,15 @@ package service;
 
 import entities.Vehicule;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.scene.control.cell.PropertyValueFactory;
 import utils.MyDB;
 
 public class VehiculeService implements IService<Vehicule>{
@@ -42,7 +45,7 @@ public class VehiculeService implements IService<Vehicule>{
                 p.setId_vehicule(RS.getInt("id_vehicule"));
                 p.setNom_v(RS.getString("nom_v"));
                 p.setId(RS.getInt("id"));
-                p.setId_promotion(RS.getInt("id_promotion"));
+                p.setId_promotion(RS.getInt("taux"));
                 p.setPhoto(RS.getString("photo"));
                 p.setVille(RS.getString("ville"));
                 p.setPrix(RS.getFloat("prix"));
@@ -79,7 +82,7 @@ public static boolean estChaineValide(String chaine) {
     @Override
     public void ajouter(Vehicule p) {
         try {
-            String req = "INSERT INTO  `vehicule`(`nom_v`,`id`,`id_promotion`, `photo`, `ville`,`prix`, `disponibilite`, `description`,`type`) VALUES (?,?,?,?,?,?,?,?,?)";
+            String req = "INSERT INTO  `vehicule`(`nom_v`,`id`,`taux`, `photo`, `ville`,`prix`, `disponibilite`, `description`,`type`) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
            p.setVille(p.getVille().trim());
             p.setType(p.getType().trim());
@@ -120,7 +123,7 @@ public static boolean estChaineValide(String chaine) {
     public void modifier(Vehicule p) {
         try {
 
-            String req = "UPDATE `vehicule` SET `nom_v`= ? ,`id`=?, `photo` = ?,`id_promotion`=?,`ville` = ?, `prix` = ?, `disponibilite` = ?, `description` = ?, `type` = ? WHERE id_vehicule= ?";
+            String req = "UPDATE `vehicule` SET `nom_v`= ? ,`id`=?, `photo` = ?,`taux`=?,`ville` = ?, `prix` = ?, `disponibilite` = ?, `description` = ?, `type` = ? WHERE id_vehicule= ?";
             PreparedStatement ps = conn.prepareStatement(req);
              p.setVille(p.getVille().trim());
             p.setType(p.getType().trim());
@@ -145,6 +148,36 @@ public static boolean estChaineValide(String chaine) {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+      public List<Vehicule> afficherVehiculesDisponibles(String lieu, Date date_debut, Date date_fin)  {
+        List<Vehicule> vehiculesDisponibles = new ArrayList<>();
+        try {
+        String query = "SELECT * FROM vehicule WHERE disponibilite = 'true' AND lieu = ? AND id_vehicule NOT IN " +
+                "(SELECT id_vehicule FROM location WHERE (date_debut <= ? AND date_fin >= ?))";
+         PreparedStatement st = conn.prepareStatement(query);
+        st.setString(1, lieu);
+        st.setDate(2, date_fin);
+        st.setDate(3, date_debut);
+        ResultSet RS = st.executeQuery();
+        while (RS.next()) {
+            Vehicule p = new Vehicule();
+                p.setId_vehicule(RS.getInt("id_vehicule"));
+                p.setNom_v(RS.getString("nom_v"));
+                p.setId(RS.getInt("id"));
+                p.setId_promotion(RS.getInt("taux"));
+                p.setPhoto(RS.getString("photo"));
+                p.setVille(RS.getString("ville"));
+                p.setPrix(RS.getFloat("prix"));
+                p.setDisponibilite(RS.getBoolean("disponibilite"));
+                p.setDescription(RS.getString("description"));
+                p.setType(RS.getString("type"));
+              vehiculesDisponibles.add(p);
+              return vehiculesDisponibles ;
+        }
+         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+         return null;
     }
 
     

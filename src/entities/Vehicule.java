@@ -16,7 +16,7 @@ public class Vehicule {
     private String photo;
     private String ville;
     private float prix;
-    private int id_promotion;
+    private int taux;
     private boolean disponibilite;
     private String description;
     private String type;
@@ -24,27 +24,27 @@ public class Vehicule {
     public Vehicule() {
     }
 
-    public Vehicule(int id_vehicule,String nom_v, int id, String photo, String ville, float prix, int id_promotion, boolean disponibilite, String description, String type) {
+    public Vehicule(int id_vehicule,String nom_v, int id, String photo, String ville, float prix, int taux, boolean disponibilite, String description, String type) {
         this.id_vehicule = id_vehicule;
         this.nom_v=nom_v;
         this.id = id;
         this.photo = photo;
         this.ville = ville;
         this.prix = prix;
-        this.id_promotion = id_promotion;
+        this.taux = taux;
         this.disponibilite = disponibilite;
         this.description = description;
         this.type = type;
     }
 
-    public Vehicule(int id_vehicule,String nom_v, int id, String photo, String ville, float prix, int id_promotion, String description, String type) {
+    public Vehicule(int id_vehicule,String nom_v, int id, String photo, String ville, float prix, int taux, String description, String type) {
         this.id_vehicule = id_vehicule;
         this.nom_v=nom_v;
         this.id = id;
         this.photo = photo;
         this.ville = ville;
         this.prix = prix;
-        this.id_promotion = id_promotion;
+        this.taux = taux;
         this.description = description;
         this.type = type;
     }
@@ -78,13 +78,13 @@ public class Vehicule {
         this.type = type;
     }
 
-    public Vehicule(int id_vehicule, String nom_v, String photo, String ville, float prix, int id_promotion, String description, String type) {
+    public Vehicule(int id_vehicule, String nom_v, String photo, String ville, float prix, int taux, String description, String type) {
         this.id_vehicule = id_vehicule;
         this.nom_v = nom_v;
         this.photo = photo;
         this.ville = ville;
         this.prix = prix;
-        this.id_promotion = id_promotion;
+        this.taux = taux;
         this.description = description;
         this.type = type;
     }
@@ -152,11 +152,11 @@ public class Vehicule {
     }
 
     public int getId_promotion() {
-        return id_promotion;
+        return taux;
     }
 
-    public void setId_promotion(int id_promotion) {
-        this.id_promotion = id_promotion;
+    public void setId_promotion(int taux) {
+        this.taux = taux;
     }
 
     public boolean isDisponibilite() {
@@ -185,7 +185,7 @@ public class Vehicule {
 
     @Override
     public String toString() {
-        return "Vehicule{" + "id_vehicule=" + id_vehicule + ", nom_v=" + nom_v + ", id=" + id + ", photo=" + photo + ", ville=" + ville + ", prix=" + prix + ", id_promotion=" + id_promotion + ", disponibilite=" + disponibilite + ", description=" + description + ", type=" + type + '}';
+        return "Vehicule{" + "id_vehicule=" + id_vehicule + ", nom_v=" + nom_v + ", id=" + id + ", photo=" + photo + ", ville=" + ville + ", prix=" + prix + ", taux=" + taux + ", disponibilite=" + disponibilite + ", description=" + description + ", type=" + type + '}';
     }
 
     
