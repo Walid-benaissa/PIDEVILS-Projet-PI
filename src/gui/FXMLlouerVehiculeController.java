@@ -28,6 +28,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import service.LocationService;
 import static utils.CommonController.setSceneContent;
+import utils.Context;
 
 /**
  * FXML Controller class
@@ -63,23 +64,17 @@ public class FXMLlouerVehiculeController implements Initializable {
         
                 LocationService sp=new LocationService();
           String lieu =tf_lieu_de_depart.getText();
-          
               Date date_debut = java.sql.Date.valueOf(tf_dated.getValue());
      Date date_fin = java.sql.Date.valueOf(tf_retourd.getValue());
      
-         
- 
-   Location a = new Location( date_debut, date_fin,  lieu);
-   sp.ajouter(a);
-      
-    
+Context.getInstance().addContextObject("DateF",date_fin);
+Context.getInstance().addContextObject("DateD",date_debut);
+Context.getInstance().addContextObject("lieu",lieu);
+//   Location a = new Location( date_debut, date_fin,  lieu);
+//   sp.ajouter(a);
+//      
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLVehicule.fxml"));
-            
-            Scene sc = new Scene(root);
-            Stage stage =(Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(sc);
-            stage.show();
+            setSceneContent("FXMLVehicule");
         } catch (IOException ex) {
             Logger.getLogger(FXMLlouerVehiculeController.class.getName()).log(Level.SEVERE, null, ex);
         }

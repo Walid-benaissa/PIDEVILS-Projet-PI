@@ -32,7 +32,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import service.VehiculeService;
+import utils.CommonController;
 import static utils.CommonController.setSceneContent;
+import utils.Context;
 import utils.MyDB;
 
 /**
@@ -40,7 +42,7 @@ import utils.MyDB;
  *
  * @author azizi
  */
-public class FXMLVehiculeController implements Initializable {
+public class FXMLVehiculeController extends CommonController implements Initializable {
   //  public class VehiculeService implements IService<Vehicule>{
     
      Statement stm;
@@ -68,7 +70,7 @@ public class FXMLVehiculeController implements Initializable {
     private TableColumn<?, ?> colonnedescription;
       @FXML
     private TableView<Vehicule> TableVehicule;
-    private VehiculeService vehiculesDisponibles = new VehiculeService();
+    private VehiculeService vs = new VehiculeService();
  
 
 
@@ -78,7 +80,7 @@ public class FXMLVehiculeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }
+    
           
        /*  colonneville.setCellValueFactory(new PropertyValueFactory<>("ville"));
         PrixColone.setCellValueFactory(new PropertyValueFactory<>("prix"));
@@ -94,41 +96,16 @@ public class FXMLVehiculeController implements Initializable {
         
         // affiche les données dans le tableau
         TableVehicule.getItems().setAll(vleList);*/
-
-       public void afficherVehiculesDisponibles(String lieu, Date date_debut, Date date_fin)  {
-        List<Vehicule> vehiculesDisponibles = new ArrayList<>();
-        try {
-        String query = "SELECT * FROM vehicule WHERE disponibilite = 'true' AND lieu = ? AND id_vehicule NOT IN " +
-                "(SELECT id_vehicule FROM location WHERE (date_debut <= ? AND date_fin >= ?))";
-         PreparedStatement st = conn.prepareStatement(query);
-        st.setString(1, lieu);
-        st.setDate(2, date_fin);
-        st.setDate(3, date_debut);
-        ResultSet RS = st.executeQuery();
-        while (RS.next()) {
-            int id_vehicule = RS.getInt("id_vehicule");
-            String nom = RS.getString("nom_v");
-            double taux = RS.getDouble("taux");
-            String photo = RS.getString("photo");
-            String villeV = RS.getString("ville");
-            double prix = RS.getDouble("prix");
-            String disponibilite = RS.getString("disponibilite");
-            String description = RS.getString("description");
-            String type = RS.getString("type");
-            Vehicule a = new Vehicule(id_vehicule,nom_v ,  id,  photo,  ville,  prix,  id_promotion,  description,  type);
-            vehiculesDisponibles.add(a);
-        }
-         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        TableVehicule.setItems(FXCollections.observableList(vehiculesDisponibles));
+        Date datef=(Date) Context.getInstance().getContextObject("DateF"); 
+        Date dateD=(Date) Context.getInstance().getContextObject("DateD"); 
+        String lieu=(String) Context.getInstance().getContextObject("lieu"); 
+        TableVehicule.setItems(FXCollections.observableList(vs.afficherVehiculesDisponibles(lieu, dateD, datef)));
         colonnenom_v.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colonnetype.setCellValueFactory(new PropertyValueFactory<>("type"));
         colonneville.setCellValueFactory(new PropertyValueFactory<>("ville"));
         PrixColone.setCellValueFactory(new PropertyValueFactory<>("prix"));
         colonneidPROMOTION.setCellValueFactory(new PropertyValueFactory<>("idPromotion"));
         colonnedescription.setCellValueFactory(new PropertyValueFactory<>("description"));
-    }
 
   }
 
