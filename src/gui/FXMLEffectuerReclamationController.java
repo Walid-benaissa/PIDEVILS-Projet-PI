@@ -23,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
+import service.LivraisonService;
 import service.ReclamationService;
 import static utils.CommonController.setSceneContent;
 import utils.Context;
@@ -71,7 +72,8 @@ public class FXMLEffectuerReclamationController implements Initializable {
     @FXML
     private void effectuerReclamation(ActionEvent event) {
         ReclamationService rs = new ReclamationService();
-        Reclamation r = new Reclamation(1, 1, ta_msg.getText(), "Ouvert");
+        LivraisonService ls=new LivraisonService();
+        Reclamation r = new Reclamation(2, u.getId(), ta_msg.getText(), "Ouvert");
         rs.ajouter(r);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");

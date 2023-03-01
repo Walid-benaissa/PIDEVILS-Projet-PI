@@ -28,6 +28,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import service.UtilisateurService;
@@ -66,19 +68,23 @@ public class FXMLGererUtilisateursController extends CommonController implements
     private ChoiceBox choix_type;
     @FXML
     private Button btnModifier;
+    @FXML
+    private TextField rechercheNom;
+    @FXML
+    private TextField recherchePrenom;
+    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        afficherUsers();
+        afficherUsers(us.afficheListe());
         choix_type.getItems().addAll(roles);
 
     }
 
-    public void afficherUsers() {
-        List<Utilisateur> list = us.afficheListe();
+    public void afficherUsers( List<Utilisateur> list ) {
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
@@ -102,7 +108,7 @@ public class FXMLGererUtilisateursController extends CommonController implements
     private void Supprimer(ActionEvent event) {
         Utilisateur u = new Utilisateur(TableUsers.getSelectionModel().getSelectedItem().getId());
         us.supprimer(u);
-        afficherUsers();
+        afficherUsers(us.afficheListe());
     }
 
     @FXML
@@ -110,8 +116,24 @@ public class FXMLGererUtilisateursController extends CommonController implements
         Utilisateur u = TableUsers.getSelectionModel().getSelectedItem();
         u.setRole(choix_type.getValue().toString());
         us.modifier(u);
-        afficherUsers();
+        afficherUsers(us.afficheListe());
 
+    }
+
+    
+
+    @FXML
+    private void rechercherN(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            afficherUsers(us.rechercherNom(rechercheNom.getText()));
+        }
+    }
+
+    @FXML
+    private void rechercherP(KeyEvent event) {
+          if (event.getCode() == KeyCode.ENTER) {
+            afficherUsers(us.rechercherPrenom(recherchePrenom.getText()));
+        }
     }
 
    

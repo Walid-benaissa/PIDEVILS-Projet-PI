@@ -10,6 +10,8 @@ import entities.Utilisateur;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,16 +20,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.ConducteurService;
 import service.UtilisateurService;
-import javafx.scene.input.MouseEvent;
 import utils.CommonController;
 import static utils.CommonController.setSceneContent;
 
@@ -79,8 +78,8 @@ public class FXMLCreationCompteController extends CommonController implements In
     private void creer(ActionEvent event) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         String numtelRegex = "^[0-9+]+$";
-        String nomprenomRegex = "^[A-Za-z0-9_.-]+$";
-        String mdpRegex = "^[A-Za-z0-9_.-#@]+$";
+        String nomprenomRegex = "^[A-Za-z0-9_.- ]+$";
+        String mdpRegex = "^[A-Za-z0-9_.-@]+$";
         if (!tf_nom.getText().matches(nomprenomRegex)) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Format nom incorrect");
@@ -131,12 +130,14 @@ public class FXMLCreationCompteController extends CommonController implements In
             role = "Conducteur";
         }
         if (tf_mdp.getText().equals(tf_mdpC.getText())) {
+             String mdpH=tf_mdp.getText();
+             mdpH=us.HashagePassword(mdpH);
             if (role.equals("Conducteur")) {
-                Conducteur user = new Conducteur(permis, b3, tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), tf_mdp.getText(), tf_numtel.getText(), role, 0.0F);
+                Conducteur user = new Conducteur(permis, b3, tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText(), role, 0.0F);
                 ConducteurService cs = new ConducteurService();
                 cs.ajouter(user);
             } else {
-                Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), tf_mdp.getText(), tf_numtel.getText(), role, 0.0F);
+                Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText(), role, 0.0F);
                 us.ajouter(user);
             }
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -194,5 +195,6 @@ public class FXMLCreationCompteController extends CommonController implements In
             Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 
 }
