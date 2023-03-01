@@ -99,7 +99,26 @@ public class UtilisateurService implements IService<Utilisateur> {
         }
         return p;
     }
-
+public Utilisateur rechUtilisateurByMail(String mail) {
+        Utilisateur p = new Utilisateur();
+        try {
+            String req = "Select * from  `utilisateur` where mail ='" + mail + "'";
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            RS.next();
+            p.setId(RS.getInt("id"));
+            p.setNom(RS.getString("nom"));
+            p.setPrenom(RS.getString("prenom"));
+            p.setMail(RS.getString("mail"));
+            p.setMdp(RS.getString("mdp"));
+            p.setNum_tel(RS.getString("num_tel"));
+            p.setRole(RS.getString("role"));
+            p.setEvaluation(RS.getFloat("evaluation"));
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return p;
+    }
     public void evaluer(int id_c, float evaluation) {
         try {
             String req = "Select evaluation from  `utilisateur` where id=" + id_c;
@@ -288,5 +307,9 @@ public class UtilisateurService implements IService<Utilisateur> {
 
         return list;
     }
+       public String sendMail(String email) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 }
