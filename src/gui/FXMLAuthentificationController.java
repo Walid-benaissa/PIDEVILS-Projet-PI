@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import service.UtilisateurService;
 import utils.CommonController;
@@ -90,5 +91,15 @@ public class FXMLAuthentificationController extends CommonController implements 
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void mdpoublie(MouseEvent event) {
+        try {
+            setSceneContent("FXMLMdpoublie");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }
