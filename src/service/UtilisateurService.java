@@ -242,10 +242,10 @@ public class UtilisateurService implements IService<Utilisateur> {
         return null;
     }
     }
-      public List<Utilisateur> rechercherNom(String msg) {
+      public List<Utilisateur> rechercherNom(String Nom) {
         List<Utilisateur> list = new ArrayList<>();
         try {
-            String req = "Select * from  `utilisateur` where nom like '%"+msg+"%'";
+            String req = "Select * from  `utilisateur` where nom like '%"+Nom+"%'";
             Statement st = conn.createStatement();
             ResultSet RS = st.executeQuery(req);
             while (RS.next()) {
@@ -254,7 +254,29 @@ public class UtilisateurService implements IService<Utilisateur> {
                 p.setNom(RS.getString("nom"));
                 p.setPrenom(RS.getString("prenom"));
                 p.setMail(RS.getString("mail"));
-                p.setMdp(RS.getString("mdp"));
+                p.setNum_tel(RS.getString("num_tel"));
+                p.setRole(RS.getString("role"));
+                p.setEvaluation(RS.getFloat("evaluation"));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return list;
+    }
+       public List<Utilisateur> rechercherPrenom(String Prenom) {
+        List<Utilisateur> list = new ArrayList<>();
+        try {
+            String req = "Select * from  `utilisateur` where prenom like '%"+Prenom+"%'";
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            while (RS.next()) {
+                Utilisateur p = new Utilisateur();
+                p.setId(RS.getInt("id"));
+                p.setNom(RS.getString("nom"));
+                p.setPrenom(RS.getString("prenom"));
+                p.setMail(RS.getString("mail"));
                 p.setNum_tel(RS.getString("num_tel"));
                 p.setRole(RS.getString("role"));
                 p.setEvaluation(RS.getFloat("evaluation"));
