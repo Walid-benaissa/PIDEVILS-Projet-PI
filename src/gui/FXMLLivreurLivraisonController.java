@@ -6,12 +6,17 @@
 package gui;
 
 import entities.Livraison;
+import entities.Utilisateur;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,9 +28,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import service.LivraisonService;
 import utils.CommonController;
+import utils.Context;
 
 /**
  * FXML Controller class
@@ -51,6 +59,12 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
     LivraisonService ls = new LivraisonService();
     int index = -1;
     private ObservableList<Livraison> dataList = FXCollections.observableArrayList();
+    Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
+
+    @FXML
+    private TextField txt_search;
+    @FXML
+    private Button btnTrier;
 
     /**
      * Initializes the controller class.
@@ -59,7 +73,9 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
     public void initialize(URL url, ResourceBundle rb) {
         try {
             afficher();
-        } catch (SQLException ex) {
+            //findLivraisonByAdresse(txt_search.getText());
+            //SortForumByTitle();
+       } catch (SQLException ex) {
             Logger.getLogger(FXMLCourseController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -72,6 +88,32 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
         return dataList;
     }
 
+    public void SortForumByTitle() {
+        LivraisonService sf = new LivraisonService();
+        TreeSet<Livraison> forums = sf.afficherLivreur(u.getId()).stream().collect(Collectors.toCollection(() -> new TreeSet<Livraison>((a, b) -> ((int) b.getPrix() * 100) - ((int) a.getPrix() * 100))));
+        tfAdresseExp.setCellValueFactory(new PropertyValueFactory<>("adresse_expedition"));
+        tfAdresseDest.setCellValueFactory(new PropertyValueFactory<>("adresse_destinataire"));
+        tfPrix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        TfEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
+        table2.setItems(getLivraison(new ArrayList<Livraison>(forums)));
+        System.out.println(forums);
+    }
+
+    /* private void recherche(KeyEvent event) {
+            if (event.getCode() == KeyCode.ENTER) {
+        String model = txt_search.getText();
+        Livraison searchedModel = ls.readByModel(model);
+        if (searchedModel != null) {
+            table2.getItems().setAll(searchedModel);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Address found");
+            alert.setHeaderText(null);
+            alert.setContentText("No Livraison found with the given Address.");
+            alert.showAndWait();
+        }
+    }
+    }*/
     public void afficher() throws SQLException {
 
         tfAdresseExp.setCellValueFactory(new PropertyValueFactory<>("adresse_expedition"));
@@ -79,12 +121,12 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
         tfPrix.setCellValueFactory(new PropertyValueFactory<>("prix"));
         TfEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
 
-        table2.setItems(getLivraison(ls.afficheListe()));
+        table2.setItems(getLivraison(ls.afficherLivreur(u.getId())));
 
     }
 
 
-   /* @FXML
+    /* @FXML
     private void Supprimer(ActionEvent event) throws SQLException {
         Livraison l = new Livraison(table2.getSelectionModel().getSelectedItem().getId_livraison());
         ls.supprimer(l);
@@ -97,7 +139,6 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
         etat.setText("");
 
     }*/
-
     @FXML
     private void modifier(ActionEvent event) throws SQLException {
         Livraison l = table2.getSelectionModel().getSelectedItem();
@@ -119,6 +160,16 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
             return;
         }
         etat.setText(TfEtat.getCellData(index).toString());
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+    }
+
+    @FXML
+    private void Trier(ActionEvent event) {
+        SortForumByTitle();
+        
     }
 
 }

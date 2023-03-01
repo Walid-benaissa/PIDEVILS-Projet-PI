@@ -16,6 +16,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utils.MyDB;
 
 /**
@@ -55,6 +57,61 @@ public class LivraisonService implements IService<Livraison> {
         return list;
     }
 
+    public List afficherClient(int id) {
+        List<LivraisonColis> list = new ArrayList<>();
+        try {
+            String req = "Select * from  `livraison`,`colis` WHERE `livraison`.`id_client`="+id+" and `livraison`.`id_colis` =`colis`.`id`";
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            System.out.println(req);
+
+            while (RS.next()) {
+                LivraisonColis l = new LivraisonColis();
+
+                l.setId_livraison(RS.getInt("id_livraison"));
+                l.setAdresse_expedition(RS.getString("Adresse_expedition"));
+                l.setAdresse_destinataire(RS.getString("Adresse_destinataire"));
+                l.setPrix(RS.getFloat("Prix"));
+                l.setEtat(RS.getString("Etat"));
+                l.setId(RS.getInt("id"));
+                l.setDescription(RS.getString("Description"));
+                l.setNb_items(RS.getInt("Nb_items"));
+                l.setPoids(RS.getFloat("Poids"));
+                list.add(l);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return list;
+    }
+    
+      
+    public List<Livraison> afficherLivreur(int id) {
+        List<Livraison> list = new ArrayList<>();
+        try {
+            String req = "Select * from  `livraison` WHERE `livraison`.`id_livreur`="+id+" ";
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            while (RS.next()) {
+                Livraison l = new Livraison();
+                l.setId_livraison(RS.getInt("id_livraison"));
+                l.setAdresse_expedition(RS.getString("Adresse_expedition"));
+                l.setAdresse_destinataire(RS.getString("Adresse_destinataire"));
+                l.setPrix(RS.getFloat("Prix"));
+                l.setEtat(RS.getString("Etat"));
+                l.setId_colis(RS.getInt("id_colis"));
+                list.add(l);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return list;
+    }
+
+
     public List afficher() {
         List<LivraisonColis> list = new ArrayList<>();
         try {
@@ -83,17 +140,15 @@ public class LivraisonService implements IService<Livraison> {
         return list;
     }
 
-
     
-    @Override
-    public void ajouter(Livraison l) {
+    public void ajouter2(Livraison l, int id_client) {
         try {
             String req = "Select max(id) as id from  `colis`";
             Statement st = conn.createStatement();
             ResultSet RS = st.executeQuery(req);
             RS.next();
             int id = RS.getInt("id");
-            req = "INSERT INTO `livraison`(`id_livraison`,`adresse_expedition`, `adresse_destinataire`, `prix`,`etat`, `id_colis`) VALUES (?,?,?,?,?,?)";
+            req = "INSERT INTO `livraison`(`id_livraison`,`adresse_expedition`, `adresse_destinataire`, `prix`,`etat`, `id_colis`,`id_client`,`id_livreur`) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setInt(1, l.getId_livraison());
             ps.setString(2, l.getAdresse_expedition());
@@ -101,6 +156,8 @@ public class LivraisonService implements IService<Livraison> {
             ps.setFloat(4, l.getPrix());
             ps.setString(5, l.getEtat());
             ps.setInt(6, id);
+            ps.setInt(7, id_client);
+            ps.setInt(8, 0);
             ps.executeUpdate();
 
             System.out.println("Livraison ajoutée");
@@ -145,7 +202,7 @@ public class LivraisonService implements IService<Livraison> {
 
         try {
 
-                String req = "UPDATE `colis` Join `livraison` ON `colis`.`id`= `livraison`.`id_colis` SET `adresse_expedition` = ?, `adresse_destinataire`= ?, `prix`= ?, `etat`= ?,`colis`.`nb_items` = ?, `colis`.`description`= ?, `colis`.`poids`= ? WHERE `colis`.`id` = ? ";
+            String req = "UPDATE `colis` Join `livraison` ON `colis`.`id`= `livraison`.`id_colis` SET `adresse_expedition` = ?, `adresse_destinataire`= ?, `prix`= ?, `etat`= ?,`colis`.`nb_items` = ?, `colis`.`description`= ?, `colis`.`poids`= ? WHERE `colis`.`id` = ? ";
             PreparedStatement ps = conn.prepareStatement(req);
 
             ps.setString(1, l.getAdresse_expedition());
@@ -156,7 +213,7 @@ public class LivraisonService implements IService<Livraison> {
             ps.setString(6, l.getDescription());
             ps.setFloat(7, l.getPoids());
             ps.setInt(8, l.getId());
-          //  ps.setInt(9, l.getId_livraison());
+            //  ps.setInt(9, l.getId_livraison());
             ps.executeUpdate();
             System.out.println("LivraisonCOlis modifiée avec succès");
 
@@ -166,4 +223,47 @@ public class LivraisonService implements IService<Livraison> {
 
     }
 
+    public List<Livraison> getAllLivraison() {
+        List<Livraison> Livraisons = new ArrayList<>();
+        try {
+            String req = "SELECT * from livraison";
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            while (RS.next()) {
+                Livraison l = new Livraison();
+                l.setId_livraison(RS.getInt("id_livraison"));
+                l.setAdresse_expedition(RS.getString("Adresse_expedition"));
+                l.setAdresse_destinataire(RS.getString("Adresse_destinataire"));
+                l.setPrix(RS.getFloat("Prix"));
+                l.setEtat(RS.getString("Etat"));
+                l.setId_colis(RS.getInt("id_colis"));
+                Livraisons.add(l);
+
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return Livraisons;
+    }
+
+    /*    public Livraison readByModel(String Adresse_expedition) {
+    Livraison t = null;
+        String requete = "SELECT * FROM livraison WHERE adresse_expedition =? ";
+    try (PreparedStatement stmt = conn.prepareStatement(requete)) {
+        stmt.setString(1, Adresse_expedition);
+        ResultSet rst = stmt.executeQuery();
+        while (rst.next()) {
+   t = new Livraison(rst.getInt(1),//or rst.getInt(1)
+                    rst.getString(2),rst.getString(3), rst.getFloat(4),rst.getString(5),rst.getInt(6));
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(LivraisonService.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return t;
+}*/
+
+    @Override
+    public void ajouter(Livraison p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

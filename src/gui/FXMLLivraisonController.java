@@ -26,6 +26,7 @@ import service.ColisService;
 import entities.Livraison;
 import entities.Colis;
 import entities.LivraisonColis;
+import entities.Utilisateur;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.Connection;
@@ -37,6 +38,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import utils.CommonController;
+import utils.Context;
 import utils.MyDB;
 
 /**
@@ -63,6 +65,8 @@ public class FXMLLivraisonController extends CommonController implements Initial
     @FXML
     private TableColumn<?, ?> tfPoids;
     private ObservableList<LivraisonColis> dataList = FXCollections.observableArrayList();
+     Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
+  
   //  private ObservableList<Colis> dataList2 = FXCollections.observableArrayList();
 
   //  private TableView<Colis> table;
@@ -97,11 +101,7 @@ public class FXMLLivraisonController extends CommonController implements Initial
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            afficher();
-        } catch (SQLException ex) {
-            Logger.getLogger(FXMLCourseController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        afficher();
     }
 
 
@@ -114,7 +114,7 @@ public class FXMLLivraisonController extends CommonController implements Initial
         return dataList;
     }
 
-    public void afficher() throws SQLException {
+    public void afficher() {
 
        // tfidLivraison.setCellValueFactory(new PropertyValueFactory<>("id_livraison"));
         tfAdresseExp.setCellValueFactory(new PropertyValueFactory<>("adresse_expedition"));
@@ -125,7 +125,7 @@ public class FXMLLivraisonController extends CommonController implements Initial
         tfNBObj.setCellValueFactory(new PropertyValueFactory<>("nb_items"));
         tfDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         tfPoids.setCellValueFactory(new PropertyValueFactory<>("poids"));
-        table2.setItems(getLivraisonColis(ls.afficher()));
+        table2.setItems(getLivraisonColis(ls.afficherClient(u.getId())));
 
 
     }

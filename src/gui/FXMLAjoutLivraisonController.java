@@ -2,6 +2,7 @@ package gui;
 
 import entities.Colis;
 import entities.Livraison;
+import entities.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
 import javafx.scene.control.TextField;
@@ -19,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import service.ColisService;
 import static utils.CommonController.setSceneContent;
+import utils.Context;
 
 /**
  * FXML Controller class
@@ -39,6 +41,7 @@ public class FXMLAjoutLivraisonController implements Initializable {
     private TextField tf_description;
     @FXML
     private TextField tf_poids;
+        Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
 
     /**
      * Initializes the controller class.
@@ -116,7 +119,7 @@ public class FXMLAjoutLivraisonController implements Initializable {
             Colis c = new Colis(Integer.parseInt(nb_items), tf_description.getText(), Float.parseFloat(poids));
 
             cs.ajouter(c);
-            ls.ajouter(l);
+            ls.ajouter2(l,u.getId() );
             // System.err.println("Ajout avec succès");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("sucess");
@@ -135,6 +138,7 @@ public class FXMLAjoutLivraisonController implements Initializable {
    
    
 
+    @FXML
     private void retour(ActionEvent event) {
         try {
             setSceneContent("FXMLLivraison");
