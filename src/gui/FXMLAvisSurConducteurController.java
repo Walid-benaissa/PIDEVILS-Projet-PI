@@ -129,8 +129,8 @@ public class FXMLAvisSurConducteurController extends CommonController implements
         Commentaire c = new Commentaire();
         if (!tf_comment.getText().isEmpty()) {
             c.setMessage(tf_comment.getText());
-            c.setId1(3);
-            c.setId2(2);
+            c.setId1(11);
+            c.setId2(12);
             CommentaireService cs = new CommentaireService();
             cs.ajouter(c);
         }
@@ -140,11 +140,7 @@ public class FXMLAvisSurConducteurController extends CommonController implements
         alert.show();
         UtilisateurService us = new UtilisateurService();
         us.evaluer(2, rating);
-        try {
-            setSceneContent("FXMLGererProfil");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLAvisSurConducteurController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
 }
