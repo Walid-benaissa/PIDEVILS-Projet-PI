@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import service.UtilisateurService;
 import utils.CommonController;
@@ -49,7 +50,9 @@ public class FXMLAuthentificationController extends CommonController implements 
     @FXML
     private void authentification(ActionEvent event) {
         UtilisateurService us = new UtilisateurService();
-        Utilisateur user = us.authentification(tf_mail.getText(), tf_mdp.getText());
+        String mdpH = tf_mdp.getText();
+        mdpH = us.HashagePassword(mdpH);
+        Utilisateur user = us.authentification(tf_mail.getText(), mdpH);
         if (user.getId() != 0) {
             try {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -58,16 +61,16 @@ public class FXMLAuthentificationController extends CommonController implements 
                 alert.show();
                 Context.getInstance().addContextObject("UtilisateurCourant", user);
                 Context.getInstance().addContextObject("Role", user.getRole());
-                switch(user.getRole()){
+                switch (user.getRole()) {
                     case "Admin":
-                    setSceneContent("FXMLGererUtilisateurs");
-                    break;
+                        setSceneContent("FXMLGererUtilisateurs");
+                        break;
                     case "Client":
-                    setSceneContent("FXMLGererProfil");
-                    break;
+                        setSceneContent("FXMLGererProfil");
+                        break;
                     case "Conducteur":
-                    setSceneContent("FXMLGererProfil");
-                    break;
+                        setSceneContent("FXMLGererProfil");
+                        break;
                 }
             } catch (IOException ex) {
                 Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
@@ -88,5 +91,15 @@ public class FXMLAuthentificationController extends CommonController implements 
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void mdpoublie(MouseEvent event) {
+        try {
+            setSceneContent("FXMLMdpoublie");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }
