@@ -11,8 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import utils.MyDB;
 /**
  *
@@ -51,6 +53,28 @@ import utils.MyDB;
         }
         return list;
     }
+   //fonction nombre de jours 
+    public static long getDaysBetweenDates(Date date_debut, Date date_fin) {
+    long diffInMillies = Math.abs(date_fin.getTime() - date_debut.getTime());
+    return TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+  
+
+}
+      //calculer prix totale 
+    public static double calculatePrice(Date date_debut, Date date_fin, float prix) {
+    long diffInMillies = Math.abs(date_fin.getTime() - date_debut.getTime());
+    long daysBetween = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+    return daysBetween * prix;
+    }
+    //  prix apres taux 
+       public static double calculateTauxPrice(Date date_debut, Date date_fin, float prix,int taux) {
+    long diffInMillies = Math.abs(date_fin.getTime() - date_debut.getTime());
+    long daysBetween = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+    return daysBetween * (prix*(1-(taux/100)));
+    }
+    
+    
+
 
     @Override
     public void ajouter(Location p) {
