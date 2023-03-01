@@ -51,8 +51,28 @@ public class FXMLLouerVPromotionController implements Initializable {
         if (u.getDescription() != null) {
             long diffInMillies = Math.abs(datef.getTime() - dated.getTime());
             long daysBetween = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-            float taux;
+            System.out.println("test1");
+            int taux;
+            System.out.println("1");
               switch (u.getId_promotion()) {
+            case 2:
+              System.out.println("2");  
+                // code block
+                taux=5;
+                break;
+            case 3:
+                // code block
+                taux=10;
+                System.out.println("test");
+                break;
+            case 4:
+                // code block
+                taux=(15);
+                break;
+            case 5:
+                // code block
+                taux=(20);
+                break;
            
            case 6:
                 // code block
@@ -117,7 +137,7 @@ public class FXMLLouerVPromotionController implements Initializable {
         }
             affichage.setText("nom vehicule :  " + u.getNom_v() + "\n"
                     + "description :  " + u.getDescription() + "\n" + "prix par jour :  " + u.getPrix() + "\n"
-                    + "\n Prix total: "+ daysBetween * (u.getPrix()*(1-(taux/100))));
+                    + "\n Prix total: "+ daysBetween*(u.getPrix()*(1-(taux/100))));
            
                     
         } else {

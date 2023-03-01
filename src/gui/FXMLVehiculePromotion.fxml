@@ -27,7 +27,7 @@
                   <TableColumn fx:id="colonnedescription" prefWidth="291.1999877929687" text="description" />
                </columns>
             </TableView>
-            <Label layoutX="381.0" layoutY="36.0" prefHeight="54.0" prefWidth="322.0" text="Vehicule" textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="302.0" layoutY="36.0" prefHeight="54.0" prefWidth="352.0" text="Vehicule promotion" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
