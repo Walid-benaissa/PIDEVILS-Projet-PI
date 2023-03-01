@@ -242,5 +242,29 @@ public class UtilisateurService implements IService<Utilisateur> {
         return null;
     }
     }
+      public List<Utilisateur> rechercherNom(String msg) {
+        List<Utilisateur> list = new ArrayList<>();
+        try {
+            String req = "Select * from  `utilisateur` where nom like '%"+msg+"%'";
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            while (RS.next()) {
+                Utilisateur p = new Utilisateur();
+                p.setId(RS.getInt("id"));
+                p.setNom(RS.getString("nom"));
+                p.setPrenom(RS.getString("prenom"));
+                p.setMail(RS.getString("mail"));
+                p.setMdp(RS.getString("mdp"));
+                p.setNum_tel(RS.getString("num_tel"));
+                p.setRole(RS.getString("role"));
+                p.setEvaluation(RS.getFloat("evaluation"));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return list;
+    }
 
 }

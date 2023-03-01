@@ -28,6 +28,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import service.UtilisateurService;
@@ -66,6 +68,11 @@ public class FXMLGererUtilisateursController extends CommonController implements
     private ChoiceBox choix_type;
     @FXML
     private Button btnModifier;
+    @FXML
+    private TextField rechercheNom;
+    @FXML
+    private TextField recherchePrenom;
+    
 
     /**
      * Initializes the controller class.
@@ -112,6 +119,13 @@ public class FXMLGererUtilisateursController extends CommonController implements
         us.modifier(u);
         afficherUsers();
 
+    }
+
+   @FXML
+    private void rechercherMessage(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            afficherUsers(us.rechercherNom(rechercheNom.getText()));
+        }
     }
 
    
