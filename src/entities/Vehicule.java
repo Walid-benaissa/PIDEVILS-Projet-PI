@@ -24,6 +24,16 @@ public class Vehicule {
     public Vehicule() {
     }
 
+    public Vehicule(String nom_v, String photo, String ville, float prix, int id_promotion, String description, String type) {
+        this.nom_v = nom_v;
+        this.photo = photo;
+        this.ville = ville;
+        this.prix = prix;
+        this.id_promotion = id_promotion;
+        this.description = description;
+        this.type = type;
+    }
+
     public Vehicule(int id_vehicule,String nom_v, int id, String photo, String ville, float prix, int id_promotion, boolean disponibilite, String description, String type) {
         this.id_vehicule = id_vehicule;
         this.nom_v=nom_v;

@@ -45,18 +45,41 @@ public class FXMLlouerVehiculeController implements Initializable {
     private DatePicker tf_retourd;
            private LocationService LocationService = new LocationService();
     @FXML
-    private ChoiceBox<?> choix_type;
-
+    private ChoiceBox choix_type;
+    private String[] type = {"voiture", "velo", "trottinette"};
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+                choix_type.getItems().addAll(type);
+            choix_type.setValue("voiture");
     }    
 
     @FXML
     private void remise(ActionEvent event) {
+                    LocationService sp=new LocationService();
+          String lieu =tf_lieu_de_depart.getText();
+              Date date_debut = java.sql.Date.valueOf(tf_dated.getValue());
+     Date date_fin = java.sql.Date.valueOf(tf_retourd.getValue());
+    String type = (String) choix_type.getValue();
+     
+Context.getInstance().addContextObject("DateF",date_fin);
+Context.getInstance().addContextObject("DateD",date_debut);
+Context.getInstance().addContextObject("lieu",lieu);
+Context.getInstance().addContextObject("type",type);
+
+
+//   Location a = new Location( date_debut, date_fin,  lieu);
+//   sp.ajouter(a);
+//      
+        try {
+            setSceneContent("FXMLVehiculePromotion");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLlouerVehiculeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
     }
 
     @FXML
@@ -66,10 +89,14 @@ public class FXMLlouerVehiculeController implements Initializable {
           String lieu =tf_lieu_de_depart.getText();
               Date date_debut = java.sql.Date.valueOf(tf_dated.getValue());
      Date date_fin = java.sql.Date.valueOf(tf_retourd.getValue());
+    String type = (String) choix_type.getValue();
      
 Context.getInstance().addContextObject("DateF",date_fin);
 Context.getInstance().addContextObject("DateD",date_debut);
 Context.getInstance().addContextObject("lieu",lieu);
+Context.getInstance().addContextObject("type",type);
+
+
 //   Location a = new Location( date_debut, date_fin,  lieu);
 //   sp.ajouter(a);
 //      
