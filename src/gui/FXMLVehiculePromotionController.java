@@ -42,19 +42,20 @@ import utils.MyDB;
  *
  * @author azizi
  */
-public class FXMLVehiculeController extends CommonController implements Initializable {
-    //  public class VehiculeService implements IService<Vehicule>{
-
-    Statement stm;
+public class FXMLVehiculePromotionController extends CommonController implements Initializable {
+  //  public class VehiculeService implements IService<Vehicule>{
+    
+     Statement stm;
     Connection conn;
-
-    public FXMLVehiculeController() {
+       public FXMLVehiculePromotionController() {
         conn = MyDB.getInstance().getConnexion();
     }
 
+
+  
     @FXML
     private Button btnBack;
-
+   
     @FXML
     private TableColumn<?, ?> colonnenom_v;
     @FXML
@@ -67,9 +68,11 @@ public class FXMLVehiculeController extends CommonController implements Initiali
     private TableColumn<?, ?> colonneidPROMOTION;
     @FXML
     private TableColumn<?, ?> colonnedescription;
-    @FXML
+      @FXML
     private TableView<Vehicule> TableVehicule;
     private VehiculeService vs = new VehiculeService();
+ 
+
 
     /**
      * Initializes the controller class.
@@ -77,8 +80,9 @@ public class FXMLVehiculeController extends CommonController implements Initiali
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
-        /*  colonneville.setCellValueFactory(new PropertyValueFactory<>("ville"));
+    
+          
+       /*  colonneville.setCellValueFactory(new PropertyValueFactory<>("ville"));
         PrixColone.setCellValueFactory(new PropertyValueFactory<>("prix"));
         colonneidPROMOTION.setCellValueFactory(new PropertyValueFactory<>("id_promotion"));
         colonnedescription.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -92,26 +96,33 @@ public class FXMLVehiculeController extends CommonController implements Initiali
         
         // affiche les données dans le tableau
         TableVehicule.getItems().setAll(vleList);*/
-        Date datef = (Date) Context.getInstance().getContextObject("DateF");
+//        Date datef=(Date) Context.getInstance().getContextObject("DateF"); 
+//        Date dateD=(Date) Context.getInstance().getContextObject("DateD"); 
+             Date datef = (Date) Context.getInstance().getContextObject("DateF");
         Date dateD = (Date) Context.getInstance().getContextObject("DateD");
         String lieu = (String) Context.getInstance().getContextObject("lieu");
         String type = (String) Context.getInstance().getContextObject("type");
+      
+         List<Vehicule> l = vs.afficherVehiculesDisponibles(lieu, type, dateD, datef);
+        System.out.println(l);
+        if (l!=null){
+        TableVehicule.setItems(FXCollections.observableList(l));
+        colonnenom_v.setCellValueFactory(new PropertyValueFactory<>("nom_v"));
+        colonnetype.setCellValueFactory(new PropertyValueFactory<>("type"));
+        colonneville.setCellValueFactory(new PropertyValueFactory<>("ville"));
+        PrixColone.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        colonnedescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+                }
 
-        List<Vehicule> l = vs.afficherVehiculesDisponibles(lieu, type, dateD, datef);
-        if (l != null) {
-            TableVehicule.setItems(FXCollections.observableList(l));
-            colonnenom_v.setCellValueFactory(new PropertyValueFactory<>("nom_v"));
-            colonnetype.setCellValueFactory(new PropertyValueFactory<>("type"));
-            colonneville.setCellValueFactory(new PropertyValueFactory<>("ville"));
-            PrixColone.setCellValueFactory(new PropertyValueFactory<>("prix"));
-            colonnedescription.setCellValueFactory(new PropertyValueFactory<>("description"));
-        }
 
-    }
+  }
+
+       
+
 
     @FXML
     private void back(ActionEvent event) {
-        try {
+          try {  
             setSceneContent("FXMLLouerVehicule");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
@@ -120,14 +131,23 @@ public class FXMLVehiculeController extends CommonController implements Initiali
 
     @FXML
     private void handleMouseAction(MouseEvent event) {
-
+         
         try {
             Vehicule v = TableVehicule.getSelectionModel().getSelectedItem();
             Context.getInstance().addContextObject("Vehicule", v);
-            System.out.println(v);
-            setSceneContent("FXMLLouerV");
+            setSceneContent("FXMLLouerVPromotion");
         } catch (IOException ex) {
-            Logger.getLogger(FXMLVehiculeController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLVehiculePromotionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-}
+    }
+
+    
+    
+  
+     
+  
+        
+    
+
+
