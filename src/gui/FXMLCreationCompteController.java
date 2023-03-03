@@ -78,7 +78,7 @@ public class FXMLCreationCompteController extends CommonController implements In
     private void creer(ActionEvent event) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         String numtelRegex = "^[0-9+]+$";
-        String nomprenomRegex = "^[A-Za-z0-9_.- ]+$";
+        String nomprenomRegex = "^[A-Za-z0-9_.-]+$";
         String mdpRegex = "^[A-Za-z0-9_.-@]+$";
         if (!tf_nom.getText().matches(nomprenomRegex)) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
