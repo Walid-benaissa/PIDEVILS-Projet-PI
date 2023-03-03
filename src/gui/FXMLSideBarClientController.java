@@ -44,7 +44,7 @@ public class FXMLSideBarClientController extends CommonController implements Ini
     @FXML
     private void routeGererReclamation(ActionEvent event) {
           try {  
-            setSceneContent("FXMLEffectuerReclamation");
+            setSceneContent("FXMLConsulterReclamations");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,8 +80,7 @@ public class FXMLSideBarClientController extends CommonController implements Ini
     @FXML
     private void deconnexion(ActionEvent event) {
         try {
-             Context.getInstance().removeContextObject("UtilisateurCourant");
-             Context.getInstance().removeContextObject("Role");
+             Context.getInstance().clearContextObjects();
             setSceneContent("FXMLAuthentification");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
