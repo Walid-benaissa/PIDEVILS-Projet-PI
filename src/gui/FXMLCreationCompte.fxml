@@ -44,7 +44,7 @@
                   <Insets />
                </opaqueInsets>
             </VBox>
-            <Button layoutX="320.0" layoutY="671.0" mnemonicParsing="false" onAction="#creer" prefHeight="46.0" prefWidth="124.0" style="-fx-background-color: FD9800;" text="Valider" textFill="WHITE">
+            <Button layoutX="317.0" layoutY="669.0" mnemonicParsing="false" onAction="#creer" prefHeight="46.0" prefWidth="124.0" style="-fx-background-color: FD9800;" text="Valider" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="24.0" />
                </font>

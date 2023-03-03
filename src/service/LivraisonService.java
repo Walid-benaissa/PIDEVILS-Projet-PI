@@ -245,22 +245,33 @@ public class LivraisonService implements IService<Livraison> {
         }
         return Livraisons;
     }
+    
 
-    /*    public Livraison readByModel(String Adresse_expedition) {
-    Livraison t = null;
-        String requete = "SELECT * FROM livraison WHERE adresse_expedition =? ";
-    try (PreparedStatement stmt = conn.prepareStatement(requete)) {
-        stmt.setString(1, Adresse_expedition);
-        ResultSet rst = stmt.executeQuery();
-        while (rst.next()) {
-   t = new Livraison(rst.getInt(1),//or rst.getInt(1)
-                    rst.getString(2),rst.getString(3), rst.getFloat(4),rst.getString(5),rst.getInt(6));
+    public List<LivraisonColis> getAllLivraisonColis() {
+        List<LivraisonColis> Livraisons = new ArrayList<>();
+        try {
+            String req = "Select * from  `livraison`,`colis` WHERE `livraison`.`id_colis` =`colis`.`id` ";
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            while (RS.next()) {
+                LivraisonColis l = new LivraisonColis();
+            l.setId_livraison(RS.getInt("id_livraison"));
+                l.setAdresse_expedition(RS.getString("Adresse_expedition"));
+                l.setAdresse_destinataire(RS.getString("Adresse_destinataire"));
+                l.setPrix(RS.getFloat("Prix"));
+                l.setEtat(RS.getString("Etat"));
+                l.setId(RS.getInt("id"));
+                l.setDescription(RS.getString("Description"));
+                l.setNb_items(RS.getInt("Nb_items"));
+                l.setPoids(RS.getFloat("Poids"));
+                Livraisons.add(l);
+
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
         }
-    } catch (SQLException ex) {
-        Logger.getLogger(LivraisonService.class.getName()).log(Level.SEVERE, null, ex);
+        return Livraisons;
     }
-    return t;
-}*/
 
     @Override
     public void ajouter(Livraison p) {

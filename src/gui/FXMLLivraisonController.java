@@ -261,25 +261,6 @@ public class FXMLLivraisonController extends CommonController implements Initial
 
     }
 
-    @FXML
-    private void routeGererProfil(ActionEvent event) {
-    }
-
-    @FXML
-    private void routeGererReclamation(ActionEvent event) {
-    }
-
-    @FXML
-    private void routeGererLivraisions(ActionEvent event) {
-    }
-
-    @FXML
-    private void routeGererCourse(ActionEvent event) {
-    }
-
-    @FXML
-    private void routeGererLocation(ActionEvent event) {
-    }
 
     @FXML
     private void Ajouter(ActionEvent event) {

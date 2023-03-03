@@ -7,6 +7,7 @@ package gui;
 
 import entities.Livraison;
 import entities.Utilisateur;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -65,6 +66,8 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
     private TextField txt_search;
     @FXML
     private Button btnTrier;
+    @FXML
+    private Button txtbtn;
 
     /**
      * Initializes the controller class.
@@ -86,6 +89,12 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
             dataList.add(l.get(i));
         }
         return dataList;
+    }
+    
+        public List<Livraison> findLivraisonByAdresse(String adresse) {
+        LivraisonService sf = new LivraisonService();
+        List<Livraison> result = sf.getAllLivraison().stream().filter((p) -> p.getAdresse_expedition().contains(adresse.toUpperCase())).collect(Collectors.toList());
+        return result;
     }
 
     public void SortForumByTitle() {
@@ -122,6 +131,15 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
         TfEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
 
         table2.setItems(getLivraison(ls.afficherLivreur(u.getId())));
+        txt_search.textProperty().addListener((observable, oldValue, newValue) -> {
+ table2.getItems().clear();
+            List<Livraison> Liv =  findLivraisonByAdresse(newValue);
+
+        table2.setItems(getLivraison(Liv));
+        
+       
+
+              });
 
     }
 
@@ -164,6 +182,12 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
 
     @FXML
     private void retour(ActionEvent event) {
+        
+           try {
+            setSceneContent("FXMLListeLivraison");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
