@@ -123,6 +123,11 @@ public class FXMLGererReclamationController extends CommonController implements 
         }
     }
 
+    @FXML
+    private void statistiqueRec(ActionEvent event) {
+        
+    }
+
 
 
 }
