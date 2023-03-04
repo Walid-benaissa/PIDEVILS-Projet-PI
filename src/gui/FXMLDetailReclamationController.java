@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.WritableImage;
@@ -86,12 +87,17 @@ public class FXMLDetailReclamationController implements Initializable {
         try {
             pdimage = PDImageXObject.createFromFile("chart.png", doc);
             content = new PDPageContentStream(doc, page);
-            content.drawImage(pdimage,0,50, 889, 663);
+            content.drawImage(pdimage, -100, 50, 889, 663);
             content.close();
             doc.addPage(page);
             doc.save("C:/Users/walid/Downloads/pdf_file.pdf");
             doc.close();
             file.delete();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Pdf telechargé avec success");
+            alert.show();
+
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
