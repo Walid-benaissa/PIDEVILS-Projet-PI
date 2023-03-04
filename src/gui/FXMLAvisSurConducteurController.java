@@ -7,13 +7,9 @@ package gui;
 
 import entities.Commentaire;
 import entities.Utilisateur;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -129,8 +125,8 @@ public class FXMLAvisSurConducteurController extends CommonController implements
         Commentaire c = new Commentaire();
         if (!tf_comment.getText().isEmpty()) {
             c.setMessage(tf_comment.getText());
-            c.setId1(3);
-            c.setId2(2);
+            c.setId1(11);
+            c.setId2(12);
             CommentaireService cs = new CommentaireService();
             cs.ajouter(c);
         }
@@ -139,12 +135,8 @@ public class FXMLAvisSurConducteurController extends CommonController implements
         alert.setContentText("Votre evaluation a été enregistrée");
         alert.show();
         UtilisateurService us = new UtilisateurService();
-        us.evaluer(2, rating);
-        try {
-            setSceneContent("FXMLGererProfil");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLAvisSurConducteurController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        us.evaluer(12, rating);
+        
     }
 
 }

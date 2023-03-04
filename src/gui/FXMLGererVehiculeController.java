@@ -13,6 +13,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,15 +32,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import service.VehiculeService;
+import utils.CommonController;
+import utils.Context;
 
 /**
  * FXML Controller class
  *
  * @author azizi
  */
-public class FXMLGererVehiculeController implements Initializable {
+public class FXMLGererVehiculeController extends CommonController implements Initializable {
 
-    
     @FXML
     private Button btnAjouter;
     @FXML
@@ -46,9 +49,9 @@ public class FXMLGererVehiculeController implements Initializable {
     @FXML
     private Button btnMettreajour;
     @FXML
-   
+
     private TableColumn colonnecin;
-  
+
     @FXML
     private TableColumn colonneville;
     @FXML
@@ -62,7 +65,7 @@ public class FXMLGererVehiculeController implements Initializable {
     @FXML
     private TableView<Vehicule> TableVehicule;
     private VehiculeService VehiculeService = new VehiculeService();
- 
+
     @FXML
     private TableColumn colonnenom_v;
 
@@ -71,25 +74,48 @@ public class FXMLGererVehiculeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                
-        
-     
-     
+
         colonneville.setCellValueFactory(new PropertyValueFactory<>("ville"));
         PrixColone.setCellValueFactory(new PropertyValueFactory<>("prix"));
         colonneidPROMOTION.setCellValueFactory(new PropertyValueFactory<>("id_promotion"));
         colonnedescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colonnetype.setCellValueFactory(new PropertyValueFactory<>("type"));
-         colonnenom_v.setCellValueFactory(new PropertyValueFactory<>("nom_v"));
+        colonnenom_v.setCellValueFactory(new PropertyValueFactory<>("nom_v"));
 
-            // récupère les données des utilisateurs depuis la base de données
-            List<Vehicule> vleList = VehiculeService.afficheListe();
-            
-      
-        
+        // récupère les données des utilisateurs depuis la base de données
+        List<Vehicule> vleList = VehiculeService.afficheListe();
+
         // affiche les données dans le tableau
         TableVehicule.getItems().setAll(vleList);
-    }    
+
+//        // Ajoute un listener sur le tableau pour détecter quand une ligne est sélectionnée
+//        TableVehicule.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Vehicule>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Vehicule> obs, Vehicule oldSelection, Vehicule newSelection) {
+//                if (newSelection != null) {
+//                    // Récupère le Vehicule sélectionné
+//                    Vehicule vehiculeSelectionne = TableVehicule.getSelectionModel().getSelectedItem();
+//                    // Charge le fichier FXML de la nouvelle interface
+//                    FXMLLoader loader = new FXMLLoader(FXMLGererVehiculeController.this.getClass().getResource("FXMLLouerV.fxml"));
+//                    Parent root;
+//                    try {
+//                        root = loader.load();
+//                    } catch (IOException ex) {
+//                        Logger.getLogger(FXMLGererVehiculeController.class.getName()).log(Level.SEVERE, null, ex);
+//                        return;
+//                    }   // Obtient le contrôleur de la nouvelle interface
+//                    FXMLLouerVController controller = loader.getController();
+//                    // Configure le contrôleur avec les données du Vehicule sélectionné
+//                    controller.initialiserAvecVehicule(vehiculeSelectionne);
+//                    // Charge la nouvelle interface dans une nouvelle fenêtre
+//                    Scene scene = new Scene(root);
+//                    Stage stage = new Stage();
+//                    stage.setScene(scene);
+//                    stage.show();
+//                }
+//            }
+//        }}
+    }
 
     @FXML
     private void Ajouter(ActionEvent event) {
@@ -115,12 +141,12 @@ public class FXMLGererVehiculeController implements Initializable {
         
         // affiche les données dans le tableau
         TableVehicule.getItems().setAll(vList);*/
-           
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLAjouterVehicule.fxml"));
-            
+
             Scene sc = new Scene(root);
-            Stage stage =(Stage)((Node)event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(sc);
             stage.show();
         } catch (IOException ex) {
@@ -130,8 +156,8 @@ public class FXMLGererVehiculeController implements Initializable {
 
     @FXML
     private void Supprimer(ActionEvent event) {
-           Vehicule selectedVehicule = TableVehicule.getSelectionModel().getSelectedItem();
-       
+        Vehicule selectedVehicule = TableVehicule.getSelectionModel().getSelectedItem();
+
         if (selectedVehicule == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("No user selected");
@@ -150,14 +176,14 @@ public class FXMLGererVehiculeController implements Initializable {
         if (result.get() == ButtonType.OK) {
             System.out.println(selectedVehicule);
             VehiculeService.supprimer(selectedVehicule);
-             List<Vehicule> vvlist = VehiculeService.afficheListe();
-        
-        // affiche les données dans le tableau
-        TableVehicule.getItems().setAll(vvlist);
+            List<Vehicule> vvlist = VehiculeService.afficheListe();
+
+            // affiche les données dans le tableau
+            TableVehicule.getItems().setAll(vvlist);
         }
     }
 
-     @FXML
+    @FXML
     private void Metrreajour(ActionEvent event) {
         /*                    String id_vehicule = txtid_vehicule.getText();
            int id = Integer  .parseInt(txtid.getText());
@@ -175,24 +201,18 @@ public class FXMLGererVehiculeController implements Initializable {
         
         // affiche les données dans le tableau
         TableVehicule.getItems().setAll(vList);}*/
-      try {
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLModifierVehicule.fxml"));
-            
-            Scene sc = new Scene(root);
-            Stage stage =(Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(sc);
-            stage.show();
+        Vehicule selectedVehicule = TableVehicule.getSelectionModel().getSelectedItem();
+
+        Context.getInstance().addContextObject("Vehicule", selectedVehicule);
+        try {
+            setSceneContent("FXMLModifierVehicule");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererVehiculeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    
-
-  
-    
-}
+    }
 
     @FXML
     private void handleMouseAction(MouseEvent event) {
+        Vehicule v = TableVehicule.getSelectionModel().getSelectedItem();
     }
 }

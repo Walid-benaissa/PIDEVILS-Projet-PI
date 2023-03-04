@@ -44,6 +44,9 @@ public class Commentaire {
     }
 
     public void setMessage(String message) {
+        if(message.contains("bad word") || message.contains("bad")){
+            message=message.replace("bad word","### ####");
+            message=message.replace("bad","###");}
         this.message = message;
     }
 

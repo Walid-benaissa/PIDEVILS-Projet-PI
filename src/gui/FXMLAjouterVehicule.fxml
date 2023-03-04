@@ -65,5 +65,11 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
+      <Label layoutX="367.0" layoutY="263.0" text="Taux promotion" textFill="WHITE">
+         <font>
+            <Font name="Microsoft Sans Serif" size="20.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="choix_taux" layoutX="367.0" layoutY="299.0" prefHeight="26.0" prefWidth="202.0" />
    </children>
 </AnchorPane>

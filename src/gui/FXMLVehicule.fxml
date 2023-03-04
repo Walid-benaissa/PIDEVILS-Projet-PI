@@ -22,8 +22,7 @@
             <TableColumn fx:id="colonnetype" prefWidth="107.199951171875" text="type" />
             <TableColumn fx:id="colonneville" prefWidth="99.20001220703125" text="ville" />
             <TableColumn fx:id="PrixColone" minWidth="0.0" prefWidth="100.79998779296875" text="prix" />
-            <TableColumn fx:id="colonneidPROMOTION" minWidth="0.0" prefWidth="136.800048828125" text="taux" />
-            <TableColumn fx:id="colonnedescription" prefWidth="181.60001220703123" text="description" />
+            <TableColumn fx:id="colonnedescription" prefWidth="317.6000061035156" text="description" />
          </columns>
       </TableView>
       <Label layoutX="381.0" layoutY="36.0" prefHeight="54.0" prefWidth="322.0" text="Vehicule" textAlignment="CENTER" textFill="WHITE">
