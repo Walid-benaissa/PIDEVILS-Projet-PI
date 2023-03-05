@@ -55,7 +55,7 @@ public class FXMLAuthentificationController extends CommonController implements 
         String mdpH = tf_mdp.getText();
         mdpH = us.HashagePassword(mdpH);
         Utilisateur user = us.authentification(tf_mail.getText(), mdpH);
-        if (user.getId() != 0) {
+        if ((user.getId() != 0)&(user.isBolque()== false)) {
             try {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Success");
