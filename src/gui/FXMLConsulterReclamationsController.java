@@ -18,7 +18,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -45,7 +44,6 @@ public class FXMLConsulterReclamationsController extends CommonController implem
 
     ReclamationService rs = new ReclamationService();
     Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
-    @FXML
 
     /**
      * Initializes the controller class.
@@ -75,4 +73,5 @@ public class FXMLConsulterReclamationsController extends CommonController implem
             Logger.getLogger(FXMLConsulterReclamationsController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }
