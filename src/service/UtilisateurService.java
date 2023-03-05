@@ -311,5 +311,19 @@ public Utilisateur rechUtilisateurByMail(String mail) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+       public void modifiermdp(String mail , String mdp) {
+        try {
+
+            String req = "UPDATE `utilisateur` SET  `mdp` = ? WHERE `utilisateur`.`mail` = ?";
+            PreparedStatement ps = conn.prepareStatement(req);
+            ps.setString(1, mdp);
+            ps.setString(2, mail);
+            ps.executeUpdate();
+            System.out.println("Mot de passe changé");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
 }

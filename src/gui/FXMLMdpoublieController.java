@@ -5,6 +5,7 @@
  */
 package gui;
 
+import java.util.Random;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -26,6 +27,7 @@ import javax.swing.JOptionPane;
 import service.UtilisateurService;
 import utils.CommonController;
 import static utils.CommonController.setSceneContent;
+import utils.Context;
 
 /**
  * FXML Controller class
@@ -42,8 +44,6 @@ public class FXMLMdpoublieController extends CommonController implements Initial
     private Text cdsPass;
     UtilisateurService uc = new UtilisateurService();
     Utilisateur u = new Utilisateur();
-            
-
 
     /**
      * Initializes the controller class.
@@ -55,13 +55,20 @@ public class FXMLMdpoublieController extends CommonController implements Initial
 
     @FXML
     private void EnvoyerBTN(ActionEvent event) {
-        String To=fxLog.getText();
+        String To = fxLog.getText();
         envoyerMail(To);
-        
+        Context.getInstance().addContextObject("mail", To);
+
+        try {
+            setSceneContent("FXMLCodeConfirmation");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
-    public static void envoyerMail(String To){
-    Properties props = new Properties();
+
+    public static void envoyerMail(String To) {
+        Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.socketFactory.port", "587");
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
@@ -81,14 +88,31 @@ public class FXMLMdpoublieController extends CommonController implements Initial
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("pfe.mailer2022@gmail.com"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(To));
+            String code = generateRandomCode();
             message.setSubject("code de validation");
-            message.setText("Votre code de validation est: ");
+            message.setText("Votre code de validation est: " + code + ".");
             Transport.send(message);
-            JOptionPane.showMessageDialog(null, "message sent");
+            JOptionPane.showMessageDialog(null, "code envoyer");
+            Context.getInstance().addContextObject("codeValidation", code);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+    }
+
+    public static String generateRandomCode() {
+        int codeLength = 8;
+        String numbers = "0123456789";
+        Random random = new Random();
+        StringBuilder code = new StringBuilder();
+
+        for (int i = 0; i < codeLength; i++) {
+            int index = random.nextInt(numbers.length());
+            char digit = numbers.charAt(index);
+            code.append(digit);
+        }
+
+        return code.toString();
     }
 
     @FXML

@@ -15,7 +15,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="fxLog" layoutX="119.0" layoutY="175.0" prefHeight="28.0" prefWidth="200.0" promptText="Login" style="-fx-background-color: transparent; -fx-border-color: #D9B54A; -fx-border-width: 0px 0px 2px 0px;" text="Mail" />
+      <TextField fx:id="fxLog" layoutX="119.0" layoutY="175.0" prefHeight="28.0" prefWidth="200.0" promptText="Login" style="-fx-border-color: #D9B54A; -fx-border-width: 0px 0px 2px 0px;" />
       <Text fx:id="cdsEnvoyer" fill="#ff9696" layoutX="140.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez remplir le champ Login" wrappingWidth="161.04874420166016">
          <font>
             <Font size="10.0" />
