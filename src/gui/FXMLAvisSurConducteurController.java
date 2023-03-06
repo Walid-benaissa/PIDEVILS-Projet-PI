@@ -66,7 +66,7 @@ public class FXMLAvisSurConducteurController extends CommonController implements
     private Button soumBtn;
     @FXML
     private Label msgErreur;
-    File file = new File(getClass().getResource("Mots Innaproprie.txt").getFile());
+    File file = new File("src/Mots Innaproprie.txt");
 
     /**
      * Initializes the controller class.
