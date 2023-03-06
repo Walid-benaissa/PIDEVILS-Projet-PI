@@ -17,7 +17,9 @@ import org.jfree.data.general.DefaultPieDataset;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Map;
 import service.ReclamationService;
+import service.UtilisateurService;
 
 
 /**
@@ -30,24 +32,27 @@ public class FXMLStatistiquesReclamationController implements Initializable {
     @FXML
     private SwingNode chart1;
     ReclamationService rs=new ReclamationService();
-
+    UtilisateurService us= new UtilisateurService();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Map<String,Integer> res=us.statistiquesUtilisateurs();
+        DefaultPieDataset data=new DefaultPieDataset();
+        for (Map.Entry<String,Integer> i :res.entrySet() ){
+            data.setValue(i.getKey(),i.getValue());
+        }
         JFreeChart chart = ChartFactory.createPieChart(
-                "My Chart",
-                new DefaultPieDataset(),
+                "Repartition d'utilisateurs",
+                data,
                 true,
                 true,
                 false
         );
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new Dimension(400, 300));
+        chartPanel.setPreferredSize(new Dimension(300, 300));
         chart1.setContent(chartPanel);
-
-
     }    
     
 }
