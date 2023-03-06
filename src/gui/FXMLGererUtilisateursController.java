@@ -43,6 +43,9 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import javafx.scene.layout.Pane;
+import static utils.CommonController.setSceneContent;
+import utils.Context;
 
 /**
  * FXML Controller class
@@ -87,6 +90,10 @@ public class FXMLGererUtilisateursController extends CommonController implements
     private Button btnBloquer;
     @FXML
     private TableColumn<?, ?> bloqueCol;
+    @FXML
+    private Pane details;
+    @FXML
+    private Button btnDetails;
 
     /**
      * Initializes the controller class.
@@ -189,6 +196,17 @@ public class FXMLGererUtilisateursController extends CommonController implements
         afficherUsers(us.afficheListe());
         
 
+    }
+
+    @FXML
+    private void details(ActionEvent event) {
+        Context.getInstance().addContextObject("user",TableUsers.getSelectionModel().getSelectedItem());
+         Context.getInstance().addContextObject("role",TableUsers.getSelectionModel().getSelectedItem().getRole());
+        try {
+            setSceneContent("FXMLDetailsUtilisateur");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

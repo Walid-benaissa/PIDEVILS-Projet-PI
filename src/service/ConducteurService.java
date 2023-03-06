@@ -37,7 +37,7 @@ public class ConducteurService implements IService<Conducteur> {
     public List<Conducteur> afficheListe() {
         List<Conducteur> list = new ArrayList<>();
         try {
-            String req = "Select * from  `conducteur` c, `utlisateur` u where c.id=u.id";
+            String req = "Select * from  `conducteur` c, `utilisateur` u where c.id=u.id";
             Statement st = conn.createStatement();
 
             ResultSet RS = st.executeQuery(req);
@@ -59,6 +59,33 @@ public class ConducteurService implements IService<Conducteur> {
             System.out.println(ex.getMessage());
         }
         return list;
+    }
+    public Conducteur afficheC(int id) {
+       Conducteur p = new Conducteur();
+        try {
+            String req = "Select * from  `conducteur` c, `utilisateur` u where c.id= u.id and c.id= "+ id ;
+            Statement st = conn.createStatement();
+
+            ResultSet RS = st.executeQuery(req);
+            while (RS.next()) {
+                
+                p.setId(RS.getInt("id"));
+                p.setNom(RS.getString("nom"));
+                p.setPrenom(RS.getString("prenom"));
+                p.setMail(RS.getString("mail"));
+                p.setMdp(RS.getString("mdp"));
+                p.setNum_tel(RS.getString("num_tel"));
+                p.setRole(RS.getString("role"));
+                p.setEvaluation(RS.getFloat("evaluation"));
+                p.setBolque(RS.getBoolean("bloque"));
+                p.setPermis(RS.getString("permis"));
+                p.setB3(RS.getString("b3"));
+               
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return p;
     }
 
     @Override
