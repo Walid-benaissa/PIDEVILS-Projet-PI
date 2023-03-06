@@ -7,18 +7,24 @@ package gui;
 
 import entities.Commentaire;
 import entities.Utilisateur;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import service.CommentaireService;
 import service.UtilisateurService;
 import utils.CommonController;
@@ -58,6 +64,9 @@ public class FXMLAvisSurConducteurController extends CommonController implements
     Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
     @FXML
     private Button soumBtn;
+    @FXML
+    private Label msgErreur;
+    File file = new File(getClass().getResource("Mots Innaproprie.txt").getFile());
 
     /**
      * Initializes the controller class.
@@ -136,7 +145,35 @@ public class FXMLAvisSurConducteurController extends CommonController implements
         alert.show();
         UtilisateurService us = new UtilisateurService();
         us.evaluer(12, rating);
-        
+
+    }
+
+    @FXML
+    private void verifMsg(KeyEvent event) {
+        if (isInapproprie(tf_comment.getText())) {
+            msgErreur.setVisible(true);
+            soumBtn.setDisable(true);
+        } else {
+            msgErreur.setVisible(false);
+            soumBtn.setDisable(false);
+        }
+    }
+
+    private boolean isInapproprie(String text) {
+        try {
+            Scanner scanner = new Scanner(file);
+            int lineNum = 0;
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                lineNum++;
+                if (text.contains(line)) {
+                    return true;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 
 }
