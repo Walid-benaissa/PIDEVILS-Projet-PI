@@ -65,7 +65,7 @@ public class UtilisateurService implements IService<Utilisateur> {
     public Map<String, Integer> statistiquesUtilisateurs() {
         Map<String, Integer> res = new HashMap<String, Integer>();
         try {
-            String req = "Select role,count(*) from  `utilisateur` group by role";
+            String req = "Select role,count(*) from  `utilisateur` where `role`!='Admin' group by role";
             Statement st = conn.createStatement();
 
             ResultSet RS = st.executeQuery(req);

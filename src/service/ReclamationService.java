@@ -144,5 +144,19 @@ public class ReclamationService implements IService<Reclamation> {
 
         return list;
     }
+    
+    public int nbrRecParUser(int id) {
+        try {
+            String req = "Select count(*) from  `reclamation` where idUser="+id;
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            RS.next();
+            return RS.getInt("count(*)");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return 0;
+    }
+
 
 }

@@ -17,10 +17,13 @@ import org.jfree.data.general.DefaultPieDataset;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.NumberFormat;
 import java.util.Map;
+import org.jfree.chart.labels.PieSectionLabelGenerator;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
+import org.jfree.chart.plot.PiePlot;
 import service.ReclamationService;
 import service.UtilisateurService;
-
 
 /**
  * FXML Controller class
@@ -31,18 +34,19 @@ public class FXMLStatistiquesReclamationController implements Initializable {
 
     @FXML
     private SwingNode chart1;
-    ReclamationService rs=new ReclamationService();
-    UtilisateurService us= new UtilisateurService();
+    ReclamationService rs = new ReclamationService();
+    UtilisateurService us = new UtilisateurService();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Map<String,Integer> res=us.statistiquesUtilisateurs();
-        DefaultPieDataset data=new DefaultPieDataset();
-        for (Map.Entry<String,Integer> i :res.entrySet() ){
-            data.setValue(i.getKey(),i.getValue());
-        }
+        Map<String, Integer> res = us.statistiquesUtilisateurs();
+        DefaultPieDataset data = new DefaultPieDataset();
+        res.entrySet().forEach((i) -> {
+            data.setValue(i.getKey(), i.getValue());
+        });
         JFreeChart chart = ChartFactory.createPieChart(
                 "Repartition d'utilisateurs",
                 data,
@@ -50,9 +54,12 @@ public class FXMLStatistiquesReclamationController implements Initializable {
                 true,
                 false
         );
+        PieSectionLabelGenerator labelGenerator = new StandardPieSectionLabelGenerator("{0} ({2})", NumberFormat.getNumberInstance(), NumberFormat.getPercentInstance());
+        ((PiePlot) chart.getPlot()).setLabelGenerator(labelGenerator);
+        
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(300, 300));
         chart1.setContent(chartPanel);
-    }    
-    
+    }
+
 }
