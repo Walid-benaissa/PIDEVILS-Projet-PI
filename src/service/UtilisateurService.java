@@ -50,7 +50,9 @@ public class UtilisateurService implements IService<Utilisateur> {
                 p.setNum_tel(RS.getString("num_tel"));
                 p.setRole(RS.getString("role"));
                 p.setEvaluation(RS.getFloat("evaluation"));
+                p.setBolque(RS.getBoolean("bloque"));
                 list.add(p);
+                
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -94,6 +96,7 @@ public class UtilisateurService implements IService<Utilisateur> {
             p.setNum_tel(RS.getString("num_tel"));
             p.setRole(RS.getString("role"));
             p.setEvaluation(RS.getFloat("evaluation"));
+            p.setBolque(RS.getBoolean("bloque"));
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -192,7 +195,7 @@ public Utilisateur rechUtilisateurByMail(String mail) {
     public void modifier(Utilisateur p) {
         try {
 
-            String req = "UPDATE `utilisateur` SET nom=?, `prenom` = ?, `mail` = ?, `mdp` = ?, `num_tel` = ?, `role` = ?, `evaluation` = ? WHERE `utilisateur`.`id` = ?";
+            String req = "UPDATE `utilisateur` SET nom=?, `prenom` = ?, `mail` = ?, `mdp` = ?, `num_tel` = ?, `role` = ?, `evaluation` = ? , `bloque` = ? WHERE `utilisateur`.`id` = ?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, p.getNom());
             ps.setString(2, p.getPrenom());
@@ -201,7 +204,8 @@ public Utilisateur rechUtilisateurByMail(String mail) {
             ps.setString(5, p.getNum_tel());
             ps.setString(6, p.getRole());
             ps.setFloat(7, p.getEvaluation());
-            ps.setInt(8, p.getId());
+            ps.setBoolean(8, p.isBolque());
+            ps.setInt(9, p.getId());
             ps.executeUpdate();
             System.out.println("Utilisateur mis a jour");
 
@@ -209,6 +213,7 @@ public Utilisateur rechUtilisateurByMail(String mail) {
             System.out.println(ex.getMessage());
         }
     }
+    
 
     public void modifierWithmdp(Utilisateur p) {
         try {

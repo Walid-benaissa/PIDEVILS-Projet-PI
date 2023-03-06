@@ -15,11 +15,11 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLGererUtilisateursController">
    <center>
-      <AnchorPane id="AnchorPane" prefHeight="679.0" prefWidth="952.0" style="-fx-background-color: black;">
+      <AnchorPane id="AnchorPane" prefHeight="679.0" prefWidth="1100.0" style="-fx-background-color: black;">
          <children>
-            <Pane layoutX="26.0" layoutY="26.0" prefHeight="628.0" prefWidth="901.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
+            <Pane layoutX="26.0" layoutY="26.0" prefHeight="628.0" prefWidth="1022.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
                <children>
-                  <TableView fx:id="TableUsers" layoutX="13.0" layoutY="243.0" onMouseClicked="#handleMouseAction" prefHeight="359.0" prefWidth="876.0">
+                  <TableView fx:id="TableUsers" layoutX="13.0" layoutY="243.0" onMouseClicked="#handleMouseAction" prefHeight="359.0" prefWidth="966.0">
                      <columns>
                         <TableColumn fx:id="idCol" prefWidth="66.40002298355103" text="ID" />
                         <TableColumn fx:id="nomCol" prefWidth="120.80001068115234" text="Nom" />
@@ -27,7 +27,8 @@
                         <TableColumn fx:id="mailCol" prefWidth="164.80001831054688" text="Mail" />
                         <TableColumn fx:id="numtelCol" prefWidth="168.0" text="Numéro de téléphone" />
                         <TableColumn fx:id="roleCol" prefWidth="90.39996337890625" text="Rôle" />
-                        <TableColumn fx:id="evaluationCol" prefWidth="135.19989013671875" text="Evaluation" />
+                        <TableColumn fx:id="evaluationCol" prefWidth="124.0001220703125" text="Evaluation" />
+                        <TableColumn fx:id="bloqueCol" prefWidth="93.5999755859375" text="Bloque" />
                      </columns>
                   </TableView>
                   <Label layoutX="273.0" prefHeight="54.0" prefWidth="380.0" text="Gérer les utilisateurs" textFill="WHITE">
@@ -35,8 +36,8 @@
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtID" layoutX="392.0" layoutY="151.0" prefHeight="31.0" prefWidth="68.0" />
-                  <Button fx:id="btnSupprimer" layoutX="488.0" layoutY="151.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="31.0" prefWidth="103.0" style="-fx-background-color: #FD9800;" text="Supprimer">
+                  <TextField fx:id="txtID" layoutX="250.0" layoutY="151.0" prefHeight="31.0" prefWidth="68.0" />
+                  <Button fx:id="btnSupprimer" layoutX="491.0" layoutY="151.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="31.0" prefWidth="103.0" style="-fx-background-color: #FD9800;" text="Supprimer">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -72,6 +73,23 @@
                         </ImageView>
                      </children>
                   </Pane>
+                  <Button fx:id="telecharger" layoutX="927.0" layoutY="186.0" mnemonicParsing="false" onAction="#telecharger" prefHeight="39.0" prefWidth="33.0" style="-fx-background-color: #FD9800;">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/file.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnBloquer" layoutX="358.0" layoutY="151.0" mnemonicParsing="false" onAction="#bloquer" prefHeight="31.0" prefWidth="103.0" style="-fx-background-color: #FD9800;" text="Bloquer">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>

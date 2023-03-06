@@ -18,6 +18,7 @@ public class Utilisateur {
     private String num_tel;
     private String role;
     private float evaluation;
+    private boolean bolque;
 
     public Utilisateur() {
     }
@@ -61,6 +62,14 @@ public class Utilisateur {
         this.num_tel = num_tel;
         this.role = role;
         this.evaluation = evaluation;
+    }
+
+    public boolean isBolque() {
+        return bolque;
+    }
+
+    public void setBolque(boolean bolque) {
+        this.bolque = bolque;
     }
 
     public int getId() {
