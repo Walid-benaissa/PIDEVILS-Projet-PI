@@ -29,6 +29,7 @@ import service.ConducteurService;
 import service.UtilisateurService;
 import utils.CommonController;
 import static utils.CommonController.setSceneContent;
+import utils.Context;
 
 /**
  * FXML Controller class
@@ -134,16 +135,17 @@ public class FXMLCreationCompteController extends CommonController implements In
              mdpH=us.HashagePassword(mdpH);
             if (role.equals("Conducteur")) {
                 Conducteur user = new Conducteur(permis, b3, tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText(), role, 0.0F);
-                ConducteurService cs = new ConducteurService();
-                cs.ajouter(user);
+                Context.getInstance().addContextObject("Utilisateur", user);
             } else {
                 Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText(), role, 0.0F);
-                us.ajouter(user);
+                Context.getInstance().addContextObject("Utilisateur", user);
             }
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation");
-            alert.setContentText("creation avec succés");
-            alert.show();
+            try {
+                setSceneContent("ImNotRobotFXML");
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLCreationCompteController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
 
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

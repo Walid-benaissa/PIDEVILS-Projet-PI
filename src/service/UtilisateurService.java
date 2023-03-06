@@ -75,6 +75,7 @@ public class UtilisateurService implements IService<Utilisateur> {
             p.setNum_tel(RS.getString("num_tel"));
             p.setRole(RS.getString("role"));
             p.setEvaluation(RS.getFloat("evaluation"));
+            p.setBolque(RS.getBoolean("bloque"));
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
