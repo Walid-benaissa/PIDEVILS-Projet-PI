@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 01 mars 2023 à 00:44
+-- Généré le : lun. 06 mars 2023 à 11:07
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -225,18 +225,20 @@ CREATE TABLE `utilisateur` (
   `mdp` varchar(100) NOT NULL,
   `num_tel` varchar(20) NOT NULL,
   `role` varchar(30) NOT NULL,
-  `evaluation` float(2,1) NOT NULL
+  `evaluation` float(2,1) NOT NULL,
+  `bloque` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `role`, `evaluation`) VALUES
-(11, 'ben aissa', 'walid', 'walid@gmail.com', 'b6750d994f8db7990a509ed7854e26121d589147f0fd619c2601d508b5c7cc90', '23567897', 'Conducteur', 0.0),
-(12, 'khaled', 'khaled', 'khaled@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '56765345', 'Client', 0.0),
-(13, 'kharmachi', 'abir', 'abir@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '256789467', 'Admin', 0.0),
-(16, 'benghorbel', 'nour', 'nour@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '23456789', 'Conducteur', 0.0);
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `role`, `evaluation`, `bloque`) VALUES
+(11, 'ben aissa', 'walid', 'walid@gmail.com', 'b6750d994f8db7990a509ed7854e26121d589147f0fd619c2601d508b5c7cc90', '23567897', 'Client', 0.0, 0),
+(12, 'khaled', 'khaled', 'khaled@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '56765345', 'Client', 0.0, 0),
+(13, 'kharmachi', 'abir', 'abir.kharmachi@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '256789467', 'Admin', 0.0, 0),
+(16, 'benghorbel', 'nour', 'nour@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '23456789', 'Conducteur', 0.0, 0),
+(17, 'aziz', 'aziz', 'aziz@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '26786543', 'Client', 0.0, 0);
 
 -- --------------------------------------------------------
 
@@ -429,7 +431,7 @@ ALTER TABLE `reclamation`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `vehicule`
