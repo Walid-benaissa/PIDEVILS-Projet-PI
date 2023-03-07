@@ -112,12 +112,14 @@
                <font>
                   <Font name="System Bold" size="10.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <ImageView fitHeight="21.0" fitWidth="18.0" layoutX="68.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/arrow.png" />
-               </image>
-            </ImageView>
          </children>
       </Pane>
    </children>

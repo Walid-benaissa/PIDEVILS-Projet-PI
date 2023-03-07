@@ -24,7 +24,7 @@ public final Logger LOGGER = Logger.getLogger(this.getClass().getName());
    public static void setSceneContentStartup(Stage stage) throws IOException{  
      Context.getInstance().setCurrentStage(stage);  
      setSceneContent("FXMLAuthentification");  
-   }  
+  }  
    public static Parent setSceneContent(String pageName) throws IOException {  
      Stage currentStage = Context.getInstance().getCurrentStage();  
        Scene scene = currentStage.getScene();  

@@ -50,8 +50,8 @@
                      </font>
                   </Label>
                   <ChoiceBox fx:id="choix_type" layoutX="288.0" layoutY="159.0" prefHeight="26.0" prefWidth="224.0" />
-                  <TextField fx:id="recherche" layoutX="435.0" layoutY="211.0" onKeyPressed="#rechercherMessage" prefHeight="25.0" prefWidth="187.0" />
-                  <Pane layoutX="622.0" layoutY="211.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #FD9800; -fx-background-radius: 5px;">
+                  <TextField fx:id="recherche" layoutX="476.0" layoutY="211.0" onKeyPressed="#rechercherMessage" prefHeight="25.0" prefWidth="187.0" />
+                  <Pane layoutX="663.0" layoutY="211.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #FD9800; -fx-background-radius: 5px;">
                      <children>
                         <ImageView fitHeight="46.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -60,6 +60,16 @@
                         </ImageView>
                      </children>
                   </Pane>
+                  <Button layoutX="349.0" layoutY="211.0" minHeight="25.0" minWidth="82.0" mnemonicParsing="false" onAction="#detailsReclamation" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #FD9800;" text="Details">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="524.0" layoutY="160.0" minHeight="25.0" minWidth="82.0" mnemonicParsing="false" onAction="#statistiqueRec" prefHeight="25.0" prefWidth="172.0" style="-fx-background-color: #FD9800;" text="Statistiques reclamations">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>

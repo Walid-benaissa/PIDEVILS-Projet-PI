@@ -14,7 +14,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.MyDB;
@@ -50,12 +52,30 @@ public class UtilisateurService implements IService<Utilisateur> {
                 p.setNum_tel(RS.getString("num_tel"));
                 p.setRole(RS.getString("role"));
                 p.setEvaluation(RS.getFloat("evaluation"));
+                p.setBolque(RS.getBoolean("bloque"));
                 list.add(p);
+
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return list;
+    }
+
+    public Map<String, Integer> statistiquesUtilisateurs() {
+        Map<String, Integer> res = new HashMap<String, Integer>();
+        try {
+            String req = "Select role,count(*) from  `utilisateur` where `role`!='Admin' group by role";
+            Statement st = conn.createStatement();
+
+            ResultSet RS = st.executeQuery(req);
+            while (RS.next()) {
+                res.put(RS.getString("role"), RS.getInt("count(*)"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return res;
     }
 
     public Utilisateur afficheUser(int id) {
@@ -73,6 +93,7 @@ public class UtilisateurService implements IService<Utilisateur> {
             p.setNum_tel(RS.getString("num_tel"));
             p.setRole(RS.getString("role"));
             p.setEvaluation(RS.getFloat("evaluation"));
+            p.setBolque(RS.getBoolean("bloque"));
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -94,12 +115,14 @@ public class UtilisateurService implements IService<Utilisateur> {
             p.setNum_tel(RS.getString("num_tel"));
             p.setRole(RS.getString("role"));
             p.setEvaluation(RS.getFloat("evaluation"));
+            p.setBolque(RS.getBoolean("bloque"));
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return p;
     }
-public Utilisateur rechUtilisateurByMail(String mail) {
+
+    public Utilisateur rechUtilisateurByMail(String mail) {
         Utilisateur p = new Utilisateur();
         try {
             String req = "Select * from  `utilisateur` where mail ='" + mail + "'";
@@ -119,6 +142,7 @@ public Utilisateur rechUtilisateurByMail(String mail) {
         }
         return p;
     }
+
     public void evaluer(int id_c, float evaluation) {
         try {
             String req = "Select evaluation from  `utilisateur` where id=" + id_c;
@@ -192,7 +216,7 @@ public Utilisateur rechUtilisateurByMail(String mail) {
     public void modifier(Utilisateur p) {
         try {
 
-            String req = "UPDATE `utilisateur` SET nom=?, `prenom` = ?, `mail` = ?, `mdp` = ?, `num_tel` = ?, `role` = ?, `evaluation` = ? WHERE `utilisateur`.`id` = ?";
+            String req = "UPDATE `utilisateur` SET nom=?, `prenom` = ?, `mail` = ?, `mdp` = ?, `num_tel` = ?, `role` = ?, `evaluation` = ? , `bloque` = ? WHERE `utilisateur`.`id` = ?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, p.getNom());
             ps.setString(2, p.getPrenom());
@@ -201,7 +225,8 @@ public Utilisateur rechUtilisateurByMail(String mail) {
             ps.setString(5, p.getNum_tel());
             ps.setString(6, p.getRole());
             ps.setFloat(7, p.getEvaluation());
-            ps.setInt(8, p.getId());
+            ps.setBoolean(8, p.isBolque());
+            ps.setInt(9, p.getId());
             ps.executeUpdate();
             System.out.println("Utilisateur mis a jour");
 
@@ -247,24 +272,26 @@ public Utilisateur rechUtilisateurByMail(String mail) {
             System.out.println(ex.getMessage());
         }
     }
+
     public String HashagePassword(String password) {
-    try {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        byte[] hash = md.digest(password.getBytes());
-        StringBuilder sb = new StringBuilder();
-        for (byte b : hash) {
-            sb.append(String.format("%02x", b));
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(password.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hash) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.println(ex.getMessage());
+            return null;
         }
-        return sb.toString();
-    } catch (NoSuchAlgorithmException ex) {
-        System.out.println(ex.getMessage());
-        return null;
     }
-    }
-      public List<Utilisateur> rechercherNom(String Nom) {
+
+    public List<Utilisateur> rechercherNom(String Nom) {
         List<Utilisateur> list = new ArrayList<>();
         try {
-            String req = "Select * from  `utilisateur` where nom like '%"+Nom+"%'";
+            String req = "Select * from  `utilisateur` where nom like '%" + Nom + "%'";
             Statement st = conn.createStatement();
             ResultSet RS = st.executeQuery(req);
             while (RS.next()) {
@@ -284,10 +311,11 @@ public Utilisateur rechUtilisateurByMail(String mail) {
 
         return list;
     }
-       public List<Utilisateur> rechercherPrenom(String Prenom) {
+
+    public List<Utilisateur> rechercherPrenom(String Prenom) {
         List<Utilisateur> list = new ArrayList<>();
         try {
-            String req = "Select * from  `utilisateur` where prenom like '%"+Prenom+"%'";
+            String req = "Select * from  `utilisateur` where prenom like '%" + Prenom + "%'";
             Statement st = conn.createStatement();
             ResultSet RS = st.executeQuery(req);
             while (RS.next()) {
@@ -307,9 +335,24 @@ public Utilisateur rechUtilisateurByMail(String mail) {
 
         return list;
     }
-       public String sendMail(String email) {
+
+    public String sendMail(String email) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public void modifiermdp(String mail, String mdp) {
+        try {
+
+            String req = "UPDATE `utilisateur` SET  `mdp` = ? WHERE `utilisateur`.`mail` = ?";
+            PreparedStatement ps = conn.prepareStatement(req);
+            ps.setString(1, mdp);
+            ps.setString(2, mail);
+            ps.executeUpdate();
+            System.out.println("Mot de passe changé");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
 }

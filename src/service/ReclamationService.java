@@ -51,6 +51,29 @@ public class ReclamationService implements IService<Reclamation> {
 
         return list;
     }
+    
+    public List<Reclamation> afficheListeByUser(int id) {
+        List<Reclamation> list = new ArrayList<>();
+        try {
+            String req = "Select * from  `reclamation` where idUser="+id;
+            Statement st = conn.createStatement();
+
+            ResultSet RS = st.executeQuery(req);
+            while (RS.next()) {
+                Reclamation p = new Reclamation();
+                p.setId(RS.getInt("id"));
+                p.setMessage(RS.getString("message"));
+                p.setEtat(RS.getString("etat"));
+                p.setIdAdmin(RS.getInt("idAdmin"));
+                p.setIdUser(RS.getInt("idUser"));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return list;
+    }
 
     @Override
     public void ajouter(Reclamation p) {
@@ -121,5 +144,19 @@ public class ReclamationService implements IService<Reclamation> {
 
         return list;
     }
+    
+    public int nbrRecParUser(int id) {
+        try {
+            String req = "Select count(*) from  `reclamation` where idUser="+id;
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            RS.next();
+            return RS.getInt("count(*)");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return 0;
+    }
+
 
 }

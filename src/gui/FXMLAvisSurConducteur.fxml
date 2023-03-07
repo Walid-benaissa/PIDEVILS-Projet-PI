@@ -81,7 +81,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <TextArea fx:id="tf_comment" layoutX="123.0" layoutY="321.0" prefHeight="112.0" prefWidth="432.0" />
+                  <TextArea fx:id="tf_comment" layoutX="123.0" layoutY="333.0" onKeyTyped="#verifMsg" prefHeight="112.0" prefWidth="432.0" />
                   <Label layoutX="128.0" layoutY="276.0" prefHeight="27.0" prefWidth="316.0" text="Laissez un commentaire (Optionnel)" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
@@ -92,6 +92,16 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
+                  <Label fx:id="msgErreur" layoutX="128.0" layoutY="303.0" prefHeight="27.0" prefWidth="316.0" text="Votre commentaire contient un mot innaproprié" textFill="RED" visible="false">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="msgErreur" layoutX="128.0" layoutY="303.0" prefHeight="27.0" prefWidth="316.0" text="Votre commentaire contient un mot innaproprié" textFill="RED" visible="false">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>
