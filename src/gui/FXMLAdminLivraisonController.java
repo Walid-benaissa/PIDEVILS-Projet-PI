@@ -32,6 +32,13 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import entities.LivraisonColis;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import javafx.scene.Node;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import utils.CommonController;
 
 
@@ -109,14 +116,47 @@ public class FXMLAdminLivraisonController extends CommonController  implements I
         tfNBObj.setCellValueFactory(new PropertyValueFactory<>("nb_items"));
         tfDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         tfPoids.setCellValueFactory(new PropertyValueFactory<>("poids"));
-        table2.setItems(getLivraisonColis(ls.afficher()));
+        table2.setItems(getLivraisonColis(ls.afficherAdmin()));
         //table.setItems(getColis(cs.afficheListe()));
 
     }
+
+    @FXML
+    private void Save(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    ObservableList<LivraisonColis> dataList = table2.getItems();
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Save Data");
+    File file = fileChooser.showSaveDialog(stage);
+                //file.canRead();
+    if (file != null) {
+        try (BufferedWriter outWriter = new BufferedWriter(new FileWriter(file))) {
+            for ( LivraisonColis LivraisonColiss  : dataList) {
+                outWriter.write(LivraisonColiss.toString());
+                outWriter.newLine();
+            }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Save Successful");
+            alert.setHeaderText(null);
+            alert.setContentText("Data saved to file: " + file.getAbsolutePath());
+            alert.showAndWait();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Save Failed");
+            alert.setHeaderText(null);
+            alert.setContentText("An error occurred while saving the data: " + e.getMessage());
+            alert.showAndWait();
+        }
+    }
+            }
+ 
+    }
+        
+      
 
     
         
 
  
     
-}
+

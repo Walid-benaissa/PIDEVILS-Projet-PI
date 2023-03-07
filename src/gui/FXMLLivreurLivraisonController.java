@@ -31,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 import service.LivraisonService;
 import utils.CommonController;
@@ -62,7 +63,6 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
     private ObservableList<Livraison> dataList = FXCollections.observableArrayList();
     Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
 
-    @FXML
     private TextField txt_search;
     @FXML
     private Button btnTrier;
@@ -108,21 +108,8 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
         System.out.println(forums);
     }
 
-    /* private void recherche(KeyEvent event) {
-            if (event.getCode() == KeyCode.ENTER) {
-        String model = txt_search.getText();
-        Livraison searchedModel = ls.readByModel(model);
-        if (searchedModel != null) {
-            table2.getItems().setAll(searchedModel);
-        } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("No Address found");
-            alert.setHeaderText(null);
-            alert.setContentText("No Livraison found with the given Address.");
-            alert.showAndWait();
-        }
-    }
-    }*/
+
+  
     public void afficher() throws SQLException {
 
         tfAdresseExp.setCellValueFactory(new PropertyValueFactory<>("adresse_expedition"));
@@ -131,7 +118,7 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
         TfEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
 
         table2.setItems(getLivraison(ls.afficherLivreur(u.getId())));
-        txt_search.textProperty().addListener((observable, oldValue, newValue) -> {
+/*        txt_search.textProperty().addListener((observable, oldValue, newValue) -> {
  table2.getItems().clear();
             List<Livraison> Liv =  findLivraisonByAdresse(newValue);
 
@@ -139,24 +126,10 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
         
        
 
-              });
+              });*/
 
     }
 
-
-    /* @FXML
-    private void Supprimer(ActionEvent event) throws SQLException {
-        Livraison l = new Livraison(table2.getSelectionModel().getSelectedItem().getId_livraison());
-        ls.supprimer(l);
-        afficher();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("sucess");
-        alert.setContentText("Livraison Supprimée avec succès");
-        alert.show();
-
-        etat.setText("");
-
-    }*/
     @FXML
     private void modifier(ActionEvent event) throws SQLException {
         Livraison l = table2.getSelectionModel().getSelectedItem();
@@ -195,5 +168,27 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
         SortForumByTitle();
         
     }
+
+    @FXML
+    private void sms(ActionEvent event) {
+             try {
+            setSceneContent("FXMLsms");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
+    @FXML
+    private void qrcode(ActionEvent event) {
+           try {
+            setSceneContent("FXMLColis");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+
+    
 
 }

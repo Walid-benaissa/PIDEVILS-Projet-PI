@@ -7,6 +7,7 @@ package gui;
 
 import entities.Livraison;
 import entities.LivraisonColis;
+import entities.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -28,6 +29,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import service.LivraisonService;
 import static utils.CommonController.setSceneContent;
+import utils.Context;
 
 /**
  * FXML Controller class
@@ -55,6 +57,7 @@ public class FXMLListeLivraisonController implements Initializable {
      LivraisonService ls = new LivraisonService();
     @FXML
     private TextField txt_search;
+    Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
 
     /**
      * Initializes the controller class.
@@ -113,6 +116,12 @@ public class FXMLListeLivraisonController implements Initializable {
 
     @FXML
     private void Livrer(ActionEvent event) {
+        LivraisonColis l = table2.getSelectionModel().getSelectedItem();
+        l.setId_livreur(u.getId());
+        System.out.println(u.getId());
+        ls.modif2(l);
+        afficher();
+        
     }
 
 

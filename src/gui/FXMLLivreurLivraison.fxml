@@ -19,7 +19,7 @@
    <center>
       <AnchorPane id="AnchorPane" prefHeight="554.0" prefWidth="729.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <Pane layoutX="22.0" layoutY="21.0" prefHeight="523.0" prefWidth="684.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
+            <Pane layoutX="23.0" layoutY="21.0" prefHeight="523.0" prefWidth="684.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
                <children>
                   <Label layoutX="216.0" layoutY="14.0" prefHeight="54.0" prefWidth="289.0" text="Consulter Livraisons" textFill="WHITE">
                      <font>
@@ -45,7 +45,6 @@
                      </font>
                   </Label>
                   <TextField fx:id="etat" layoutX="422.0" layoutY="151.0" prefHeight="25.0" prefWidth="103.0" />
-                  <TextField fx:id="txt_search" layoutX="63.0" layoutY="150.0" prefHeight="25.0" prefWidth="193.0" promptText="Search Address" />
                   <Button fx:id="txtbtn" layoutX="551.0" layoutY="35.0" mnemonicParsing="false" onAction="#retour" prefHeight="32.0" prefWidth="121.0" style="-fx-background-color: FD9800;" text="Consulter offres">
                      <font>
                         <Font name="System Bold" size="10.0" />
@@ -56,18 +55,28 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="234.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+                  <Button layoutX="64.0" layoutY="195.0" minHeight="25.0" minWidth="43.0" mnemonicParsing="false" onAction="#sms" prefHeight="34.0" prefWidth="43.0" style="-fx-background-color: #FD9800;">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="68.0" layoutY="196.0">
                      <image>
-                        <Image url="@../images/research.png" />
+                        <Image url="@../images/sms.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="119.0" layoutY="196.0" minHeight="25.0" minWidth="40.0" mnemonicParsing="false" onAction="#qrcode" prefHeight="32.0" prefWidth="40.0" style="-fx-background-color: #FD9800;">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="19.0" fitWidth="26.0" layoutX="126.0" layoutY="204.0">
+                     <image>
+                        <Image url="@../images/qr-code.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="12.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/research.png" />
-               </image>
-            </ImageView>
          </children>
       </AnchorPane>
    </center>
