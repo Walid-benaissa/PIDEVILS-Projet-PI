@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="593.0" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui.FXMLColisQrController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="383.0" prefWidth="554.0" style="-fx-background-color: black;">
+         <children>
+            <Pane layoutX="57.0" layoutY="22.0" prefHeight="333.0" prefWidth="496.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
+               <children>
+                  <TextField fx:id="LINK" layoutX="178.0" layoutY="132.0" prefHeight="25.0" prefWidth="289.0" />
+                  <Label layoutX="43.0" layoutY="131.0" text="Entrer le lien: " textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="jButton1" layoutX="206.0" layoutY="218.0" mnemonicParsing="false" onAction="#jButton1ActionPerformed" prefHeight="37.0" prefWidth="91.0" style="-fx-background-color: FD9800;" text="Submit" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="192.0" layoutY="9.0" prefHeight="54.0" prefWidth="289.0" text="QR CODE" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="144.0" layoutY="18.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="40.0" style="-fx-background-color: FD9800;" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="21.0" fitWidth="29.0" layoutX="150.0" layoutY="26.0">
+                     <image>
+                        <Image url="@../images/qr-code.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button layoutX="7.0" layoutY="5.0" mnemonicParsing="false" onAction="#retour" prefHeight="27.0" prefWidth="37.0" style="-fx-background-color: FD9800;">
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
