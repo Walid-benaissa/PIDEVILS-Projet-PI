@@ -44,7 +44,7 @@
             </ImageView>
             <AnchorPane prefHeight="250.0" prefWidth="39.0">
                <children>
-                  <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="222.0">
+                  <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="260.0">
                      <image>
                         <Image url="@../images/turn-off.png" />
                      </image>
