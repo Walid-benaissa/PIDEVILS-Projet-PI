@@ -112,7 +112,7 @@ public class ImNotRobotFXMLController implements Initializable {
                 hh.add(i + 1);
             }
         }
-        String path = "E:\\PidevJava\\Pidevils\\PIDEVILS-Projet-PI\\src\\images\\";
+        String path = "src\\images\\";
 
         for (int i = 0; i < 9; i++) {
             try {

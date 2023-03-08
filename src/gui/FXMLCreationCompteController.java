@@ -61,7 +61,7 @@ public class FXMLCreationCompteController extends CommonController implements In
     private RadioButton conducteurBtn;
     @FXML
     private RadioButton clientBtn;
-   
+
     @FXML
     private Pane ajoutC;
     @FXML
@@ -88,6 +88,10 @@ public class FXMLCreationCompteController extends CommonController implements In
     private TextField tf_mdpclaire;
     @FXML
     private TextField tf_mdpCclaire;
+    @FXML
+    private Label err_permis;
+    @FXML
+    private Label err_b3;
 
     /**
      * Initializes the controller class.
@@ -146,7 +150,7 @@ public class FXMLCreationCompteController extends CommonController implements In
         String role = "";
         if (clientBtn.isSelected()) {
             role = "Client";
-        }  else {
+        } else {
             role = "Conducteur";
         }
         if (!tf_mdp.isVisible()) {
@@ -155,11 +159,23 @@ public class FXMLCreationCompteController extends CommonController implements In
         if (!tf_mdpC.isVisible()) {
             tf_mdpC.setText(tf_mdpCclaire.getText());
         }
+        if (tf_permis.getText().isEmpty()) {
+            err_permis.setVisible(true);
+            return;
+        } else {
+            err_permis.setVisible(false);
+        }
+        if (tf_b3.getText().isEmpty()) {
+            err_b3.setVisible(true);
+            return;
+        } else {
+            err_b3.setVisible(false);
+        }
         if (tf_mdp.getText().equals(tf_mdpC.getText())) {
             String mdpH = tf_mdp.getText();
             mdpH = us.HashagePassword(mdpH);
             if (role.equals("Conducteur")) {
-                Conducteur user = new Conducteur(permis, b3, tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText(), role, 0.0F);
+                Conducteur user = new Conducteur(tf_permis.getText(), tf_b3.getText(), tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText(), role, 0.0F);
                 Context.getInstance().addContextObject("Utilisateur", user);
             } else {
                 Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText(), role, 0.0F);
@@ -186,8 +202,8 @@ public class FXMLCreationCompteController extends CommonController implements In
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
             System.out.println("Open File");
-            permis = selectedFile.getPath();
-            tf_permis.setText(permis);
+
+            tf_permis.setText(selectedFile.getPath());
 
         }
     }
@@ -199,8 +215,7 @@ public class FXMLCreationCompteController extends CommonController implements In
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
             System.out.println("Open File");
-            b3 = selectedFile.getPath();
-            tf_b3.setText(b3);
+            tf_b3.setText(selectedFile.getPath());
         }
     }
 
@@ -208,6 +223,8 @@ public class FXMLCreationCompteController extends CommonController implements In
     private void afficherFormulaireC(ActionEvent event) {
         if (conducteurBtn.isSelected()) {
             ajoutC.setVisible(true);
+            err_permis.setVisible(false);
+            err_b3.setVisible(false);
         } else {
             ajoutC.setVisible(false);
         }
@@ -224,7 +241,7 @@ public class FXMLCreationCompteController extends CommonController implements In
 
     @FXML
     private void mdpVisible(ActionEvent event) {
-         if (tf_mdp.isVisible()) {
+        if (tf_mdp.isVisible()) {
             tf_mdp.setVisible(false);
             tf_mdpclaire.setVisible(true);
             tf_mdpclaire.setText(tf_mdp.getText());
@@ -237,7 +254,7 @@ public class FXMLCreationCompteController extends CommonController implements In
 
     @FXML
     private void mdpCVisible(ActionEvent event) {
-         if (tf_mdpC.isVisible()) {
+        if (tf_mdpC.isVisible()) {
             tf_mdpC.setVisible(false);
             tf_mdpCclaire.setVisible(true);
             tf_mdpCclaire.setText(tf_mdpC.getText());
@@ -246,7 +263,7 @@ public class FXMLCreationCompteController extends CommonController implements In
             tf_mdpC.setVisible(true);
             tf_mdpC.setText(tf_mdpCclaire.getText());
         }
-        
+
     }
 
 }
