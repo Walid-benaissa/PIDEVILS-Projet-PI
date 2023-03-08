@@ -44,7 +44,7 @@ public class FXMLSideBarConducteurController extends CommonController implements
     @FXML
     private void routeGererReclamation(ActionEvent event) { 
         try {  
-            setSceneContent("FXMLEffectuerReclamation");
+            setSceneContent("FXMLConsulterReclamations");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }

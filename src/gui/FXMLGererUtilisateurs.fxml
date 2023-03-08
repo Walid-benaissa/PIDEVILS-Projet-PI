@@ -17,18 +17,18 @@
    <center>
       <AnchorPane id="AnchorPane" prefHeight="679.0" prefWidth="1100.0" style="-fx-background-color: black;">
          <children>
-            <Pane fx:id="details" layoutX="26.0" layoutY="26.0" prefHeight="628.0" prefWidth="1022.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
+            <Pane fx:id="details" layoutX="26.0" layoutY="26.0" prefHeight="628.0" prefWidth="1038.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
                <children>
-                  <TableView fx:id="TableUsers" layoutX="13.0" layoutY="243.0" onMouseClicked="#handleMouseAction" prefHeight="359.0" prefWidth="966.0">
+                  <TableView fx:id="TableUsers" layoutX="13.0" layoutY="243.0" onMouseClicked="#handleMouseAction" prefHeight="359.0" prefWidth="1007.0">
                      <columns>
                         <TableColumn fx:id="idCol" prefWidth="66.40002298355103" text="ID" />
-                        <TableColumn fx:id="nomCol" prefWidth="120.80001068115234" text="Nom" />
-                        <TableColumn fx:id="prenomCol" prefWidth="132.79998779296875" text="Prénom" />
-                        <TableColumn fx:id="mailCol" prefWidth="164.80001831054688" text="Mail" />
-                        <TableColumn fx:id="numtelCol" prefWidth="168.0" text="Numéro de téléphone" />
-                        <TableColumn fx:id="roleCol" prefWidth="90.39996337890625" text="Rôle" />
-                        <TableColumn fx:id="evaluationCol" prefWidth="124.0001220703125" text="Evaluation" />
-                        <TableColumn fx:id="bloqueCol" prefWidth="93.5999755859375" text="Bloque" />
+                        <TableColumn fx:id="nomCol" prefWidth="112.00005340576172" text="Nom" />
+                        <TableColumn fx:id="prenomCol" prefWidth="123.99993896484375" text="Prénom" />
+                        <TableColumn fx:id="mailCol" prefWidth="203.99996948242188" text="Mail" />
+                        <TableColumn fx:id="numtelCol" prefWidth="177.60003662109375" text="Numéro de téléphone" />
+                        <TableColumn fx:id="roleCol" prefWidth="92.79998779296875" text="Rôle" />
+                        <TableColumn fx:id="evaluationCol" prefWidth="120.79998779296875" text="Evaluation" />
+                        <TableColumn fx:id="bloqueCol" prefWidth="105.5999755859375" text="Bloque" />
                      </columns>
                   </TableView>
                   <Label layoutX="273.0" prefHeight="54.0" prefWidth="380.0" text="Gérer les utilisateurs" textFill="WHITE">

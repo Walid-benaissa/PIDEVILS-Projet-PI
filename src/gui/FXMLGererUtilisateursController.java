@@ -43,6 +43,7 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import static utils.CommonController.setSceneContent;
 import utils.Context;
@@ -127,6 +128,12 @@ public class FXMLGererUtilisateursController extends CommonController implements
         txtID.setText("Id: " + u.getId());
         choix_type.setValue(u.getRole());
         etatbloque = u.isBolque();
+        if (u.isBolque()) {
+            btnBloquer.setText("Débloquer");
+        } else {
+            btnBloquer.setText("Bloquer");
+
+        }
     }
 
     @FXML
@@ -175,11 +182,14 @@ public class FXMLGererUtilisateursController extends CommonController implements
 
         String fileName = "src/main/resources/items.csv";
 
-        try (FileOutputStream fos = new FileOutputStream("output.csv");
+        try (FileOutputStream fos = new FileOutputStream("ListeDesUtilisateurs.csv");
                 OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
                 CSVWriter writer = new CSVWriter(osw)) {
-
             writer.writeAll(entries);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Télécharger");
+            alert.setContentText("Ficher téléchargé avec succés ");
+            alert.show();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FXMLGererUtilisateursController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -194,14 +204,19 @@ public class FXMLGererUtilisateursController extends CommonController implements
         u.setBolque(!u.isBolque());
         us.modifier(u);
         afficherUsers(us.afficheListe());
-        
+        if (u.isBolque()) {
+            btnBloquer.setText("Débloquer");
+        } else {
+            btnBloquer.setText("Bloquer");
+
+        }
 
     }
 
     @FXML
     private void details(ActionEvent event) {
-        Context.getInstance().addContextObject("user",TableUsers.getSelectionModel().getSelectedItem());
-         Context.getInstance().addContextObject("role",TableUsers.getSelectionModel().getSelectedItem().getRole());
+        Context.getInstance().addContextObject("user", TableUsers.getSelectionModel().getSelectedItem());
+        Context.getInstance().addContextObject("role", TableUsers.getSelectionModel().getSelectedItem().getRole());
         try {
             setSceneContent("FXMLDetailsUtilisateur");
         } catch (IOException ex) {

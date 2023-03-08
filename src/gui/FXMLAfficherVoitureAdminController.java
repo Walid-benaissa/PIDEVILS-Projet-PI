@@ -5,6 +5,7 @@
  */
 package gui;
 
+import entities.Conducteur;
 import entities.Utilisateur;
 import entities.Voiture;
 import java.io.IOException;
@@ -28,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import service.ConducteurService;
 import service.UtilisateurService;
 import service.VoitureService;
 import static utils.CommonController.setSceneContent;
@@ -54,7 +56,7 @@ public class FXMLAfficherVoitureAdminController implements Initializable {
     @FXML
     private TableColumn<?, ?> marqueCol;
     VoitureService vs = new VoitureService();
-    UtilisateurService us = new UtilisateurService();
+    ConducteurService us = new ConducteurService();
     @FXML
     private TableView TableUsers;
 
@@ -64,7 +66,7 @@ public class FXMLAfficherVoitureAdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         List<Voiture> v = vs.afficheListe();
-         List<Utilisateur> u = us.afficheListe();
+         List<Conducteur> u = us.afficheListe();
          nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenomCol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         immatriculationCol.setCellValueFactory(new PropertyValueFactory<>("immatriculation"));

@@ -8,21 +8,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="376.0" prefWidth="447.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLMdpoublieController">
+<AnchorPane id="AnchorPane" prefHeight="415.0" prefWidth="562.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLMdpoublieController">
    <children>
-      <Text fill="WHITE" layoutX="70.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Réinitialiser votre mot de passe" textAlignment="CENTER" wrappingWidth="302.5154571533203">
+      <Text fill="WHITE" layoutX="104.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Réinitialiser votre mot de passe" textAlignment="CENTER" wrappingWidth="352.11549377441406">
          <font>
-            <Font size="18.0" />
+            <Font size="22.0" />
          </font>
       </Text>
-      <TextField fx:id="fxLog" layoutX="119.0" layoutY="175.0" prefHeight="28.0" prefWidth="200.0" promptText="Login" style="-fx-border-color: #D9B54A; -fx-border-width: 0px 0px 2px 0px;" />
-      <Text fx:id="cdsEnvoyer" fill="#ff9696" layoutX="140.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez remplir le champ Login" wrappingWidth="161.04874420166016">
+      <TextField fx:id="fxLog" layoutX="163.0" layoutY="185.0" prefHeight="28.0" prefWidth="237.0" promptText="E-mail" style="-fx-border-color: #D9B54A; -fx-border-width: 0px 0px 2px 0px;" />
+      <Text fx:id="cdsEnvoyer" fill="RED" layoutX="179.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez remplir le champ E-mail" visible="false" wrappingWidth="223.99999999999977" />
+      <Button layoutX="195.0" layoutY="278.0" mnemonicParsing="false" onAction="#EnvoyerBTN" prefHeight="32.0" prefWidth="161.0" style="-fx-background-color: FD9800;" text="Envoyer" textFill="WHITE" />
+      <Text fx:id="cdsPass" fill="WHITE" layoutX="136.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez entrer votre e-mail pour vous envoyer un code." wrappingWidth="318.6486587524414">
          <font>
-            <Font size="10.0" />
-         </font>
-      </Text>
-      <Button layoutX="138.0" layoutY="262.0" mnemonicParsing="false" onAction="#EnvoyerBTN" prefHeight="32.0" prefWidth="161.0" style="-fx-background-color: FD9800;" text="Envoyer" textFill="WHITE" />
-      <Text fx:id="cdsPass" fill="WHITE" layoutX="102.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez entrer votre login pour envoyer un code vers votre Gmail." wrappingWidth="238.64871978759766" />
+            <Font size="15.0" />
+         </font></Text>
       <Button layoutX="23.0" layoutY="21.0" mnemonicParsing="false" onAction="#retour" prefHeight="28.0" prefWidth="30.0" style="-fx-background-color: FD9800;">
          <font>
             <Font name="System Bold" size="10.0" />
@@ -35,5 +34,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <Text fx:id="vPass" fill="RED" layoutX="176.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez remplir le champ E-mail par un mail valide" visible="false" wrappingWidth="223.9999999999999" />
    </children>
 </AnchorPane>

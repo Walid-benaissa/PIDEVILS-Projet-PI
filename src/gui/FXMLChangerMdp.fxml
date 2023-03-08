@@ -1,31 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui.FXMLChangerMdpController">
+<AnchorPane id="AnchorPane" prefHeight="434.0" prefWidth="632.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLChangerMdpController">
    <children>
-      <Button layoutX="204.0" layoutY="324.0" mnemonicParsing="false" onAction="#confirmer" prefHeight="32.0" prefWidth="161.0" style="-fx-background-color: FD9800;" text="Confirmer" textFill="WHITE" />
-      <Text fill="WHITE" layoutX="138.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Réinitialiser votre mot de passe" textAlignment="CENTER" wrappingWidth="302.5154571533203">
+      <Button layoutX="221.0" layoutY="324.0" mnemonicParsing="false" onAction="#confirmer" prefHeight="32.0" prefWidth="161.0" style="-fx-background-color: FD9800;" text="Confirmer" textFill="WHITE" />
+      <Text fill="WHITE" layoutX="137.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Réinitialiser votre mot de passe" textAlignment="CENTER" wrappingWidth="342.5154571533203">
          <font>
-            <Font size="20.0" />
+            <Font size="22.0" />
          </font>
       </Text>
-      <Text fx:id="cdsPass" fill="WHITE" layoutX="161.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez entrer votre noveau mot de passe :" wrappingWidth="276.2487564086914">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Text fx:id="cdsPass1" fill="WHITE" layoutX="165.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez confirmer votre mot de passe :" wrappingWidth="249.0486831665039">
+      <Text fx:id="cdsPass" fill="WHITE" layoutX="166.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez entrer votre noveau mot de passe :" wrappingWidth="276.2487564086914">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <PasswordField fx:id="tf_mdp" layoutX="165.0" layoutY="163.0" prefHeight="26.0" prefWidth="233.0" promptText="mot de passe" />
-      <PasswordField fx:id="tf_mdpc" layoutX="166.0" layoutY="251.0" prefHeight="26.0" prefWidth="234.0" promptText="mot de passe" />
+      <Text fx:id="cdsPass1" fill="WHITE" layoutX="173.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez confirmer votre mot de passe :" wrappingWidth="249.0486831665039">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <PasswordField fx:id="tf_mdp" layoutX="182.0" layoutY="161.0" prefHeight="26.0" prefWidth="233.0" promptText="mot de passe" />
+      <PasswordField fx:id="tf_mdpc" layoutX="180.0" layoutY="252.0" prefHeight="26.0" prefWidth="234.0" promptText="mot de passe" />
+      <ImageView fitHeight="57.0" fitWidth="64.0" layoutX="28.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo-FiThneyti-01.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="err_mdpc" layoutX="166.0" layoutY="281.0" text="Mots de passe ne sont pas identiques" textFill="RED" visible="false">
+         <font>
+            <Font name="Microsoft Sans Serif" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="err_mdp" layoutX="166.0" layoutY="193.0" text="Veuillez saisir un mot de passe" textFill="RED" visible="false">
+         <font>
+            <Font name="Microsoft Sans Serif" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="mdpClaire" layoutX="181.0" layoutY="161.0" prefHeight="26.0" prefWidth="234.0" visible="false" />
+      <TextField fx:id="mdpCClaire" layoutX="181.0" layoutY="252.0" prefHeight="26.0" prefWidth="234.0" visible="false" />
+      <Button fx:id="yeux" layoutX="383.0" layoutY="162.0" mnemonicParsing="false" onAction="#mdpVisibleA" prefHeight="15.0" prefWidth="27.0" style="-fx-background-color: white;">
+         <graphic>
+            <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/eye.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="yeux1" layoutX="383.0" layoutY="253.0" mnemonicParsing="false" onAction="#mdpVisibleB" prefHeight="15.0" prefWidth="27.0" style="-fx-background-color: white;">
+         <graphic>
+            <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/eye.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

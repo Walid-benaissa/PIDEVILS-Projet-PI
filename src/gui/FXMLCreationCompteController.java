@@ -19,9 +19,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -58,14 +61,37 @@ public class FXMLCreationCompteController extends CommonController implements In
     private RadioButton conducteurBtn;
     @FXML
     private RadioButton clientBtn;
+
     @FXML
-    private RadioButton locateurBtn;
-    @FXML
-    private VBox ajoutC;
+    private Pane ajoutC;
     @FXML
     private TextField tf_permis;
     @FXML
     private TextField tf_b3;
+    @FXML
+    private Label err_prenom;
+    @FXML
+    private Label err_num;
+    @FXML
+    private Label err_nom;
+    @FXML
+    private Label err_mail;
+    @FXML
+    private Label err_mdp;
+    @FXML
+    private Label err_mdpc;
+    @FXML
+    private Button yeux;
+    @FXML
+    private Button yeux1;
+    @FXML
+    private TextField tf_mdpclaire;
+    @FXML
+    private TextField tf_mdpCclaire;
+    @FXML
+    private Label err_permis;
+    @FXML
+    private Label err_b3;
 
     /**
      * Initializes the controller class.
@@ -79,62 +105,78 @@ public class FXMLCreationCompteController extends CommonController implements In
     private void creer(ActionEvent event) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         String numtelRegex = "^[0-9+]+$";
-        String nomprenomRegex = "^[A-Za-z0-9_.-]+$";
+        String nomprenomRegex = "^[A-Za-z .-]+$";
         String mdpRegex = "^[A-Za-z0-9_.-@]+$";
         if (!tf_nom.getText().matches(nomprenomRegex)) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Format nom incorrect");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez saisir votre nom!");
-            alert.showAndWait();
+            err_nom.setVisible(true);
             return;
+        } else {
+            err_nom.setVisible(false);
         }
+
         if (!tf_prenom.getText().matches(nomprenomRegex)) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Format prénom incorrect");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez saisir votre prénom!");
-            alert.showAndWait();
+            err_prenom.setVisible(true);
             return;
+        } else {
+            err_prenom.setVisible(false);
         }
+
         if (!tf_numtel.getText().matches(numtelRegex)) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Format numero de téléphone incorrect");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez saisir un numero de téléphone valide !");
-            alert.showAndWait();
+            err_num.setVisible(true);
             return;
+        } else {
+            err_num.setVisible(false);
         }
+
         if (!tf_mail.getText().matches(emailRegex)) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Format email incorrect");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez saisir un email valide !");
-            alert.showAndWait();
+            err_mail.setVisible(true);
             return;
+        } else {
+            err_mail.setVisible(false);
         }
         if (!tf_mdp.getText().matches(mdpRegex)) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Format mot de passe incorrect");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez saisir votre mot de passe!");
-            alert.showAndWait();
+            err_mdp.setVisible(true);
             return;
+        } else {
+            err_mdp.setVisible(false);
+        }
+        if (!tf_mdpC.getText().matches(mdpRegex)) {
+            err_mdpc.setVisible(true);
+            return;
+        } else {
+            err_mdpc.setVisible(false);
         }
         UtilisateurService us = new UtilisateurService();
         String role = "";
-        if (locateurBtn.isSelected()) {
-            role = "Locateur";
-        } else if (clientBtn.isSelected()) {
+        if (clientBtn.isSelected()) {
             role = "Client";
         } else {
             role = "Conducteur";
         }
+        if (!tf_mdp.isVisible()) {
+            tf_mdp.setText(tf_mdpclaire.getText());
+        }
+        if (!tf_mdpC.isVisible()) {
+            tf_mdpC.setText(tf_mdpCclaire.getText());
+        }
+
         if (tf_mdp.getText().equals(tf_mdpC.getText())) {
-             String mdpH=tf_mdp.getText();
-             mdpH=us.HashagePassword(mdpH);
+            String mdpH = tf_mdp.getText();
+            mdpH = us.HashagePassword(mdpH);
             if (role.equals("Conducteur")) {
-                Conducteur user = new Conducteur(permis, b3, tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText(), role, 0.0F);
+                if (tf_permis.getText().isEmpty()) {
+                    err_permis.setVisible(true);
+                    return;
+                } else {
+                    err_permis.setVisible(false);
+                }
+                if (tf_b3.getText().isEmpty()) {
+                    err_b3.setVisible(true);
+                    return;
+                } else {
+                    err_b3.setVisible(false);
+                }
+                Conducteur user = new Conducteur(tf_permis.getText(), tf_b3.getText(), tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText(), role, 0.0F);
                 Context.getInstance().addContextObject("Utilisateur", user);
             } else {
                 Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText(), role, 0.0F);
@@ -145,7 +187,6 @@ public class FXMLCreationCompteController extends CommonController implements In
             } catch (IOException ex) {
                 Logger.getLogger(FXMLCreationCompteController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
 
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -162,8 +203,8 @@ public class FXMLCreationCompteController extends CommonController implements In
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
             System.out.println("Open File");
-            permis = selectedFile.getPath();
-            tf_permis.setText(permis);
+
+            tf_permis.setText(selectedFile.getPath());
 
         }
     }
@@ -175,8 +216,7 @@ public class FXMLCreationCompteController extends CommonController implements In
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
             System.out.println("Open File");
-            b3 = selectedFile.getPath();
-            tf_b3.setText(b3);
+            tf_b3.setText(selectedFile.getPath());
         }
     }
 
@@ -184,6 +224,8 @@ public class FXMLCreationCompteController extends CommonController implements In
     private void afficherFormulaireC(ActionEvent event) {
         if (conducteurBtn.isSelected()) {
             ajoutC.setVisible(true);
+            err_permis.setVisible(false);
+            err_b3.setVisible(false);
         } else {
             ajoutC.setVisible(false);
         }
@@ -191,12 +233,38 @@ public class FXMLCreationCompteController extends CommonController implements In
 
     @FXML
     private void retour(ActionEvent event) {
-         try {
+        try {
             setSceneContent("FXMLAuthentification");
         } catch (IOException ex) {
             Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    @FXML
+    private void mdpVisible(ActionEvent event) {
+        if (tf_mdp.isVisible()) {
+            tf_mdp.setVisible(false);
+            tf_mdpclaire.setVisible(true);
+            tf_mdpclaire.setText(tf_mdp.getText());
+        } else {
+            tf_mdpclaire.setVisible(false);
+            tf_mdp.setVisible(true);
+            tf_mdp.setText(tf_mdpclaire.getText());
+        }
+    }
+
+    @FXML
+    private void mdpCVisible(ActionEvent event) {
+        if (tf_mdpC.isVisible()) {
+            tf_mdpC.setVisible(false);
+            tf_mdpCclaire.setVisible(true);
+            tf_mdpCclaire.setText(tf_mdpC.getText());
+        } else {
+            tf_mdpCclaire.setVisible(false);
+            tf_mdpC.setVisible(true);
+            tf_mdpC.setText(tf_mdpCclaire.getText());
+        }
+
+    }
 
 }

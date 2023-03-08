@@ -62,8 +62,8 @@ public class ImNotRobotFXMLController implements Initializable {
     private ImageView image8;
     @FXML
     private ImageView image9;
-    private List<String> imageBus = new ArrayList();
-    private List<String> imageBus2 = new ArrayList();
+    private List<String> imageCafe = new ArrayList();
+    private List<String> imageCafe2 = new ArrayList();
     private List<ImageView> images = new ArrayList();
     List<Integer> orderOfShuffle = new ArrayList<>();
     List<Integer> hh = new ArrayList<>();
@@ -76,25 +76,25 @@ public class ImNotRobotFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-        imageBus.add("bus1.png");
-        imageBus.add("bus2V.png");
-        imageBus.add("bus3.png");
-        imageBus.add("bus4.png");
-        imageBus.add("bus5.png");
-        imageBus.add("bus6V.png");
-        imageBus.add("bus7V.png");
-        imageBus.add("bus8.png");
-        imageBus.add("bus9.png");
+        imageCafe.add("cafe1.jpg");
+        imageCafe.add("cafe2V.jpg");
+        imageCafe.add("cafe3.jpg");
+        imageCafe.add("cafe4.jpg");
+        imageCafe.add("cafe5.jpg");
+        imageCafe.add("cafe6V.jpg");
+        imageCafe.add("cafe7V.jpg");
+        imageCafe.add("cafe8.jpg");
+        imageCafe.add("cafe9.jpg");
 
-        imageBus2.add("bus1.png");
-        imageBus2.add("bus2V.png");
-        imageBus2.add("bus3.png");
-        imageBus2.add("bus4.png");
-        imageBus2.add("bus5.png");
-        imageBus2.add("bus6V.png");
-        imageBus2.add("bus7V.png");
-        imageBus2.add("bus8.png");
-        imageBus2.add("bus9.png");
+        imageCafe2.add("cafe1.jpg");
+        imageCafe2.add("cafe2V.jpg");
+        imageCafe2.add("cafe3.jpg");
+        imageCafe2.add("cafe4.jpg");
+        imageCafe2.add("cafe5.jpg");
+        imageCafe2.add("cafe6V.jpg");
+        imageCafe2.add("cafe7V.jpg");
+        imageCafe2.add("cafe8.jpg");
+        imageCafe2.add("cafe9.jpg");
 
         images.add(image1);
         images.add(image2);
@@ -105,18 +105,18 @@ public class ImNotRobotFXMLController implements Initializable {
         images.add(image7);
         images.add(image8);
         images.add(image9);
-        Collections.shuffle(imageBus);
+        Collections.shuffle(imageCafe);
 
-        for (int i = 0; i < imageBus.size(); i++) {
-            if (imageBus.get(i).equals("bus2V.png") || imageBus.get(i).equals("bus6V.png") || imageBus.get(i).equals("bus7V.png")) {
+        for (int i = 0; i < imageCafe.size(); i++) {
+            if (imageCafe.get(i).equals("cafe2V.jpg") || imageCafe.get(i).equals("cafe6V.jpg") || imageCafe.get(i).equals("cafe7V.jpg")) {
                 hh.add(i + 1);
             }
         }
-        String path = "E:\\PidevJava\\Pidevils\\PIDEVILS-Projet-PI\\src\\images\\";
+        String path = "src\\images\\";
 
         for (int i = 0; i < 9; i++) {
             try {
-                InputStream stream = new FileInputStream(path + imageBus.get(i));
+                InputStream stream = new FileInputStream(path + imageCafe.get(i));
                 images.get(i).setImage(new Image(stream));
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(ImNotRobotFXMLController.class.getName()).log(Level.SEVERE, null, ex);
