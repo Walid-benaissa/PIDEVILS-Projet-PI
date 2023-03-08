@@ -37,7 +37,7 @@ public class ConducteurService implements IService<Conducteur> {
     public List<Conducteur> afficheListe() {
         List<Conducteur> list = new ArrayList<>();
         try {
-            String req = "Select * from  `conducteur` c, `utilisateur` u where c.id=u.id";
+            String req = "Select * from  `conducteur` c, `utilisateur` u, voiture v where c.id=u.id and v.id=c.id order by c.id  " ;
             Statement st = conn.createStatement();
 
             ResultSet RS = st.executeQuery(req);

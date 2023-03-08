@@ -43,6 +43,7 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import static utils.CommonController.setSceneContent;
 import utils.Context;
@@ -181,11 +182,14 @@ public class FXMLGererUtilisateursController extends CommonController implements
 
         String fileName = "src/main/resources/items.csv";
 
-        try (FileOutputStream fos = new FileOutputStream("output.csv");
+        try (FileOutputStream fos = new FileOutputStream("ListeDesUtilisateurs.csv");
                 OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
                 CSVWriter writer = new CSVWriter(osw)) {
-
             writer.writeAll(entries);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Télécharger");
+            alert.setContentText("Ficher téléchargé avec succés ");
+            alert.show();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FXMLGererUtilisateursController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
