@@ -88,7 +88,7 @@ public class FXMLGererVoitureController extends CommonController implements Init
         btnAjouter.setDisable(false);
         btnSupprimer.setDisable(true);
         btnMettreajour.setDisable(true);
-
+        IDimage.setImage(null);
     }
 
     @FXML

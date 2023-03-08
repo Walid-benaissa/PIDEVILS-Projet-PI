@@ -21,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -51,13 +52,23 @@ public class FXMLModifierVoitureController implements Initializable {
     private TextField photo;
     VoitureService vs = new VoitureService();
     Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
-    
+    @FXML
+    private Label err_immat;
+    @FXML
+    private Label err_mod;
+    @FXML
+    private Label err_marque;
+    @FXML
+    private Label err_etat;
+    @FXML
+    private Label err_img;
 
- /**
+    /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         Voiture v = vs.afficheVoiture(u.getId());
         tf_immatriculation.setText(v.getImmatriculation());
         tf_modele.setText(v.getModele());
@@ -69,6 +80,37 @@ public class FXMLModifierVoitureController implements Initializable {
 
     @FXML
     private void ModifierV(ActionEvent event) {
+        String nomprenomRegex = "^[A-Za-z 0-9.-]+$";
+        if (!tf_immatriculation.getText().matches(nomprenomRegex)) {
+            err_immat.setVisible(true);
+            return;
+        } else {
+            err_immat.setVisible(false);
+        }
+        if (!tf_modele.getText().matches(nomprenomRegex)) {
+            err_mod.setVisible(true);
+            return;
+        } else {
+            err_mod.setVisible(false);
+        }
+        if (!tf_marque.getText().matches(nomprenomRegex)) {
+            err_marque.setVisible(true);
+            return;
+        } else {
+            err_marque.setVisible(false);
+        }
+        if (!tf_etat.getText().matches(nomprenomRegex)) {
+            err_etat.setVisible(true);
+            return;
+        } else {
+            err_etat.setVisible(false);
+        }
+        if (!photo.getText().isEmpty()) {
+            err_img.setVisible(true);
+            return;
+        } else {
+            err_img.setVisible(false);
+        }
         Voiture v = new Voiture(tf_immatriculation.getText(), tf_modele.getText(), tf_marque.getText(), tf_etat.getText(), photo.getText(), 3);
         vs.modifier(v);
         try {
@@ -90,9 +132,10 @@ public class FXMLModifierVoitureController implements Initializable {
 
         }
     }
+
     @FXML
     private void retour(ActionEvent event) {
-         try {
+        try {
             setSceneContent("FXMLGererVoiture");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);

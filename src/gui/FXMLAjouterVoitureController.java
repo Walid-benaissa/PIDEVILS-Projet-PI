@@ -21,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -50,7 +51,16 @@ public class FXMLAjouterVoitureController implements Initializable {
     @FXML
     private Button btnAjouter;
     Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
-    
+    @FXML
+    private Label err_immat;
+    @FXML
+    private Label err_mod;
+    @FXML
+    private Label err_marque;
+    @FXML
+    private Label err_etat;
+    @FXML
+    private Label err_img;
 
     /**
      * Initializes the controller class.
@@ -62,6 +72,37 @@ public class FXMLAjouterVoitureController implements Initializable {
 
     @FXML
     private void Ajouter(ActionEvent event) {
+        String nomprenomRegex = "^[A-Za-z 0-9.-]+$";
+        if (!tf_immatriculation.getText().matches(nomprenomRegex)) {
+            err_immat.setVisible(true);
+            return;
+        } else {
+            err_immat.setVisible(false);
+        }
+        if (!tf_modele.getText().matches(nomprenomRegex)) {
+            err_mod.setVisible(true);
+            return;
+        } else {
+            err_mod.setVisible(false);
+        }
+        if (!tf_marque.getText().matches(nomprenomRegex)) {
+            err_marque.setVisible(true);
+            return;
+        } else {
+            err_marque.setVisible(false);
+        }
+        if (!tf_etat.getText().matches(nomprenomRegex)) {
+            err_etat.setVisible(true);
+            return;
+        } else {
+            err_etat.setVisible(false);
+        }
+        if (!photo.getText().isEmpty()) {
+            err_img.setVisible(true);
+            return;
+        } else {
+            err_img.setVisible(false);
+        }
         VoitureService vs = new VoitureService();
         Voiture v = new Voiture(tf_immatriculation.getText(), tf_modele.getText(), tf_marque.getText(), tf_etat.getText(), photo.getText(), u.getId());
         vs.ajouter(v);
@@ -84,8 +125,6 @@ public class FXMLAjouterVoitureController implements Initializable {
 
         }
     }
-
-    
 
     @FXML
     private void retour(ActionEvent event) {
