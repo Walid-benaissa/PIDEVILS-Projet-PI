@@ -8,30 +8,32 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="385.0" prefWidth="530.0" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui.FXMLCodeConfirmationController">
+<AnchorPane id="AnchorPane" prefHeight="444.0" prefWidth="602.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLCodeConfirmationController">
    <children>
-      <Text fill="WHITE" layoutX="109.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Réinitialiser votre mot de passe" textAlignment="CENTER" wrappingWidth="302.5154571533203">
+      <Text fill="WHITE" layoutX="118.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Réinitialiser votre mot de passe" textAlignment="CENTER" wrappingWidth="350.5154571533203">
          <font>
-            <Font size="20.0" />
+            <Font size="22.0" />
          </font>
       </Text>
-      <TextField fx:id="fxLog" layoutX="154.0" layoutY="165.0" prefHeight="28.0" prefWidth="215.0" promptText="code" style="-fx-border-color: #D9B54A; -fx-border-width: 0px 0px 2px 0px;" />
-      <Text fx:id="cdsEnvoyer" fill="#ff9696" layoutX="179.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez remplir le champ Code" wrappingWidth="161.04874420166016">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Text>
-      <Button layoutX="177.0" layoutY="256.0" mnemonicParsing="false" onAction="#confirmer" prefHeight="32.0" prefWidth="161.0" style="-fx-background-color: FD9800;" text="Confirmer" textFill="WHITE" />
-      <Text fx:id="cdsPass" fill="WHITE" layoutX="134.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez entrer votre code reçu a votre Gmail." wrappingWidth="285.8487319946289">
+      <TextField fx:id="fxLog" layoutX="174.0" layoutY="170.0" prefHeight="28.0" prefWidth="234.0" promptText="code" style="-fx-border-color: #D9B54A; -fx-border-width: 0px 0px 2px 0px;" />
+      <Text fx:id="controleC" fill="RED" layoutX="193.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez remplir le champ Code" wrappingWidth="225.04874420166016" />
+      <Button layoutX="200.0" layoutY="256.0" mnemonicParsing="false" onAction="#confirmer" prefHeight="32.0" prefWidth="161.0" style="-fx-background-color: FD9800;" text="Confirmer" textFill="WHITE" />
+      <Text fx:id="cdsPass" fill="WHITE" layoutX="154.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez entrer votre code reçu a votre Gmail." wrappingWidth="285.8487319946289">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Button layoutX="178.0" layoutY="309.0" mnemonicParsing="false" onAction="#renvoyer" prefHeight="32.0" prefWidth="161.0" style="-fx-background-color: FD9800;" text="Renvoyer le code" textFill="WHITE" />
-      <ImageView fitHeight="29.0" fitWidth="25.0" layoutX="182.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="201.0" layoutY="317.0" mnemonicParsing="false" onAction="#renvoyer" prefHeight="32.0" prefWidth="161.0" style="-fx-background-color: FD9800;" text="Renvoyer " textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="29.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/resend.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <ImageView fitHeight="57.0" fitWidth="64.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/resend.png" />
+            <Image url="@../images/logo-FiThneyti-01.png" />
          </image>
       </ImageView>
    </children>

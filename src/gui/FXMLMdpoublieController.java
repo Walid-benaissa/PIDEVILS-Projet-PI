@@ -63,7 +63,7 @@ public class FXMLMdpoublieController extends CommonController implements Initial
             cdsEnvoyer.setVisible(true);
             return;
         } else if (uc.verifMail(To)) {
-            cdsPass.setVisible(false);
+            cdsEnvoyer.setVisible(false);
             vPass.setVisible(true);
 
         } else {
