@@ -28,6 +28,26 @@
                         <Font name="Microsoft Sans Serif" size="17.0" />
                      </font>
                   </CheckBox>
+                  <Label fx:id="err_num" layoutX="38.0" layoutY="354.0" text="Veuillez saisir un numéro de téléphone valide" textFill="RED" visible="false">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="err_nom" layoutX="39.0" layoutY="177.0" text="Veuillez saisir un nom valide " textFill="RED" visible="false">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="err_mail" layoutX="39.0" layoutY="449.0" text="Veuillez saisir un email valide" textFill="RED" visible="false">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="err_prenom" layoutX="39.0" layoutY="265.0" text="Veuillez saisir un prénom valide " textFill="RED" visible="false">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="13.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
             <Label layoutX="324.0" layoutY="31.0" prefHeight="54.0" prefWidth="198.0" text="Gérer profil" textFill="WHITE">
@@ -59,7 +79,7 @@
             <TextField fx:id="tf_prenom" layoutX="61.0" layoutY="256.0" prefHeight="27.0" prefWidth="248.0" />
             <TextField fx:id="tf_numtel" layoutX="61.0" layoutY="347.0" prefHeight="27.0" prefWidth="248.0" />
             <TextField fx:id="tf_mail" layoutX="61.0" layoutY="441.0" prefHeight="27.0" prefWidth="248.0" />
-            <Pane fx:id="paneMDP" disable="true" layoutX="442.0" layoutY="194.0">
+            <Pane fx:id="paneMDP" disable="true" layoutX="442.0" layoutY="194.0" prefHeight="274.0" prefWidth="252.0">
                <children>
                   <Label layoutX="9.0" layoutY="88.0" text="Mot de passe:" textFill="WHITE">
                      <font>
@@ -76,13 +96,13 @@
                         <Font name="Microsoft Sans Serif" size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tf_mdpAcClaire" layoutX="-3.0" layoutY="52.0" prefHeight="25.0" prefWidth="251.0" visible="false" />
+                  <TextField fx:id="tf_mdpAcClaire" layoutX="-3.0" layoutY="32.0" prefHeight="25.0" prefWidth="251.0" visible="false" />
                   <TextField fx:id="tf_mdpClaire" layoutX="-3.0" layoutY="124.0" prefHeight="25.0" prefWidth="251.0" visible="false" />
                   <TextField fx:id="tf_mdpCClaire" layoutX="-3.0" layoutY="218.0" prefHeight="25.0" prefWidth="251.0" visible="false" />
-                  <PasswordField fx:id="tf_mdpAc" layoutX="-3.0" layoutY="52.0" prefHeight="25.0" prefWidth="251.0" />
+                  <PasswordField fx:id="tf_mdpAc" layoutX="-3.0" layoutY="32.0" prefHeight="25.0" prefWidth="251.0" />
                   <PasswordField fx:id="tf_mdpC" layoutX="-4.0" layoutY="218.0" prefHeight="25.0" prefWidth="251.0" />
                   <PasswordField fx:id="tf_mdp" layoutX="-3.0" layoutY="124.0" prefHeight="25.0" prefWidth="251.0" />
-                  <Button fx:id="yeux" layoutX="214.0" layoutY="52.0" mnemonicParsing="false" onAction="#mdpVisibleA" prefHeight="15.0" prefWidth="27.0" style="-fx-background-color: white;">
+                  <Button fx:id="yeux" layoutX="214.0" layoutY="32.0" mnemonicParsing="false" onAction="#mdpVisibleA" prefHeight="15.0" prefWidth="27.0" style="-fx-background-color: white;">
                      <graphic>
                         <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -109,6 +129,21 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Label fx:id="err_mdpA" layoutY="63.0" text="Ancien mot de passe incorrecte" textFill="RED" visible="false">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="err_mdp" layoutX="-2.0" layoutY="155.0" text="Veuillez saisir un mot de passe valide " textFill="RED" visible="false">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="err_mdpc" layoutX="-2.0" layoutY="247.0" text="Les mots de passe ne sont pas identiques" textFill="RED" visible="false">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="13.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>

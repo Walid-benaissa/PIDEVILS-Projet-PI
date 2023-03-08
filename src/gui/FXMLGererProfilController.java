@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -68,6 +69,20 @@ public class FXMLGererProfilController extends CommonController implements Initi
     private TextField tf_mdpClaire;
     @FXML
     private TextField tf_mdpCClaire;
+    @FXML
+    private Label err_num;
+    @FXML
+    private Label err_nom;
+    @FXML
+    private Label err_mail;
+    @FXML
+    private Label err_prenom;
+    @FXML
+    private Label err_mdpA;
+    @FXML
+    private Label err_mdp;
+    @FXML
+    private Label err_mdpc;
 
     /**
      * Initializes the controller class.
@@ -107,32 +122,74 @@ public class FXMLGererProfilController extends CommonController implements Initi
         if (!tf_mdpC.isVisible()) {
             tf_mdpC.setText(tf_mdpCClaire.getText());
         }
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        String numtelRegex = "^[0-9+]+$";
+        String nomprenomRegex = "^[A-Za-z .-]+$";
+        String mdpRegex = "^[A-Za-z0-9_.-@]+$";
+        if (!tf_nom.getText().matches(nomprenomRegex)) {
+            err_nom.setVisible(true);
+            return;
+        } else {
+            err_nom.setVisible(false);
+        }
+
+        if (!tf_prenom.getText().matches(nomprenomRegex)) {
+            err_prenom.setVisible(true);
+            return;
+        } else {
+            err_prenom.setVisible(false);
+        }
+
+        if (!tf_numtel.getText().matches(numtelRegex)) {
+            err_num.setVisible(true);
+            return;
+        } else {
+            err_num.setVisible(false);
+        }
+
+        if (!tf_mail.getText().matches(emailRegex)) {
+            err_mail.setVisible(true);
+            return;
+        } else {
+            err_mail.setVisible(false);
+        }
+
+        if (!tf_mdpC.getText().matches(mdpRegex)) {
+            err_mdpc.setVisible(true);
+            return;
+        } else {
+            err_mdpc.setVisible(false);
+        }
+
         String mdpAc = tf_mdpAc.getText();
         mdpAc = us.HashagePassword(mdpAc);
         if (changermdp.isSelected()) {
             if (!tf_mdp.getText().equals(tf_mdpC.getText())) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("alert");
-                alert.setContentText("les mots de passe ne sont pas identiques ");
-                alert.show();
+                err_mdpc.setVisible(true);
+                return;
             } else {
-                if (us.authentification(tf_mail.getText(), mdpAc).getId() == 0) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("alert");
-                    alert.setContentText("mot de passe ancien n'est pas correct ");
-                    alert.show();
-                } else {
-
-                    String mdpH = tf_mdp.getText();
-                    mdpH = us.HashagePassword(mdpH);
-                    Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText());
-                    user.setId(u.getId());
-                    us.modifierWithmdp(user);
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("Confirmation");
-                    alert.setContentText("modification avec succés ");
-                    alert.show();
-                }
+                err_mdpc.setVisible(false);
+            }
+            if (!tf_mdp.getText().matches(mdpRegex)) {
+                err_mdp.setVisible(true);
+                return;
+            } else {
+                err_mdp.setVisible(false);
+            }
+            if (us.authentification(tf_mail.getText(), mdpAc).getId() == 0) {
+                err_mdpA.setVisible(true);
+                return;
+            } else {
+                err_mdpA.setVisible(false);
+                String mdpH = tf_mdp.getText();
+                mdpH = us.HashagePassword(mdpH);
+                Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText());
+                user.setId(u.getId());
+                us.modifierWithmdp(user);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setContentText("modification avec succés ");
+                alert.show();
             }
         } else {
             Utilisateur user = new Utilisateur(tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), motdepasse, tf_numtel.getText());
