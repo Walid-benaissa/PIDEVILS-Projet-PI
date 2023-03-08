@@ -17,10 +17,22 @@ public class Livraison {
     private float prix;
     private String etat ;
     private int id_colis;
-    
+    private int id_client;
+    private int id_livreur;
 
     public Livraison() {
     }
+
+    public Livraison(int id_livraison, String adresse_expedition, String adresse_destinataire, float prix, String etat, int id_colis, int id_client) {
+        this.id_livraison = id_livraison;
+        this.adresse_expedition = adresse_expedition;
+        this.adresse_destinataire = adresse_destinataire;
+        this.prix = prix;
+        this.etat = etat;
+        this.id_colis = id_colis;
+        this.id_client = id_client;
+    }
+    
 
     public Livraison(int id_livraison, String adresse_expedition, String adresse_destinataire, float prix, String etat, int id_colis) {
         this.id_livraison = id_livraison;
@@ -46,6 +58,11 @@ public class Livraison {
         this.etat = etat;
     }
 
+    public Livraison(int id_livraison) {
+        this.id_livraison = id_livraison;
+    }
+    
+
     public Livraison(String adresse_expedition, String adresse_destinataire, float prix, String etat, int id_colis) {
         this.adresse_expedition = adresse_expedition;
         this.adresse_destinataire = adresse_destinataire;
@@ -58,6 +75,22 @@ public class Livraison {
         this.adresse_expedition = adresse_expedition;
         this.adresse_destinataire = adresse_destinataire;
         this.prix = prix;
+    }
+
+    public int getId_client() {
+        return id_client;
+    }
+
+    public void setId_client(int id_client) {
+        this.id_client = id_client;
+    }
+
+    public int getId_livreur() {
+        return id_livreur;
+    }
+
+    public void setId_livreur(int id_livreur) {
+        this.id_livreur = id_livreur;
     }
 
  

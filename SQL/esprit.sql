@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 22 fév. 2023 à 16:41
+-- Généré le : mer. 08 mars 2023 à 16:31
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -68,18 +68,14 @@ CREATE TABLE `conducteur` (
   `permis` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Structure de la table `contrat`
+-- Déchargement des données de la table `conducteur`
 --
 
-CREATE TABLE `contrat` (
-  `id` int(11) NOT NULL,
-  `immatriculation` varchar(30) NOT NULL,
-  `date_debut` date NOT NULL,
-  `date_fin` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `conducteur` (`id`, `b3`, `permis`) VALUES
+(22, 'C:\\Users\\USER\\Pictures\\20191121_103303.jpg', 'C:\\Users\\USER\\Desktop\\images\\arrow.png'),
+(24, 'C:\\Users\\USER\\Desktop\\images\\bus6V.png', 'E:\\PidevJava\\Pidevils\\PIDEVILS-Projet-PI\\src\\images\\printer.png'),
+(16, 'E:\\PidevJava\\Pidevils\\PIDEVILS-Projet-PI\\src\\images\\cafe1.jpg', 'E:\\PidevJava\\Pidevils\\PIDEVILS-Projet-PI\\src\\images\\cafe1.jpg');
 
 -- --------------------------------------------------------
 
@@ -111,6 +107,8 @@ INSERT INTO `course` (`id_course`, `point_depart`, `point_destination`, `distanc
 --
 
 CREATE TABLE `livraison` (
+  `id_client` int(11) NOT NULL,
+  `id_livreur` int(11) NOT NULL,
   `id_livraison` int(11) NOT NULL,
   `adresse_expedition` varchar(30) NOT NULL,
   `adresse_destinataire` varchar(30) NOT NULL,
@@ -119,14 +117,6 @@ CREATE TABLE `livraison` (
   `id_colis` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `livraison`
---
-
-INSERT INTO `livraison` (`id_livraison`, `adresse_expedition`, `adresse_destinataire`, `prix`, `etat`, `id_colis`) VALUES
-(1, 'Djerba', 'Sousse', 3.2, 'livrée', 2),
-(5, 'mmm', 'ooooo', 4, '', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -134,17 +124,21 @@ INSERT INTO `livraison` (`id_livraison`, `adresse_expedition`, `adresse_destinat
 --
 
 CREATE TABLE `location` (
-  `ville` varchar(50) NOT NULL,
-  `prix_location` float NOT NULL,
-  `disponibilité` tinyint(1) NOT NULL
+  `id_contrat` int(255) NOT NULL,
+  `id` int(11) NOT NULL,
+  `id_vehicule` varchar(255) NOT NULL,
+  `date_debut` date DEFAULT NULL,
+  `date_fin` date DEFAULT NULL,
+  `lieu` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `location`
 --
 
-INSERT INTO `location` (`ville`, `prix_location`, `disponibilité`) VALUES
-('kef', 3.14, 1);
+INSERT INTO `location` (`id_contrat`, `id`, `id_vehicule`, `date_debut`, `date_fin`, `lieu`) VALUES
+(3, 0, '0', '2023-02-01', '2023-02-07', 'kef'),
+(4, 0, '0', '2023-02-22', '2023-02-28', 'tunis');
 
 -- --------------------------------------------------------
 
@@ -182,14 +176,23 @@ CREATE TABLE `offre_livraison` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `personnes`
+-- Structure de la table `promotion`
 --
 
-CREATE TABLE `personnes` (
-  `id` int(11) NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `prenom` varchar(255) NOT NULL
+CREATE TABLE `promotion` (
+  `id_promotion` int(11) NOT NULL,
+  `id_vehicule` int(255) NOT NULL,
+  `libelle` varchar(255) NOT NULL,
+  `taux` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `promotion`
+--
+
+INSERT INTO `promotion` (`id_promotion`, `id_vehicule`, `libelle`, `taux`) VALUES
+(4, 0, 'aa', 0),
+(7, 66, 'HELLO', 17);
 
 -- --------------------------------------------------------
 
@@ -219,15 +222,47 @@ CREATE TABLE `utilisateur` (
   `mdp` varchar(100) NOT NULL,
   `num_tel` varchar(20) NOT NULL,
   `role` varchar(30) NOT NULL,
-  `evaluation` float(2,1) NOT NULL
+  `evaluation` float(2,1) NOT NULL,
+  `bloque` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `role`, `evaluation`) VALUES
-(1, 'abir', 'kh', 'abir@gmail.com', 'abir', '26578467', 'client', 0.0);
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `role`, `evaluation`, `bloque`) VALUES
+(12, 'khaled', 'khaled', 'khaled@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '56765345', 'Client', 0.0, 0),
+(13, 'kharmachi', 'abir', 'abir.kharmachi@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '256789467', 'Admin', 0.0, 0),
+(16, 'benghorbel', 'nour', 'nour@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '23456789', 'Conducteur', 0.0, 0),
+(17, 'aziz', 'aziz', 'aziz@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '26786543', 'Client', 0.0, 0),
+(22, 'Ben salah', 'salah', 'salah@gmail.com', '745e0951b795c5918480cb82a70ad7934228869752551f37453e62fb75a9f85a', '23232553', 'Conducteur', 0.0, 1),
+(24, 'Ben aissa', 'walid', 'walid2525@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '26587543', 'Conducteur', 0.0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `vehicule`
+--
+
+CREATE TABLE `vehicule` (
+  `id_vehicule` int(255) NOT NULL,
+  `nom_v` varchar(255) NOT NULL,
+  `id` int(11) DEFAULT NULL,
+  `id_promotion` int(255) DEFAULT NULL,
+  `photo` varchar(255) NOT NULL,
+  `ville` varchar(255) NOT NULL,
+  `prix` float NOT NULL,
+  `disponibilite` tinyint(1) DEFAULT NULL,
+  `description` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `vehicule`
+--
+
+INSERT INTO `vehicule` (`id_vehicule`, `nom_v`, `id`, `id_promotion`, `photo`, `ville`, `prix`, `disponibilite`, `description`, `type`) VALUES
+(6, 'DJ', 0, 0, 'JH', 'DD', 55, 0, 'JH', 'NG');
 
 -- --------------------------------------------------------
 
@@ -241,8 +276,15 @@ CREATE TABLE `voiture` (
   `modele` varchar(30) NOT NULL,
   `marque` varchar(30) NOT NULL,
   `etat` varchar(20) NOT NULL,
-  `photo` mediumblob NOT NULL
+  `photo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `voiture`
+--
+
+INSERT INTO `voiture` (`id`, `immatriculation`, `modele`, `marque`, `etat`, `photo`) VALUES
+(16, '234TUNIS2345', 'IBIZA', 'SEAT', 'Noveau', 'C:\\Users\\USER\\Desktop\\images\\bus1.png');
 
 --
 -- Index pour les tables déchargées
@@ -268,13 +310,6 @@ ALTER TABLE `conducteur`
   ADD KEY `fk_utilisateur_conducteur` (`id`);
 
 --
--- Index pour la table `contrat`
---
-ALTER TABLE `contrat`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_vehicule_contrat` (`immatriculation`);
-
---
 -- Index pour la table `course`
 --
 ALTER TABLE `course`
@@ -285,7 +320,17 @@ ALTER TABLE `course`
 --
 ALTER TABLE `livraison`
   ADD PRIMARY KEY (`id_livraison`),
-  ADD KEY `fk_livraison_colis` (`id_colis`);
+  ADD KEY `fk_livraison_colis` (`id_colis`),
+  ADD KEY `fk_livraison_client` (`id_client`),
+  ADD KEY `fk_livraison_conducteur` (`id_livreur`);
+
+--
+-- Index pour la table `location`
+--
+ALTER TABLE `location`
+  ADD PRIMARY KEY (`id_contrat`),
+  ADD KEY `fk_vehicule_location` (`id_vehicule`),
+  ADD KEY `fk_utilisateur_location` (`id`);
 
 --
 -- Index pour la table `offre_course`
@@ -300,10 +345,10 @@ ALTER TABLE `offre_livraison`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `personnes`
+-- Index pour la table `promotion`
 --
-ALTER TABLE `personnes`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `promotion`
+  ADD PRIMARY KEY (`id_promotion`);
 
 --
 -- Index pour la table `reclamation`
@@ -321,11 +366,19 @@ ALTER TABLE `utilisateur`
   ADD UNIQUE KEY `mail` (`mail`);
 
 --
+-- Index pour la table `vehicule`
+--
+ALTER TABLE `vehicule`
+  ADD PRIMARY KEY (`id_vehicule`),
+  ADD KEY `fk_promotion_vehicule` (`id_promotion`),
+  ADD KEY `fk_u_v` (`id`);
+
+--
 -- Index pour la table `voiture`
 --
 ALTER TABLE `voiture`
   ADD PRIMARY KEY (`immatriculation`),
-  ADD KEY `fk_utilisateur_vehicule` (`id`);
+  ADD KEY `fk_utilisateur_voiture` (`id`) USING BTREE;
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -338,16 +391,16 @@ ALTER TABLE `colis`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT pour la table `contrat`
---
-ALTER TABLE `contrat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT pour la table `livraison`
 --
 ALTER TABLE `livraison`
   MODIFY `id_livraison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT pour la table `location`
+--
+ALTER TABLE `location`
+  MODIFY `id_contrat` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `offre_livraison`
@@ -356,22 +409,28 @@ ALTER TABLE `offre_livraison`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `personnes`
+-- AUTO_INCREMENT pour la table `promotion`
 --
-ALTER TABLE `personnes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `promotion`
+  MODIFY `id_promotion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `reclamation`
 --
 ALTER TABLE `reclamation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT pour la table `vehicule`
+--
+ALTER TABLE `vehicule`
+  MODIFY `id_vehicule` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Contraintes pour les tables déchargées
@@ -391,16 +450,12 @@ ALTER TABLE `conducteur`
   ADD CONSTRAINT `fk_utilisateur_conducteur` FOREIGN KEY (`id`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `contrat`
---
-ALTER TABLE `contrat`
-  ADD CONSTRAINT `fk_vehicule_contrat` FOREIGN KEY (`immatriculation`) REFERENCES `voiture` (`immatriculation`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Contraintes pour la table `livraison`
 --
 ALTER TABLE `livraison`
-  ADD CONSTRAINT `fk_livraison_colis` FOREIGN KEY (`id_colis`) REFERENCES `colis` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_livraison_client` FOREIGN KEY (`id_client`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_livraison_colis` FOREIGN KEY (`id_colis`) REFERENCES `colis` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_livraison_conducteur` FOREIGN KEY (`id_livreur`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `reclamation`

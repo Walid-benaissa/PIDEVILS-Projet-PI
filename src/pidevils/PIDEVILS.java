@@ -28,9 +28,7 @@ public class PIDEVILS {
      */
     public static void main(String[] args) {
 
-//Location z = new Location("1323566","55",new Date(),new Date());
-//LocationService k =new LocationService();
-//k.ajouter(z);
+
 
 //s.modifier(p);
 //       ContratService sc = new ContratService();
@@ -133,17 +131,24 @@ public class PIDEVILS {
         //     System.out.println(ls.afficheListe());
 //promotion
 //PromotionService ps = new PromotionService();
-  //     Promotion p = new Promotion(5,"yyy",null,null,"yy",3.14f);
+  //     Promotion p = new Promotion(6,"yyy",null,null,"yhy",3.14f);
 //ps.ajouter(p);
 //ps.modifier(p);
 //ps.supprimer(p);
 
 //vehicule
-Vehicule m = new Vehicule("667","1323566","jhglkk","kef",3.14f,4,true,"desc","voitu");
-VehiculeService s =new VehiculeService();
+//Vehicule m = new Vehicule("667","1323566","jhglkk","kef",3.14f,4,true,"desc","voitu");
+//VehiculeService s =new VehiculeService();
 //s.ajouter(m);
 //s.modifier(m);
-s.supprimer(m);
+//s.supprimer(m);
+
+//location
+//Location z = new Location(1,"1323566","66",null,null);
+//LocationService k =new LocationService();
+//k.ajouter(z);
+//k.modifier(z);
+//k.supprimer(z);
     }
 
 }

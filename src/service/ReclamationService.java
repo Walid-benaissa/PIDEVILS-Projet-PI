@@ -12,7 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import utils.MyDB;
 
 /**
@@ -29,7 +31,7 @@ public class ReclamationService implements IService<Reclamation> {
     }
 
     @Override
-    public List<Reclamation> afficheListe()   {
+    public List<Reclamation> afficheListe() {
         List<Reclamation> list = new ArrayList<>();
         try {
             String req = "Select * from  `reclamation`";
@@ -52,8 +54,31 @@ public class ReclamationService implements IService<Reclamation> {
         return list;
     }
 
+    public List<Reclamation> afficheListeByUser(int id) {
+        List<Reclamation> list = new ArrayList<>();
+        try {
+            String req = "Select * from  `reclamation` where idUser=" + id;
+            Statement st = conn.createStatement();
+
+            ResultSet RS = st.executeQuery(req);
+            while (RS.next()) {
+                Reclamation p = new Reclamation();
+                p.setId(RS.getInt("id"));
+                p.setMessage(RS.getString("message"));
+                p.setEtat(RS.getString("etat"));
+                p.setIdAdmin(RS.getInt("idAdmin"));
+                p.setIdUser(RS.getInt("idUser"));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return list;
+    }
+
     @Override
-    public void ajouter(Reclamation p)   {
+    public void ajouter(Reclamation p) {
         try {
             String req = "INSERT INTO  `reclamation`(`id`, `message`, `etat`,`idAdmin`,`idUser`) VALUES (?,?,?,?,?)";
 
@@ -72,7 +97,7 @@ public class ReclamationService implements IService<Reclamation> {
     }
 
     @Override
-    public void supprimer(Reclamation p)   {
+    public void supprimer(Reclamation p) {
         try {
             String req = "DELETE FROM `reclamation` WHERE id = " + p.getId();
             Statement st = conn.createStatement();
@@ -84,9 +109,9 @@ public class ReclamationService implements IService<Reclamation> {
     }
 
     @Override
-    public void modifier(Reclamation p)   {
+    public void modifier(Reclamation p) {
         try {
-            
+
             String req = "UPDATE `reclamation` SET `message` = ?, `etat` = ? WHERE `id` = ?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1, p.getMessage());
@@ -98,6 +123,56 @@ public class ReclamationService implements IService<Reclamation> {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    public List<Reclamation> rechercher(String msg) {
+        List<Reclamation> list = new ArrayList<>();
+        try {
+            String req = "Select * from  `reclamation` where message like '%" + msg + "%'";
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            while (RS.next()) {
+                Reclamation p = new Reclamation();
+                p.setId(RS.getInt("id"));
+                p.setMessage(RS.getString("message"));
+                p.setEtat(RS.getString("etat"));
+                p.setIdAdmin(RS.getInt("idAdmin"));
+                p.setIdUser(RS.getInt("idUser"));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return list;
+    }
+
+    public int nbrRecParUser(int id) {
+        try {
+            String req = "Select count(*) from  `reclamation` where idUser=" + id;
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            RS.next();
+            return RS.getInt("count(*)");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return 0;
+    }
+
+    public Map<String, Integer> statistiquesReclamation() {
+        Map<String, Integer> res = new HashMap<String, Integer>();
+        try {
+            String req = "Select etat,count(*) from  `reclamation` group by etat";
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            while (RS.next()) {
+                res.put(RS.getString("etat"), RS.getInt("count(*)"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return res;
     }
 
 }

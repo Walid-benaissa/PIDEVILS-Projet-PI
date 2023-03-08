@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLsmsController">
+   <center>
+      <AnchorPane id="AnchorPane" prefHeight="679.0" prefWidth="662.0" style="-fx-background-color: black;">
+         <children>
+            <Pane layoutX="28.0" layoutY="182.0" prefHeight="337.0" prefWidth="585.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
+               <children>
+                  <TextField fx:id="textfield" layoutX="267.0" layoutY="132.0" prefHeight="25.0" prefWidth="211.0" promptText="+216" />
+                  <Label layoutX="45.0" layoutY="131.0" text="Numéro de téléphone :" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="216.0" layoutY="231.0" mnemonicParsing="false" onAction="#sendSMS" prefHeight="38.0" prefWidth="126.0" style="-fx-background-color: FD9800;" text="Envoyer" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="208.0" layoutY="8.0" prefHeight="54.0" prefWidth="289.0" text="Envoyer SMS" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="150.0" layoutY="17.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="40.0" style="-fx-background-color: FD9800;" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="22.0" fitWidth="31.0" layoutX="100.0" layoutY="35.0">
+                     <image>
+                        <Image url="@../images/phone-call.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="153.0" layoutY="20.0">
+                     <image>
+                        <Image url="@../images/sms.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button layoutX="13.0" layoutY="18.0" mnemonicParsing="false" onAction="#retour" prefHeight="27.0" prefWidth="37.0" style="-fx-background-color: FD9800;">
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+   <left>
+       <fx:include fx:id="Sidebar" source="FXMLSideBarAdmin.fxml" />
+   </left>
+</BorderPane>

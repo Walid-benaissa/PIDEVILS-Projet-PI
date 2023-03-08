@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLAdminLivraisonController">
+   <center>
+      <AnchorPane id="AnchorPane" prefHeight="679.0" prefWidth="856.0">
+         <children>
+            <AnchorPane id="AnchorPane" prefHeight="679.0" prefWidth="1021.0" style="-fx-background-color: black;">
+               <children>
+                  <TableView fx:id="table2" layoutX="24.0" layoutY="169.0" onMouseClicked="#getSelected" prefHeight="331.0" prefWidth="979.0">
+                     <columns>
+                        <TableColumn fx:id="tfidLivraison" prefWidth="51.20001411437988" text="Id" />
+                        <TableColumn fx:id="tfAdresseExp" prefWidth="147.99993133544922" text="Adresse Expédition" />
+                        <TableColumn fx:id="tfAdresseDest" prefWidth="178.39999389648438" text="Adresse Destinataire" />
+                        <TableColumn fx:id="tfPrix" prefWidth="77.60003662109375" text="Prix" />
+                        <TableColumn fx:id="TfEtat" prefWidth="73.60000610351562" text="Etat" />
+                        <TableColumn fx:id="tfidColis" prefWidth="72.800048828125" text="Id_colis" />
+                        <TableColumn fx:id="tfNBObj" prefWidth="147.20001220703125" text="Nombre d'objets" />
+                        <TableColumn fx:id="tfPoids" prefWidth="100.80010986328125" text="Poids" />
+                        <TableColumn fx:id="tfDescription" prefWidth="124.0001220703125" text="Description" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="274.0" layoutY="15.0" prefHeight="54.0" prefWidth="507.0" text="Consulter Livraisons et Colis" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="28.0" layoutY="122.0" mnemonicParsing="false" onAction="#Save" prefHeight="39.0" prefWidth="37.0" style="-fx-background-color: FD9800;">
+                     <font>
+                        <Font name="System Bold" size="10.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="29.0" fitWidth="35.0" layoutX="29.0" layoutY="127.0">
+                     <image>
+                        <Image url="@../images/save.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+   <left>
+      <fx:include fx:id="Sidebar" source="FXMLSideBarAdmin.fxml" />
+   </left>
+</BorderPane>
