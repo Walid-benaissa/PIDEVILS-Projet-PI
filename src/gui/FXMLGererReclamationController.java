@@ -79,7 +79,7 @@ public class FXMLGererReclamationController extends CommonController implements 
         id_reclamationCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         etatCol.setCellValueFactory(new PropertyValueFactory<>("etat"));
         messageCol.setCellValueFactory(new PropertyValueFactory<>("message"));
-        IdUsrCol.setCellValueFactory(new PropertyValueFactory<>("idUser"));
+        IdUsrCol1.setCellValueFactory(new PropertyValueFactory<>("idUser"));
         ObservableList<Reclamation> L = FXCollections.observableArrayList(l);
         reclamationTable.setItems(L);
     }

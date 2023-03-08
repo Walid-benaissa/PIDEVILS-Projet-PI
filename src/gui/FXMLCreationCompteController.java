@@ -159,22 +159,23 @@ public class FXMLCreationCompteController extends CommonController implements In
         if (!tf_mdpC.isVisible()) {
             tf_mdpC.setText(tf_mdpCclaire.getText());
         }
-        if (tf_permis.getText().isEmpty()) {
-            err_permis.setVisible(true);
-            return;
-        } else {
-            err_permis.setVisible(false);
-        }
-        if (tf_b3.getText().isEmpty()) {
-            err_b3.setVisible(true);
-            return;
-        } else {
-            err_b3.setVisible(false);
-        }
+
         if (tf_mdp.getText().equals(tf_mdpC.getText())) {
             String mdpH = tf_mdp.getText();
             mdpH = us.HashagePassword(mdpH);
             if (role.equals("Conducteur")) {
+                if (tf_permis.getText().isEmpty()) {
+                    err_permis.setVisible(true);
+                    return;
+                } else {
+                    err_permis.setVisible(false);
+                }
+                if (tf_b3.getText().isEmpty()) {
+                    err_b3.setVisible(true);
+                    return;
+                } else {
+                    err_b3.setVisible(false);
+                }
                 Conducteur user = new Conducteur(tf_permis.getText(), tf_b3.getText(), tf_nom.getText(), tf_prenom.getText(), tf_mail.getText(), mdpH, tf_numtel.getText(), role, 0.0F);
                 Context.getInstance().addContextObject("Utilisateur", user);
             } else {
