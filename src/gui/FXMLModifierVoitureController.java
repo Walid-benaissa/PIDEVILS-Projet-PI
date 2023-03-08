@@ -5,6 +5,7 @@
  */
 package gui;
 
+import entities.Utilisateur;
 import entities.Voiture;
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +26,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.VoitureService;
 import static utils.CommonController.setSceneContent;
+import utils.Context;
 
 /**
  * FXML Controller class
@@ -48,13 +50,15 @@ public class FXMLModifierVoitureController implements Initializable {
     @FXML
     private TextField photo;
     VoitureService vs = new VoitureService();
+    Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
+    
 
  /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Voiture v = vs.afficheVoiture(3);
+        Voiture v = vs.afficheVoiture(u.getId());
         tf_immatriculation.setText(v.getImmatriculation());
         tf_modele.setText(v.getModele());
         tf_marque.setText(v.getMarque());
@@ -68,11 +72,7 @@ public class FXMLModifierVoitureController implements Initializable {
         Voiture v = new Voiture(tf_immatriculation.getText(), tf_modele.getText(), tf_marque.getText(), tf_etat.getText(), photo.getText(), 3);
         vs.modifier(v);
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/FXMLGererVoiture.fxml"));
-            Scene sc = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(sc);
-            stage.show();
+            setSceneContent("FXMLGererVoiture");
         } catch (IOException ex) {
             Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
         }

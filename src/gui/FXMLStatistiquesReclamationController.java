@@ -36,30 +36,47 @@ public class FXMLStatistiquesReclamationController implements Initializable {
     private SwingNode chart1;
     ReclamationService rs = new ReclamationService();
     UtilisateurService us = new UtilisateurService();
+    @FXML
+    private SwingNode chart2;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Map<String, Integer> res = us.statistiquesUtilisateurs();
-        DefaultPieDataset data = new DefaultPieDataset();
-        res.entrySet().forEach((i) -> {
-            data.setValue(i.getKey(), i.getValue());
+        Map<String, Integer> res1 = us.statistiquesUtilisateurs();
+        Map<String, Integer> res2 = rs.statistiquesReclamation();
+        DefaultPieDataset data1 = new DefaultPieDataset();
+        DefaultPieDataset data2 = new DefaultPieDataset();
+        res1.entrySet().forEach((i) -> {
+            data1.setValue(i.getKey(), i.getValue());
         });
-        JFreeChart chart = ChartFactory.createPieChart(
+        res2.entrySet().forEach((i) -> {
+            data2.setValue(i.getKey(), i.getValue());
+        });
+        JFreeChart graph1 = ChartFactory.createPieChart(
                 "Repartition d'utilisateurs",
-                data,
+                data1,
+                true,
+                true,
+                false
+        );
+        JFreeChart graph2 = ChartFactory.createPieChart(
+                "Repartition des reclamations",
+                data2,
                 true,
                 true,
                 false
         );
         PieSectionLabelGenerator labelGenerator = new StandardPieSectionLabelGenerator("{0} ({2})", NumberFormat.getNumberInstance(), NumberFormat.getPercentInstance());
-        ((PiePlot) chart.getPlot()).setLabelGenerator(labelGenerator);
-        
-        ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new Dimension(300, 300));
-        chart1.setContent(chartPanel);
+        ((PiePlot) graph1.getPlot()).setLabelGenerator(labelGenerator);
+        ((PiePlot) graph2.getPlot()).setLabelGenerator(labelGenerator);
+        ChartPanel chartPanel1 = new ChartPanel(graph1);
+        chartPanel1.setPreferredSize(new Dimension(300, 300));
+        ChartPanel chartPanel2 = new ChartPanel(graph2);
+        chartPanel2.setPreferredSize(new Dimension(400, 300));
+        chart1.setContent(chartPanel1);
+        chart2.setContent(chartPanel2);
     }
 
 }
