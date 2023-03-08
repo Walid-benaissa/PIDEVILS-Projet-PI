@@ -2,6 +2,7 @@ package gui;
 
 import entities.Colis;
 import entities.Livraison;
+import entities.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
 import javafx.scene.control.TextField;
@@ -17,8 +18,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import org.controlsfx.control.textfield.TextFields;
 import service.ColisService;
 import static utils.CommonController.setSceneContent;
+import utils.Context;
+//import org.controlsfx.control.textfield.TextFields;
+
 
 /**
  * FXML Controller class
@@ -39,13 +44,16 @@ public class FXMLAjoutLivraisonController implements Initializable {
     private TextField tf_description;
     @FXML
     private TextField tf_poids;
+        Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        String[] possibleWords= {"Ariana","Béja","Ben Arous","Bizerte","Gabès","Gafsa","Jandouba","Kairouan","Kasserine","Kébili","Kef","Mahdia","Manouba","Médenine","Monastir","Nabeul","Sfax","Sidi Bouzid","Siliana","Sousse","Tataouine","Tozeur","Tunis","Zaghouan"};
+        TextFields.bindAutoCompletion(tf_AdresseExp, possibleWords);
+        TextFields.bindAutoCompletion(tf_adresseDest, possibleWords);        
     }
 
     private boolean adresse_expvalide() {
@@ -94,7 +102,7 @@ public class FXMLAjoutLivraisonController implements Initializable {
 
             return false;
         }
-
+        
     }
 
     @FXML
@@ -116,10 +124,10 @@ public class FXMLAjoutLivraisonController implements Initializable {
             Colis c = new Colis(Integer.parseInt(nb_items), tf_description.getText(), Float.parseFloat(poids));
 
             cs.ajouter(c);
-            ls.ajouter(l);
+            ls.ajouter2(l,u.getId() );
             // System.err.println("Ajout avec succès");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("sucess");
+            alert.setTitle("success");
             alert.setContentText("Livraison ajoutée avec succès");
             alert.show();
             tf_AdresseExp.setText("");
@@ -135,6 +143,7 @@ public class FXMLAjoutLivraisonController implements Initializable {
    
    
 
+    @FXML
     private void retour(ActionEvent event) {
         try {
             setSceneContent("FXMLLivraison");

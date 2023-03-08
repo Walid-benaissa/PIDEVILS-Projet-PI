@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLListeLivraisonController">
+   <center>
+      <AnchorPane id="AnchorPane" prefHeight="449.0" prefWidth="913.0">
+         <children>
+            <AnchorPane id="AnchorPane" layoutX="-3.0" layoutY="-6.0" prefHeight="679.0" prefWidth="923.0" style="-fx-background-color: black;">
+               <children>
+                  <TableView fx:id="table2" layoutX="43.0" layoutY="134.0" onMouseClicked="#getSelected" prefHeight="269.0" prefWidth="846.0">
+                     <columns>
+                        <TableColumn fx:id="tfAdresseExp" prefWidth="132.0" text="Adresse Expédition" />
+                        <TableColumn fx:id="tfAdresseDest" prefWidth="132.0" text="Adresse Destinataire" />
+                        <TableColumn fx:id="tfPrix" prefWidth="88.0" text="Prix" />
+                        <TableColumn fx:id="tfNBObj" prefWidth="125.0" text="Nombre d'objets" />
+                        <TableColumn fx:id="tfPoids" text="Poids" />
+                        <TableColumn fx:id="tfDescription" prefWidth="185.0" text="Description" />
+                        <TableColumn fx:id="TfEtat" prefWidth="94.0" text="Etat" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="337.0" layoutY="5.0" prefHeight="54.0" prefWidth="507.0" text="Consulter Offres Livraisons" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="783.0" layoutY="95.0" mnemonicParsing="false" onAction="#Livrer" prefHeight="29.0" prefWidth="87.0" style="-fx-background-color: #FD9800;" text="Livrer">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="txt_search" layoutX="43.0" layoutY="95.0" prefHeight="25.0" prefWidth="193.0" promptText="Search Address" />
+                  <Button layoutX="25.0" layoutY="19.0" mnemonicParsing="false" onAction="#retour" prefHeight="27.0" prefWidth="37.0" style="-fx-background-color: FD9800;">
+                     <font>
+                        <Font name="System Bold" size="10.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/arrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="213.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/research.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+   <left>
+       <fx:include fx:id="Sidebar" source="FXMLSideBarConducteur.fxml" />
+   </left>
+</BorderPane>
