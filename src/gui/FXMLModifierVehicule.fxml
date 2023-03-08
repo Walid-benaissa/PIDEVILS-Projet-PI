@@ -21,25 +21,25 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Label layoutX="63.0" layoutY="340.0" text="description" textFill="WHITE">
+            <Label layoutX="63.0" layoutY="340.0" text="Description" textFill="WHITE">
                <font>
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
             </Label>
             <TextField fx:id="txtdesc" layoutX="103.0" layoutY="378.0" prefHeight="119.0" prefWidth="706.0" />
-            <Label layoutX="350.0" layoutY="87.0" text="nom_v " textFill="WHITE">
+            <Label layoutX="350.0" layoutY="87.0" text="Nom Vehicule" textFill="WHITE">
                <font>
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
             </Label>
             <TextField fx:id="txtnomv" layoutX="348.0" layoutY="134.0" prefHeight="27.0" prefWidth="202.0" />
-            <Label layoutX="644.0" layoutY="87.0" text="ville" textFill="WHITE">
+            <Label layoutX="638.0" layoutY="165.0" text="Ville" textFill="WHITE">
                <font>
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="txtville" layoutX="644.0" layoutY="134.0" prefHeight="27.0" prefWidth="196.0" />
-            <Label layoutX="52.0" layoutY="179.0" text="prix" textFill="WHITE">
+            <TextField fx:id="txtville" layoutX="638.0" layoutY="212.0" prefHeight="27.0" prefWidth="196.0" />
+            <Label layoutX="52.0" layoutY="179.0" text="Prix location par jour" textFill="WHITE">
                <font>
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
@@ -50,13 +50,7 @@
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="644.0" layoutY="179.0" text="photo" textFill="WHITE">
-               <font>
-                  <Font name="Microsoft Sans Serif" size="20.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtphoto" layoutX="646.0" layoutY="215.0" prefHeight="27.0" prefWidth="196.0" />
-            <Label layoutX="423.0" layoutY="262.0" text="type" textFill="WHITE">
+            <Label layoutX="423.0" layoutY="262.0" text="Type" textFill="WHITE">
                <font>
                   <Font name="Microsoft Sans Serif" size="20.0" />
                </font>

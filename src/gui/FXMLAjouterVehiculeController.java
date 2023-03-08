@@ -5,8 +5,13 @@
  */
 package gui;
 
+import entities.Utilisateur;
 import entities.Vehicule;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -17,8 +22,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import service.VehiculeService;
 import static utils.CommonController.setSceneContent;
+import utils.Context;
 
 /**
  * FXML Controller class
@@ -26,6 +35,7 @@ import static utils.CommonController.setSceneContent;
  * @author azizi
  */
 public class FXMLAjouterVehiculeController implements Initializable {
+          Utilisateur k = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
 
     @FXML
     private TextField txtdesc;
@@ -35,10 +45,9 @@ public class FXMLAjouterVehiculeController implements Initializable {
     private TextField txtville;
     @FXML
     private TextField txtprix;
-    @FXML
-    private TextField txtphoto;
+
     private TextField txttype;
-    
+    public static Vehicule cat=new Vehicule();
         @FXML
     private Button btnAjouter;
         private VehiculeService VehiculeService = new VehiculeService();
@@ -50,6 +59,12 @@ public class FXMLAjouterVehiculeController implements Initializable {
     @FXML
        private ChoiceBox choix_taux;
        private String[] taux = {"0","5", "10", "15","20", "25", "30","35", "40", "45","50", "55", "60","65", "70", "85","90"};
+    @FXML
+    private ImageView image;
+    @FXML
+    private TextField text_image;
+    @FXML
+    private Button img;
 
     /**
      * Initializes the controller class.
@@ -69,11 +84,12 @@ public class FXMLAjouterVehiculeController implements Initializable {
           VehiculeService sp=new VehiculeService();
           String nom_v =txtnomv.getText();
           String ville = txtville.getText();
-          String photo = txtphoto.getText();
+         
           float prix = Float.parseFloat(txtprix.getText());
           String type = (String) choix_type.getValue();
           String taux = (String) choix_taux.getValue();
           String description = txtdesc.getText();
+          String image = text_image.getText();
           int id_promotion =0;
      switch(taux) {
   case "5":
@@ -155,8 +171,10 @@ public class FXMLAjouterVehiculeController implements Initializable {
 }
          
  
-   Vehicule a = new Vehicule(nom_v,  photo,  ville,  prix, id_promotion,  description,  type);
+   Vehicule a = new Vehicule(nom_v, image,  ville,  prix, id_promotion,  description,  type);
+   a.setId(k.getId());
    sp.ajouter(a);
+   
     }
 
     @FXML
@@ -167,6 +185,23 @@ public class FXMLAjouterVehiculeController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+
+
+       @FXML
+    private void addimg(ActionEvent event) {
+         FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Choisir une image");
+    fileChooser.getExtensionFilters().addAll(
+        new FileChooser.ExtensionFilter("Fichiers image", "*.png", "*.jpg", "*.gif"),
+        new FileChooser.ExtensionFilter("Tous les fichiers", ".")
+    );
+    File selectedFile = fileChooser.showOpenDialog(null);
+    if (selectedFile != null) {
+        String imagePath = selectedFile.getName();
+        text_image.setText(imagePath);
+    } 
     }
     }
     

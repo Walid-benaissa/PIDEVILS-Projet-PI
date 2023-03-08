@@ -6,7 +6,10 @@
 package gui;
 
 import entities.Vehicule;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -31,6 +35,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import service.VehiculeService;
 import utils.CommonController;
 import utils.Context;
@@ -48,9 +54,6 @@ public class FXMLGererVehiculeController extends CommonController implements Ini
     private Button btnSupprimer;
     @FXML
     private Button btnMettreajour;
-    @FXML
-
-    private TableColumn colonnecin;
 
     @FXML
     private TableColumn colonneville;
@@ -68,6 +71,10 @@ public class FXMLGererVehiculeController extends CommonController implements Ini
 
     @FXML
     private TableColumn colonnenom_v;
+    @FXML
+    private Button btn_excel;
+    @FXML
+    private Button btn_vehicule;
 
     /**
      * Initializes the controller class.
@@ -214,5 +221,47 @@ public class FXMLGererVehiculeController extends CommonController implements Ini
     @FXML
     private void handleMouseAction(MouseEvent event) {
         Vehicule v = TableVehicule.getSelectionModel().getSelectedItem();
+    }
+    
+    @FXML
+    public void handleExport() throws Exception {
+    
+    PrintWriter writer = new PrintWriter( new OutputStreamWriter(new FileOutputStream("C:\\pi\\PIDEVILS-Projet-PI\\vehicule.csv"), "UTF-8"));
+
+VehiculeService sp = new VehiculeService();
+        
+        List<Vehicule> vehicule = sp.afficheListe();
+       writer.write("Nom,Type,ville,Description\n");
+               for (Vehicule obj : vehicule) {
+                   
+            writer.write(obj.getNom_v().toString());
+            writer.write(",");
+            writer.write(obj.getType().toString());
+            writer.write(",");
+            writer.write(obj.getVille().toString());
+            writer.write(",");
+             writer.write(obj.getDescription().toString());
+            writer.write("\n");
+
+               }
+               writer.flush();
+               writer.close();
+               
+               Notifications notifications=Notifications.create();
+        notifications.text("fichier telecharger");
+        notifications.title("fchier Enregistée");
+        notifications.hideAfter(Duration.seconds(10));
+        notifications.darkStyle();
+        notifications.position(Pos.BOTTOM_RIGHT);
+        notifications.show();
+}
+
+    @FXML
+    private void louer(ActionEvent event) {
+          try {
+            setSceneContent("FXMLVehiculeLouer");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererVehiculeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

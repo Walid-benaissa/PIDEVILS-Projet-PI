@@ -11,13 +11,8 @@
    <children>
       <AnchorPane id="AnchorPane" prefHeight="663.0" prefWidth="889.0" style="-fx-background-color: black;">
          <children>
-            <Button fx:id="btnALouer" layoutX="357.0" layoutY="547.0" mnemonicParsing="false" onAction="#louer" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #FD9800;" text="Louer">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-            <ImageView fx:id="IDimage" fitHeight="253.0" fitWidth="279.0" layoutX="77.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="268.0" layoutY="25.0" prefHeight="54.0" prefWidth="445.0" text="louer vehicule promotion" textFill="WHITE">
+            <ImageView fx:id="imaage" fitHeight="253.0" fitWidth="279.0" layoutX="77.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="194.0" layoutY="24.0" prefHeight="54.0" prefWidth="514.0" text="Louer vehicule de promotion" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
@@ -32,5 +27,20 @@
             </Label>
          </children>
       </AnchorPane>
+      <Button fx:id="btnBack" layoutX="29.0" layoutY="40.0" mnemonicParsing="false" onAction="#back" prefHeight="13.0" prefWidth="105.0" style="-fx-background-color: #FD9800;" text="&lt;--Back">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnALouer1" layoutX="742.0" layoutY="57.0" mnemonicParsing="false" onAction="#louerj" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #FD9800;" text="Traduction">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnALouer" layoutX="367.0" layoutY="557.0" mnemonicParsing="false" onAction="#payer" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #FD9800;" text="Louer">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

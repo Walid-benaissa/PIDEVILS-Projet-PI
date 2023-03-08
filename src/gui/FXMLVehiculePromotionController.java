@@ -65,8 +65,6 @@ public class FXMLVehiculePromotionController extends CommonController implements
     @FXML
     private TableColumn<?, ?> PrixColone;
     @FXML
-    private TableColumn<?, ?> colonneidPROMOTION;
-    @FXML
     private TableColumn<?, ?> colonnedescription;
       @FXML
     private TableView<Vehicule> TableVehicule;
@@ -103,7 +101,7 @@ public class FXMLVehiculePromotionController extends CommonController implements
         String lieu = (String) Context.getInstance().getContextObject("lieu");
         String type = (String) Context.getInstance().getContextObject("type");
       
-         List<Vehicule> l = vs.afficherVehiculesDisponibles(lieu, type, dateD, datef);
+         List<Vehicule> l = vs.afficherVehiculesPromotion(lieu, type, dateD, datef);
         System.out.println(l);
         if (l!=null){
         TableVehicule.setItems(FXCollections.observableList(l));

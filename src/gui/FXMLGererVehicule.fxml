@@ -26,16 +26,26 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <TableView fx:id="TableVehicule" layoutX="28.0" layoutY="296.0" onMouseClicked="#handleMouseAction" prefHeight="350.0" prefWidth="774.0">
+            <TableView fx:id="TableVehicule" layoutX="28.0" layoutY="296.0" onMouseClicked="#handleMouseAction" prefHeight="350.0" prefWidth="774.0" style="-fx-view-order: ff0000;">
                <columns>
-                  <TableColumn fx:id="colonnenom_v" prefWidth="161.5999755859375" text="nom_v" />
-                  <TableColumn fx:id="colonnetype" prefWidth="95.9998779296875" text="type" />
-                  <TableColumn fx:id="colonneville" prefWidth="99.20001220703125" text="ville" />
-                  <TableColumn fx:id="PrixColone" minWidth="0.0" prefWidth="100.79998779296875" text="prix" />
-                  <TableColumn fx:id="colonneidPROMOTION" minWidth="0.0" prefWidth="136.800048828125" text="id_promotion" />
-                  <TableColumn fx:id="colonnedescription" prefWidth="177.60001220703123" text="description" />
+                  <TableColumn fx:id="colonnenom_v" prefWidth="161.5999755859375" style="kj: ff0000;" text="Nom vehicule" />
+                  <TableColumn fx:id="colonnetype" prefWidth="95.9998779296875" text="Type" />
+                  <TableColumn fx:id="colonneville" prefWidth="99.20001220703125" text="Ville" />
+                  <TableColumn fx:id="PrixColone" minWidth="0.0" prefWidth="100.79998779296875" text="Prix" />
+                  <TableColumn fx:id="colonneidPROMOTION" minWidth="0.0" prefWidth="136.800048828125" text="Taux" />
+                  <TableColumn fx:id="colonnedescription" prefWidth="177.60001220703123" text="Description" />
                </columns>
             </TableView>
+            <Button fx:id="btn_excel" layoutX="385.0" layoutY="199.0" mnemonicParsing="false" onAction="#handleExport" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #FD9800;" text="excel">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_vehicule" layoutX="377.0" layoutY="244.0" mnemonicParsing="false" onAction="#louer" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: #FD9800;" text="Vehicule louer">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </center>

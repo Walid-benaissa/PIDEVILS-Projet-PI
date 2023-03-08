@@ -4,12 +4,13 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="627.0" prefWidth="894.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLAjouterVehiculeController">
    <children>
-      <Label layoutX="287.0" layoutY="26.0" prefHeight="54.0" prefWidth="319.0" text="ajouter vehicule" textFill="WHITE">
+      <Label layoutX="287.0" layoutY="26.0" prefHeight="54.0" prefWidth="319.0" text="Ajouter vehicule" textFill="WHITE">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -24,37 +25,36 @@
             <Font name="Microsoft Sans Serif" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="100.0" layoutY="326.0" text="description" textFill="WHITE">
+      <Label layoutX="100.0" layoutY="326.0" text="Description" textFill="WHITE">
          <font>
             <Font name="Microsoft Sans Serif" size="20.0" />
          </font>
       </Label>
       <TextField fx:id="txtdesc" layoutX="103.0" layoutY="378.0" prefHeight="119.0" prefWidth="706.0" />
-      <Label layoutX="50.0" layoutY="80.0" text="nom_v " textFill="WHITE">
+      <Label layoutX="50.0" layoutY="80.0" text="Nom Vehicule" textFill="WHITE">
          <font>
             <Font name="Microsoft Sans Serif" size="20.0" />
          </font>
       </Label>
       <TextField fx:id="txtnomv" layoutX="48.0" layoutY="127.0" prefHeight="27.0" prefWidth="202.0" />
-      <Label layoutX="349.0" layoutY="80.0" text="ville" textFill="WHITE">
+      <Label layoutX="349.0" layoutY="80.0" text="Ville" textFill="WHITE">
          <font>
             <Font name="Microsoft Sans Serif" size="20.0" />
          </font>
       </Label>
       <TextField fx:id="txtville" layoutX="349.0" layoutY="127.0" prefHeight="27.0" prefWidth="196.0" />
-      <Label layoutX="52.0" layoutY="179.0" text="prix" textFill="WHITE">
+      <Label layoutX="52.0" layoutY="179.0" text="Prix" textFill="WHITE">
          <font>
             <Font name="Microsoft Sans Serif" size="20.0" />
          </font>
       </Label>
       <TextField fx:id="txtprix" layoutX="52.0" layoutY="215.0" prefHeight="27.0" prefWidth="196.0" />
-      <Label layoutX="625.0" layoutY="87.0" text="photo" textFill="WHITE">
+      <Label layoutX="625.0" layoutY="87.0" text="Photo" textFill="WHITE">
          <font>
             <Font name="Microsoft Sans Serif" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="txtphoto" layoutX="627.0" layoutY="123.0" prefHeight="27.0" prefWidth="196.0" />
-      <Label layoutX="347.0" layoutY="179.0" text="type" textFill="WHITE">
+      <Label layoutX="347.0" layoutY="179.0" text="Type" textFill="WHITE">
          <font>
             <Font name="Microsoft Sans Serif" size="20.0" />
          </font>
@@ -71,5 +71,8 @@
          </font>
       </Label>
       <ChoiceBox fx:id="choix_taux" layoutX="367.0" layoutY="299.0" prefHeight="26.0" prefWidth="202.0" />
+      <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="595.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="text_image" layoutX="606.0" layoutY="166.0" />
+      <Button fx:id="img" layoutX="616.0" layoutY="117.0" mnemonicParsing="false" onAction="#addimg" text="ajouter image" />
    </children>
 </AnchorPane>

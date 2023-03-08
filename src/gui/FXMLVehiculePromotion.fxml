@@ -12,7 +12,7 @@
    <children>
       <AnchorPane id="AnchorPane" prefHeight="1004.0" prefWidth="824.0" style="-fx-background-color: black;">
          <children>
-            <Button fx:id="btnBack" layoutX="9.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" prefHeight="13.0" prefWidth="105.0" style="-fx-background-color: #FD9800;" text="&lt;--Back">
+            <Button fx:id="btnBack" layoutX="38.0" layoutY="36.0" mnemonicParsing="false" onAction="#back" prefHeight="13.0" prefWidth="105.0" style="-fx-background-color: #FD9800;" text="&lt;--Back">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

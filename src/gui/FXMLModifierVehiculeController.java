@@ -5,6 +5,7 @@
  */
 package gui;
 
+import entities.Utilisateur;
 import entities.Vehicule;
 import java.io.IOException;
 import java.net.URL;
@@ -33,6 +34,7 @@ import utils.Context;
  * @author azizi
  */
 public class FXMLModifierVehiculeController implements Initializable {
+    Utilisateur k = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
 
     @FXML
     private Button btnModifier;
@@ -45,13 +47,10 @@ public class FXMLModifierVehiculeController implements Initializable {
     @FXML
     private TextField txtprix;
     private TextField txtidp;
-    @FXML
     private TextField txtphoto;
     private TextField txttype;
     private TextField txtidv;
     private VehiculeService VehiculeService = new VehiculeService();
-    @FXML
-    private ChoiceBox choix_id;
     @FXML
     private ChoiceBox choix_taux;
     private String[] taux = {"0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "85", "90"};
@@ -75,7 +74,7 @@ public class FXMLModifierVehiculeController implements Initializable {
 
         choix_type.setValue(u.getType());
         txtnomv.setText(u.getNom_v());
-        txtphoto.setText(u.getPhoto());
+
         txtville.setText(u.getVille());
         txtprix.setText(String.valueOf(u.getPrix()));
         switch (u.getId_promotion()) {
@@ -168,7 +167,7 @@ public class FXMLModifierVehiculeController implements Initializable {
 
         String type = choix_type.getValue().toString();
         String nom_v = txtnomv.getText();
-        String photo = txtphoto.getText();
+
         String ville = txtville.getText();
         float prix = Float.parseFloat(txtprix.getText());
         String taux = choix_taux.getValue().toString();
@@ -255,7 +254,8 @@ public class FXMLModifierVehiculeController implements Initializable {
         }
 
         VehiculeService sp = new VehiculeService();
-        Vehicule a = new Vehicule(u.getId_vehicule(), nom_v, photo, ville, prix, id_promotion, description, type);
+        Vehicule a = new Vehicule(u.getId_vehicule(), nom_v,  ville, prix, id_promotion, description, type);
+           a.setId(k.getId());
         sp.modifier(a);
         List<Vehicule> vList = VehiculeService.afficheListe();
     }

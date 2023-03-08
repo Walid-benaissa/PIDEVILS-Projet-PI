@@ -45,7 +45,7 @@ public class VehiculeService implements IService<Vehicule> {
                 p.setNom_v(RS.getString("nom_v"));
                 p.setId(RS.getInt("id"));
                 p.setId_promotion(RS.getInt("id_promotion"));
-                p.setPhoto(RS.getString("photo"));
+                p.setImage(RS.getString("image"));
                 p.setVille(RS.getString("ville"));
                 p.setPrix(RS.getFloat("prix"));
                 p.setDisponibilite(RS.getBoolean("disponibilite"));
@@ -80,7 +80,7 @@ public class VehiculeService implements IService<Vehicule> {
     @Override
     public void ajouter(Vehicule p) {
         try {
-            String req = "INSERT INTO  `vehicule`(`nom_v`,`id`,`id_promotion`, `photo`, `ville`,`prix`, `disponibilite`, `description`,`type`) VALUES (?,?,?,?,?,?,?,?,?)";
+            String req = "INSERT INTO  `vehicule`(`nom_v`,`id`,`id_promotion`, `image`, `ville`,`prix`, `disponibilite`, `description`,`type`) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(req);
             p.setVille(p.getVille().trim());
             p.setType(p.getType().trim());
@@ -88,7 +88,7 @@ public class VehiculeService implements IService<Vehicule> {
                 ps.setString(1, p.getNom_v());
                 ps.setInt(2, p.getId());
                 ps.setInt(3, p.getId_promotion());
-                ps.setString(4, p.getPhoto());
+                ps.setString(4, p.getImage());
                 ps.setString(5, p.getVille());
                 ps.setFloat(6, p.getPrix());
                 ps.setBoolean(7, true);
@@ -121,14 +121,14 @@ public class VehiculeService implements IService<Vehicule> {
     public void modifier(Vehicule p) {
         try {
 
-            String req = "UPDATE `vehicule` SET `nom_v`= ? ,`id`=?, `photo` = ?,`id_promotion`=?,`ville` = ?, `prix` = ?, `disponibilite` = ?, `description` = ?, `type` = ? WHERE id_vehicule= ?";
+            String req = "UPDATE `vehicule` SET `nom_v`= ? ,`id`=?, `image` = ?,`id_promotion`=?,`ville` = ?, `prix` = ?, `disponibilite` = ?, `description` = ?, `type` = ? WHERE id_vehicule= ?";
             PreparedStatement ps = conn.prepareStatement(req);
             p.setVille(p.getVille().trim());
             p.setType(p.getType().trim());
             if (estChaineValide(p.getVille()) && estChaineValide(p.getType()) && isStringLength(p.getType())) {
                 ps.setString(1, p.getNom_v());
                 ps.setInt(2, p.getId());
-                ps.setString(3, p.getPhoto());
+                ps.setString(3, p.getImage());
                 ps.setInt(4, p.getId_promotion());
                 ps.setString(5, p.getVille());
                 ps.setFloat(6, p.getPrix());
@@ -170,7 +170,7 @@ public class VehiculeService implements IService<Vehicule> {
                 p.setNom_v(RS.getString("nom_v"));
                 p.setId(RS.getInt("id"));
                 p.setId_promotion(RS.getInt("id_promotion"));
-                p.setPhoto(RS.getString("photo"));
+                p.setImage(RS.getString("image"));
                 p.setVille(RS.getString("ville"));
                 p.setPrix(RS.getFloat("prix"));
                 p.setDisponibilite(RS.getBoolean("disponibilite"));
@@ -205,7 +205,7 @@ public class VehiculeService implements IService<Vehicule> {
                 p.setNom_v(RS.getString("nom_v"));
                 p.setId(RS.getInt("id"));
                 p.setId_promotion(RS.getInt("id_promotion"));
-                p.setPhoto(RS.getString("photo"));
+                p.setImage(RS.getString("image"));
                 p.setVille(RS.getString("ville"));
                 p.setPrix(RS.getFloat("prix"));
                 p.setDisponibilite(RS.getBoolean("disponibilite"));

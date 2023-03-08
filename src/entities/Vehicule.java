@@ -13,7 +13,7 @@ public class Vehicule {
     private int id_vehicule;
     private String nom_v;
     private int id;
-    private String photo;
+    private String image;
     private String ville;
     private float prix;
     private int id_promotion;
@@ -24,9 +24,9 @@ public class Vehicule {
     public Vehicule() {
     }
 
-    public Vehicule(String nom_v, String photo, String ville, float prix, int id_promotion, String description, String type) {
+    public Vehicule(String nom_v, String image, String ville, float prix, int id_promotion, String description, String type) {
         this.nom_v = nom_v;
-        this.photo = photo;
+        this.image = image;
         this.ville = ville;
         this.prix = prix;
         this.id_promotion = id_promotion;
@@ -34,11 +34,22 @@ public class Vehicule {
         this.type = type;
     }
 
-    public Vehicule(int id_vehicule,String nom_v, int id, String photo, String ville, float prix, int id_promotion, boolean disponibilite, String description, String type) {
+    public Vehicule(int id_vehicule, String nom_v, String ville, float prix, int id_promotion, String description, String type) {
+        this.id_vehicule = id_vehicule;
+        this.nom_v = nom_v;
+        this.ville = ville;
+        this.prix = prix;
+        this.id_promotion = id_promotion;
+        this.description = description;
+        this.type = type;
+    }
+    
+
+    public Vehicule(int id_vehicule,String nom_v, int id, String image, String ville, float prix, int id_promotion, boolean disponibilite, String description, String type) {
         this.id_vehicule = id_vehicule;
         this.nom_v=nom_v;
         this.id = id;
-        this.photo = photo;
+        this.image = image;
         this.ville = ville;
         this.prix = prix;
         this.id_promotion = id_promotion;
@@ -47,11 +58,11 @@ public class Vehicule {
         this.type = type;
     }
 
-    public Vehicule(int id_vehicule,String nom_v, int id, String photo, String ville, float prix, int id_promotion, String description, String type) {
+    public Vehicule(int id_vehicule,String nom_v, int id, String image, String ville, float prix, int id_promotion, String description, String type) {
         this.id_vehicule = id_vehicule;
         this.nom_v=nom_v;
         this.id = id;
-        this.photo = photo;
+        this.image = image;
         this.ville = ville;
         this.prix = prix;
         this.id_promotion = id_promotion;
@@ -69,29 +80,29 @@ public class Vehicule {
         this.type = type;
     }
 
-    public Vehicule(int id_vehicule,String nom_v, String photo, String ville, float prix, String description, String type) {
+    public Vehicule(int id_vehicule,String nom_v, String image, String ville, float prix, String description, String type) {
         this.id_vehicule = id_vehicule;
         this.nom_v=nom_v;
-        this.photo = photo;
+        this.image = image;
         this.ville = ville;
         this.prix = prix;
         this.description = description;
         this.type = type;
     }
 
-    public Vehicule(String nom_v, String photo, String ville, float prix, String description, String type) {
+    public Vehicule(String nom_v, String image, String ville, float prix, String description, String type) {
         this.nom_v = nom_v;
-        this.photo = photo;
+        this.image = image;
         this.ville = ville;
         this.prix = prix;
         this.description = description;
         this.type = type;
     }
 
-    public Vehicule(int id_vehicule, String nom_v, String photo, String ville, float prix, int id_promotion, String description, String type) {
+    public Vehicule(int id_vehicule, String nom_v, String image, String ville, float prix, int id_promotion, String description, String type) {
         this.id_vehicule = id_vehicule;
         this.nom_v = nom_v;
-        this.photo = photo;
+        this.image = image;
         this.ville = ville;
         this.prix = prix;
         this.id_promotion = id_promotion;
@@ -137,12 +148,12 @@ public class Vehicule {
         this.id = id;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getImage() {
+        return image;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getVille() {
@@ -195,7 +206,7 @@ public class Vehicule {
 
     @Override
     public String toString() {
-        return "Vehicule{" + "id_vehicule=" + id_vehicule + ", nom_v=" + nom_v + ", id=" + id + ", photo=" + photo + ", ville=" + ville + ", prix=" + prix + ", id_promotion=" + id_promotion + ", disponibilite=" + disponibilite + ", description=" + description + ", type=" + type + '}';
+        return "Vehicule{" + "id_vehicule=" + id_vehicule + ", nom_v=" + nom_v + ", id=" + id + ", image=" + image + ", ville=" + ville + ", prix=" + prix + ", id_promotion=" + id_promotion + ", disponibilite=" + disponibilite + ", description=" + description + ", type=" + type + '}';
     }
 
     

@@ -90,6 +90,7 @@ Context.getInstance().addContextObject("type",type);
               Date date_debut = java.sql.Date.valueOf(tf_dated.getValue());
      Date date_fin = java.sql.Date.valueOf(tf_retourd.getValue());
     String type = (String) choix_type.getValue();
+          System.out.println("vehicule ");
      
 Context.getInstance().addContextObject("DateF",date_fin);
 Context.getInstance().addContextObject("DateD",date_debut);
@@ -97,9 +98,10 @@ Context.getInstance().addContextObject("lieu",lieu);
 Context.getInstance().addContextObject("type",type);
 
 
-//   Location a = new Location( date_debut, date_fin,  lieu);
+//   Location a = new Location(date_debut, date_fin,  lieu);
+//        System.out.println("vehicule ajouter");
 //   sp.ajouter(a);
-//      
+      
         try {
             setSceneContent("FXMLVehicule");
         } catch (IOException ex) {
