@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.web.WebView?>
 
-
-<WebView prefHeight="616.0" prefWidth="925.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" />
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="925.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLMapController">
+   <center>
+      <WebView fx:id="webView" prefHeight="645.0" prefWidth="953.0" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#Retour" prefHeight="31.0" prefWidth="147.0" style="-fx-background-color: #FD9800;" text="Retour" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

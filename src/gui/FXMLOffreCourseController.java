@@ -33,6 +33,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import utils.MyDB;
 
@@ -48,13 +49,9 @@ public class FXMLOffreCourseController implements Initializable {
       private Scene scene;
       private Parent root;
     @FXML
-    private Button btnAjouterOffre;
-    @FXML
     private Button btnSupprimerOffre;
     @FXML
     private Button btnMettreajourOffre;
-    @FXML
-    private Button btnDeplacerOffre;
       @FXML
     private ChoiceBox<String> StatutOffreChoice;
     private String[] statut={"Actif","Inactif"} ;
@@ -63,6 +60,16 @@ public class FXMLOffreCourseController implements Initializable {
     @FXML
     private ChoiceBox<String> OptionsOffreChoice;
       private String[] options={"Economy","Comfort","Premuim"} ;
+    @FXML
+    private ImageView btnStats;
+    @FXML
+    private Button btnAjouterOffre;
+    @FXML
+    private ImageView btnAfficherOffre;
+    @FXML
+    private ImageView btnJeu;
+    @FXML
+    private Button btnPagehome;
     
     
     
@@ -192,7 +199,7 @@ public class FXMLOffreCourseController implements Initializable {
          String req = "DELETE FROM `offre_course` WHERE id_offre = " + txtIDoffre.getText() + " " ;
           if(txtIDoffre.getText().isEmpty()||txtMatricule.getText().isEmpty()||txtCin.getText().isEmpty()||txtNbpassagers.getText().isEmpty()) {
               
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+                Alert alert = new Alert(Alert.AlertType.ERROR); 
                 alert.setTitle("Erreur!");
                 alert.setContentText("Champ vide !");
                 alert.show();
@@ -260,12 +267,51 @@ public class FXMLOffreCourseController implements Initializable {
         
     }
 
+   
+
+
     @FXML
-    private void DeplacerCourse(javafx.scene.input.MouseEvent event) throws IOException {
-          root = FXMLLoader.load(getClass().getResource("/gui/FXMLCourse.fxml"));
+    private void Stats(javafx.scene.input.MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/gui/FXMLStats.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    private void AfficherOffre(javafx.scene.input.MouseEvent event) throws IOException {
+         root = FXMLLoader.load(getClass().getResource("/gui/FXMLAfficherOffre.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+   
+
+    @FXML
+    private void Jeu(javafx.scene.input.MouseEvent event) throws IOException {
+          root = FXMLLoader.load(getClass().getResource("/gui/FXMLPong.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void Pagehome(javafx.event.ActionEvent event) throws IOException {
+          root = FXMLLoader.load(getClass().getResource("/gui/FXMLPagehome.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+  
+
+   
+
+    
 }

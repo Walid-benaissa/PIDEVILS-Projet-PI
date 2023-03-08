@@ -6,61 +6,63 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="925.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLOffreCourseController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="750.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLOffreCourseController">
      <children>
-      <Label layoutX="28.0" layoutY="31.0" prefHeight="18.0" prefWidth="78.0" text="ID d'offre" textFill="WHITE">
+      <Label layoutX="35.0" layoutY="127.0" prefHeight="23.0" prefWidth="121.0" text="ID d'offre" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="Microsoft Sans Serif" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="28.0" layoutY="91.0" prefHeight="18.0" prefWidth="111.0" text="Matricule vehicule" textFill="WHITE">
+      <Label layoutX="35.0" layoutY="196.0" prefHeight="23.0" prefWidth="174.0" text="Matricule vehicule" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="Microsoft Sans Serif" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="24.0" layoutY="147.0" prefHeight="18.0" prefWidth="121.0" text="Cin Conducteur" textFill="WHITE">
+      <Label layoutX="39.0" layoutY="259.0" prefHeight="30.0" prefWidth="166.0" text="Cin Conducteur" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="547.0" layoutY="30.0" prefHeight="18.0" prefWidth="121.0" text="nombre de passagers" textFill="WHITE">
+      <Label layoutX="35.0" layoutY="346.0" prefHeight="30.0" prefWidth="198.0" text="nombre de passagers" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="547.0" layoutY="90.0" prefHeight="18.0" prefWidth="121.0" text="Options" textFill="WHITE">
+      <Label layoutX="35.0" layoutY="426.0" prefHeight="18.0" prefWidth="121.0" text="Options" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="Microsoft Sans Serif" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="547.0" layoutY="147.0" prefHeight="18.0" prefWidth="121.0" text="Statut de Offre" textFill="WHITE">
+      <Label layoutX="35.0" layoutY="494.0" prefHeight="23.0" prefWidth="166.0" text="Statut de Offre" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="Microsoft Sans Serif" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="txtIDoffre" layoutX="146.0" layoutY="27.0" />
-      <TextField fx:id="txtMatricule" layoutX="146.0" layoutY="87.0" />
-      <TextField fx:id="txtCin" layoutX="146.0" layoutY="143.0" />
-      <TextField fx:id="txtNbpassagers" layoutX="705.0" layoutY="26.0" />
-      <Button fx:id="btnAjouterOffre" layoutX="221.0" layoutY="205.0" mnemonicParsing="false" onAction="#AjouterOffre" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #FD9800;" text="Ajouter">
+      <TextField fx:id="txtIDoffre" layoutX="35.0" layoutY="153.0" />
+      <TextField fx:id="txtMatricule" layoutX="35.0" layoutY="221.0" />
+      <TextField fx:id="txtCin" layoutX="35.0" layoutY="296.0" />
+      <TextField fx:id="txtNbpassagers" layoutX="35.0" layoutY="377.0" />
+      <Button fx:id="btnAjouterOffre" layoutX="71.0" layoutY="569.0" mnemonicParsing="false" onAction="#AjouterOffre" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #FD9800;" text="Ajouter">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="btnSupprimerOffre" layoutX="376.0" layoutY="205.0" mnemonicParsing="false" onAction="#SupprimerOffre" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #FD9800;" text="Supprimer">
+      <Button fx:id="btnSupprimerOffre" layoutX="-171.0" layoutY="87.0" mnemonicParsing="false" onAction="#SupprimerOffre" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #FD9800;" text="Supprimer">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="btnMettreajourOffre" layoutX="547.0" layoutY="205.0" mnemonicParsing="false" onAction="#MetrreajourOffre" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #FD9800;" text="Mettre à jour">
+      <Button fx:id="btnMettreajourOffre" layoutX="35.0" layoutY="-65.0" mnemonicParsing="false" onAction="#MetrreajourOffre" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #FD9800;" text="Mettre à jour">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <TableView fx:id="TableOffre" layoutX="25.0" layoutY="252.0" onMouseClicked="#handleMouseAction" prefHeight="298.0" prefWidth="876.0">
+      <TableView fx:id="TableOffre" layoutX="-900.0" layoutY="196.0" onMouseClicked="#handleMouseAction" prefHeight="298.0" prefWidth="876.0">
          <columns>
             <TableColumn fx:id="IDOffreColone" prefWidth="150.0" text="Id_offre" />
             <TableColumn fx:id="MatriculeColone" prefWidth="148.0" text="Matricule_vehicule" />
@@ -70,12 +72,37 @@
             <TableColumn fx:id="StatutOffreColone" prefWidth="178.0" text="Statut_offre" />
          </columns>
       </TableView>
-      <ChoiceBox fx:id="StatutOffreChoice" layoutX="705.0" layoutY="143.0" prefHeight="18.0" prefWidth="187.0" />
-      <Button fx:id="btnDeplacerOffre" layoutX="705.0" layoutY="571.0" mnemonicParsing="false" onMouseClicked="#DeplacerCourse" prefHeight="31.0" prefWidth="198.0" style="-fx-background-color: #FD9800;" text="Deplacer vers Course">
+      <ChoiceBox fx:id="StatutOffreChoice" layoutX="35.0" layoutY="522.0" prefHeight="18.0" prefWidth="187.0" />
+      <Button fx:id="btnPagehome" layoutX="538.0" layoutY="705.0" mnemonicParsing="false" onAction="#Pagehome" prefHeight="31.0" prefWidth="198.0" style="-fx-background-color: #FD9800;" text="Page d'acceuil">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="OptionsOffreChoice" layoutX="705.0" layoutY="87.0" prefHeight="31.0" prefWidth="187.0" />
+      <ChoiceBox fx:id="OptionsOffreChoice" layoutX="35.0" layoutY="453.0" prefHeight="31.0" prefWidth="187.0" />
+      <Label layoutX="227.0" prefHeight="53.0" prefWidth="296.0" text="   Gestion Offre" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="172.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ajouter.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnAfficherOffre" fitHeight="98.0" fitWidth="121.0" layoutX="458.0" layoutY="219.0" onMouseClicked="#AfficherOffre" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/afficher.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnStats" fitHeight="86.0" fitWidth="94.0" layoutX="458.0" layoutY="332.0" onMouseClicked="#Stats" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/stats.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnJeu" fitHeight="76.0" fitWidth="86.0" layoutX="463.0" layoutY="456.0" onMouseClicked="#Jeu" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/jeu.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

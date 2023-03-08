@@ -18,8 +18,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 /**
@@ -27,18 +25,18 @@ import javafx.stage.Stage;
  *
  * @author bough
  */
-public class FXMLMapController implements Initializable {
-     Connection connexion ;
+public class FXMLPagehomeController implements Initializable {
+    Connection connexion ;
      Statement stm;
      private Stage stage;
-      private Stage stage1;
+     private Stage stage1 ;
      private Scene scene;
-     private Parent root;
+      private Parent root;
 
     @FXML
-    private Button btnRetour;
+    private Button btnCourse;
     @FXML
-    private WebView webView;
+    private Button btnOffre;
 
     /**
      * Initializes the controller class.
@@ -46,13 +44,10 @@ public class FXMLMapController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        webView.getEngine().load("https://www.google.com/maps");
-       
     }    
 
-
     @FXML
-    private void Retour(ActionEvent event) throws IOException {
+    private void Course(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/gui/FXMLCourse.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -60,14 +55,13 @@ public class FXMLMapController implements Initializable {
         stage.show();
     }
 
-    /* private void MapView(MouseEvent event) {
-    WebView webView = new WebView();
-    webView.getEngine().load("https://www.google.com/maps");
-    
-    Scene scene = new Scene(webView, 800, 600);
-    stage1 = (Stage)((Node)event.getSource()).getScene().getWindow();
-    stage1.setScene(scene);
-    stage1.show();
-    }*/
+    @FXML
+    private void Offre(ActionEvent event) throws IOException {
+         root = FXMLLoader.load(getClass().getResource("/gui/FXMLOffreCourse.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     
 }

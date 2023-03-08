@@ -5,10 +5,9 @@
  */
 package gui;
 
+import entities.Chatbot;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,8 +17,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.web.WebView;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -27,18 +27,21 @@ import javafx.stage.Stage;
  *
  * @author bough
  */
-public class FXMLMapController implements Initializable {
-     Connection connexion ;
-     Statement stm;
+public class FXMLChatBotController implements Initializable {
      private Stage stage;
-      private Stage stage1;
      private Scene scene;
      private Parent root;
 
     @FXML
-    private Button btnRetour;
+    private TextField inputTextField;
     @FXML
-    private WebView webView;
+    private TextArea outputLabel;
+    
+    private Chatbot chatbot;
+    @FXML
+    private Button btnEnvoyer;
+    @FXML
+    private Button btnRetour;
 
     /**
      * Initializes the controller class.
@@ -46,10 +49,16 @@ public class FXMLMapController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        webView.getEngine().load("https://www.google.com/maps");
-       
+        chatbot = new Chatbot();
     }    
 
+    @FXML
+    private void processInput(ActionEvent event) {
+        String input = inputTextField.getText();
+        String output = chatbot.processInput(input);
+        outputLabel.setText(output);
+        inputTextField.clear();
+    }
 
     @FXML
     private void Retour(ActionEvent event) throws IOException {
@@ -59,15 +68,5 @@ public class FXMLMapController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-    /* private void MapView(MouseEvent event) {
-    WebView webView = new WebView();
-    webView.getEngine().load("https://www.google.com/maps");
-    
-    Scene scene = new Scene(webView, 800, 600);
-    stage1 = (Stage)((Node)event.getSource()).getScene().getWindow();
-    stage1.setScene(scene);
-    stage1.show();
-    }*/
     
 }
