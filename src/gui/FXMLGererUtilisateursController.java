@@ -127,6 +127,12 @@ public class FXMLGererUtilisateursController extends CommonController implements
         txtID.setText("Id: " + u.getId());
         choix_type.setValue(u.getRole());
         etatbloque = u.isBolque();
+        if (u.isBolque()) {
+            btnBloquer.setText("Débloquer");
+        } else {
+            btnBloquer.setText("Bloquer");
+
+        }
     }
 
     @FXML
@@ -194,14 +200,19 @@ public class FXMLGererUtilisateursController extends CommonController implements
         u.setBolque(!u.isBolque());
         us.modifier(u);
         afficherUsers(us.afficheListe());
-        
+        if (u.isBolque()) {
+            btnBloquer.setText("Débloquer");
+        } else {
+            btnBloquer.setText("Bloquer");
+
+        }
 
     }
 
     @FXML
     private void details(ActionEvent event) {
-        Context.getInstance().addContextObject("user",TableUsers.getSelectionModel().getSelectedItem());
-         Context.getInstance().addContextObject("role",TableUsers.getSelectionModel().getSelectedItem().getRole());
+        Context.getInstance().addContextObject("user", TableUsers.getSelectionModel().getSelectedItem());
+        Context.getInstance().addContextObject("role", TableUsers.getSelectionModel().getSelectedItem().getRole());
         try {
             setSceneContent("FXMLDetailsUtilisateur");
         } catch (IOException ex) {
