@@ -29,11 +29,11 @@ public class FXMLCodeConfirmationController implements Initializable {
     @FXML
     private TextField fxLog;
     @FXML
-    private Text cdsEnvoyer;
-    @FXML
     private Text cdsPass;
     String c = (String) Context.getInstance().getContextObject("codeValidation");
     String m = (String) Context.getInstance().getContextObject("mail");
+    @FXML
+    private Text controleC;
 
     /**
      * Initializes the controller class.
@@ -46,6 +46,10 @@ public class FXMLCodeConfirmationController implements Initializable {
     @FXML
     private void confirmer(ActionEvent event) {
         System.out.println(c);
+        if (fxLog.getText().isEmpty()){
+            controleC.setVisible(true);
+            return;}
+        else{
         if (fxLog.getText().equals(c)) {
             try {
                 setSceneContent("FXMLChangerMdp");
@@ -58,7 +62,7 @@ public class FXMLCodeConfirmationController implements Initializable {
             alert.setContentText("Code inccorect réinitialiser le code ");
             alert.show();
 
-        }
+        }}
 
     }
 
