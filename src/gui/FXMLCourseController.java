@@ -80,13 +80,7 @@ public class FXMLCourseController implements Initializable {
    
    
     @FXML
-    private Button btnSupprimer;
-    @FXML
-    private Button btnMettreajour;
-    @FXML
     private Button btnAjouter;
-    @FXML
-    private Button btnEntertaiment;
     @FXML
     private ImageView map;
     @FXML
@@ -145,25 +139,18 @@ public class FXMLCourseController implements Initializable {
     
     private String[] statut={"En attente","En cours","Termine"} ;
      
-    @FXML
     private TableView<Course> TableCourse;
   
-    @FXML
     private TableColumn<Course, Integer> IDColone;
 
-    @FXML
     private TableColumn<Course, String> DepartColone;
 
-    @FXML
     private TableColumn<Course, String> DestinationColone;
 
-    @FXML
     private TableColumn<Course, Float> DistanceColone;
 
-    @FXML
     private TableColumn<Course, Float> PrixColone;
 
-    @FXML
     private TableColumn<Course, String> StatutColone;
     
 
@@ -208,7 +195,6 @@ public class FXMLCourseController implements Initializable {
     }
           
 
-    @FXML
     private void Supprimer(javafx.event.ActionEvent event) throws SQLException {
         String req = "DELETE FROM `course` WHERE id_course = " + txtID.getText() + " " ;
          if(txtID.getText().isEmpty()||txtDepart.getText().isEmpty()||txtDestination.getText().isEmpty()||txtDistance.getText().isEmpty()||txtPrix.getText().isEmpty()) {
@@ -237,7 +223,6 @@ public class FXMLCourseController implements Initializable {
         afficherCourse();
     }
 
-    @FXML
     private void Metrreajour(javafx.event.ActionEvent event) throws SQLException {
         
         String req = "UPDATE `course` SET `point_depart`='" + txtDepart.getText() + "',`point_destination`='" + txtDestination.getText() + "',`distance`='"+txtDistance.getText() + "',`prix`='" + txtPrix.getText() + "',`statut_course`='" + StatutChoice.getValue() + "' WHERE id_course = " + txtID.getText() + " " ;
@@ -307,7 +292,6 @@ public class FXMLCourseController implements Initializable {
         
     } 
     
-    @FXML
     private void handleMouseAction(javafx.scene.input.MouseEvent event) {
        Course c = TableCourse.getSelectionModel().getSelectedItem() ;
         txtID.setText(""+c.getId_course());
@@ -345,7 +329,6 @@ public class FXMLCourseController implements Initializable {
         
     }
 
-    @FXML
     private void Entertaiment(javafx.event.ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/gui/FXMLPong.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

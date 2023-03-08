@@ -12,98 +12,107 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="750.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLOffreCourseController">
-     <children>
-      <Label layoutX="35.0" layoutY="127.0" prefHeight="23.0" prefWidth="121.0" text="ID d'offre" textFill="WHITE">
-         <font>
-            <Font name="Microsoft Sans Serif" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="35.0" layoutY="196.0" prefHeight="23.0" prefWidth="174.0" text="Matricule vehicule" textFill="WHITE">
-         <font>
-            <Font name="Microsoft Sans Serif" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="39.0" layoutY="259.0" prefHeight="30.0" prefWidth="166.0" text="Cin Conducteur" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="35.0" layoutY="346.0" prefHeight="30.0" prefWidth="198.0" text="nombre de passagers" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="35.0" layoutY="426.0" prefHeight="18.0" prefWidth="121.0" text="Options" textFill="WHITE">
-         <font>
-            <Font name="Microsoft Sans Serif" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="35.0" layoutY="494.0" prefHeight="23.0" prefWidth="166.0" text="Statut de Offre" textFill="WHITE">
-         <font>
-            <Font name="Microsoft Sans Serif" size="20.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtIDoffre" layoutX="35.0" layoutY="153.0" />
-      <TextField fx:id="txtMatricule" layoutX="35.0" layoutY="221.0" />
-      <TextField fx:id="txtCin" layoutX="35.0" layoutY="296.0" />
-      <TextField fx:id="txtNbpassagers" layoutX="35.0" layoutY="377.0" />
-      <Button fx:id="btnAjouterOffre" layoutX="71.0" layoutY="569.0" mnemonicParsing="false" onAction="#AjouterOffre" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #FD9800;" text="Ajouter">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnSupprimerOffre" layoutX="-171.0" layoutY="87.0" mnemonicParsing="false" onAction="#SupprimerOffre" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #FD9800;" text="Supprimer">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnMettreajourOffre" layoutX="35.0" layoutY="-65.0" mnemonicParsing="false" onAction="#MetrreajourOffre" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #FD9800;" text="Mettre à jour">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <TableView fx:id="TableOffre" layoutX="-900.0" layoutY="196.0" onMouseClicked="#handleMouseAction" prefHeight="298.0" prefWidth="876.0">
-         <columns>
-            <TableColumn fx:id="IDOffreColone" prefWidth="150.0" text="Id_offre" />
-            <TableColumn fx:id="MatriculeColone" prefWidth="148.0" text="Matricule_vehicule" />
-            <TableColumn fx:id="CinColone" prefWidth="170.0" text="Cin_conducteur" />
-            <TableColumn fx:id="NbpassagersColone" prefWidth="115.0" text="Nb_passagers" />
-            <TableColumn fx:id="OptionsColone" prefWidth="113.0" text="Options_offre" />
-            <TableColumn fx:id="StatutOffreColone" prefWidth="178.0" text="Statut_offre" />
-         </columns>
-      </TableView>
-      <ChoiceBox fx:id="StatutOffreChoice" layoutX="35.0" layoutY="522.0" prefHeight="18.0" prefWidth="187.0" />
-      <Button fx:id="btnPagehome" layoutX="538.0" layoutY="705.0" mnemonicParsing="false" onAction="#Pagehome" prefHeight="31.0" prefWidth="198.0" style="-fx-background-color: #FD9800;" text="Page d'acceuil">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <ChoiceBox fx:id="OptionsOffreChoice" layoutX="35.0" layoutY="453.0" prefHeight="31.0" prefWidth="187.0" />
-      <Label layoutX="227.0" prefHeight="53.0" prefWidth="296.0" text="   Gestion Offre" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="172.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/ajouter.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="btnAfficherOffre" fitHeight="98.0" fitWidth="121.0" layoutX="458.0" layoutY="219.0" onMouseClicked="#AfficherOffre" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/afficher.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="btnStats" fitHeight="86.0" fitWidth="94.0" layoutX="458.0" layoutY="332.0" onMouseClicked="#Stats" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/stats.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="btnJeu" fitHeight="76.0" fitWidth="86.0" layoutX="463.0" layoutY="456.0" onMouseClicked="#Jeu" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/jeu.png" />
-         </image>
-      </ImageView>
-   </children>
-</AnchorPane>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLOffreCourseController">
+   <center>
+      <AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="750.0" style="-fx-background-color: black;">
+           <children>
+            <Label layoutX="35.0" layoutY="127.0" prefHeight="23.0" prefWidth="121.0" text="ID d'offre" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="196.0" prefHeight="23.0" prefWidth="174.0" text="Matricule vehicule" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="39.0" layoutY="259.0" prefHeight="30.0" prefWidth="166.0" text="Cin Conducteur" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="346.0" prefHeight="30.0" prefWidth="198.0" text="nombre de passagers" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="426.0" prefHeight="18.0" prefWidth="121.0" text="Options" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="494.0" prefHeight="23.0" prefWidth="166.0" text="Statut de Offre" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtIDoffre" layoutX="35.0" layoutY="153.0" />
+            <TextField fx:id="txtMatricule" layoutX="35.0" layoutY="221.0" />
+            <TextField fx:id="txtCin" layoutX="35.0" layoutY="296.0" />
+            <TextField fx:id="txtNbpassagers" layoutX="35.0" layoutY="377.0" />
+            <Button fx:id="btnAjouterOffre" layoutX="71.0" layoutY="569.0" mnemonicParsing="false" onAction="#AjouterOffre" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #FD9800;" text="Ajouter">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSupprimerOffre" layoutX="-171.0" layoutY="87.0" mnemonicParsing="false" onAction="#SupprimerOffre" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #FD9800;" text="Supprimer">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnMettreajourOffre" layoutX="35.0" layoutY="-65.0" mnemonicParsing="false" onAction="#MetrreajourOffre" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #FD9800;" text="Mettre à jour">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <TableView fx:id="TableOffre" layoutX="-900.0" layoutY="196.0" onMouseClicked="#handleMouseAction" prefHeight="298.0" prefWidth="876.0">
+               <columns>
+                  <TableColumn fx:id="IDOffreColone" prefWidth="150.0" text="Id_offre" />
+                  <TableColumn fx:id="MatriculeColone" prefWidth="148.0" text="Matricule_vehicule" />
+                  <TableColumn fx:id="CinColone" prefWidth="170.0" text="Cin_conducteur" />
+                  <TableColumn fx:id="NbpassagersColone" prefWidth="115.0" text="Nb_passagers" />
+                  <TableColumn fx:id="OptionsColone" prefWidth="113.0" text="Options_offre" />
+                  <TableColumn fx:id="StatutOffreColone" prefWidth="178.0" text="Statut_offre" />
+               </columns>
+            </TableView>
+            <ChoiceBox fx:id="StatutOffreChoice" layoutX="35.0" layoutY="522.0" prefHeight="18.0" prefWidth="187.0" />
+            <Button fx:id="btnPagehome" layoutX="538.0" layoutY="705.0" mnemonicParsing="false" onAction="#Pagehome" prefHeight="31.0" prefWidth="198.0" style="-fx-background-color: #FD9800;" text="Page d'acceuil">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <ChoiceBox fx:id="OptionsOffreChoice" layoutX="35.0" layoutY="453.0" prefHeight="31.0" prefWidth="187.0" />
+            <Label layoutX="227.0" prefHeight="53.0" prefWidth="296.0" text="   Gestion Offre" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="172.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ajouter.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnAfficherOffre" fitHeight="98.0" fitWidth="121.0" layoutX="458.0" layoutY="219.0" onMouseClicked="#AfficherOffre" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/afficher.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnStats" fitHeight="86.0" fitWidth="94.0" layoutX="458.0" layoutY="332.0" onMouseClicked="#Stats" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/stats.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnJeu" fitHeight="76.0" fitWidth="86.0" layoutX="463.0" layoutY="456.0" onMouseClicked="#Jeu" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/jeu.png" />
+               </image>
+            </ImageView>
+         </children>
+          
+      </AnchorPane>
+   </center>
+    <left>
+        <fx:include fx:id="Sidebar" source="FXMLSideBarConducteur.fxml" />
+    </left>
+</BorderPane>
