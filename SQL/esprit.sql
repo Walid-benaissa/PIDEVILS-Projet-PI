@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 01 mars 2023 à 00:44
+-- Généré le : mer. 08 mars 2023 à 16:31
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -67,6 +67,15 @@ CREATE TABLE `conducteur` (
   `b3` varchar(255) NOT NULL,
   `permis` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `conducteur`
+--
+
+INSERT INTO `conducteur` (`id`, `b3`, `permis`) VALUES
+(22, 'C:\\Users\\USER\\Pictures\\20191121_103303.jpg', 'C:\\Users\\USER\\Desktop\\images\\arrow.png'),
+(24, 'C:\\Users\\USER\\Desktop\\images\\bus6V.png', 'E:\\PidevJava\\Pidevils\\PIDEVILS-Projet-PI\\src\\images\\printer.png'),
+(16, 'E:\\PidevJava\\Pidevils\\PIDEVILS-Projet-PI\\src\\images\\cafe1.jpg', 'E:\\PidevJava\\Pidevils\\PIDEVILS-Projet-PI\\src\\images\\cafe1.jpg');
 
 -- --------------------------------------------------------
 
@@ -167,18 +176,6 @@ CREATE TABLE `offre_livraison` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `personnes`
---
-
-CREATE TABLE `personnes` (
-  `id` int(11) NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `prenom` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `promotion`
 --
 
@@ -225,18 +222,21 @@ CREATE TABLE `utilisateur` (
   `mdp` varchar(100) NOT NULL,
   `num_tel` varchar(20) NOT NULL,
   `role` varchar(30) NOT NULL,
-  `evaluation` float(2,1) NOT NULL
+  `evaluation` float(2,1) NOT NULL,
+  `bloque` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `role`, `evaluation`) VALUES
-(11, 'ben aissa', 'walid', 'walid@gmail.com', 'b6750d994f8db7990a509ed7854e26121d589147f0fd619c2601d508b5c7cc90', '23567897', 'Conducteur', 0.0),
-(12, 'khaled', 'khaled', 'khaled@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '56765345', 'Client', 0.0),
-(13, 'kharmachi', 'abir', 'abir@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '256789467', 'Admin', 0.0),
-(16, 'benghorbel', 'nour', 'nour@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '23456789', 'Conducteur', 0.0);
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `mail`, `mdp`, `num_tel`, `role`, `evaluation`, `bloque`) VALUES
+(12, 'khaled', 'khaled', 'khaled@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '56765345', 'Client', 0.0, 0),
+(13, 'kharmachi', 'abir', 'abir.kharmachi@gmail.com', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', '256789467', 'Admin', 0.0, 0),
+(16, 'benghorbel', 'nour', 'nour@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '23456789', 'Conducteur', 0.0, 0),
+(17, 'aziz', 'aziz', 'aziz@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '26786543', 'Client', 0.0, 0),
+(22, 'Ben salah', 'salah', 'salah@gmail.com', '745e0951b795c5918480cb82a70ad7934228869752551f37453e62fb75a9f85a', '23232553', 'Conducteur', 0.0, 1),
+(24, 'Ben aissa', 'walid', 'walid2525@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '26587543', 'Conducteur', 0.0, 0);
 
 -- --------------------------------------------------------
 
@@ -278,6 +278,13 @@ CREATE TABLE `voiture` (
   `etat` varchar(20) NOT NULL,
   `photo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `voiture`
+--
+
+INSERT INTO `voiture` (`id`, `immatriculation`, `modele`, `marque`, `etat`, `photo`) VALUES
+(16, '234TUNIS2345', 'IBIZA', 'SEAT', 'Noveau', 'C:\\Users\\USER\\Desktop\\images\\bus1.png');
 
 --
 -- Index pour les tables déchargées
@@ -335,12 +342,6 @@ ALTER TABLE `offre_course`
 -- Index pour la table `offre_livraison`
 --
 ALTER TABLE `offre_livraison`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `personnes`
---
-ALTER TABLE `personnes`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -408,12 +409,6 @@ ALTER TABLE `offre_livraison`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `personnes`
---
-ALTER TABLE `personnes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT pour la table `promotion`
 --
 ALTER TABLE `promotion`
@@ -429,7 +424,7 @@ ALTER TABLE `reclamation`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT pour la table `vehicule`

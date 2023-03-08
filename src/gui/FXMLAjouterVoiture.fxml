@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -8,9 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLAjouterVoitureController">
     <center>
@@ -21,7 +18,7 @@
                         <Font name="System Bold" size="36.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnAjouter" layoutX="492.0" layoutY="376.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="27.0" prefWidth="103.0" style="-fx-background-color: #FD9800;" text="Ajouter">
+                <Button fx:id="btnAjouter" layoutX="492.0" layoutY="376.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="27.0" prefWidth="103.0" style="-fx-background-color: #FD9800;" text="Inserer">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
@@ -50,9 +47,9 @@
                     </font>
                 </Label>
                 <TextField fx:id="tf_etat" layoutX="415.0" layoutY="178.0" prefHeight="27.0" prefWidth="248.0" />
-                <Button layoutX="409.0" layoutY="273.0" mnemonicParsing="false" onAction="#importerVoiture" prefHeight="26.0" prefWidth="60.0" text="Button" />
-                <TextField fx:id="photo" layoutX="467.0" layoutY="273.0" prefHeight="26.0" prefWidth="202.0" />
-                <Label layoutX="416.0" layoutY="228.0" text="Photo voiture  :" textFill="WHITE">
+                <Button layoutX="406.0" layoutY="279.0" mnemonicParsing="false" onAction="#importerVoiture" prefHeight="26.0" prefWidth="71.0" text="Inserer" />
+                <TextField fx:id="photo" layoutX="474.0" layoutY="279.0" prefHeight="26.0" prefWidth="202.0" />
+                <Label layoutX="416.0" layoutY="239.0" text="Photo voiture  :" textFill="WHITE">
                     <font>
                         <Font name="Microsoft Sans Serif" size="20.0" />
                     </font>
@@ -61,16 +58,43 @@
                     <font>
                         <Font name="System Bold" size="10.0" />
                     </font>
+               <graphic>
+                      <ImageView fitHeight="21.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../images/arrow.png" />
+                          </image>
+                      </ImageView>
+               </graphic>
                 </Button>
-                <ImageView fitHeight="21.0" fitWidth="18.0" layoutX="78.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../images/arrow.png" />
-                    </image>
-                </ImageView>
+            <Label fx:id="err_immat" layoutX="61.0" layoutY="205.0" text="Veuillez saisir une immatriculation valide" textFill="RED" visible="false">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="err_mod" layoutX="54.0" layoutY="313.0" text="Veuillez saisir un modele valide" textFill="RED" visible="false">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="err_marque" layoutX="63.0" layoutY="414.0" text="Veuillez saisir une marque valide" textFill="RED" visible="false">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="err_etat" layoutX="415.0" layoutY="213.0" text="Veuillez saisir une etat valide" textFill="RED" visible="false">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="err_img" layoutX="407.0" layoutY="321.0" text="Veuillez choisir une image" textFill="RED" visible="false">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="13.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
     </center>
     <left>
-        <fx:include fx:id="Sidebar" source="FXMLSideBarConducteur.fxml"/>
+        <fx:include fx:id="Sidebar" source="FXMLSideBarConducteur.fxml" />
     </left>
 </BorderPane>

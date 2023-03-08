@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="750.0" style="-fx-background-color: Black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="gui.FXMLPagehomeController">
+   <children>
+      <Label layoutX="293.0" layoutY="27.0" text="Bienvenue" textFill="WHITE">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnCourse" layoutX="297.0" layoutY="204.0" mnemonicParsing="false" onAction="#Course" prefHeight="31.0" prefWidth="157.0" style="-fx-background-color: #FD9800;" text="Gestion Course">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnOffre" layoutX="297.0" layoutY="305.0" mnemonicParsing="false" onAction="#Offre" prefHeight="31.0" prefWidth="157.0" style="-fx-background-color: #FD9800;" text="Gestion Offre">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

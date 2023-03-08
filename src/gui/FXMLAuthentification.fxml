@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -25,6 +27,8 @@
          </font>
       </Label>
       <TextField fx:id="tf_mail" layoutX="286.0" layoutY="233.0" prefHeight="35.0" prefWidth="269.0" />
+      <TextField fx:id="tf_mdpclaire" layoutX="286.0" layoutY="350.0" prefHeight="35.0" prefWidth="269.0" visible="false" />
+      <PasswordField fx:id="tf_mdp" layoutX="285.0" layoutY="350.0" prefHeight="35.0" prefWidth="270.0" />
       <Button layoutX="286.0" layoutY="425.0" mnemonicParsing="false" onAction="#authentification" prefHeight="46.0" prefWidth="124.0" style="-fx-background-color: FD9800;" text="Valider" textFill="WHITE">
          <font>
             <Font name="SansSerif Regular" size="18.0" />
@@ -35,11 +39,24 @@
             <Font name="SansSerif Regular" size="18.0" />
          </font>
       </Button>
-      <PasswordField fx:id="tf_mdp" layoutX="285.0" layoutY="350.0" prefHeight="35.0" prefWidth="270.0" />
       <Label layoutX="286.0" layoutY="393.0" onMouseClicked="#mdpoublie" prefHeight="16.0" prefWidth="150.0" text="Mot de passe oublié?" textFill="WHITE" underline="true">
          <font>
             <Font name="Microsoft Sans Serif" size="14.0" />
          </font>
       </Label>
+      <Button fx:id="yeux" layoutX="506.0" layoutY="353.0" mnemonicParsing="false" onAction="#mdpVisible" prefHeight="26.0" prefWidth="42.0" style="-fx-background-color: white;">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/eye.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fitHeight="88.0" fitWidth="124.0" layoutX="31.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo-FiThneyti-01.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

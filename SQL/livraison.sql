@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 28 fév. 2023 à 17:50
+-- Généré le : mer. 08 mars 2023 à 19:08
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -21,65 +21,14 @@ SET time_zone = "+00:00";
 -- Base de données : `esprit`
 --
 
--- --------------------------------------------------------
-
---
--- Structure de la table `livraison`
---
-
-CREATE TABLE `livraison` (
-  `id_client` int(11) NOT NULL,
-  `id_livreur` int(11) NOT NULL,
-  `id_livraison` int(11) NOT NULL,
-  `adresse_expedition` varchar(30) NOT NULL,
-  `adresse_destinataire` varchar(30) NOT NULL,
-  `prix` float NOT NULL,
-  `etat` varchar(30) NOT NULL,
-  `id_colis` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Déchargement des données de la table `livraison`
 --
 
 INSERT INTO `livraison` (`id_client`, `id_livreur`, `id_livraison`, `adresse_expedition`, `adresse_destinataire`, `prix`, `etat`, `id_colis`) VALUES
-(2, 3, 1, 'Djerba', 'Sousse', 3.2, 'livrée', 2),
-(8, 3, 5, 'mmm', 'ooooo', 4, '', 1);
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `livraison`
---
-ALTER TABLE `livraison`
-  ADD PRIMARY KEY (`id_livraison`),
-  ADD KEY `fk_livraison_colis` (`id_colis`),
-  ADD KEY `fk_livraison_client` (`id_client`),
-  ADD KEY `fk_livraison_conducteur` (`id_livreur`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `livraison`
---
-ALTER TABLE `livraison`
-  MODIFY `id_livraison` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `livraison`
---
-ALTER TABLE `livraison`
-  ADD CONSTRAINT `fk_livraison_client` FOREIGN KEY (`id_client`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_livraison_colis` FOREIGN KEY (`id_colis`) REFERENCES `colis` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_livraison_conducteur` FOREIGN KEY (`id_livreur`) REFERENCES `utilisateur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+(12, 0, 1, 'Ariana', 'Manouba', 4, 'En attente', 1),
+(12, 0, 2, 'Sfax', 'Monastir', 14, 'En attente', 2),
+(12, 0, 3, 'Tunis', 'Zaghouan', 6, 'En attente', 3);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

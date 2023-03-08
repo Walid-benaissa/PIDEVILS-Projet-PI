@@ -2,6 +2,7 @@ package gui;
 
 import entities.Colis;
 import entities.Livraison;
+import entities.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
 import javafx.scene.control.TextField;
@@ -17,8 +18,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import org.controlsfx.control.textfield.TextFields;
 import service.ColisService;
 import static utils.CommonController.setSceneContent;
+import utils.Context;
 
 /**
  * FXML Controller class
@@ -39,13 +42,16 @@ public class FXMLAjoutLivraisonController implements Initializable {
     private TextField tf_description;
     @FXML
     private TextField tf_poids;
+    Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        String[] possibleWords = {"Ariana", "Beja", "Ben Arous", "Bizerte", "Gabes", "Gafsa", "Jandouba", "Kairouan", "Kasserine", "Kebili", "Kef", "Mahdia", "Manouba", "Medenine", "Monastir", "Nabeul", "Sfax", "Sidi Bouzid", "Siliana", "Sousse", "Tataouine", "Tozeur", "Tunis", "Zaghouan"};
+        TextFields.bindAutoCompletion(tf_AdresseExp, possibleWords);
+        TextFields.bindAutoCompletion(tf_adresseDest, possibleWords);
     }
 
     private boolean adresse_expvalide() {
@@ -97,6 +103,40 @@ public class FXMLAjoutLivraisonController implements Initializable {
 
     }
 
+    private boolean Prixvalide() {
+        Pattern p = Pattern.compile("[0-9]+.?[0-9]?[0-9]?");
+        Matcher m = p.matcher(tf_prix.getText());
+        if (m.find() && m.group().equals(tf_prix.getText())) {
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Type du prix invalide !");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez entrer un type valide !");
+            alert.showAndWait();
+
+            return false;
+        }
+
+    }
+
+    private boolean Poidsvalide() {
+        Pattern p = Pattern.compile("[0-9]+.?[0-9]?[0-9]?");
+        Matcher m = p.matcher(tf_poids.getText());
+        if (m.find() && m.group().equals(tf_poids.getText())) {
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Type du poids invalide !");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez entrer un type valide !");
+            alert.showAndWait();
+
+            return false;
+        }
+
+    }
+
     @FXML
     private void ajoutL(ActionEvent event) {
         LivraisonService ls = new LivraisonService();
@@ -108,7 +148,7 @@ public class FXMLAjoutLivraisonController implements Initializable {
             alert.setContentText("il y'a des champs vides !");
             alert.show();
 
-        } else if (adresse_desvalide() && nb_itemsvalide() && adresse_expvalide()) {
+        } else if (adresse_desvalide() && nb_itemsvalide() && adresse_expvalide() && Prixvalide() && Poidsvalide()) {
             String prix = tf_prix.getText();
             Livraison l = new Livraison(tf_AdresseExp.getText(), tf_adresseDest.getText(), Float.parseFloat(prix), "En attente");
             String nb_items = tf_nbrObjets.getText();
@@ -116,10 +156,10 @@ public class FXMLAjoutLivraisonController implements Initializable {
             Colis c = new Colis(Integer.parseInt(nb_items), tf_description.getText(), Float.parseFloat(poids));
 
             cs.ajouter(c);
-            ls.ajouter(l);
+            ls.ajouter2(l, u.getId());
             // System.err.println("Ajout avec succès");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("sucess");
+            alert.setTitle("success");
             alert.setContentText("Livraison ajoutée avec succès");
             alert.show();
             tf_AdresseExp.setText("");
@@ -132,9 +172,7 @@ public class FXMLAjoutLivraisonController implements Initializable {
         }
     }
 
-   
-   
-
+    @FXML
     private void retour(ActionEvent event) {
         try {
             setSceneContent("FXMLLivraison");

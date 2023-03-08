@@ -6,9 +6,12 @@
 package gui;
 
 import entities.Reclamation;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,6 +29,7 @@ import javafx.scene.input.MouseEvent;
 import service.ReclamationService;
 import service.UtilisateurService;
 import utils.CommonController;
+import utils.Context;
 
 /**
  * FXML Controller class
@@ -46,10 +50,6 @@ public class FXMLGererReclamationController extends CommonController implements 
     private TableColumn<?, ?> IdUsrCol;
     ReclamationService rs = new ReclamationService();
     @FXML
-    private Button btnSupprimer;
-    @FXML
-    private Button btnModifier;
-    @FXML
     private TextField idRec;
     @FXML
     private ChoiceBox choix_type;
@@ -58,10 +58,14 @@ public class FXMLGererReclamationController extends CommonController implements 
 
     private String[] etats = {"Ouvert", "En cours", "Traite"};
     @FXML
+    private TextField recherche;
+    @FXML
     private TableColumn<?, ?> IdUsrCol1;
     @FXML
-    private TextField recherche;
-
+    private Button btnSupprimer;
+    @FXML
+    private Button btnModifier;
+   
     /**
      * Initializes the controller class.
      */
@@ -75,7 +79,7 @@ public class FXMLGererReclamationController extends CommonController implements 
         id_reclamationCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         etatCol.setCellValueFactory(new PropertyValueFactory<>("etat"));
         messageCol.setCellValueFactory(new PropertyValueFactory<>("message"));
-        IdUsrCol.setCellValueFactory(new PropertyValueFactory<>("idUser"));
+        IdUsrCol1.setCellValueFactory(new PropertyValueFactory<>("idUser"));
         ObservableList<Reclamation> L = FXCollections.observableArrayList(l);
         reclamationTable.setItems(L);
     }
@@ -108,6 +112,17 @@ public class FXMLGererReclamationController extends CommonController implements 
             afficherReclamation(rs.rechercher(recherche.getText()));
         }
     }
+
+    @FXML
+    private void detailsReclamation(ActionEvent event) {
+        Context.getInstance().addContextObject("reclamation",reclamationTable.getSelectionModel().getSelectedItem());
+        try {
+            setSceneContent("FXMLDetailReclamation");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 
 
 

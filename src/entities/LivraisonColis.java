@@ -20,6 +20,15 @@ public class LivraisonColis {
     private int nb_items;
     private String description;
     private float poids;
+    private int id_livreur;
+
+    public int getId_livreur() {
+        return id_livreur;
+    }
+
+    public void setId_livreur(int id_livreur) {
+        this.id_livreur = id_livreur;
+    }
    
 
     public LivraisonColis(Livraison l, Colis c) {
@@ -36,6 +45,14 @@ public class LivraisonColis {
         
         
     }
+
+    public LivraisonColis(int id_livraison, String adresse_expedition, String adresse_destinataire, String etat) {
+        this.id_livraison = id_livraison;
+        this.adresse_expedition = adresse_expedition;
+        this.adresse_destinataire = adresse_destinataire;
+        this.etat = etat;
+    }
+    
 
     public LivraisonColis() {
     }
@@ -84,6 +101,7 @@ public class LivraisonColis {
     public void setEtat(String etat) {
         this.etat = etat;
     }
+    
 
     public int getId() {
         return id;
@@ -116,6 +134,12 @@ public class LivraisonColis {
     public void setPoids(float poids) {
         this.poids = poids;
     }
+
+    @Override
+    public String toString() {
+        return "LivraisonColis{" + "id_livraison=" + id_livraison + ", adresse_expedition=" + adresse_expedition + ", adresse_destinataire=" + adresse_destinataire + ", prix=" + prix + ", etat=" + etat + ", id=" + id + ", nb_items=" + nb_items + ", description=" + description + ", poids=" + poids + ", id_livreur=" + id_livreur + '}';
+    }
+    
     
     
     
