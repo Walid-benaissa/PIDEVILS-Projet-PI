@@ -53,5 +53,10 @@
             </ImageView>
          </graphic>
       </Button>
+      <ImageView fitHeight="88.0" fitWidth="124.0" layoutX="31.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo-FiThneyti-01.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

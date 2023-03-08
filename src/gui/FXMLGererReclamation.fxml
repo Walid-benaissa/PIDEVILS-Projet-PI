@@ -19,14 +19,14 @@
          <children>
             <Pane layoutX="21.0" layoutY="37.0" prefHeight="628.0" prefWidth="862.0" style="-fx-background-radius: 20px; -fx-background-color: #212529;">
                <children>
-                  <Label layoutX="269.0" layoutY="26.0" prefHeight="54.0" prefWidth="322.0" text="Gerer Reclamation" textAlignment="CENTER" textFill="WHITE">
+                  <Label layoutX="269.0" layoutY="26.0" prefHeight="54.0" prefWidth="322.0" text="Gérer Reclamation" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
                   <TableView fx:id="reclamationTable" layoutX="12.0" layoutY="264.0" onMouseClicked="#handleMouseAction" prefHeight="344.0" prefWidth="836.0">
                     <columns>
-                      <TableColumn fx:id="id_reclamationCol" prefWidth="109.5999984741211" text="Id_Reclamation" />
+                      <TableColumn fx:id="id_reclamationCol" prefWidth="109.5999984741211" text="Id" />
                       <TableColumn fx:id="etatCol" prefWidth="88.79998779296875" text="Etat" />
                         <TableColumn fx:id="messageCol" prefWidth="311.2000427246094" text="Message" />
                         <TableColumn fx:id="IdUsrCol" prefWidth="138.4000244140625" text="Type" />
