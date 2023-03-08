@@ -6,6 +6,7 @@
 package gui;
 
 import entities.Livraison;
+import entities.LivraisonColis;
 import entities.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
@@ -17,6 +18,8 @@ import java.util.ResourceBundle;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -57,10 +60,10 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
     @FXML
     private TextField etat;
     @FXML
-    private TableView<Livraison> table2;
+    private TableView<LivraisonColis> table2;
     LivraisonService ls = new LivraisonService();
     int index = -1;
-    private ObservableList<Livraison> dataList = FXCollections.observableArrayList();
+    // private ObservableList<LivraisonColis> dataList = FXCollections.observableArrayList();
     Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
 
     private TextField txt_search;
@@ -68,57 +71,76 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
     private Button btnTrier;
     @FXML
     private Button txtbtn;
+    @FXML
+    private TableColumn<?, ?> Poids;
+    @FXML
+    private TableColumn<?, ?> tfDescription;
+    @FXML
+    private TableColumn<?, ?> tfNBObj;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            afficher();
-            //findLivraisonByAdresse(txt_search.getText());
-            //SortForumByTitle();
-       } catch (SQLException ex) {
-            Logger.getLogger(FXMLCourseController.class.getName()).log(Level.SEVERE, null, ex);
+
+        afficher();
+
+    }
+
+    private boolean Etat_valide() {
+        Pattern p = Pattern.compile("[a-zA-Z ]+");
+        Matcher m = p.matcher(etat.getText());
+        if (m.find() && m.group().equals(etat.getText())) {
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Type d'état invalide !");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez entrer un type valide !");
+            alert.showAndWait();
+
+            return false;
         }
     }
 
-    public ObservableList<Livraison> getLivraison(List<Livraison> l) {
+    /* public ObservableList<Livraison> getLivraison(List<Livraison> l) {
         ObservableList<Livraison> dataList = FXCollections.observableArrayList();
         for (int i = 0; i <= l.size() - 1; i++) {
             dataList.add(l.get(i));
         }
         return dataList;
-    }
-    
-        public List<Livraison> findLivraisonByAdresse(String adresse) {
-        LivraisonService sf = new LivraisonService();
-        List<Livraison> result = sf.getAllLivraison().stream().filter((p) -> p.getAdresse_expedition().contains(adresse.toUpperCase())).collect(Collectors.toList());
-        return result;
+    }*/
+    public ObservableList<LivraisonColis> getLivraisonColis(List<LivraisonColis> l) {
+        ObservableList<LivraisonColis> dataList = FXCollections.observableArrayList();
+        for (int i = 0; i <= l.size() - 1; i++) {
+            dataList.add(l.get(i));
+        }
+        return dataList;
     }
 
-    public void SortForumByTitle() {
+    public void SortLivraisonByPrice() {
         LivraisonService sf = new LivraisonService();
-        TreeSet<Livraison> forums = sf.afficherLivreur(u.getId()).stream().collect(Collectors.toCollection(() -> new TreeSet<Livraison>((a, b) -> ((int) b.getPrix() * 100) - ((int) a.getPrix() * 100))));
+        TreeSet<LivraisonColis> livraisons = sf.afficherLivreur(u.getId()).stream().collect(Collectors.toCollection(() -> new TreeSet<LivraisonColis>((a, b) -> ((int) b.getPrix() * 100) - ((int) a.getPrix() * 100))));
         tfAdresseExp.setCellValueFactory(new PropertyValueFactory<>("adresse_expedition"));
         tfAdresseDest.setCellValueFactory(new PropertyValueFactory<>("adresse_destinataire"));
         tfPrix.setCellValueFactory(new PropertyValueFactory<>("prix"));
         TfEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
-        table2.setItems(getLivraison(new ArrayList<Livraison>(forums)));
-        System.out.println(forums);
+        table2.setItems(getLivraisonColis(new ArrayList<LivraisonColis>(livraisons)));
+        System.out.println(livraisons);
     }
 
-
-  
-    public void afficher() throws SQLException {
+    public void afficher() {
 
         tfAdresseExp.setCellValueFactory(new PropertyValueFactory<>("adresse_expedition"));
         tfAdresseDest.setCellValueFactory(new PropertyValueFactory<>("adresse_destinataire"));
         tfPrix.setCellValueFactory(new PropertyValueFactory<>("prix"));
         TfEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
-
-        table2.setItems(getLivraison(ls.afficherLivreur(u.getId())));
-/*        txt_search.textProperty().addListener((observable, oldValue, newValue) -> {
+        tfNBObj.setCellValueFactory(new PropertyValueFactory<>("nb_items"));
+        tfDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        Poids.setCellValueFactory(new PropertyValueFactory<>("poids"));
+        table2.setItems(getLivraisonColis(ls.afficherLivreur(u.getId())));
+        /*        txt_search.textProperty().addListener((observable, oldValue, newValue) -> {
  table2.getItems().clear();
             List<Livraison> Liv =  findLivraisonByAdresse(newValue);
 
@@ -132,16 +154,23 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
 
     @FXML
     private void modifier(ActionEvent event) throws SQLException {
-        Livraison l = table2.getSelectionModel().getSelectedItem();
-        l.setEtat(etat.getText());
+        LivraisonColis l = table2.getSelectionModel().getSelectedItem();
+        if (etat.getText().isEmpty()) {
 
-        ls.modifier(l);
-        afficher();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("sucess");
-        alert.setContentText("Etat de livraison Modifié avec succès");
-        alert.show();
-        etat.setText("");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur!");
+            alert.setContentText("Champs Vide!");
+            alert.show();
+        } else if (Etat_valide()) {
+            l.setEtat(etat.getText());
+            ls.modif(l);
+            afficher();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("sucess");
+            alert.setContentText("Etat de livraison Modifié avec succès");
+            alert.show();
+            etat.setText("");
+        }
     }
 
     private void getSelected(javafx.scene.input.MouseEvent event) {
@@ -150,13 +179,14 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
         if (index <= -1) {
             return;
         }
+
         etat.setText(TfEtat.getCellData(index).toString());
     }
 
     @FXML
     private void retour(ActionEvent event) {
-        
-           try {
+
+        try {
             setSceneContent("FXMLListeLivraison");
         } catch (IOException ex) {
             Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
@@ -165,30 +195,25 @@ public class FXMLLivreurLivraisonController extends CommonController implements 
 
     @FXML
     private void Trier(ActionEvent event) {
-        SortForumByTitle();
-        
+        SortLivraisonByPrice();
+
     }
 
     @FXML
     private void sms(ActionEvent event) {
-             try {
+        try {
             setSceneContent("FXMLsms");
         } catch (IOException ex) {
             Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-
-    @FXML
     private void qrcode(ActionEvent event) {
-           try {
+        try {
             setSceneContent("FXMLColis");
         } catch (IOException ex) {
             Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-
-    
 
 }

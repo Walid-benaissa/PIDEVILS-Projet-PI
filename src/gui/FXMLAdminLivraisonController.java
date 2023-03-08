@@ -5,8 +5,6 @@
  */
 package gui;
 
-
-
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 
@@ -41,14 +39,12 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import utils.CommonController;
 
-
-
 /**
  * FXML Controller class
  *
  * @author user
  */
-public class FXMLAdminLivraisonController extends CommonController  implements Initializable {
+public class FXMLAdminLivraisonController extends CommonController implements Initializable {
 
     @FXML
     private TableView<LivraisonColis> table2;
@@ -70,25 +66,25 @@ public class FXMLAdminLivraisonController extends CommonController  implements I
     private TableColumn<?, ?> tfPoids;
     @FXML
     private TableColumn<?, ?> tfDescription;
-      LivraisonService ls = new LivraisonService();
+    LivraisonService ls = new LivraisonService();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-          try {
+        try {
             afficher();
         } catch (SQLException ex) {
             Logger.getLogger(FXMLCourseController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+    }
 
     @FXML
     private void getSelected(MouseEvent event) {
     }
-    
-        public ObservableList<LivraisonColis> getLivraisonColis (List<LivraisonColis> l) {
+
+    public ObservableList<LivraisonColis> getLivraisonColis(List<LivraisonColis> l) {
         ObservableList<LivraisonColis> dataList = FXCollections.observableArrayList();
         for (int i = 0; i <= l.size() - 1; i++) {
             dataList.add(l.get(i));
@@ -96,16 +92,7 @@ public class FXMLAdminLivraisonController extends CommonController  implements I
         return dataList;
     }
 
-   /* public ObservableList<Colis> getColis(List<Colis> c) {
-        ObservableList<Colis> dataList2 = FXCollections.observableArrayList();
-        for (int i = 0; i <= c.size() - 1; i++) {
-            dataList2.add(c.get(i));
-        }
-        return dataList2;
-    }*/
-
-    
-        public void afficher() throws SQLException {
+    public void afficher() throws SQLException {
 
         tfidLivraison.setCellValueFactory(new PropertyValueFactory<>("id_livraison"));
         tfAdresseExp.setCellValueFactory(new PropertyValueFactory<>("adresse_expedition"));
@@ -117,46 +104,37 @@ public class FXMLAdminLivraisonController extends CommonController  implements I
         tfDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         tfPoids.setCellValueFactory(new PropertyValueFactory<>("poids"));
         table2.setItems(getLivraisonColis(ls.afficherAdmin()));
-        //table.setItems(getColis(cs.afficheListe()));
+      
 
     }
 
     @FXML
     private void Save(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    ObservableList<LivraisonColis> dataList = table2.getItems();
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Save Data");
-    File file = fileChooser.showSaveDialog(stage);
-                //file.canRead();
-    if (file != null) {
-        try (BufferedWriter outWriter = new BufferedWriter(new FileWriter(file))) {
-            for ( LivraisonColis LivraisonColiss  : dataList) {
-                outWriter.write(LivraisonColiss.toString());
-                outWriter.newLine();
+        ObservableList<LivraisonColis> dataList = table2.getItems();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Data");
+        File file = fileChooser.showSaveDialog(stage);
+        //file.canRead();
+        if (file != null) {
+            try (BufferedWriter outWriter = new BufferedWriter(new FileWriter(file))) {
+                for (LivraisonColis LivraisonColiss : dataList) {
+                    outWriter.write(LivraisonColiss.toString());
+                    outWriter.newLine();
+                }
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Save Successful");
+                alert.setHeaderText(null);
+                alert.setContentText("Data saved to file: " + file.getAbsolutePath());
+                alert.showAndWait();
+            } catch (IOException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Save Failed");
+                alert.setHeaderText(null);
+                alert.setContentText("An error occurred while saving the data: " + e.getMessage());
+                alert.showAndWait();
             }
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Save Successful");
-            alert.setHeaderText(null);
-            alert.setContentText("Data saved to file: " + file.getAbsolutePath());
-            alert.showAndWait();
-        } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Save Failed");
-            alert.setHeaderText(null);
-            alert.setContentText("An error occurred while saving the data: " + e.getMessage());
-            alert.showAndWait();
         }
     }
-            }
- 
-    }
-        
-      
 
-    
-        
-
- 
-    
-
+}

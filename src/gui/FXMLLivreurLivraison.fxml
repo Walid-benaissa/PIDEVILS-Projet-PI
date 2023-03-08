@@ -17,21 +17,24 @@
         <fx:include fx:id="Sidebar" source="FXMLSideBarClient.fxml" />
     </left>
    <center>
-      <AnchorPane id="AnchorPane" prefHeight="554.0" prefWidth="729.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+      <AnchorPane id="AnchorPane" prefHeight="679.0" prefWidth="1088.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <Pane layoutX="23.0" layoutY="21.0" prefHeight="523.0" prefWidth="684.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
+            <Pane layoutX="23.0" layoutY="21.0" prefHeight="620.0" prefWidth="1033.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
                <children>
-                  <Label layoutX="216.0" layoutY="14.0" prefHeight="54.0" prefWidth="289.0" text="Consulter Livraisons" textFill="WHITE">
+                  <Label layoutX="334.0" layoutY="14.0" prefHeight="54.0" prefWidth="289.0" text="Consulter Livraisons" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="table2" layoutX="61.0" layoutY="235.0" prefHeight="248.0" prefWidth="597.0">
+                  <TableView fx:id="table2" layoutX="61.0" layoutY="235.0" prefHeight="280.0" prefWidth="904.0">
                     <columns>
                         <TableColumn fx:id="tfAdresseExp" prefWidth="143.0" text="Adresse Expédition" />
                         <TableColumn fx:id="tfAdresseDest" prefWidth="187.33331298828125" text="Adresse Destinataire" />
                         <TableColumn fx:id="tfPrix" prefWidth="117.33331298828125" text="Prix" />
-                        <TableColumn fx:id="TfEtat" prefWidth="138.66668701171875" text="Etat" />
+                        <TableColumn fx:id="TfEtat" prefWidth="94.0" text="Etat" />
+                        <TableColumn fx:id="tfDescription" prefWidth="133.0" text="Description" />
+                        <TableColumn fx:id="Poids" prefWidth="94.0" text="Poids" />
+                        <TableColumn fx:id="tfNBObj" prefWidth="115.0" text="Nombre d'objets" />
                     </columns>
                   </TableView>
                   <Button fx:id="btnModifier" layoutX="554.0" layoutY="153.0" minHeight="25.0" minWidth="82.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #FD9800;" text="Modifier">
@@ -45,12 +48,12 @@
                      </font>
                   </Label>
                   <TextField fx:id="etat" layoutX="422.0" layoutY="151.0" prefHeight="25.0" prefWidth="103.0" />
-                  <Button fx:id="txtbtn" layoutX="551.0" layoutY="35.0" mnemonicParsing="false" onAction="#retour" prefHeight="32.0" prefWidth="121.0" style="-fx-background-color: FD9800;" text="Consulter offres">
+                  <Button fx:id="txtbtn" layoutX="889.0" layoutY="36.0" mnemonicParsing="false" onAction="#retour" prefHeight="32.0" prefWidth="121.0" style="-fx-background-color: FD9800;" text="Consulter offres">
                      <font>
                         <Font name="System Bold" size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnTrier" layoutX="615.0" layoutY="204.0" minHeight="25.0" minWidth="43.0" mnemonicParsing="false" onAction="#Trier" prefHeight="25.0" prefWidth="43.0" style="-fx-background-color: #FD9800;" text="Trier">
+                  <Button fx:id="btnTrier" layoutX="906.0" layoutY="201.0" minHeight="25.0" minWidth="43.0" mnemonicParsing="false" onAction="#Trier" prefHeight="25.0" prefWidth="43.0" style="-fx-background-color: #FD9800;" text="Trier">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -63,16 +66,6 @@
                   <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="68.0" layoutY="196.0">
                      <image>
                         <Image url="@../images/sms.png" />
-                     </image>
-                  </ImageView>
-                  <Button layoutX="119.0" layoutY="196.0" minHeight="25.0" minWidth="40.0" mnemonicParsing="false" onAction="#qrcode" prefHeight="32.0" prefWidth="40.0" style="-fx-background-color: #FD9800;">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <ImageView fitHeight="19.0" fitWidth="26.0" layoutX="126.0" layoutY="204.0">
-                     <image>
-                        <Image url="@../images/qr-code.png" />
                      </image>
                   </ImageView>
                </children>

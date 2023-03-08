@@ -30,10 +30,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import service.LivraisonService;
 import static utils.CommonController.setSceneContent;
 import utils.Context;
-
 
 /**
  * FXML Controller class
@@ -65,11 +67,9 @@ public class FXMLColisController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-      
+
     }
 
-    
     private boolean adresse_expvalide() {
         Pattern p = Pattern.compile("[a-zA-Z ]+");
         Matcher m = p.matcher(txtexp.getText());
@@ -101,27 +101,26 @@ public class FXMLColisController implements Initializable {
             return false;
         }
     }
-    
+
     @FXML
     private void jButton1ActionPerformed(ActionEvent event) {
-        
-       
-      try {
+
+        try {
             QRCodeWriter qrCodeWriter = new QRCodeWriter();
-            String Information = "adresse expédition: "+txtexp.getText()+"\n"+"Adresse destination : "+txtdest.getText()+"\n"+"Prix : "+txtprix.getText()+"\n"+"Nom client : "+txtnom.getText()+"\n"+"Prénom Client : "+txtprenom.getText()+"\n"+"Numéro de teléphone: "+txttel.getText();
+            String Information = "adresse expédition: " + txtexp.getText() + "\n" + "Adresse destination : " + txtdest.getText() + "\n" + "Prix : " + txtprix.getText() + "\n" + "Nom client : " + txtnom.getText() + "\n" + "Prénom Client : " + txtprenom.getText() + "\n" + "Numéro de teléphone: " + txttel.getText();
             int width = 300;
             int height = 300;
-            
-            BufferedImage bufferedImage = null; 
+
+            BufferedImage bufferedImage = null;
             BitMatrix byteMatrix = qrCodeWriter.encode(Information, BarcodeFormat.QR_CODE, width, height);
             bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             bufferedImage.createGraphics();
-            
+
             Graphics2D graphics = (Graphics2D) bufferedImage.getGraphics();
             graphics.setColor(Color.WHITE);
             graphics.fillRect(0, 0, width, height);
             graphics.setColor(Color.BLACK);
-            
+
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
                     if (byteMatrix.get(i, j)) {
@@ -129,25 +128,27 @@ public class FXMLColisController implements Initializable {
                     }
                 }
             }
-            
+
             System.out.println("Success...");
-            
-            qrcodee.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
-            // TODO
+
+             qrcodee.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
+
+
+// TODO
         } catch (WriterException ex) {
             Logger.getLogger(FXMLColisController.class.getName()).log(Level.SEVERE, null, ex);
 
-    }
+        }
     }
 
     @FXML
     private void retour(ActionEvent event) {
-                     try {
+        try {
             setSceneContent("FXMLLivreurLivraison");
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
 }

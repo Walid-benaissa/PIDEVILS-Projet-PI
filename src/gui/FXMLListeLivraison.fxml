@@ -9,36 +9,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLListeLivraisonController">
    <center>
       <AnchorPane id="AnchorPane" prefHeight="449.0" prefWidth="913.0">
          <children>
-            <AnchorPane id="AnchorPane" layoutX="-3.0" layoutY="-6.0" prefHeight="679.0" prefWidth="923.0" style="-fx-background-color: black;">
+            <AnchorPane id="AnchorPane" layoutX="-3.0" layoutY="-6.0" prefHeight="689.0" prefWidth="982.0" style="-fx-background-color: black;">
                <children>
-                  <TableView fx:id="table2" layoutX="43.0" layoutY="134.0" onMouseClicked="#getSelected" prefHeight="269.0" prefWidth="846.0">
-                     <columns>
-                        <TableColumn fx:id="tfAdresseExp" prefWidth="132.0" text="Adresse Expédition" />
-                        <TableColumn fx:id="tfAdresseDest" prefWidth="132.0" text="Adresse Destinataire" />
-                        <TableColumn fx:id="tfPrix" prefWidth="88.0" text="Prix" />
-                        <TableColumn fx:id="tfNBObj" prefWidth="125.0" text="Nombre d'objets" />
-                        <TableColumn fx:id="tfPoids" text="Poids" />
-                        <TableColumn fx:id="tfDescription" prefWidth="185.0" text="Description" />
-                        <TableColumn fx:id="TfEtat" prefWidth="94.0" text="Etat" />
-                     </columns>
-                  </TableView>
-                  <Label layoutX="337.0" layoutY="5.0" prefHeight="54.0" prefWidth="507.0" text="Consulter Offres Livraisons" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="30.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="783.0" layoutY="95.0" mnemonicParsing="false" onAction="#Livrer" prefHeight="29.0" prefWidth="87.0" style="-fx-background-color: #FD9800;" text="Livrer">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <TextField fx:id="txt_search" layoutX="43.0" layoutY="95.0" prefHeight="25.0" prefWidth="193.0" promptText="Search Address" />
                   <Button layoutX="25.0" layoutY="19.0" mnemonicParsing="false" onAction="#retour" prefHeight="27.0" prefWidth="37.0" style="-fx-background-color: FD9800;">
                      <font>
                         <Font name="System Bold" size="10.0" />
@@ -51,11 +30,42 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="213.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/research.png" />
-                     </image>
-                  </ImageView>
+                  <Pane layoutX="44.0" layoutY="63.0" prefHeight="566.0" prefWidth="916.0" style="-fx-background-color: #212529; -fx-background-radius: 20px;">
+                     <children>
+                        <Button layoutX="784.0" layoutY="116.0" mnemonicParsing="false" onAction="#Livrer" prefHeight="29.0" prefWidth="87.0" style="-fx-background-color: #FD9800;" text="Livrer">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                        <TableView fx:id="table2" layoutX="32.0" layoutY="158.0" onMouseClicked="#getSelected" prefHeight="292.0" prefWidth="846.0">
+                           <columns>
+                              <TableColumn fx:id="tfAdresseExp" prefWidth="132.0" text="Adresse Expédition" />
+                              <TableColumn fx:id="tfAdresseDest" prefWidth="132.0" text="Adresse Destinataire" />
+                              <TableColumn fx:id="tfPrix" prefWidth="88.0" text="Prix" />
+                              <TableColumn fx:id="tfNBObj" prefWidth="125.0" text="Nombre d'objets" />
+                              <TableColumn fx:id="tfPoids" text="Poids" />
+                              <TableColumn fx:id="tfDescription" prefWidth="185.0" text="Description" />
+                              <TableColumn fx:id="TfEtat" prefWidth="94.0" text="Etat" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="249.0" layoutY="9.0" prefHeight="54.0" prefWidth="507.0" text="Consulter Offres Livraisons" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="filterfield" layoutX="132.0" layoutY="123.0" onAction="#search" prefHeight="25.0" prefWidth="165.0" promptText="Rechercher" />
+                        <ImageView fitHeight="22.0" fitWidth="25.0" layoutX="269.0" layoutY="125.0">
+                           <image>
+                              <Image url="@../images/research.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnTrier" layoutX="35.0" layoutY="123.0" minHeight="25.0" minWidth="43.0" mnemonicParsing="false" onAction="#Trier" prefHeight="25.0" prefWidth="43.0" style="-fx-background-color: #FD9800;" text="Trier">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
                </children>
             </AnchorPane>
          </children>

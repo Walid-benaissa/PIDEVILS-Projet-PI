@@ -88,20 +88,23 @@ public class LivraisonService implements IService<Livraison> {
     }
     
       
-    public List<Livraison> afficherLivreur(int id) {
-        List<Livraison> list = new ArrayList<>();
+    public List<LivraisonColis> afficherLivreur(int id) {
+        List<LivraisonColis> list = new ArrayList<>();
         try {
-            String req = "Select * from  `livraison` WHERE `livraison`.`id_livreur`="+id+" ";
+            String req = "Select * from  `livraison`,`colis` WHERE `livraison`.`id_colis` =`colis`.`id` and `livraison`.`id_livreur`="+id+" ";
             Statement st = conn.createStatement();
             ResultSet RS = st.executeQuery(req);
             while (RS.next()) {
-                Livraison l = new Livraison();
+                LivraisonColis l = new LivraisonColis();
                 l.setId_livraison(RS.getInt("id_livraison"));
                 l.setAdresse_expedition(RS.getString("Adresse_expedition"));
                 l.setAdresse_destinataire(RS.getString("Adresse_destinataire"));
                 l.setPrix(RS.getFloat("Prix"));
                 l.setEtat(RS.getString("Etat"));
-                l.setId_colis(RS.getInt("id_colis"));
+                 l.setId(RS.getInt("id"));
+                l.setDescription(RS.getString("Description"));
+                l.setNb_items(RS.getInt("Nb_items"));
+                l.setPoids(RS.getFloat("Poids"));
                 list.add(l);
             }
         } catch (SQLException ex) {
@@ -348,6 +351,27 @@ public class LivraisonService implements IService<Livraison> {
         }
         return Livraisons;
     }
+    
+     public List<LivraisonColis> rechercherLiv(String critere) throws SQLException {
+   
+    String req = "SELECT * FROM livraison WHERE adresse_expedition LIKE ? OR adresse_destinataire LIKE ? OR etat LIKE ?";
+   // stm = connexion.createStatement();
+  Statement stm = conn.createStatement();
+  PreparedStatement pst = conn.prepareStatement(req);
+   //ensemble de resultat
+  
+    pst.setString(1, "%" + critere + "%");
+    pst.setString(2, "%" + critere + "%");
+    pst.setString(3, "%" + critere + "%");
+    ResultSet rs = pst.executeQuery();
+    List<LivraisonColis> livraisons = new ArrayList<>();
+   
+    while (rs.next()) {
+        LivraisonColis r = new LivraisonColis(rs.getInt("id_livraison"), rs.getString("Adresse_expedition"), rs.getString("Adresse_destinataire"),rs.getString("Etat"));
+        livraisons.add(r);
+    }
+    return livraisons;
+}
 
     @Override
     public void ajouter(Livraison p) {

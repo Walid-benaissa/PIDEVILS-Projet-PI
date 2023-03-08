@@ -46,6 +46,14 @@ public class LivraisonColis {
         
     }
 
+    public LivraisonColis(int id_livraison, String adresse_expedition, String adresse_destinataire, String etat) {
+        this.id_livraison = id_livraison;
+        this.adresse_expedition = adresse_expedition;
+        this.adresse_destinataire = adresse_destinataire;
+        this.etat = etat;
+    }
+    
+
     public LivraisonColis() {
     }
 
@@ -93,6 +101,7 @@ public class LivraisonColis {
     public void setEtat(String etat) {
         this.etat = etat;
     }
+    
 
     public int getId() {
         return id;

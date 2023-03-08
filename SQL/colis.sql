@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 08 mars 2023 à 19:08
+-- Généré le : mer. 08 mars 2023 à 19:09
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -22,13 +22,13 @@ SET time_zone = "+00:00";
 --
 
 --
--- Déchargement des données de la table `livraison`
+-- Déchargement des données de la table `colis`
 --
 
-INSERT INTO `livraison` (`id_client`, `id_livreur`, `id_livraison`, `adresse_expedition`, `adresse_destinataire`, `prix`, `etat`, `id_colis`) VALUES
-(12, 0, 1, 'Ariana', 'Manouba', 4, 'En attente', 1),
-(12, 0, 2, 'Sfax', 'Monastir', 14, 'En attente', 2),
-(12, 0, 3, 'Tunis', 'Zaghouan', 6, 'En attente', 3);
+INSERT INTO `colis` (`id`, `nb_items`, `description`, `poids`) VALUES
+(1, 3, 'Articles de décoration', 2.5),
+(2, 8, 'Achats', 3),
+(3, 7, 'Objets', 3);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
