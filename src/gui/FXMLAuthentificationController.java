@@ -20,6 +20,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -39,7 +41,11 @@ public class FXMLAuthentificationController extends CommonController implements 
     @FXML
     private TextField tf_mail;
     @FXML
-    private TextField tf_mdp;
+    private Button yeux;
+    @FXML
+    private PasswordField tf_mdp;
+    @FXML
+    private TextField tf_mdpclaire;
 
     /**
      * Initializes the controller class.
@@ -52,10 +58,13 @@ public class FXMLAuthentificationController extends CommonController implements 
     @FXML
     private void authentification(ActionEvent event) {
         UtilisateurService us = new UtilisateurService();
+        if (!tf_mdp.isVisible()) {
+            tf_mdp.setText(tf_mdpclaire.getText());
+        }
         String mdpH = tf_mdp.getText();
         mdpH = us.HashagePassword(mdpH);
         Utilisateur user = us.authentification(tf_mail.getText(), mdpH);
-        if ((user.getId() != 0)&(user.isBolque()== false)) {
+        if ((user.getId() != 0) & (user.isBolque() == false)) {
             try {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Success");
@@ -102,7 +111,22 @@ public class FXMLAuthentificationController extends CommonController implements 
         } catch (IOException ex) {
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+    }
+
+    @FXML
+    private void mdpVisible(ActionEvent event) {
+
+        if (tf_mdp.isVisible()) {
+            tf_mdp.setVisible(false);
+            tf_mdpclaire.setVisible(true);
+            tf_mdpclaire.setText(tf_mdp.getText());
+        } else {
+            tf_mdpclaire.setVisible(false);
+            tf_mdp.setVisible(true);
+            tf_mdp.setText(tf_mdpclaire.getText());
+        }
+
     }
 
 }
