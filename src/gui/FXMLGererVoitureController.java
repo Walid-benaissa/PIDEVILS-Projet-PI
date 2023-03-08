@@ -62,14 +62,14 @@ public class FXMLGererVoitureController extends CommonController implements Init
             affichage.setText("Immatriculation :  " + v.getImmatriculation() + "\n"
                     + "Modele :  " + v.getModele() + "\n" + "Marque :  " + v.getMarque() + "\n"
                     + "Etat :  " + v.getEtat() + "\n");
+            File imageFile = new File(v.getPhoto());
+            Image image1 = new Image(imageFile.toURI().toString());
+            IDimage.setImage(image1);
         } else {
             btnSupprimer.setDisable(true);
             btnMettreajour.setDisable(true);
             affichage.setText("Aucune voiture");
         }
-        File imageFile = new File(v.getPhoto());
-        Image image1 = new Image(imageFile.toURI().toString());
-        IDimage.setImage(image1);
     }
 
     @FXML

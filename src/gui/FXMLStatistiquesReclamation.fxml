@@ -26,6 +26,6 @@
       </AnchorPane>
    </center>
    <left>
-      <fx:include fx:id="Sidebar" source="FXMLSideBarClient.fxml" />
+      <fx:include fx:id="Sidebar" source="FXMLSideBarAdmin.fxml" />
    </left>
 </BorderPane>
