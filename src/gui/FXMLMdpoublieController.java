@@ -44,6 +44,8 @@ public class FXMLMdpoublieController extends CommonController implements Initial
     private Text cdsPass;
     UtilisateurService uc = new UtilisateurService();
     Utilisateur u = new Utilisateur();
+    @FXML
+    private Text vPass;
 
     /**
      * Initializes the controller class.
@@ -56,15 +58,27 @@ public class FXMLMdpoublieController extends CommonController implements Initial
     @FXML
     private void EnvoyerBTN(ActionEvent event) {
         String To = fxLog.getText();
-        envoyerMail(To);
-        Context.getInstance().addContextObject("mail", To);
+        System.out.println(To.isEmpty());
+        if (To.isEmpty()){
+            cdsEnvoyer.setVisible(true);
+            return;
+        } else if (uc.verifMail(To)) {
+            cdsPass.setVisible(false);
+            vPass.setVisible(true);
 
-        try {
-            setSceneContent("FXMLCodeConfirmation");
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            vPass.setVisible(false);
+
+            envoyerMail(To);
+            Context.getInstance().addContextObject("mail", To);
+
+            try {
+                setSceneContent("FXMLCodeConfirmation");
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
-
     }
 
     public static void envoyerMail(String To) {

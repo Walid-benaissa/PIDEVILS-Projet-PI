@@ -97,7 +97,7 @@
       <Button layoutX="337.0" layoutY="636.0" mnemonicParsing="false" onAction="#valide" prefHeight="42.0" prefWidth="128.0" style="-fx-background-color: #fd9800;" text="Valider" textFill="WHITE" />
       <Text fill="WHITE" layoutX="183.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Café">
          <font>
-            <Font size="41.0" />
+            <Font name="System Bold" size="41.0" />
          </font>
       </Text>
       <ImageView fitHeight="74.0" fitWidth="78.0" layoutX="376.0" layoutY="23.0" pickOnBounds="true">
@@ -110,5 +110,10 @@
             <Font name="Microsoft Sans Serif" size="19.0" />
          </font>
       </Label>
+      <ImageView fitHeight="74.0" fitWidth="53.0" layoutX="400.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/captcha.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
