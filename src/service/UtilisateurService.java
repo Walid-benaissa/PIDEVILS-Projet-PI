@@ -354,5 +354,19 @@ public class UtilisateurService implements IService<Utilisateur> {
             System.out.println(ex.getMessage());
         }
     }
+     public boolean verifMail(String mail) {
+        Utilisateur p = new Utilisateur();
+        int nbr=0;
+        try {
+            String req = "Select count(*) from  `utilisateur` where mail ='" + mail + "'";
+            Statement st = conn.createStatement();
+            ResultSet RS = st.executeQuery(req);
+            RS.next();
+           nbr=RS.getInt("count(*)");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return nbr==0;
+    }
 
 }
