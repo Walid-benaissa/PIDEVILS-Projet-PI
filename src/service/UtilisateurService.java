@@ -38,7 +38,7 @@ public class UtilisateurService implements IService<Utilisateur> {
     public List<Utilisateur> afficheListe() {
         List<Utilisateur> list = new ArrayList<>();
         try {
-            String req = "Select * from  `utilisateur` order by id";
+            String req = "Select * from  `utilisateur` where `role`!='Admin' order by id";
             Statement st = conn.createStatement();
 
             ResultSet RS = st.executeQuery(req);
@@ -63,7 +63,7 @@ public class UtilisateurService implements IService<Utilisateur> {
     }
 
     public Map<String, Integer> statistiquesUtilisateurs() {
-        Map<String, Integer> res = new HashMap<String, Integer>();
+        Map<String, Integer> res = new HashMap<>();
         try {
             String req = "Select role,count(*) from  `utilisateur` where `role`!='Admin' group by role";
             Statement st = conn.createStatement();
@@ -291,7 +291,7 @@ public class UtilisateurService implements IService<Utilisateur> {
     public List<Utilisateur> rechercherNom(String Nom) {
         List<Utilisateur> list = new ArrayList<>();
         try {
-            String req = "Select * from  `utilisateur` where nom like '%" + Nom + "%'";
+            String req = "Select * from  `utilisateur` where `role`!='Admin' and nom like '%" + Nom + "%'";
             Statement st = conn.createStatement();
             ResultSet RS = st.executeQuery(req);
             while (RS.next()) {
@@ -315,7 +315,7 @@ public class UtilisateurService implements IService<Utilisateur> {
     public List<Utilisateur> rechercherPrenom(String Prenom) {
         List<Utilisateur> list = new ArrayList<>();
         try {
-            String req = "Select * from  `utilisateur` where prenom like '%" + Prenom + "%'";
+            String req = "Select * from  `utilisateur` where `role`!='Admin' and prenom like '%" + Prenom + "%'";
             Statement st = conn.createStatement();
             ResultSet RS = st.executeQuery(req);
             while (RS.next()) {
