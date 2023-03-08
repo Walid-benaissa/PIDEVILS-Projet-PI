@@ -33,8 +33,6 @@ public final Logger LOGGER = Logger.getLogger(this.getClass().getName());
        scene = new Scene(page);  
        currentStage.setScene(scene);  
        currentStage.setTitle("Sample JavaFX Application");  
-       currentStage.setWidth(800);  
-       currentStage.setHeight(600);  
      } else {  
        currentStage.getScene().setRoot(page);  
      }  

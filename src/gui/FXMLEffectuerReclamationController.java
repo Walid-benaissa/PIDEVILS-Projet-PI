@@ -21,10 +21,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import service.LivraisonService;
 import service.ReclamationService;
+import utils.CommonController;
 import static utils.CommonController.setSceneContent;
 import utils.Context;
 
@@ -33,7 +35,7 @@ import utils.Context;
  *
  * @author walid
  */
-public class FXMLEffectuerReclamationController implements Initializable {
+public class FXMLEffectuerReclamationController extends CommonController implements Initializable {
 
     @FXML
     private ChoiceBox choix_type;
@@ -44,6 +46,11 @@ public class FXMLEffectuerReclamationController implements Initializable {
     @FXML
     private AnchorPane sidepane;
     Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
+    ReclamationService rs = new ReclamationService();
+    @FXML
+    private Label msg_err;
+    @FXML
+    private Button btn_effectuer;
 
     /**
      * Initializes the controller class.
@@ -52,6 +59,10 @@ public class FXMLEffectuerReclamationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         choix_type.getItems().addAll(types);
         choix_type.setValue("Livraison");
+        if (rs.nbrRecParUser(u.getId())>=3){
+                msg_err.setVisible(true);
+                btn_effectuer.setDisable(true);
+        }
         try {
             switch (u.getRole()) {
                 case "Client":
@@ -71,14 +82,26 @@ public class FXMLEffectuerReclamationController implements Initializable {
 
     @FXML
     private void effectuerReclamation(ActionEvent event) {
-        ReclamationService rs = new ReclamationService();
-        LivraisonService ls=new LivraisonService();
-        Reclamation r = new Reclamation(2, u.getId(), ta_msg.getText(), "Ouvert");
+        Reclamation r = new Reclamation(13, u.getId(), ta_msg.getText(), "Ouvert");
         rs.ajouter(r);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setContentText("Reclamation ajouté avec succés");
         alert.show();
+        try {
+            setSceneContent("FXMLConsulterReclamations");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLEffectuerReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+         try {
+            setSceneContent("FXMLConsulterReclamations");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

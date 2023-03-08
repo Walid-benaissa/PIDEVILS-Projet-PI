@@ -14,6 +14,11 @@
          <children>
             <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
+                  <Image url="@../images/bar-chart.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
                   <Image url="@../images/group.png" />
                </image>
             </ImageView>
@@ -37,9 +42,9 @@
                   <Image url="@../images/car-key.png" />
                </image>
             </ImageView>
-            <AnchorPane prefHeight="310.0" prefWidth="158.0">
+            <AnchorPane prefHeight="250.0" prefWidth="39.0">
                <children>
-                  <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="268.0">
+                  <ImageView fitHeight="36.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="222.0">
                      <image>
                         <Image url="@../images/turn-off.png" />
                      </image>
@@ -47,36 +52,41 @@
                </children>
             </AnchorPane>
          </children>
-         <padding>
-            <Insets left="4.0" top="4.0" />
-         </padding>
          <opaqueInsets>
             <Insets top="4.0" />
          </opaqueInsets>
+         <padding>
+            <Insets left="4.0" top="4.0" />
+         </padding>
       </VBox>
       <VBox layoutX="43.0" layoutY="152.0" prefHeight="526.0" prefWidth="158.0" style="-fx-background-color: white;">
          <children>
-            <Button mnemonicParsing="false" onAction="#routeGererUser" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Utilisateur">
+            <Button maxHeight="42.0" minHeight="42.0" mnemonicParsing="false" onAction="#routeStatistiques" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Statistiques">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#routeGererReclamation" prefHeight="45.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Réclamation">
+            <Button maxHeight="42.0" minHeight="42.0" mnemonicParsing="false" onAction="#routeGererUser" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Utilisateurs">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#routeGererLivraisions" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Livraisons">
+            <Button maxHeight="42.0" minHeight="42.0" mnemonicParsing="false" onAction="#routeGererReclamation" prefHeight="45.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Réclamations">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#routeGererVoitures" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Voitures">
+            <Button maxHeight="42.0" minHeight="42.0" mnemonicParsing="false" onAction="#routeGererLivraisions" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Livraisons">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#routeConsulterLocation" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Location">
+            <Button maxHeight="42.0" maxWidth="158.0" minHeight="42.0" minWidth="158.0" mnemonicParsing="false" onAction="#routeGererVoitures" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Voitures">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button maxHeight="42.0" maxWidth="158.0" minHeight="42.0" minWidth="158.0" mnemonicParsing="false" onAction="#routeConsulterLocation" prefHeight="42.0" prefWidth="158.0" style="-fx-background-color: #FD9800;" text="Location">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

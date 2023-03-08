@@ -82,5 +82,14 @@ public class FXMLSideBarAdminController extends CommonController implements Init
             Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    private void routeStatistiques(ActionEvent event) {
+        try {
+            setSceneContent("FXMLStatistiquesReclamation");
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLGererReclamationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }

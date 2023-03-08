@@ -5,7 +5,9 @@
  */
 package gui;
 
+import entities.Utilisateur;
 import entities.Voiture;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,11 +23,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import service.VoitureService;
 import utils.CommonController;
 import static utils.CommonController.setSceneContent;
+import utils.Context;
 
 /**
  * FXML Controller class
@@ -45,7 +49,8 @@ public class FXMLGererVoitureController extends CommonController implements Init
     @FXML
     private Label affichage;
     VoitureService vs = new VoitureService();
-    Voiture v = vs.afficheVoiture(3);
+    Utilisateur u = (Utilisateur) Context.getInstance().getContextObject("UtilisateurCourant");
+    Voiture v = vs.afficheVoiture(u.getId());
 
     /**
      * Initializes the controller class.
@@ -62,7 +67,9 @@ public class FXMLGererVoitureController extends CommonController implements Init
             btnMettreajour.setDisable(true);
             affichage.setText("Aucune voiture");
         }
-
+        File imageFile = new File(v.getPhoto());
+        Image image1 = new Image(imageFile.toURI().toString());
+        IDimage.setImage(image1);
     }
 
     @FXML
@@ -81,17 +88,16 @@ public class FXMLGererVoitureController extends CommonController implements Init
         btnAjouter.setDisable(false);
         btnSupprimer.setDisable(true);
         btnMettreajour.setDisable(true);
-
+        IDimage.setImage(null);
     }
 
     @FXML
     private void Metrreajour(ActionEvent event) {
-       try {
+        try {
             setSceneContent("FXMLModifierVoiture");
         } catch (IOException ex) {
             Logger.getLogger(FXMLAuthentificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-  
 }

@@ -74,7 +74,7 @@ public class FXMLAuthentificationController extends CommonController implements 
                 Context.getInstance().addContextObject("Role", user.getRole());
                 switch (user.getRole()) {
                     case "Admin":
-                        setSceneContent("FXMLGererUtilisateurs");
+                        setSceneContent("FXMLStatistiquesReclamation");
                         break;
                     case "Client":
                         setSceneContent("FXMLGererProfil");
