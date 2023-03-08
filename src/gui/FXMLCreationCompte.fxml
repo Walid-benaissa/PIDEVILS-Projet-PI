@@ -112,7 +112,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Pane fx:id="ajoutC" layoutX="371.0" layoutY="209.0">
+            <Pane fx:id="ajoutC" layoutX="371.0" layoutY="209.0" prefHeight="186.0" prefWidth="281.0">
                <children>
                   <TextField fx:id="tf_permis" layoutX="83.0" layoutY="40.0" prefHeight="27.0" prefWidth="198.0" />
                   <Button layoutX="9.0" layoutY="40.0" mnemonicParsing="false" onAction="#importerPermis" prefHeight="27.0" prefWidth="82.0" text="Impoter" />
@@ -128,6 +128,16 @@
                   </Label>
                   <TextField fx:id="tf_b3" layoutX="83.0" layoutY="127.0" prefHeight="27.0" prefWidth="198.0" />
                   <Button layoutX="9.0" layoutY="127.0" mnemonicParsing="false" onAction="#importerB3" prefHeight="27.0" prefWidth="82.0" text="Importer" />
+                  <Label fx:id="err_permis" layoutX="9.0" layoutY="69.0" text="Veuillez choisir une image" textFill="RED">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="err_b3" layoutX="9.0" layoutY="164.0" text="Veuillez choisir une image" textFill="RED">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="13.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
             <Label fx:id="err_num" layoutX="51.0" layoutY="369.0" text="Veuillez saisir un numéro de téléphone valide" textFill="RED" visible="false">

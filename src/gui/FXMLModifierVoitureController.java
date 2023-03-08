@@ -105,7 +105,7 @@ public class FXMLModifierVoitureController implements Initializable {
         } else {
             err_etat.setVisible(false);
         }
-        if (!photo.getText().isEmpty()) {
+        if (photo.getText().isEmpty()) {
             err_img.setVisible(true);
             return;
         } else {
